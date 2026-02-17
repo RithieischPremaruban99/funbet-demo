@@ -1,168 +1,222 @@
-import { ChevronRight, Flame, Zap } from "lucide-react";
-import heroBanner from "@/assets/hero-banner.jpg";
-import casinoPromo from "@/assets/casino-promo.jpg";
-import slotsGame from "@/assets/slots-game.jpg";
-import blackjackGame from "@/assets/blackjack-game.jpg";
+import { ChevronRight, Flame, Zap, Swords, Radio, Trophy, Dices } from "lucide-react";
 import MobileLayout from "@/components/MobileLayout";
 
-const liveSports = [
-  { id: 1, league: "Ligue 1", home: "PSG", away: "OM", scoreHome: 2, scoreAway: 1, time: "67'", odds: [1.35, 5.20, 8.50] },
-  { id: 2, league: "Premier League", home: "Arsenal", away: "Liverpool", scoreHome: 1, scoreAway: 1, time: "45'", odds: [2.10, 3.40, 3.60] },
-  { id: 3, league: "La Liga", home: "Real Madrid", away: "Barcelona", scoreHome: 0, scoreAway: 0, time: "12'", odds: [2.50, 3.30, 2.80] },
+const categories = [
+  { icon: Flame, label: "Top Paris", sublabel: "Populaire", gradient: true },
+  { icon: Dices, label: "Casino", sublabel: "Live", gradient: false },
+  { icon: Radio, label: "Live", sublabel: "En direct", gradient: true },
+  { icon: Trophy, label: "Tous les", sublabel: "Sports", gradient: false },
+];
+
+const liveMatches = [
+  {
+    id: 1,
+    league: "Ligue 1, Journée 24",
+    time: "67'",
+    home: { name: "Paris Saint-Germain", abbr: "PSG" },
+    away: { name: "Olympique de Marseille", abbr: "OM" },
+    spread: { home: "-1.5", homeOdds: "-120", away: "+1.5", awayOdds: "+105" },
+    moneyline: { home: "-250", away: "+680" },
+    total: { over: "O 3.5", overOdds: "-110", under: "U 3.5", underOdds: "-110" },
+  },
+  {
+    id: 2,
+    league: "Premier League, MD 26",
+    time: "45'",
+    home: { name: "Arsenal", abbr: "ARS" },
+    away: { name: "Liverpool FC", abbr: "LIV" },
+    spread: { home: "-0.5", homeOdds: "-105", away: "+0.5", awayOdds: "-115" },
+    moneyline: { home: "+140", away: "+210" },
+    total: { over: "O 2.5", overOdds: "-130", under: "U 2.5", underOdds: "+110" },
+  },
 ];
 
 const upcomingMatches = [
-  { id: 4, league: "Champions League", home: "Bayern Munich", away: "Man City", date: "Demain 21:00", odds: [2.20, 3.50, 3.10] },
-  { id: 5, league: "Serie A", home: "AC Milan", away: "Inter Milan", date: "Mer. 20:45", odds: [2.80, 3.20, 2.60] },
+  {
+    id: 3,
+    league: "Champions League, 1/8",
+    date: "21:00",
+    dateLabel: "DEMAIN",
+    home: { name: "Bayern Munich", abbr: "BAY" },
+    away: { name: "Manchester City", abbr: "MCI" },
+    spread: { home: "-0.5", homeOdds: "-110", away: "+0.5", awayOdds: "-110" },
+    moneyline: { home: "+130", away: "+210" },
+    total: { over: "O 3.5", overOdds: "+100", under: "U 3.5", underOdds: "-120" },
+  },
+  {
+    id: 4,
+    league: "La Liga, Journée 25",
+    date: "21:00",
+    dateLabel: "MER",
+    home: { name: "Real Madrid", abbr: "RMA" },
+    away: { name: "FC Barcelona", abbr: "BAR" },
+    spread: { home: "-0.5", homeOdds: "+100", away: "+0.5", awayOdds: "-120" },
+    moneyline: { home: "+150", away: "+180" },
+    total: { over: "O 2.5", overOdds: "-105", under: "U 2.5", underOdds: "-115" },
+  },
 ];
 
-const casinoGames = [
-  { id: 1, name: "Roulette VIP", image: casinoPromo, tag: "Live", players: 234 },
-  { id: 2, name: "Golden Slots", image: slotsGame, tag: "Populaire", players: 1205 },
-  { id: 3, name: "Blackjack Pro", image: blackjackGame, tag: "Nouveau", players: 89 },
-];
+const OddsCell = ({ top, bottom, positive }: { top: string; bottom: string; positive?: boolean }) => (
+  <div className="odds-cell">
+    <span className="text-[10px] text-muted-foreground leading-none">{top}</span>
+    <span className={`text-xs font-bold leading-none mt-0.5 ${positive ? "text-success" : "text-highlight"}`}>{bottom}</span>
+  </div>
+);
 
 const Index = () => {
   return (
     <MobileLayout>
-      {/* Hero Banner */}
-      <section className="relative mx-3 mt-3 rounded-2xl overflow-hidden">
-        <img src={heroBanner} alt="Partouche Promo" className="w-full h-44 object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
-        <div className="absolute bottom-4 left-4 right-4">
-          <p className="text-xs text-primary font-semibold uppercase tracking-wider mb-1">Offre exclusive</p>
-          <h2 className="text-lg font-display font-bold leading-tight mb-2">Bonus 100% jusqu'à 500€</h2>
-          <button className="gold-gradient px-4 py-2 rounded-xl text-primary-foreground text-xs font-bold">
-            Réclamer maintenant
-          </button>
+      {/* Top actions - Sign In / Create Account style from screenshot */}
+      <section className="px-4 mt-3 flex items-center justify-between">
+        <button className="text-sm font-medium text-foreground hover:text-primary transition-colors">Connexion</button>
+        <button className="px-5 py-2 rounded-full orange-gradient text-highlight-foreground text-sm font-bold glow-orange">
+          Créer un compte
+        </button>
+      </section>
+
+      {/* Category Cards - Rebet style */}
+      <section className="px-4 mt-5">
+        <div className="grid grid-cols-4 gap-2">
+          {categories.map((cat, i) => {
+            const Icon = cat.icon;
+            return (
+              <button
+                key={cat.label}
+                className={`flex flex-col items-center gap-1.5 py-4 px-2 rounded-2xl border transition-all ${
+                  cat.gradient
+                    ? "border-highlight/30 card-gradient-warm glow-orange"
+                    : "border-border bg-card hover:bg-card-elevated"
+                }`}
+              >
+                <Icon size={22} className={cat.gradient ? "text-highlight" : "text-muted-foreground"} />
+                <div className="text-center">
+                  <p className="text-[11px] font-bold leading-tight">{cat.label}</p>
+                  <p className={`text-[10px] leading-tight ${cat.gradient ? "text-highlight" : "text-muted-foreground"}`}>{cat.sublabel}</p>
+                </div>
+              </button>
+            );
+          })}
         </div>
       </section>
 
-      {/* Quick Actions */}
-      <section className="flex gap-2 px-3 mt-4 overflow-x-auto hide-scrollbar">
-        {["⚽ Football", "🏀 Basketball", "🎾 Tennis", "🏇 Courses", "🎰 Slots"].map((item) => (
-          <button
-            key={item}
-            className="flex-shrink-0 px-4 py-2 rounded-xl bg-secondary text-secondary-foreground text-xs font-medium whitespace-nowrap hover:bg-card-elevated transition-colors"
-          >
-            {item}
-          </button>
-        ))}
+      {/* Challenge Banner - like "Pick Against Friends" */}
+      <section className="px-4 mt-4">
+        <button className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-primary/30 bg-primary/5 hover:bg-primary/10 transition-colors">
+          <Swords size={18} className="text-primary" />
+          <span className="text-sm font-bold text-primary">Défiez vos amis</span>
+        </button>
       </section>
 
-      {/* Live Sports */}
-      <section className="mt-6 px-3">
+      {/* Live Matches - Rebet table layout */}
+      <section className="mt-6 px-4">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-live/10">
-              <span className="w-1.5 h-1.5 rounded-full bg-live animate-pulse-live" />
-              <span className="text-xs font-semibold text-live">EN DIRECT</span>
-            </div>
+            <span className="w-2 h-2 rounded-full bg-live animate-pulse-live" />
+            <span className="text-sm font-bold text-live">EN DIRECT</span>
           </div>
-          <button className="flex items-center gap-1 text-xs text-primary font-medium">
-            Tout voir <ChevronRight size={14} />
+          <button className="flex items-center gap-1 text-xs text-highlight font-semibold">
+            Tous les matchs <ChevronRight size={14} />
           </button>
         </div>
 
-        <div className="space-y-2">
-          {liveSports.map((match) => (
-            <div key={match.id} className="card-gradient rounded-xl p-3 border border-border animate-slide-up">
-              <div className="flex items-center justify-between mb-2">
+        <div className="space-y-3">
+          {liveMatches.map((match) => (
+            <div key={match.id} className="rounded-2xl border border-highlight/20 overflow-hidden card-gradient-warm animate-slide-up">
+              {/* League Header */}
+              <div className="flex items-center justify-between px-3 py-2">
                 <span className="text-[10px] text-muted-foreground font-medium">{match.league}</span>
                 <div className="flex items-center gap-1">
-                  <Flame size={12} className="text-live" />
+                  <Flame size={11} className="text-live" />
                   <span className="text-[10px] text-live font-bold">{match.time}</span>
                 </div>
               </div>
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex-1">
-                  <p className="text-sm font-semibold">{match.home}</p>
-                  <p className="text-sm font-semibold">{match.away}</p>
-                </div>
-                <div className="text-right">
-                  <p className="text-sm font-bold text-primary">{match.scoreHome}</p>
-                  <p className="text-sm font-bold text-primary">{match.scoreAway}</p>
-                </div>
+
+              {/* Table Header */}
+              <div className="grid grid-cols-[1fr_80px_80px_80px] px-3 pb-1">
+                <div />
+                <span className="text-[9px] text-muted-foreground font-semibold text-center uppercase tracking-wider">Spread</span>
+                <span className="text-[9px] text-muted-foreground font-semibold text-center uppercase tracking-wider">ML</span>
+                <span className="text-[9px] text-muted-foreground font-semibold text-center uppercase tracking-wider">Total</span>
               </div>
-              <div className="grid grid-cols-3 gap-1.5">
-                {["1", "X", "2"].map((label, i) => (
-                  <button
-                    key={label}
-                    className="flex flex-col items-center py-1.5 rounded-lg bg-secondary hover:bg-card-elevated transition-colors"
-                  >
-                    <span className="text-[10px] text-muted-foreground">{label}</span>
-                    <span className="text-xs font-bold">{match.odds[i].toFixed(2)}</span>
-                  </button>
-                ))}
+
+              {/* Home Team */}
+              <div className="grid grid-cols-[1fr_80px_80px_80px] gap-1.5 px-3 py-1">
+                <div className="flex items-center">
+                  <span className="text-sm font-bold truncate">{match.home.name}</span>
+                </div>
+                <OddsCell top={match.spread.home} bottom={match.spread.homeOdds} />
+                <OddsCell top="" bottom={match.moneyline.home} positive={match.moneyline.home.startsWith("+")} />
+                <OddsCell top={match.total.over} bottom={match.total.overOdds} />
+              </div>
+
+              {/* Away Team */}
+              <div className="grid grid-cols-[1fr_80px_80px_80px] gap-1.5 px-3 py-1 pb-3">
+                <div className="flex items-center">
+                  <span className="text-sm font-bold truncate">{match.away.name}</span>
+                </div>
+                <OddsCell top={match.spread.away} bottom={match.spread.awayOdds} positive={match.spread.awayOdds.startsWith("+")} />
+                <OddsCell top="" bottom={match.moneyline.away} positive={match.moneyline.away.startsWith("+")} />
+                <OddsCell top={match.total.under} bottom={match.total.underOdds} />
+              </div>
+
+              {/* Footer */}
+              <div className="flex items-center justify-end gap-4 px-3 py-2 border-t border-border/50">
+                <button className="text-[10px] text-muted-foreground font-medium hover:text-foreground transition-colors">Match ↗</button>
+                <button className="text-[10px] text-highlight font-semibold">Plus de paris →</button>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Upcoming */}
-      <section className="mt-6 px-3">
+      {/* Upcoming Matches */}
+      <section className="mt-6 px-4 mb-6">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <Zap size={16} className="text-primary" />
-            <h3 className="text-sm font-bold font-display">À VENIR</h3>
+            <Zap size={16} className="text-highlight" />
+            <span className="text-sm font-bold">À VENIR</span>
           </div>
-          <button className="flex items-center gap-1 text-xs text-primary font-medium">
+          <button className="flex items-center gap-1 text-xs text-highlight font-semibold">
             Tout voir <ChevronRight size={14} />
           </button>
         </div>
-        <div className="space-y-2">
-          {upcomingMatches.map((match) => (
-            <div key={match.id} className="card-gradient rounded-xl p-3 border border-border">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] text-muted-foreground font-medium">{match.league}</span>
-                <span className="text-[10px] text-muted-foreground">{match.date}</span>
-              </div>
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-sm font-semibold">{match.home} vs {match.away}</p>
-              </div>
-              <div className="grid grid-cols-3 gap-1.5">
-                {["1", "X", "2"].map((label, i) => (
-                  <button
-                    key={label}
-                    className="flex flex-col items-center py-1.5 rounded-lg bg-secondary hover:bg-card-elevated transition-colors"
-                  >
-                    <span className="text-[10px] text-muted-foreground">{label}</span>
-                    <span className="text-xs font-bold">{match.odds[i].toFixed(2)}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
-      {/* Casino Section */}
-      <section className="mt-6 px-3 mb-4">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-sm font-bold font-display gold-text">🎰 CASINO</h3>
-          <button className="flex items-center gap-1 text-xs text-primary font-medium">
-            Tout voir <ChevronRight size={14} />
-          </button>
-        </div>
-        <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-2">
-          {casinoGames.map((game) => (
-            <div key={game.id} className="flex-shrink-0 w-36 rounded-xl overflow-hidden border border-border group cursor-pointer">
-              <div className="relative">
-                <img src={game.image} alt={game.name} className="w-full h-28 object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute top-2 left-2">
-                  <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold ${
-                    game.tag === "Live" ? "bg-live text-live-foreground" :
-                    game.tag === "Nouveau" ? "gold-gradient text-primary-foreground" :
-                    "bg-secondary text-secondary-foreground"
-                  }`}>
-                    {game.tag}
-                  </span>
-                </div>
+        <div className="space-y-3">
+          {upcomingMatches.map((match) => (
+            <div key={match.id} className="rounded-2xl border border-border overflow-hidden card-gradient animate-slide-up">
+              <div className="flex items-center justify-between px-3 py-2">
+                <span className="text-[10px] text-muted-foreground font-medium">{match.league}</span>
+                <span className="text-[10px] text-highlight font-bold">{match.dateLabel} {match.date}</span>
               </div>
-              <div className="p-2 card-gradient">
-                <p className="text-xs font-semibold truncate">{game.name}</p>
-                <p className="text-[10px] text-muted-foreground">{game.players} joueurs</p>
+
+              <div className="grid grid-cols-[1fr_80px_80px_80px] px-3 pb-1">
+                <div />
+                <span className="text-[9px] text-muted-foreground font-semibold text-center uppercase tracking-wider">Spread</span>
+                <span className="text-[9px] text-muted-foreground font-semibold text-center uppercase tracking-wider">ML</span>
+                <span className="text-[9px] text-muted-foreground font-semibold text-center uppercase tracking-wider">Total</span>
+              </div>
+
+              <div className="grid grid-cols-[1fr_80px_80px_80px] gap-1.5 px-3 py-1">
+                <div className="flex items-center">
+                  <span className="text-sm font-bold truncate">{match.home.name}</span>
+                </div>
+                <OddsCell top={match.spread.home} bottom={match.spread.homeOdds} />
+                <OddsCell top="" bottom={match.moneyline.home} positive={match.moneyline.home.startsWith("+")} />
+                <OddsCell top={match.total.over} bottom={match.total.overOdds} positive={match.total.overOdds.startsWith("+")} />
+              </div>
+
+              <div className="grid grid-cols-[1fr_80px_80px_80px] gap-1.5 px-3 py-1 pb-3">
+                <div className="flex items-center">
+                  <span className="text-sm font-bold truncate">{match.away.name}</span>
+                </div>
+                <OddsCell top={match.spread.away} bottom={match.spread.awayOdds} />
+                <OddsCell top="" bottom={match.moneyline.away} positive={match.moneyline.away.startsWith("+")} />
+                <OddsCell top={match.total.under} bottom={match.total.underOdds} />
+              </div>
+
+              <div className="flex items-center justify-end gap-4 px-3 py-2 border-t border-border/50">
+                <button className="text-[10px] text-muted-foreground font-medium hover:text-foreground transition-colors">Match ↗</button>
+                <button className="text-[10px] text-highlight font-semibold">Plus de paris →</button>
               </div>
             </div>
           ))}

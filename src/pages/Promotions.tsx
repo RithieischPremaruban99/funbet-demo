@@ -1,6 +1,5 @@
 import MobileLayout from "@/components/MobileLayout";
 import { Clock, Gift, Percent, Star, Trophy } from "lucide-react";
-import heroBanner from "@/assets/hero-banner.jpg";
 
 const promos = [
   {
@@ -10,7 +9,7 @@ const promos = [
     icon: Gift,
     tag: "Nouveau",
     expiry: "Offre permanente",
-    color: "gold-gradient",
+    featured: true,
   },
   {
     id: 2,
@@ -19,7 +18,7 @@ const promos = [
     icon: Trophy,
     tag: "Sports",
     expiry: "Chaque semaine",
-    color: "bg-secondary",
+    featured: false,
   },
   {
     id: 3,
@@ -28,7 +27,7 @@ const promos = [
     icon: Percent,
     tag: "Casino",
     expiry: "Expire dans 3 jours",
-    color: "bg-secondary",
+    featured: false,
   },
   {
     id: 4,
@@ -37,32 +36,35 @@ const promos = [
     icon: Star,
     tag: "VIP",
     expiry: "Jusqu'au 28 fév.",
-    color: "bg-secondary",
+    featured: false,
   },
 ];
 
 const Promotions = () => {
   return (
     <MobileLayout>
-      {/* Hero */}
-      <section className="relative mx-3 mt-3 rounded-2xl overflow-hidden">
-        <img src={heroBanner} alt="Promotions" className="w-full h-32 object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/95 to-transparent" />
-        <div className="absolute bottom-3 left-4">
-          <h2 className="text-lg font-display font-bold gold-text">Promotions</h2>
-          <p className="text-xs text-muted-foreground">Offres exclusives Partouche</p>
-        </div>
+      <section className="px-4 mt-3">
+        <h2 className="text-lg font-bold">Découvrir</h2>
+        <p className="text-xs text-muted-foreground mt-0.5">Offres exclusives Partouche</p>
       </section>
 
-      {/* Promo List */}
-      <section className="px-3 mt-4 mb-4 space-y-3">
+      <section className="px-4 mt-4 mb-6 space-y-3">
         {promos.map((promo) => {
           const Icon = promo.icon;
           return (
-            <div key={promo.id} className="card-gradient rounded-xl p-4 border border-border cursor-pointer hover:border-primary/30 transition-colors">
+            <div
+              key={promo.id}
+              className={`rounded-2xl p-4 border cursor-pointer transition-all hover:border-highlight/30 ${
+                promo.featured
+                  ? "border-highlight/20 card-gradient-warm glow-orange"
+                  : "border-border card-gradient"
+              }`}
+            >
               <div className="flex gap-3">
-                <div className={`flex-shrink-0 w-12 h-12 rounded-xl ${promo.color} flex items-center justify-center`}>
-                  <Icon size={20} className={promo.color === "gold-gradient" ? "text-primary-foreground" : "text-primary"} />
+                <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
+                  promo.featured ? "orange-gradient" : "bg-card-elevated"
+                }`}>
+                  <Icon size={20} className={promo.featured ? "text-highlight-foreground" : "text-primary"} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">

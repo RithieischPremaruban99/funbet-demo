@@ -19,27 +19,27 @@ const Casino = () => {
   return (
     <MobileLayout>
       {/* Search */}
-      <section className="px-3 mt-3">
+      <section className="px-4 mt-3">
         <div className="relative">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input
             type="text"
             placeholder="Rechercher un jeu..."
-            className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-secondary text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary transition-all"
+            className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-card border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary focus:border-primary/50 transition-all"
           />
         </div>
       </section>
 
       {/* Categories */}
-      <section className="px-3 mt-3">
+      <section className="px-4 mt-3">
         <div className="flex gap-2 overflow-x-auto hide-scrollbar">
           {categories.map((cat, i) => (
             <button
               key={cat}
-              className={`flex-shrink-0 px-4 py-2 rounded-xl text-xs font-medium transition-colors ${
+              className={`flex-shrink-0 px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
                 i === 0
-                  ? "gold-gradient text-primary-foreground"
-                  : "bg-secondary text-secondary-foreground hover:bg-card-elevated"
+                  ? "orange-gradient text-highlight-foreground glow-orange"
+                  : "bg-card border border-border text-secondary-foreground hover:bg-card-elevated"
               }`}
             >
               {cat}
@@ -48,16 +48,16 @@ const Casino = () => {
         </div>
       </section>
 
-      {/* Featured Banner */}
-      <section className="px-3 mt-4">
-        <div className="relative rounded-2xl overflow-hidden">
+      {/* Featured */}
+      <section className="px-4 mt-4">
+        <div className="relative rounded-2xl overflow-hidden border border-highlight/20">
           <img src={casinoPromo} alt="Casino VIP" className="w-full h-36 object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/90 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/40 to-transparent" />
           <div className="absolute inset-0 flex flex-col justify-center pl-4">
             <span className="text-[10px] text-primary font-bold uppercase tracking-wider">Exclusif</span>
-            <h2 className="text-lg font-display font-bold mt-1">Roulette VIP</h2>
+            <h2 className="text-lg font-bold mt-1">Roulette VIP</h2>
             <p className="text-xs text-muted-foreground mt-0.5">Tables privées disponibles</p>
-            <button className="mt-2 gold-gradient px-4 py-1.5 rounded-lg text-primary-foreground text-xs font-bold w-fit">
+            <button className="mt-2 orange-gradient px-4 py-1.5 rounded-lg text-highlight-foreground text-xs font-bold w-fit glow-orange">
               Jouer maintenant
             </button>
           </div>
@@ -65,15 +65,15 @@ const Casino = () => {
       </section>
 
       {/* Games Grid */}
-      <section className="px-3 mt-4 mb-4">
-        <h3 className="text-sm font-bold font-display mb-3">JEUX POPULAIRES</h3>
+      <section className="px-4 mt-4 mb-6">
+        <h3 className="text-sm font-bold mb-3">JEUX POPULAIRES</h3>
         <div className="grid grid-cols-2 gap-3">
           {games.map((game) => (
-            <div key={game.id} className="rounded-xl overflow-hidden border border-border group cursor-pointer">
+            <div key={game.id} className="rounded-xl overflow-hidden border border-border group cursor-pointer hover:border-highlight/30 transition-all">
               <div className="relative">
                 <img src={game.image} alt={game.name} className="w-full h-24 object-cover group-hover:scale-105 transition-transform duration-300" />
                 <div className="absolute top-2 left-2">
-                  <span className="px-2 py-0.5 rounded-full bg-secondary/80 text-[9px] font-semibold backdrop-blur-sm">
+                  <span className="px-2 py-0.5 rounded-full bg-card/80 text-[9px] font-semibold backdrop-blur-sm border border-border">
                     {game.category}
                   </span>
                 </div>
@@ -82,7 +82,7 @@ const Casino = () => {
                 <p className="text-xs font-semibold">{game.name}</p>
                 <div className="flex items-center justify-between mt-1">
                   <div className="flex items-center gap-1">
-                    <Star size={10} className="text-primary fill-primary" />
+                    <Star size={10} className="text-highlight fill-highlight" />
                     <span className="text-[10px] text-muted-foreground">{game.rating}</span>
                   </div>
                   <div className="flex items-center gap-1">

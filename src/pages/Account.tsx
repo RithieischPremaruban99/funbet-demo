@@ -12,15 +12,15 @@ const menuItems = [
 const Account = () => {
   return (
     <MobileLayout>
-      {/* Profile Header */}
-      <section className="px-3 mt-3">
-        <div className="card-gradient rounded-2xl p-4 border border-border">
+      {/* Profile */}
+      <section className="px-4 mt-3">
+        <div className="rounded-2xl p-4 border border-border card-gradient">
           <div className="flex items-center gap-3">
-            <div className="w-14 h-14 rounded-full gold-gradient flex items-center justify-center">
-              <User size={24} className="text-primary-foreground" />
+            <div className="w-14 h-14 rounded-full orange-gradient flex items-center justify-center glow-orange">
+              <User size={24} className="text-highlight-foreground" />
             </div>
             <div>
-              <h2 className="text-base font-bold font-display">Joueur VIP</h2>
+              <h2 className="text-base font-bold">Joueur VIP</h2>
               <p className="text-xs text-muted-foreground">membre depuis 2024</p>
             </div>
           </div>
@@ -30,26 +30,26 @@ const Account = () => {
               { label: "Bonus", value: "75,00€" },
               { label: "Points", value: "1,240" },
             ].map((stat) => (
-              <div key={stat.label} className="text-center p-2 rounded-xl bg-secondary">
-                <p className="text-xs text-muted-foreground">{stat.label}</p>
-                <p className="text-sm font-bold text-primary">{stat.value}</p>
+              <div key={stat.label} className="text-center p-2 rounded-xl bg-card-elevated border border-border">
+                <p className="text-[10px] text-muted-foreground">{stat.label}</p>
+                <p className="text-sm font-bold text-highlight">{stat.value}</p>
               </div>
             ))}
           </div>
-          <button className="w-full mt-3 gold-gradient py-2.5 rounded-xl text-primary-foreground text-sm font-bold">
+          <button className="w-full mt-3 orange-gradient py-2.5 rounded-xl text-highlight-foreground text-sm font-bold glow-orange">
             Déposer
           </button>
         </div>
       </section>
 
       {/* Menu */}
-      <section className="px-3 mt-4 mb-4">
-        <div className="card-gradient rounded-xl border border-border overflow-hidden divide-y divide-border">
+      <section className="px-4 mt-4 mb-6">
+        <div className="rounded-2xl border border-border overflow-hidden card-gradient divide-y divide-border">
           {menuItems.map((item) => {
             const Icon = item.icon;
             return (
               <button key={item.label} className="flex items-center gap-3 w-full p-3.5 hover:bg-card-elevated transition-colors">
-                <div className="w-9 h-9 rounded-xl bg-secondary flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-xl bg-card-elevated border border-border flex items-center justify-center flex-shrink-0">
                   <Icon size={16} className="text-primary" />
                 </div>
                 <div className="flex-1 text-left">
