@@ -6,26 +6,26 @@
 
 @layer base {
   :root {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 4%;
+    --foreground: 0 0% 96%;
 
-    --card: 0 0% 9%;
-    --card-foreground: 0 0% 95%;
-    --card-elevated: 0 0% 13%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 96%;
+    --card-elevated: 0 0% 12%;
 
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 96%;
 
-    --primary: 0 80% 50%;
+    --primary: 350 72% 35%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 14%;
-    --secondary-foreground: 0 0% 80%;
+    --secondary: 0 0% 13%;
+    --secondary-foreground: 0 0% 75%;
 
-    --muted: 0 0% 14%;
+    --muted: 0 0% 13%;
     --muted-foreground: 0 0% 50%;
 
-    --accent: 0 75% 45%;
+    --accent: 350 65% 30%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
@@ -34,25 +34,25 @@
     --success: 142 70% 45%;
     --success-foreground: 0 0% 100%;
 
-    --live: 0 85% 55%;
+    --live: 350 75% 42%;
     --live-foreground: 0 0% 100%;
 
-    --highlight: 25 95% 53%;
+    --highlight: 350 72% 40%;
     --highlight-foreground: 0 0% 100%;
 
-    --border: 0 0% 16%;
-    --input: 0 0% 16%;
-    --ring: 0 80% 50%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 350 72% 35%;
 
     --radius: 0.75rem;
 
-    --red-gradient: linear-gradient(135deg, hsl(0, 80%, 50%), hsl(350, 85%, 40%));
-    --red-gradient-hover: linear-gradient(135deg, hsl(0, 85%, 55%), hsl(350, 90%, 45%));
-    --orange-gradient: linear-gradient(135deg, hsl(25, 95%, 53%), hsl(15, 90%, 48%));
-    --card-gradient: linear-gradient(180deg, hsl(0, 0%, 11%), hsl(0, 0%, 7%));
-    --card-gradient-warm: linear-gradient(180deg, hsla(25, 60%, 15%, 0.5), hsla(0, 0%, 7%, 0.9));
-    --hero-gradient: linear-gradient(135deg, hsl(0, 50%, 12%), hsl(0, 0%, 6%));
-    --glass: hsla(0, 0%, 8%, 0.85);
+    --red-gradient: linear-gradient(135deg, hsl(350, 72%, 38%), hsl(350, 65%, 28%));
+    --red-gradient-hover: linear-gradient(135deg, hsl(350, 75%, 42%), hsl(350, 70%, 32%));
+    --orange-gradient: linear-gradient(135deg, hsl(350, 72%, 40%), hsl(350, 65%, 30%));
+    --card-gradient: linear-gradient(180deg, hsl(0, 0%, 10%), hsl(0, 0%, 5%));
+    --card-gradient-warm: linear-gradient(180deg, hsla(350, 40%, 12%, 0.5), hsla(0, 0%, 5%, 0.9));
+    --hero-gradient: linear-gradient(135deg, hsl(350, 30%, 10%), hsl(0, 0%, 4%));
+    --glass: hsla(0, 0%, 6%, 0.88);
 
     --font-display: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
@@ -124,15 +124,15 @@
   }
 
   .glow-red {
-    box-shadow: 0 0 20px hsla(0, 80%, 50%, 0.2), 0 0 40px hsla(0, 80%, 50%, 0.05);
+    box-shadow: 0 0 20px hsla(350, 72%, 35%, 0.25), 0 0 40px hsla(350, 72%, 35%, 0.08);
   }
 
   .glow-orange {
-    box-shadow: 0 0 15px hsla(25, 95%, 53%, 0.25);
+    box-shadow: 0 0 15px hsla(350, 72%, 38%, 0.3);
   }
 
   .border-glow {
-    border-color: hsla(25, 80%, 45%, 0.4);
+    border-color: hsla(350, 65%, 35%, 0.4);
   }
 
   .hide-scrollbar::-webkit-scrollbar {
