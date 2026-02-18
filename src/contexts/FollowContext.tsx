@@ -5,14 +5,17 @@ interface FollowContextType {
   toggleFollow: (slug: string) => void;
   isFollowing: (slug: string) => boolean;
   followCount: number;
+  isProfilePrivate: boolean;
+  toggleProfilePrivacy: () => void;
 }
 
 const FollowContext = createContext<FollowContextType | undefined>(undefined);
 
 export const FollowProvider = ({ children }: { children: ReactNode }) => {
   const [followedUsers, setFollowedUsers] = useState<Set<string>>(
-    () => new Set(["serge-t", "aimee-k"]) // Pre-follow some users for demo
+    () => new Set(["serge-t", "aimee-k"])
   );
+  const [isProfilePrivate, setIsProfilePrivate] = useState(false);
 
   const toggleFollow = (slug: string) => {
     setFollowedUsers((prev) => {
@@ -27,9 +30,10 @@ export const FollowProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const isFollowing = (slug: string) => followedUsers.has(slug);
+  const toggleProfilePrivacy = () => setIsProfilePrivate((p) => !p);
 
   return (
-    <FollowContext.Provider value={{ followedUsers, toggleFollow, isFollowing, followCount: followedUsers.size }}>
+    <FollowContext.Provider value={{ followedUsers, toggleFollow, isFollowing, followCount: followedUsers.size, isProfilePrivate, toggleProfilePrivacy }}>
       {children}
     </FollowContext.Provider>
   );

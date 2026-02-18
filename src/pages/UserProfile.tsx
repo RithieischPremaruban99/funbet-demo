@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowLeft, Star, Trophy, TrendingUp, Flame, Target,
-  Copy, Check, Crown, Medal, Award, Users, Calendar
+  Copy, Check, Crown, Medal, Award, Users, Calendar, Lock, Globe
 } from "lucide-react";
 import { useState } from "react";
 import { useBetSlip } from "@/contexts/BetSlipContext";
@@ -15,10 +15,11 @@ const usersData: Record<string, {
   name: string; avatar: string; verified: boolean; bio: string;
   winRate: string; profit: string; streak: number; rank: number;
   totalBets: number; memberSince: string; followers: number; following: number;
+  isPrivate: boolean;
   recentBets: { match: string; pick: string; odds: number; status: "won" | "lost" | "pending"; league: string; matchId: number }[];
 }> = {
   "patrice-m": {
-    name: "Patrice M.", avatar: "PM", verified: true,
+    name: "Patrice M.", avatar: "PM", verified: true, isPrivate: false,
     bio: "Fan de TP Mazembe depuis toujours 🐊 | Parieurs pro",
     winRate: "64%", profit: "+185 000 CDF", streak: 5, rank: 8,
     totalBets: 342, memberSince: "Mars 2024", followers: 128, following: 45,
@@ -29,7 +30,7 @@ const usersData: Record<string, {
     ],
   },
   "aimee-k": {
-    name: "Aimée K.", avatar: "AK", verified: false,
+    name: "Aimée K.", avatar: "AK", verified: false, isPrivate: false,
     bio: "Les Léopards ne déçoivent jamais 🇨🇩",
     winRate: "71%", profit: "+290 000 CDF", streak: 8, rank: 4,
     totalBets: 215, memberSince: "Janv 2024", followers: 256, following: 89,
@@ -40,7 +41,7 @@ const usersData: Record<string, {
     ],
   },
   "david-n": {
-    name: "David N.", avatar: "DN", verified: true,
+    name: "David N.", avatar: "DN", verified: true, isPrivate: true,
     bio: "Analyste football | Spécialiste Linafoot",
     winRate: "58%", profit: "+95 000 CDF", streak: 2, rank: 15,
     totalBets: 178, memberSince: "Juin 2024", followers: 67, following: 34,
@@ -50,7 +51,7 @@ const usersData: Record<string, {
     ],
   },
   "serge-t": {
-    name: "Serge T.", avatar: "ST", verified: true,
+    name: "Serge T.", avatar: "ST", verified: true, isPrivate: false,
     bio: "🏆 #1 Classement | Le roi du combo",
     winRate: "78%", profit: "+420 000 CDF", streak: 12, rank: 1,
     totalBets: 456, memberSince: "Déc 2023", followers: 1240, following: 23,
@@ -61,7 +62,7 @@ const usersData: Record<string, {
     ],
   },
   "gloire-m": {
-    name: "Gloire M.", avatar: "GM", verified: false,
+    name: "Gloire M.", avatar: "GM", verified: false, isPrivate: false,
     bio: "Parieur passionné | Kinshasa 🏙️",
     winRate: "72%", profit: "+315 000 CDF", streak: 8, rank: 2,
     totalBets: 389, memberSince: "Fév 2024", followers: 890, following: 56,
@@ -71,7 +72,7 @@ const usersData: Record<string, {
     ],
   },
   "rachel-b": {
-    name: "Rachel B.", avatar: "RB", verified: false,
+    name: "Rachel B.", avatar: "RB", verified: false, isPrivate: true,
     bio: "Les cotes ne mentent jamais 📊",
     winRate: "69%", profit: "+280 000 CDF", streak: 6, rank: 3,
     totalBets: 267, memberSince: "Avr 2024", followers: 456, following: 78,
@@ -80,35 +81,35 @@ const usersData: Record<string, {
     ],
   },
   "patrick-k": {
-    name: "Patrick K.", avatar: "PK", verified: false,
+    name: "Patrick K.", avatar: "PK", verified: false, isPrivate: false,
     bio: "Supporter DCMP 💙",
     winRate: "65%", profit: "+195 000 CDF", streak: 5, rank: 4,
     totalBets: 198, memberSince: "Mai 2024", followers: 234, following: 67,
     recentBets: [],
   },
   "esther-l": {
-    name: "Esther L.", avatar: "EL", verified: false,
+    name: "Esther L.", avatar: "EL", verified: false, isPrivate: false,
     bio: "Parieuse du weekend 🎯",
     winRate: "63%", profit: "+170 000 CDF", streak: 4, rank: 5,
     totalBets: 156, memberSince: "Juil 2024", followers: 123, following: 45,
     recentBets: [],
   },
   "christian-w": {
-    name: "Christian W.", avatar: "CW", verified: false,
+    name: "Christian W.", avatar: "CW", verified: false, isPrivate: false,
     bio: "Amateur de football congolais ⚽",
     winRate: "61%", profit: "+145 000 CDF", streak: 3, rank: 6,
     totalBets: 134, memberSince: "Août 2024", followers: 89, following: 34,
     recentBets: [],
   },
   "kinshasabet": {
-    name: "KinshasaBet", avatar: "KB", verified: false,
+    name: "KinshasaBet", avatar: "KB", verified: false, isPrivate: false,
     bio: "Parieur de Kinshasa 🏙️",
     winRate: "55%", profit: "+45 000 CDF", streak: 1, rank: 22,
     totalBets: 89, memberSince: "Sept 2024", followers: 34, following: 12,
     recentBets: [],
   },
   "lubumparieur": {
-    name: "LubumParieur", avatar: "LP", verified: false,
+    name: "LubumParieur", avatar: "LP", verified: false, isPrivate: false,
     bio: "De Lubumbashi avec passion 🔥",
     winRate: "48%", profit: "-15 000 CDF", streak: 0, rank: 45,
     totalBets: 67, memberSince: "Oct 2024", followers: 23, following: 8,
@@ -166,6 +167,11 @@ const UserProfile = () => {
                 <h1 className="text-base font-bold">{user.name}</h1>
                 {user.verified && <Star size={14} className="text-primary fill-primary" />}
                 <RankIcon rank={user.rank} />
+                {user.isPrivate ? (
+                  <Lock size={12} className="text-muted-foreground" />
+                ) : (
+                  <Globe size={12} className="text-success" />
+                )}
               </div>
               <p className="text-xs text-muted-foreground mt-0.5">{user.bio}</p>
               <div className="flex items-center gap-3 mt-1.5">
@@ -240,6 +246,29 @@ const UserProfile = () => {
           </span>
         </motion.div>
 
+        {/* Privacy Gate */}
+        {user.isPrivate && !isFollowing(username || "") ? (
+          <motion.div
+            className="mt-6 rounded-2xl border border-border card-gradient p-6 text-center"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+          >
+            <Lock size={32} className="mx-auto text-muted-foreground mb-3" />
+            <h3 className="text-sm font-bold">Profil privé</h3>
+            <p className="text-xs text-muted-foreground mt-1">
+              Suivez {user.name} pour voir ses paris et statistiques.
+            </p>
+            <motion.button
+              onClick={() => username && toggleFollow(username)}
+              className="mt-4 px-6 py-2 rounded-xl orange-gradient text-xs font-bold text-highlight-foreground glow-orange"
+              whileTap={{ scale: 0.95 }}
+            >
+              <UserPlus size={14} className="inline mr-1.5" />
+              Suivre
+            </motion.button>
+          </motion.div>
+        ) : (
+          <>
         {/* Tabs */}
         <div className="flex border-b border-border mt-4">
           {[
@@ -348,6 +377,8 @@ const UserProfile = () => {
             </div>
           )}
         </div>
+          </>
+        )}
       </div>
     </MobileLayout>
   );
