@@ -1,58 +1,67 @@
 import MobileLayout from "@/components/MobileLayout";
 import { ChevronRight, Filter, Flame } from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const sports = [
   { name: "Football", emoji: "⚽", count: 245 },
-  { name: "Basketball", emoji: "🏀", count: 89 },
-  { name: "Tennis", emoji: "🎾", count: 156 },
-  { name: "Rugby", emoji: "🏉", count: 34 },
-  { name: "Hockey", emoji: "🏒", count: 67 },
-  { name: "MMA", emoji: "🥊", count: 12 },
+  { name: "Basketball", emoji: "🏀", count: 42 },
+  { name: "Tennis", emoji: "🎾", count: 67 },
+  { name: "Boxing", emoji: "🥊", count: 8 },
+  { name: "Athlétisme", emoji: "🏃", count: 15 },
 ];
 
-const matches = [
+const liveMatches = [
   {
-    id: 1, league: "Ligue 1", live: true, time: "72'",
-    home: { name: "PSG", full: "Paris Saint-Germain" },
-    away: { name: "Lyon", full: "Olympique Lyonnais" },
-    spread: { home: "-2.5", homeOdds: "-115", away: "+2.5", awayOdds: "-105" },
-    moneyline: { home: "-400", away: "+900" },
-    total: { over: "O 4.5", overOdds: "+110", under: "U 4.5", underOdds: "-130" },
+    id: 1, league: "Linafoot - Journée 18", time: "72'", score: "2 - 0",
+    home: "TP Mazembe", away: "FC Renaissance",
+    odds: { home: "1.15", draw: "7.50", away: "18.00" },
   },
   {
-    id: 2, league: "Ligue 1", live: true, time: "55'",
-    home: { name: "Monaco", full: "AS Monaco" },
-    away: { name: "Lille", full: "LOSC Lille" },
-    spread: { home: "+0.5", homeOdds: "-110", away: "-0.5", awayOdds: "-110" },
-    moneyline: { home: "+180", away: "+155" },
-    total: { over: "O 2.5", overOdds: "-105", under: "U 2.5", underOdds: "-115" },
+    id: 2, league: "Linafoot - Journée 18", time: "55'", score: "1 - 1",
+    home: "AS Vita Club", away: "DC Motema Pembe",
+    odds: { home: "2.20", draw: "3.10", away: "3.40" },
   },
   {
-    id: 3, league: "Premier League", live: false, date: "AUJ 17:30",
-    home: { name: "Chelsea", full: "Chelsea FC" },
-    away: { name: "Tottenham", full: "Tottenham Hotspur" },
-    spread: { home: "-0.5", homeOdds: "+100", away: "+0.5", awayOdds: "-120" },
-    moneyline: { home: "+140", away: "+210" },
-    total: { over: "O 2.5", overOdds: "-120", under: "U 2.5", underOdds: "+100" },
-  },
-  {
-    id: 4, league: "La Liga", live: false, date: "DEMAIN 21:00",
-    home: { name: "Atletico", full: "Atletico Madrid" },
-    away: { name: "Sevilla", full: "Sevilla FC" },
-    spread: { home: "-1.5", homeOdds: "+120", away: "+1.5", awayOdds: "-140" },
-    moneyline: { home: "-150", away: "+400" },
-    total: { over: "O 2.5", overOdds: "+105", under: "U 2.5", underOdds: "-125" },
+    id: 3, league: "Linafoot - Journée 18", time: "38'", score: "0 - 1",
+    home: "FC Lupopo", away: "CS Don Bosco",
+    odds: { home: "3.00", draw: "3.20", away: "2.30" },
   },
 ];
 
-const OddsCell = ({ top, bottom, positive }: { top: string; bottom: string; positive?: boolean }) => (
-  <div className="odds-cell">
-    <span className="text-[10px] text-muted-foreground leading-none">{top}</span>
-    <span className={`text-xs font-bold leading-none mt-0.5 ${positive ? "text-success" : "text-highlight"}`}>{bottom}</span>
-  </div>
+const upcomingMatches = [
+  {
+    id: 4, league: "Ligue des Champions CAF", date: "AUJ 20:00",
+    home: "TP Mazembe", away: "Al Ahly SC",
+    odds: { home: "2.60", draw: "3.10", away: "2.70" },
+  },
+  {
+    id: 5, league: "Éliminatoires CAN 2026", date: "DEMAIN 17:00",
+    home: "RD Congo", away: "Zambie",
+    odds: { home: "1.95", draw: "3.30", away: "3.90" },
+  },
+  {
+    id: 6, league: "Coupe du Congo", date: "SAM 15:00",
+    home: "AS Maniema Union", away: "Rangers FC",
+    odds: { home: "2.10", draw: "3.00", away: "3.60" },
+  },
+  {
+    id: 7, league: "Linafoot - Journée 19", date: "DIM 16:00",
+    home: "JS Groupe Bazano", away: "FC Blessing",
+    odds: { home: "1.80", draw: "3.50", away: "4.50" },
+  },
+];
+
+const OddsButton = ({ label, value, onSelect }: { label: string; value: string; onSelect: () => void }) => (
+  <button onClick={onSelect} className="odds-cell flex-1">
+    <span className="text-[10px] text-muted-foreground leading-none">{label}</span>
+    <span className="text-xs font-bold leading-none mt-0.5 text-highlight">{value}</span>
+  </button>
 );
 
 const Sports = () => {
+  const [activeSport, setActiveSport] = useState(0);
+
   return (
     <MobileLayout>
       {/* Sport filters */}
@@ -64,8 +73,9 @@ const Sports = () => {
           {sports.map((sport, i) => (
             <button
               key={sport.name}
+              onClick={() => setActiveSport(i)}
               className={`flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all ${
-                i === 0
+                i === activeSport
                   ? "border-highlight/30 card-gradient-warm text-foreground"
                   : "border-border bg-card text-secondary-foreground hover:bg-card-elevated"
               }`}
@@ -85,7 +95,7 @@ const Sports = () => {
           <span className="text-sm font-bold text-live">EN DIRECT</span>
         </div>
         <div className="space-y-3">
-          {matches.filter(m => m.live).map((match) => (
+          {liveMatches.map((match) => (
             <div key={match.id} className="rounded-2xl border border-highlight/20 overflow-hidden card-gradient-warm">
               <div className="flex items-center justify-between px-3 py-2">
                 <span className="text-[10px] text-muted-foreground font-medium">{match.league}</span>
@@ -94,26 +104,21 @@ const Sports = () => {
                   <span className="text-[10px] text-live font-bold">{match.time}</span>
                 </div>
               </div>
-              <div className="grid grid-cols-[1fr_75px_75px_75px] px-3 pb-1">
-                <div />
-                <span className="text-[9px] text-muted-foreground font-semibold text-center uppercase">Spread</span>
-                <span className="text-[9px] text-muted-foreground font-semibold text-center uppercase">ML</span>
-                <span className="text-[9px] text-muted-foreground font-semibold text-center uppercase">Total</span>
+              <div className="px-3 pb-2">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-bold">{match.home}</span>
+                  <span className="text-lg font-bold text-highlight">{match.score}</span>
+                  <span className="text-sm font-bold">{match.away}</span>
+                </div>
+                <div className="flex gap-2">
+                  <OddsButton label="1" value={match.odds.home} onSelect={() => {}} />
+                  <OddsButton label="X" value={match.odds.draw} onSelect={() => {}} />
+                  <OddsButton label="2" value={match.odds.away} onSelect={() => {}} />
+                </div>
               </div>
-              <div className="grid grid-cols-[1fr_75px_75px_75px] gap-1.5 px-3 py-1">
-                <span className="text-sm font-bold truncate self-center">{match.home.full}</span>
-                <OddsCell top={match.spread.home} bottom={match.spread.homeOdds} />
-                <OddsCell top="" bottom={match.moneyline.home} positive={match.moneyline.home.startsWith("+")} />
-                <OddsCell top={match.total.over} bottom={match.total.overOdds} positive={match.total.overOdds.startsWith("+")} />
-              </div>
-              <div className="grid grid-cols-[1fr_75px_75px_75px] gap-1.5 px-3 py-1 pb-3">
-                <span className="text-sm font-bold truncate self-center">{match.away.full}</span>
-                <OddsCell top={match.spread.away} bottom={match.spread.awayOdds} />
-                <OddsCell top="" bottom={match.moneyline.away} positive={match.moneyline.away.startsWith("+")} />
-                <OddsCell top={match.total.under} bottom={match.total.underOdds} />
-              </div>
-              <div className="flex items-center justify-end gap-4 px-3 py-2 border-t border-border/50">
-                <button className="text-[10px] text-highlight font-semibold">Plus →</button>
+              <div className="flex items-center justify-between px-3 py-2 border-t border-border/50">
+                <span className="text-[10px] text-muted-foreground">+45 marchés</span>
+                <Link to="/betslip" className="text-[10px] text-highlight font-semibold">Ajouter au coupon →</Link>
               </div>
             </div>
           ))}
@@ -124,32 +129,27 @@ const Sports = () => {
       <section className="mt-6 px-4 mb-6">
         <h3 className="text-sm font-bold mb-3">PROCHAINS MATCHS</h3>
         <div className="space-y-3">
-          {matches.filter(m => !m.live).map((match) => (
+          {upcomingMatches.map((match) => (
             <div key={match.id} className="rounded-2xl border border-border overflow-hidden card-gradient">
               <div className="flex items-center justify-between px-3 py-2">
                 <span className="text-[10px] text-muted-foreground font-medium">{match.league}</span>
                 <span className="text-[10px] text-highlight font-bold">{match.date}</span>
               </div>
-              <div className="grid grid-cols-[1fr_75px_75px_75px] px-3 pb-1">
-                <div />
-                <span className="text-[9px] text-muted-foreground font-semibold text-center uppercase">Spread</span>
-                <span className="text-[9px] text-muted-foreground font-semibold text-center uppercase">ML</span>
-                <span className="text-[9px] text-muted-foreground font-semibold text-center uppercase">Total</span>
+              <div className="px-3 pb-2">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-bold">{match.home}</span>
+                  <span className="text-xs text-muted-foreground">vs</span>
+                  <span className="text-sm font-bold">{match.away}</span>
+                </div>
+                <div className="flex gap-2">
+                  <OddsButton label="1" value={match.odds.home} onSelect={() => {}} />
+                  <OddsButton label="X" value={match.odds.draw} onSelect={() => {}} />
+                  <OddsButton label="2" value={match.odds.away} onSelect={() => {}} />
+                </div>
               </div>
-              <div className="grid grid-cols-[1fr_75px_75px_75px] gap-1.5 px-3 py-1">
-                <span className="text-sm font-bold truncate self-center">{match.home.full}</span>
-                <OddsCell top={match.spread.home} bottom={match.spread.homeOdds} />
-                <OddsCell top="" bottom={match.moneyline.home} positive={match.moneyline.home.startsWith("+")} />
-                <OddsCell top={match.total.over} bottom={match.total.overOdds} positive={match.total.overOdds.startsWith("+")} />
-              </div>
-              <div className="grid grid-cols-[1fr_75px_75px_75px] gap-1.5 px-3 py-1 pb-3">
-                <span className="text-sm font-bold truncate self-center">{match.away.full}</span>
-                <OddsCell top={match.spread.away} bottom={match.spread.awayOdds} />
-                <OddsCell top="" bottom={match.moneyline.away} positive={match.moneyline.away.startsWith("+")} />
-                <OddsCell top={match.total.under} bottom={match.total.underOdds} />
-              </div>
-              <div className="flex items-center justify-end gap-4 px-3 py-2 border-t border-border/50">
-                <button className="text-[10px] text-highlight font-semibold">Plus →</button>
+              <div className="flex items-center justify-between px-3 py-2 border-t border-border/50">
+                <span className="text-[10px] text-muted-foreground">+38 marchés</span>
+                <Link to="/betslip" className="text-[10px] text-highlight font-semibold">Ajouter au coupon →</Link>
               </div>
             </div>
           ))}
