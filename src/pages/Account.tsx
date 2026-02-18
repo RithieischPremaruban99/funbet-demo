@@ -1,15 +1,48 @@
 import MobileLayout from "@/components/MobileLayout";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight, CreditCard, FileText, HelpCircle, History, LogOut, Settings, Shield, Smartphone, User, Wallet, AlertTriangle } from "lucide-react";
+import { ArrowUp, ChevronDown, ChevronRight, CreditCard, FileText, HelpCircle, History, LogOut, Settings, Shield, Smartphone, Swords, User, Users, Wallet, AlertTriangle } from "lucide-react";
 
 const activeBets = [
   { match: "TP Mazembe vs AS Vita Club", pick: "TP Mazembe (1)", odds: 1.85, stake: 10000, status: "live", time: "67'" },
   { match: "RD Congo vs Zambie", pick: "RD Congo (1)", odds: 1.95, stake: 5000, status: "upcoming", time: "SAM 17:00" },
 ];
 
+const betSlips = [
+  {
+    user: "KinshasaBet",
+    avatar: "KB",
+    title: "Combi 3 Sélections",
+    status: "GAGNÉ",
+    statusColor: "bg-success text-success-foreground",
+    wins: "3 sur 3",
+    odds: "4.50x",
+    picks: [
+      { name: "V. Osimhen", team: "TP Mazembe", match: "vs. AS Vita - AUJOURD'HUI", stat: "Buts", value: "0.5", badge: "TPM", badgeColor: "bg-primary", status: "won" },
+      { name: "C. Bakambu", team: "RD Congo", match: "vs. Zambie - DEMAIN", stat: "Tirs", value: "2.5", badge: "RDC", badgeColor: "bg-highlight", status: "won" },
+    ],
+    amount: "5 000 CDF",
+    payout: "22 500 CDF",
+  },
+  {
+    user: "LubumParieur",
+    avatar: "LP",
+    title: "Combi 2 Sélections",
+    status: "PERDU",
+    statusColor: "bg-destructive text-destructive-foreground",
+    wins: "1 sur 2",
+    odds: "2.00x",
+    picks: [
+      { name: "M. Chancel", team: "TP Mazembe", match: "@DCM - AUJOURD'HUI", stat: "Tacles", value: "1.5", badge: "TPM", badgeColor: "bg-primary", status: "lost" },
+      { name: "Y. Mulumba", team: "AS Vita", match: "vs. Lupopo - HIER", stat: "Passes", value: "3.5", badge: "ASV", badgeColor: "bg-accent", status: "won" },
+    ],
+    amount: "10 000 CDF",
+    payout: "0 CDF",
+  },
+];
+
 const Account = () => {
-  const [activeTab, setActiveTab] = useState<"bets" | "history">("bets");
+  const [activeTab, setActiveTab] = useState<"bets" | "friends" | "explore">("bets");
 
   return (
     <MobileLayout>
@@ -26,8 +59,11 @@ const Account = () => {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link to="/settings" className="p-2 rounded-xl hover:bg-secondary transition-colors">
+            <Link to="/account" className="p-2 rounded-xl hover:bg-secondary transition-colors">
               <Settings size={18} className="text-muted-foreground" />
+            </Link>
+            <Link to="/account" className="p-2 rounded-xl hover:bg-secondary transition-colors">
+              <HelpCircle size={18} className="text-muted-foreground" />
             </Link>
           </div>
         </div>
@@ -75,12 +111,21 @@ const Account = () => {
         </div>
       </section>
 
-      {/* Tabs */}
+      {/* Challenge Banner */}
+      <section className="px-4 mt-3">
+        <button className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-primary/30 bg-primary/5 hover:bg-primary/10 transition-colors">
+          <Swords size={18} className="text-primary" />
+          <span className="text-sm font-bold text-primary">Défiez vos amis</span>
+        </button>
+      </section>
+
+      {/* Tabs: Paris actifs / Amis / Explorer */}
       <section className="px-4 mt-4">
         <div className="flex border-b border-border">
           {[
             { key: "bets" as const, label: "Paris actifs" },
-            { key: "history" as const, label: "Historique" },
+            { key: "friends" as const, label: "Amis" },
+            { key: "explore" as const, label: "Explorer" },
           ].map((tab) => (
             <button
               key={tab.key}
@@ -98,7 +143,7 @@ const Account = () => {
         </div>
       </section>
 
-      {/* Active Bets */}
+      {/* Active Bets Tab */}
       {activeTab === "bets" && (
         <section className="px-4 mt-4 space-y-2">
           {activeBets.map((bet, idx) => (
@@ -123,18 +168,89 @@ const Account = () => {
           <Link to="/betslip" className="block text-center text-xs text-primary font-semibold py-2">
             Voir le coupon →
           </Link>
-        </section>
-      )}
-
-      {activeTab === "history" && (
-        <section className="px-4 mt-4">
           <Link to="/transactions" className="flex items-center justify-between p-3 rounded-xl border border-border card-gradient">
             <div className="flex items-center gap-2">
               <History size={16} className="text-highlight" />
-              <span className="text-sm font-medium">Voir l'historique complet</span>
+              <span className="text-sm font-medium">Historique des transactions</span>
             </div>
             <ChevronRight size={16} className="text-muted-foreground" />
           </Link>
+        </section>
+      )}
+
+      {/* Friends / Explore - Social Bet Slip Cards */}
+      {(activeTab === "friends" || activeTab === "explore") && (
+        <section className="px-4 mt-4 space-y-4">
+          {betSlips.map((slip, idx) => (
+            <div key={idx} className="rounded-2xl border border-border card-gradient overflow-hidden">
+              {/* Slip Header */}
+              <div className="flex items-center gap-3 p-3 border-b border-border">
+                <div className="w-9 h-9 rounded-full bg-card-elevated border border-border flex items-center justify-center text-xs font-bold text-highlight">
+                  {slip.avatar}
+                </div>
+                <span className="text-sm font-semibold">{slip.user}</span>
+              </div>
+
+              {/* Slip Info */}
+              <div className="p-3">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-sm font-bold">{slip.title}</h3>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${slip.statusColor}`}>
+                    {slip.status}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between mt-1">
+                  <span className="text-xs text-muted-foreground">{slip.wins}</span>
+                  <div className="flex items-center gap-1 text-highlight font-bold text-sm">
+                    {slip.odds}
+                    <ChevronDown size={14} />
+                  </div>
+                </div>
+
+                {/* Player Picks */}
+                <div className="grid grid-cols-2 gap-2 mt-3">
+                  {slip.picks.map((pick, pIdx) => (
+                    <div
+                      key={pIdx}
+                      className="rounded-xl bg-card-elevated border border-border p-3 flex flex-col items-center text-center relative overflow-hidden"
+                    >
+                      <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold text-primary-foreground mb-2 ${pick.badgeColor}`}>
+                        {pick.badge}
+                      </span>
+                      <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center mb-2">
+                        <User size={18} className="text-muted-foreground" />
+                      </div>
+                      <p className="text-xs font-bold">{pick.name}</p>
+                      <p className="text-[10px] text-muted-foreground mt-0.5">{pick.match}</p>
+                      <div className="flex items-center gap-1 mt-2">
+                        <ArrowUp size={12} className="text-highlight" />
+                        <span className="text-sm font-bold">{pick.value}</span>
+                      </div>
+                      <p className="text-[9px] text-muted-foreground uppercase tracking-wider">{pick.stat}</p>
+                      <div className="w-full h-1 rounded-full mt-2 overflow-hidden bg-border">
+                        <div
+                          className={`h-full rounded-full ${pick.status === "won" ? "bg-success" : "bg-destructive"}`}
+                          style={{ width: pick.status === "won" ? "100%" : "60%" }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Amount */}
+                <div className="flex items-center justify-between mt-3 pt-3 border-t border-border">
+                  <div className="flex items-center gap-1">
+                    <span className="text-[10px] text-muted-foreground">MISE</span>
+                    <span className="text-sm font-bold">{slip.amount}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span className="text-sm font-bold">{slip.payout}</span>
+                    <span className="text-[10px] text-muted-foreground">GAIN</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </section>
       )}
 
@@ -143,6 +259,7 @@ const Account = () => {
         <div className="rounded-2xl border border-border overflow-hidden card-gradient divide-y divide-border">
           {[
             { icon: Shield, label: "Vérification KYC", subtitle: "Documents d'identité", to: "/kyc" },
+            { icon: Users, label: "Parrainage", subtitle: "Invitez vos amis, gagnez des bonus", to: "/account" },
             { icon: AlertTriangle, label: "Jeu responsable", subtitle: "Limites, auto-exclusion", to: "/responsible-gaming" },
             { icon: FileText, label: "Conditions générales", subtitle: "CGU et mentions légales", to: "/terms" },
             { icon: Shield, label: "Confidentialité", subtitle: "Loi 20/017, Code 23/010", to: "/privacy" },
