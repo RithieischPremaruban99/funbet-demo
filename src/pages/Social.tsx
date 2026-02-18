@@ -3,10 +3,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, Link } from "react-router-dom";
 import { useBetSlip } from "@/contexts/BetSlipContext";
+import { useFollow } from "@/contexts/FollowContext";
 import {
   MessageSquare, Trophy, Swords, Users, Heart, MessageCircle, Share2,
   Send, Crown, Medal, Award, Flame, TrendingUp, Clock, ChevronRight,
-  Smile, Image as ImageIcon, MoreHorizontal, Star, Zap, Target, ShoppingCart, Copy, Check
+  Smile, Image as ImageIcon, MoreHorizontal, Star, Zap, Target, ShoppingCart, Copy, Check,
+  UserPlus, UserCheck
 } from "lucide-react";
 
 // ─── Tab definitions ───
@@ -102,7 +104,9 @@ const RankBadge = ({ rank }: { rank: number }) => {
 
 const FeedTab = () => {
   const { toggleSelection, isSelected, selections } = useBetSlip();
+  const { isFollowing, toggleFollow, followedUsers } = useFollow();
   const [copiedId, setCopiedId] = useState<number | null>(null);
+  const [feedFilter, setFeedFilter] = useState<"all" | "following">("all");
 
   const handleCopyBet = (post: typeof feedPosts[0]) => {
     if (post.bet) {
@@ -166,17 +170,63 @@ const FeedTab = () => {
         </div>
       </div>
 
+      {/* Feed Filter */}
+      <div className="flex gap-2">
+        {[
+          { key: "all" as const, label: "Tous" },
+          { key: "following" as const, label: `Abonnements (${followedUsers.size})` },
+        ].map((f) => (
+          <button
+            key={f.key}
+            onClick={() => setFeedFilter(f.key)}
+            className={`px-3 py-1.5 rounded-full text-[10px] font-semibold transition-all ${
+              feedFilter === f.key ? "orange-gradient text-highlight-foreground" : "bg-card-elevated border border-border text-muted-foreground"
+            }`}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
       {/* Posts */}
-      {feedPosts.map((post, i) => {
+      {(() => {
+        const sortedPosts = [...feedPosts].sort((a, b) => {
+          const aFollowed = isFollowing(a.slug);
+          const bFollowed = isFollowing(b.slug);
+          if (aFollowed && !bFollowed) return -1;
+          if (!aFollowed && bFollowed) return 1;
+          return 0;
+        });
+        const filteredPosts = feedFilter === "following"
+          ? sortedPosts.filter((p) => isFollowing(p.slug))
+          : sortedPosts;
+
+        if (filteredPosts.length === 0) {
+          return (
+            <div className="text-center py-8 text-sm text-muted-foreground">
+              Vous ne suivez personne encore. Explorez le feed !
+            </div>
+          );
+        }
+
+        return filteredPosts.map((post, i) => {
         const copied = isBetCopied(post);
+        const followed = isFollowing(post.slug);
         return (
           <motion.div
             key={post.id}
-            className="rounded-2xl border border-border card-gradient overflow-hidden"
+            className={`rounded-2xl border overflow-hidden ${followed ? "border-primary/30 card-gradient" : "border-border card-gradient"}`}
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.08, duration: 0.35 }}
           >
+            {/* Followed badge */}
+            {followed && (
+              <div className="px-3 pt-2 flex items-center gap-1">
+                <UserCheck size={10} className="text-primary" />
+                <span className="text-[9px] text-primary font-semibold">Abonné</span>
+              </div>
+            )}
             {/* Header */}
             <div className="flex items-center justify-between p-3 pb-0">
               <Link to={`/profile/${post.slug}`} className="flex items-center gap-2">
@@ -191,7 +241,17 @@ const FeedTab = () => {
                   <span className="text-[9px] text-muted-foreground">{post.time}</span>
                 </div>
               </Link>
-              <button className="text-muted-foreground"><MoreHorizontal size={16} /></button>
+              {!followed ? (
+                <motion.button
+                  onClick={(e) => { e.stopPropagation(); toggleFollow(post.slug); }}
+                  className="p-1.5 rounded-lg border border-border bg-card-elevated text-muted-foreground hover:text-primary hover:border-primary/40 transition-all"
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <UserPlus size={14} />
+                </motion.button>
+              ) : (
+                <button className="text-muted-foreground"><MoreHorizontal size={16} /></button>
+              )}
             </div>
 
             {/* Content */}
@@ -315,7 +375,8 @@ const FeedTab = () => {
             </div>
           </motion.div>
         );
-      })}
+      });
+      })()}
     </div>
   );
 };

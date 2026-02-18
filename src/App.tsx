@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { BetSlipProvider } from "@/contexts/BetSlipContext";
+import { FollowProvider } from "@/contexts/FollowContext";
 import { AnimatePresence } from "framer-motion";
 import Splash from "./pages/Splash";
 import AgeVerification from "./pages/AgeVerification";
@@ -66,11 +67,13 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <BetSlipProvider>
+      <FollowProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
         <AnimatedRoutes />
       </BrowserRouter>
+      </FollowProvider>
       </BetSlipProvider>
     </TooltipProvider>
   </QueryClientProvider>
