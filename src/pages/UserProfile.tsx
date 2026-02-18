@@ -7,6 +7,8 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useBetSlip } from "@/contexts/BetSlipContext";
+import { useFollow } from "@/contexts/FollowContext";
+import { UserPlus, UserCheck } from "lucide-react";
 
 // Mock user database
 const usersData: Record<string, {
@@ -124,6 +126,7 @@ const RankIcon = ({ rank }: { rank: number }) => {
 const UserProfile = () => {
   const { username } = useParams<{ username: string }>();
   const { toggleSelection, isSelected } = useBetSlip();
+  const { isFollowing, toggleFollow } = useFollow();
   const [activeTab, setActiveTab] = useState<"bets" | "stats">("bets");
 
   const user = usersData[username || ""];
@@ -174,10 +177,19 @@ const UserProfile = () => {
 
           <div className="grid grid-cols-2 gap-2 mt-3">
             <motion.button
-              className="py-2 rounded-xl orange-gradient text-xs font-bold text-highlight-foreground glow-orange"
+              onClick={() => username && toggleFollow(username)}
+              className={`py-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 transition-all ${
+                username && isFollowing(username)
+                  ? "border border-primary bg-primary/10 text-primary"
+                  : "orange-gradient text-highlight-foreground glow-orange"
+              }`}
               whileTap={{ scale: 0.95 }}
             >
-              Suivre
+              {username && isFollowing(username) ? (
+                <><UserCheck size={14} /> Abonné</>
+              ) : (
+                <><UserPlus size={14} /> Suivre</>
+              )}
             </motion.button>
             <motion.button
               className="py-2 rounded-xl border border-border bg-card-elevated text-xs font-medium"
