@@ -21,6 +21,17 @@ import maniemaLogo from "@/assets/clubs/maniema.png";
 import bazanoLogo from "@/assets/clubs/bazano.png";
 import rdcFlag from "@/assets/clubs/rdc.svg";
 import zamFlag from "@/assets/clubs/zam.svg";
+// Basketball logos
+import lalLogo from "@/assets/clubs/lal.png";
+import bosLogo from "@/assets/clubs/bos.png";
+import gswLogo from "@/assets/clubs/gsw.png";
+import milLogo from "@/assets/clubs/mil.png";
+import phxLogo from "@/assets/clubs/phx.png";
+import denLogo from "@/assets/clubs/den.png";
+import miaLogo from "@/assets/clubs/mia.png";
+import nykLogo from "@/assets/clubs/nyk.png";
+import rmaLogo from "@/assets/clubs/rma.png";
+import fcbLogo from "@/assets/clubs/fcb.png";
 
 const clubLogos: Record<string, string> = {
   PSG: psgLogo,
@@ -46,6 +57,17 @@ const clubLogos: Record<string, string> = {
   BAZ: bazanoLogo,
   RDC: rdcFlag,
   ZAM: zamFlag,
+  // Basketball
+  LAL: lalLogo,
+  BOS: bosLogo,
+  GSW: gswLogo,
+  MIL: milLogo,
+  PHX: phxLogo,
+  DEN: denLogo,
+  MIA: miaLogo,
+  NYK: nykLogo,
+  RMA: rmaLogo,
+  FCB: fcbLogo,
 };
 
 const fallbackColors: Record<string, { bg: string; text: string }> = {
@@ -66,6 +88,19 @@ const fallbackColors: Record<string, { bg: string; text: string }> = {
   DCMP: { bg: "#fff", text: "#E2001A" },
   RDC: { bg: "#007FFF", text: "#FFD700" },
   ZAM: { bg: "#198754", text: "#fff" },
+  // Basketball fallbacks
+  LAL: { bg: "#552583", text: "#FDB927" },
+  BOS: { bg: "#007A33", text: "#fff" },
+  GSW: { bg: "#1D428A", text: "#FFC72C" },
+  MIL: { bg: "#00471B", text: "#EEE1C6" },
+  PHX: { bg: "#1D1160", text: "#E56020" },
+  DEN: { bg: "#0E2240", text: "#FEC524" },
+  MIA: { bg: "#98002E", text: "#fff" },
+  NYK: { bg: "#006BB6", text: "#F58426" },
+  RMA: { bg: "#FEBE10", text: "#00529F" },
+  FCB: { bg: "#A50044", text: "#004D98" },
+  OLY: { bg: "#CC0000", text: "#fff" },
+  FEN: { bg: "#FFED00", text: "#00205B" },
 };
 
 const TeamBadge = ({ abbr, size = 28 }: { abbr: string; size?: number }) => {
