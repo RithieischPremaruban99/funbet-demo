@@ -16,6 +16,7 @@ const betSlips = [
   {
     user: "KinshasaBet",
     avatar: "KB",
+    slug: "kinshasabet",
     title: "Combi 3 Sélections",
     status: "GAGNÉ",
     statusColor: "bg-success text-success-foreground",
@@ -31,6 +32,7 @@ const betSlips = [
   {
     user: "LubumParieur",
     avatar: "LP",
+    slug: "lubumparieur",
     title: "Combi 2 Sélections",
     status: "PERDU",
     statusColor: "bg-destructive text-destructive-foreground",
@@ -195,10 +197,12 @@ const Account = () => {
             <div key={idx} className="rounded-2xl border border-border card-gradient overflow-hidden">
               {/* Slip Header */}
               <div className="flex items-center gap-3 p-3 border-b border-border">
-                <div className="w-9 h-9 rounded-full bg-card-elevated border border-border flex items-center justify-center text-xs font-bold text-highlight">
-                  {slip.avatar}
-                </div>
-                <span className="text-sm font-semibold">{slip.user}</span>
+                <Link to={`/profile/${slip.slug}`} className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-card-elevated border border-border flex items-center justify-center text-xs font-bold text-highlight">
+                    {slip.avatar}
+                  </div>
+                  <span className="text-sm font-semibold">{slip.user}</span>
+                </Link>
               </div>
 
               {/* Slip Info */}
