@@ -604,8 +604,10 @@ const GameModal = ({ game, onClose }: { game: typeof games[0]; onClose: () => vo
 const Casino = () => {
   const [activeCategory, setActiveCategory] = useState(0);
   const [selectedGame, setSelectedGame] = useState<typeof games[0] | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const filtered = activeCategory === 0 ? games : games.filter((g) => g.category === categories[activeCategory]);
+  const filtered = (activeCategory === 0 ? games : games.filter((g) => g.category === categories[activeCategory]))
+    .filter((g) => searchQuery.trim() === "" || g.name.toLowerCase().includes(searchQuery.toLowerCase()));
   const showCrash = activeCategory === 0 || activeCategory === 1;
 
   return (
@@ -616,9 +618,16 @@ const Casino = () => {
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Rechercher un jeu..."
-            className="w-full pl-9 pr-4 py-2.5 rounded-xl bg-card border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary focus:border-primary/50 transition-all"
+            className="w-full pl-9 pr-9 py-2.5 rounded-xl bg-card border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary focus:border-primary/50 transition-all"
           />
+          {searchQuery && (
+            <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2">
+              <X size={14} className="text-muted-foreground" />
+            </button>
+          )}
         </div>
       </section>
 
@@ -679,6 +688,13 @@ const Casino = () => {
       {/* Games Grid */}
       <section className="px-4 mt-4 mb-6">
         <h3 className="text-sm font-bold mb-3">JEUX POPULAIRES</h3>
+        {filtered.length === 0 ? (
+          <div className="text-center py-8">
+            <Search size={28} className="mx-auto text-muted-foreground mb-2" />
+            <p className="text-sm font-medium">Aucun jeu trouvé</p>
+            <p className="text-xs text-muted-foreground mt-1">Essayez un autre terme</p>
+          </div>
+        ) : (
         <div className="grid grid-cols-2 gap-3">
           {filtered.map((game) => (
             <motion.div
@@ -715,6 +731,7 @@ const Casino = () => {
             </motion.div>
           ))}
         </div>
+        )}
       </section>
 
       {/* Game Modal */}

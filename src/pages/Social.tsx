@@ -8,7 +8,7 @@ import {
   MessageSquare, Trophy, Swords, Users, Heart, MessageCircle, Share2,
   Send, Crown, Medal, Award, Flame, TrendingUp, Clock, ChevronRight,
   Smile, Image as ImageIcon, MoreHorizontal, Star, Zap, Target, ShoppingCart, Copy, Check,
-  UserPlus, UserCheck
+  UserPlus, UserCheck, X
 } from "lucide-react";
 
 // ─── Tab definitions ───
@@ -514,16 +514,34 @@ const ChallengesTab = () => (
   </div>
 );
 
-const ChatTab = () => (
+const ChatTab = () => {
+  const [chatSearch, setChatSearch] = useState("");
+  const filteredGroups = chatGroups.filter((g) =>
+    chatSearch.trim() === "" || g.name.toLowerCase().includes(chatSearch.toLowerCase())
+  );
+
+  return (
   <div className="space-y-3">
     <div className="relative">
       <input
         type="text"
+        value={chatSearch}
+        onChange={(e) => setChatSearch(e.target.value)}
         placeholder="Rechercher un groupe..."
         className="w-full px-4 py-2.5 rounded-xl bg-card-elevated border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary"
       />
+      {chatSearch && (
+        <button onClick={() => setChatSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2">
+          <X size={14} className="text-muted-foreground" />
+        </button>
+      )}
     </div>
-    {chatGroups.map((group, i) => (
+    {filteredGroups.length === 0 && (
+      <div className="text-center py-6 text-sm text-muted-foreground">
+        Aucun groupe trouvé
+      </div>
+    )}
+    {filteredGroups.map((group, i) => (
       <motion.button
         key={group.id}
         className="w-full flex items-center gap-3 p-3 rounded-2xl border border-border card-gradient text-left"
@@ -560,7 +578,8 @@ const ChatTab = () => (
       <Users size={16} /> Créer un groupe
     </motion.button>
   </div>
-);
+  );
+};
 
 // ─── Main component ───
 
