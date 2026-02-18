@@ -2,15 +2,10 @@ import MobileLayout from "@/components/MobileLayout";
 import { useState } from "react";
 import { ArrowLeft, Info, Shield, Trash2, X } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const mockSelections = [
-  { id: 1, match: "TP Mazembe vs AS Vita Club", pick: "TP Mazembe (1)", odds: 1.85, league: "Linafoot" },
-  { id: 2, match: "RD Congo vs Zambie", pick: "RD Congo (1)", odds: 1.95, league: "Éliminatoires CAN" },
-  { id: 3, match: "DCMP vs FC Lupopo", pick: "Nul (X)", odds: 3.20, league: "Linafoot" },
-];
+import { useBetSlip } from "@/contexts/BetSlipContext";
 
 const BetSlip = () => {
-  const [selections, setSelections] = useState(mockSelections);
+  const { selections, removeSelection, clearSelections } = useBetSlip();
   const [stake, setStake] = useState("5000");
   const [betType, setBetType] = useState<"single" | "combi">("combi");
   const [confirmed, setConfirmed] = useState(false);
@@ -20,8 +15,6 @@ const BetSlip = () => {
   const potentialWin = Math.round(numStake * (betType === "combi" ? totalOdds : selections[0]?.odds || 1));
   const tax = Math.round(potentialWin * 0.1);
   const netPayout = potentialWin - tax;
-
-  const removeSelection = (id: number) => setSelections((prev) => prev.filter((s) => s.id !== id));
 
   if (confirmed) {
     return (
@@ -143,7 +136,7 @@ const BetSlip = () => {
               Placer le pari — {numStake.toLocaleString()} CDF
             </button>
 
-            <button onClick={() => setSelections([])} className="w-full py-2 flex items-center justify-center gap-1.5 text-xs text-destructive">
+            <button onClick={() => clearSelections()} className="w-full py-2 flex items-center justify-center gap-1.5 text-xs text-destructive">
               <Trash2 size={12} />
               Vider le coupon
             </button>
