@@ -1,33 +1,59 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Shield, XCircle } from "lucide-react";
+import { Shield } from "lucide-react";
+import { motion } from "framer-motion";
 import partoucheLogo from "@/assets/partouche-logo.png";
 
 const AgeVerification = () => {
   const navigate = useNavigate();
+  const [exiting, setExiting] = useState(false);
 
   const handleConfirm = () => {
     sessionStorage.setItem("age_verified", "true");
-    navigate("/home");
+    setExiting(true);
+    setTimeout(() => navigate("/home"), 500);
   };
 
   const handleDeny = () => {
-    navigate("/age-denied");
+    setExiting(true);
+    setTimeout(() => navigate("/age-denied"), 400);
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background px-6">
+    <motion.div
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background px-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: exiting ? 0 : 1, y: exiting ? -20 : 0 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+    >
+      {/* Ambient glow */}
+      <div className="absolute w-48 h-48 rounded-full bg-primary/8 blur-[80px]" />
+
       {/* Logo */}
-      <img
+      <motion.img
         src={partoucheLogo}
         alt="Groupe Partouche"
-        className="w-40 h-auto mb-8 animate-fade-in"
+        className="w-40 h-auto mb-8 relative z-10"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       />
 
       {/* Card */}
-      <div className="w-full max-w-sm rounded-2xl border border-border bg-card p-6 text-center animate-fade-in">
-        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 border border-primary/30">
+      <motion.div
+        className="w-full max-w-sm rounded-2xl border border-border bg-card p-6 text-center relative z-10"
+        initial={{ opacity: 0, y: 30, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <motion.div
+          className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 border border-primary/30"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.4, delay: 0.5, type: "spring", stiffness: 200 }}
+        >
           <Shield size={32} className="text-primary" />
-        </div>
+        </motion.div>
 
         <h1 className="text-xl font-bold mb-2">Vérification d'âge</h1>
         <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
@@ -36,36 +62,43 @@ const AgeVerification = () => {
           <span className="text-primary font-bold">18 ans et plus</span>.
         </p>
 
-        <p className="text-sm font-semibold mb-6">
-          Avez-vous 18 ans ou plus ?
-        </p>
+        <p className="text-sm font-semibold mb-6">Avez-vous 18 ans ou plus ?</p>
 
-        <div className="flex gap-3">
-          <button
+        <motion.div
+          className="flex gap-3"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.4 }}
+        >
+          <motion.button
             onClick={handleDeny}
             className="flex-1 py-3 rounded-xl border border-border bg-card hover:bg-muted text-sm font-semibold transition-colors"
+            whileTap={{ scale: 0.96 }}
           >
             Non
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             onClick={handleConfirm}
-            className="flex-1 py-3 rounded-xl orange-gradient text-highlight-foreground text-sm font-bold glow-orange transition-all"
+            className="flex-1 py-3 rounded-xl orange-gradient text-highlight-foreground text-sm font-bold glow-orange"
+            whileTap={{ scale: 0.96 }}
+            whileHover={{ scale: 1.02 }}
           >
             Oui, j'ai 18+
-          </button>
-        </div>
-      </div>
+          </motion.button>
+        </motion.div>
+      </motion.div>
 
       {/* Footer */}
-      <div className="absolute bottom-12 text-center">
-        <p className="text-muted-foreground/50 text-xs">
-          Licence N°2024/GJ/001 — RDC
-        </p>
-        <p className="text-muted-foreground/50 text-xs mt-1">
-          🔞 Jeu responsable | jouez avec modération
-        </p>
-      </div>
-    </div>
+      <motion.div
+        className="absolute bottom-12 text-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8, duration: 0.6 }}
+      >
+        <p className="text-muted-foreground/50 text-xs">Licence N°2024/GJ/001 — RDC</p>
+        <p className="text-muted-foreground/50 text-xs mt-1">🔞 Jeu responsable | jouez avec modération</p>
+      </motion.div>
+    </motion.div>
   );
 };
 
