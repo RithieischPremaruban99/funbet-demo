@@ -2,6 +2,10 @@ import MobileLayout from "@/components/MobileLayout";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowUp, ChevronDown, ChevronRight, CreditCard, FileText, HelpCircle, History, LogOut, Settings, Shield, Smartphone, Swords, User, Users, Wallet, AlertTriangle } from "lucide-react";
+import mpesaLogo from "@/assets/mpesa.svg";
+import airtelLogo from "@/assets/airtel.svg";
+import orangeLogo from "@/assets/orange.svg";
+import africellLogo from "@/assets/africell.png";
 
 const activeBets = [
   { match: "TP Mazembe vs AS Vita Club", pick: "TP Mazembe (1)", odds: 1.85, stake: 10000, status: "live", time: "67'" },
@@ -102,9 +106,15 @@ const Account = () => {
             <span className="text-[10px] px-2 py-0.5 rounded-full bg-success/20 text-success ml-auto">Actif</span>
           </div>
           <div className="flex items-center gap-2">
-            {["M-Pesa", "Airtel Money", "Orange Money", "Africell"].map((provider) => (
-              <Link key={provider} to="/deposit" className="flex-1 text-[10px] py-2 rounded-lg bg-card-elevated border border-border hover:border-highlight/40 transition-all text-center font-medium">
-                {provider}
+            {[
+              { name: "M-Pesa", logo: mpesaLogo },
+              { name: "Airtel Money", logo: airtelLogo },
+              { name: "Orange Money", logo: orangeLogo },
+              { name: "Africell", logo: africellLogo },
+            ].map((provider) => (
+              <Link key={provider.name} to="/deposit" className="flex-1 flex flex-col items-center gap-1 py-2 rounded-lg bg-card-elevated border border-border hover:border-highlight/40 transition-all">
+                <img src={provider.logo} alt={provider.name} className="h-5 w-auto object-contain" />
+                <span className="text-[9px] font-medium text-muted-foreground">{provider.name}</span>
               </Link>
             ))}
           </div>
