@@ -1,5 +1,5 @@
 import MobileLayout from "@/components/MobileLayout";
-import { ChevronRight, Filter, Flame, ShoppingCart, X } from "lucide-react";
+import { ChevronRight, Filter, Flame, Search, ShoppingCart, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useBetSlip } from "@/contexts/BetSlipContext";
@@ -96,11 +96,24 @@ const OddsButton = ({ label, value, selected, onSelect, disabled }: { label: str
 
 const Sports = () => {
   const [activeSport, setActiveSport] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
   const { selections, toggleSelection, isSelected, clearSelections } = useBetSlip();
   const navigate = useNavigate();
 
   const currentSport = sports[activeSport].name;
-  const { live: liveMatches, upcoming: upcomingMatches } = matchesBySport[currentSport] || { live: [], upcoming: [] };
+  const allData = matchesBySport[currentSport] || { live: [], upcoming: [] };
+  
+  const filterMatches = (matches: MatchData[]) =>
+    searchQuery.trim() === ""
+      ? matches
+      : matches.filter((m) =>
+          m.home.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          m.away.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          m.league.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+  const liveMatches = filterMatches(allData.live);
+  const upcomingMatches = filterMatches(allData.upcoming);
 
   const handleOddsSelect = (matchId: number, match: string, league: string, pick: string, odds: string) => {
     if (odds === "-") return;
@@ -122,6 +135,23 @@ const Sports = () => {
     <MobileLayout>
       {/* Sport filters */}
       <section className="px-4 mt-3">
+        {/* Search bar */}
+        <div className="relative mb-3">
+          <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Rechercher un match, une équipe..."
+            className="w-full pl-9 pr-9 py-2.5 rounded-xl bg-card border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary focus:border-primary/50 transition-all"
+          />
+          {searchQuery && (
+            <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2">
+              <X size={14} className="text-muted-foreground" />
+            </button>
+          )}
+        </div>
+
         <div className="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-2">
           <button className="flex-shrink-0 p-2.5 rounded-xl bg-card border border-border hover:bg-card-elevated transition-colors">
             <Filter size={16} className="text-muted-foreground" />
@@ -129,7 +159,7 @@ const Sports = () => {
           {sports.map((sport, i) => (
             <button
               key={sport.name}
-              onClick={() => setActiveSport(i)}
+              onClick={() => { setActiveSport(i); setSearchQuery(""); }}
               className={`flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all ${
                 i === activeSport
                   ? "border-highlight/30 card-gradient-warm text-foreground"
@@ -143,6 +173,15 @@ const Sports = () => {
           ))}
         </div>
       </section>
+
+      {/* No results */}
+      {searchQuery && liveMatches.length === 0 && upcomingMatches.length === 0 && (
+        <div className="text-center py-12 px-4">
+          <Search size={32} className="mx-auto text-muted-foreground mb-3" />
+          <p className="text-sm font-medium">Aucun résultat pour "{searchQuery}"</p>
+          <p className="text-xs text-muted-foreground mt-1">Essayez un autre terme</p>
+        </div>
+      )}
 
       {/* Live */}
       {liveMatches.length > 0 && (
