@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import casinoPromo from "@/assets/casino-promo.jpg";
 import slotsGame from "@/assets/slots-game.jpg";
 import blackjackGame from "@/assets/blackjack-game.jpg";
+import crashRocket from "@/assets/crash-rocket.png";
 
 const categories = ["Tout", "Crash", "Slots", "Table", "Live", "Jackpot", "Nouveau"];
 
@@ -645,7 +646,7 @@ const Casino = () => {
       {showCrash && (
         <section className="px-4 mt-4">
           <div className="flex items-center gap-2 mb-3">
-            <TrendingUp size={16} className="text-highlight" />
+            <img src={crashRocket} alt="Crash Game" className="w-7 h-7 rounded-lg object-cover" />
             <h3 className="text-sm font-bold">CRASH GAME</h3>
             <Zap size={12} className="text-highlight animate-pulse" />
             <span className="ml-auto text-[9px] px-2 py-0.5 rounded-full bg-live/20 text-live font-bold animate-pulse">● LIVE</span>
