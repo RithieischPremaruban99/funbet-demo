@@ -1,6 +1,7 @@
 import { ChevronRight, Flame, Zap, Swords, Radio, Trophy, Dices, Shield } from "lucide-react";
 import MobileLayout from "@/components/MobileLayout";
 import { Link } from "react-router-dom";
+import TeamBadge from "@/components/TeamBadge";
 
 const categories = [
   { icon: Flame, label: "Top Paris", sublabel: "Populaire", gradient: true, to: "/sports" },
@@ -12,42 +13,69 @@ const categories = [
 const liveMatches = [
   {
     id: 1,
-    league: "Linafoot, Journée 18",
+    league: "Ligue 1 - Journée 24",
     time: "67'",
-    home: { name: "TP Mazembe", abbr: "TPM" },
-    away: { name: "AS Vita Club", abbr: "ASV" },
-    odds: { home: "1.85", draw: "3.40", away: "4.20" },
+    home: { name: "Paris SG", abbr: "PSG" },
+    away: { name: "Olympique Lyonnais", abbr: "OL" },
+    odds: { home: "1.45", draw: "4.50", away: "6.00" },
     score: "2 - 1",
   },
   {
     id: 2,
-    league: "Linafoot, Journée 18",
-    time: "45'",
-    home: { name: "DC Motema Pembe", abbr: "DCMP" },
-    away: { name: "FC Lupopo", abbr: "LUP" },
-    odds: { home: "2.10", draw: "3.20", away: "3.50" },
+    league: "Ligue 1 - Journée 24",
+    time: "52'",
+    home: { name: "RC Lens", abbr: "LENS" },
+    away: { name: "AS Monaco", abbr: "ASM" },
+    odds: { home: "2.30", draw: "3.20", away: "3.10" },
     score: "1 - 1",
+  },
+  {
+    id: 3,
+    league: "Ligue 1 - Journée 24",
+    time: "38'",
+    home: { name: "LOSC Lille", abbr: "LOSC" },
+    away: { name: "OGC Nice", abbr: "NICE" },
+    odds: { home: "1.90", draw: "3.40", away: "4.00" },
+    score: "1 - 0",
   },
 ];
 
 const upcomingMatches = [
   {
-    id: 3,
-    league: "Ligue des Champions CAF",
-    date: "20:00",
+    id: 4,
+    league: "Champions League",
+    date: "21:00",
     dateLabel: "DEMAIN",
-    home: { name: "TP Mazembe", abbr: "TPM" },
-    away: { name: "Al Ahly", abbr: "AHL" },
-    odds: { home: "2.60", draw: "3.10", away: "2.70" },
+    home: { name: "Paris SG", abbr: "PSG" },
+    away: { name: "FC Bayern", abbr: "BAY" },
+    odds: { home: "2.20", draw: "3.40", away: "3.00" },
   },
   {
-    id: 4,
-    league: "Éliminatoires CAN 2026",
+    id: 5,
+    league: "Champions League",
+    date: "21:00",
+    dateLabel: "DEMAIN",
+    home: { name: "FC Barcelona", abbr: "BAR" },
+    away: { name: "Inter Milan", abbr: "INT" },
+    odds: { home: "1.80", draw: "3.60", away: "4.20" },
+  },
+  {
+    id: 6,
+    league: "Ligue 1 - Journée 25",
     date: "17:00",
     dateLabel: "SAM",
-    home: { name: "RD Congo", abbr: "RDC" },
-    away: { name: "Zambie", abbr: "ZAM" },
-    odds: { home: "1.95", draw: "3.30", away: "3.90" },
+    home: { name: "Olympique Marseille", abbr: "OM" },
+    away: { name: "Paris SG", abbr: "PSG" },
+    odds: { home: "3.40", draw: "3.30", away: "2.10" },
+  },
+  {
+    id: 7,
+    league: "Premier League",
+    date: "16:00",
+    dateLabel: "DIM",
+    home: { name: "Liverpool FC", abbr: "LIV" },
+    away: { name: "Manchester City", abbr: "MCI" },
+    odds: { home: "2.00", draw: "3.50", away: "3.40" },
   },
 ];
 
@@ -136,9 +164,15 @@ const Index = () => {
 
               <div className="px-3 pb-2">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-bold">{match.home.name}</span>
+                  <div className="flex items-center gap-2">
+                    <TeamBadge abbr={match.home.abbr} />
+                    <span className="text-sm font-bold">{match.home.name}</span>
+                  </div>
                   <span className="text-lg font-bold text-highlight">{match.score}</span>
-                  <span className="text-sm font-bold">{match.away.name}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-bold">{match.away.name}</span>
+                    <TeamBadge abbr={match.away.abbr} />
+                  </div>
                 </div>
                 <div className="flex gap-2">
                   <OddsButton label="1" value={match.odds.home} />
@@ -177,9 +211,15 @@ const Index = () => {
 
               <div className="px-3 pb-2">
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-bold">{match.home.name}</span>
+                  <div className="flex items-center gap-2">
+                    <TeamBadge abbr={match.home.abbr} />
+                    <span className="text-sm font-bold">{match.home.name}</span>
+                  </div>
                   <span className="text-xs text-muted-foreground">vs</span>
-                  <span className="text-sm font-bold">{match.away.name}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-bold">{match.away.name}</span>
+                    <TeamBadge abbr={match.away.abbr} />
+                  </div>
                 </div>
                 <div className="flex gap-2">
                   <OddsButton label="1" value={match.odds.home} />
