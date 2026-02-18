@@ -21,6 +21,7 @@ import Transactions from "./pages/Transactions";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import ResponsibleGaming from "./pages/ResponsibleGaming";
+import Social from "./pages/Social";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const App = () => (
           <Route path="/sports" element={<Sports />} />
           <Route path="/casino" element={<Casino />} />
           <Route path="/promotions" element={<Promotions />} />
+          <Route path="/social" element={<Social />} />
           <Route path="/account" element={<Account />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

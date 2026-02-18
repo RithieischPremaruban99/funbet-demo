@@ -2,10 +2,10 @@ import { NavLink, useLocation } from "react-router-dom";
 import { Home, Trophy, Gamepad2, Compass, User } from "lucide-react";
 
 const tabs = [
-  { to: "/home", icon: Home, label: "Feed" },
-  { to: "/sports", icon: Trophy, label: "Sportsbook" },
+  { to: "/home", icon: Home, label: "Accueil" },
+  { to: "/sports", icon: Trophy, label: "Sports" },
   { to: "/casino", icon: Gamepad2, label: "Casino" },
-  { to: "/promotions", icon: Compass, label: "Discovery" },
+  { to: "/social", icon: Compass, label: "Social" },
   { to: "/account", icon: User, label: "Compte" },
 ];
 
