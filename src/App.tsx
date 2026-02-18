@@ -2,8 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { BetSlipProvider } from "@/contexts/BetSlipContext";
+import { AnimatePresence } from "framer-motion";
 import Splash from "./pages/Splash";
 import AgeVerification from "./pages/AgeVerification";
 import AgeDenied from "./pages/AgeDenied";
@@ -28,6 +29,37 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Splash />} />
+        <Route path="/age-check" element={<AgeVerification />} />
+        <Route path="/age-denied" element={<AgeDenied />} />
+        <Route path="/home" element={<Index />} />
+        <Route path="/sports" element={<Sports />} />
+        <Route path="/casino" element={<Casino />} />
+        <Route path="/promotions" element={<Promotions />} />
+        <Route path="/social" element={<Social />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/kyc" element={<KYC />} />
+        <Route path="/deposit" element={<Deposit />} />
+        <Route path="/withdrawal" element={<Withdrawal />} />
+        <Route path="/betslip" element={<BetSlip />} />
+        <Route path="/transactions" element={<Transactions />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
+        <Route path="/challenge" element={<Challenge />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -35,29 +67,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Splash />} />
-          <Route path="/age-check" element={<AgeVerification />} />
-          <Route path="/age-denied" element={<AgeDenied />} />
-          <Route path="/home" element={<Index />} />
-          <Route path="/sports" element={<Sports />} />
-          <Route path="/casino" element={<Casino />} />
-          <Route path="/promotions" element={<Promotions />} />
-          <Route path="/social" element={<Social />} />
-          <Route path="/account" element={<Account />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/kyc" element={<KYC />} />
-          <Route path="/deposit" element={<Deposit />} />
-          <Route path="/withdrawal" element={<Withdrawal />} />
-          <Route path="/betslip" element={<BetSlip />} />
-          <Route path="/transactions" element={<Transactions />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
-          <Route path="/challenge" element={<Challenge />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AnimatedRoutes />
       </BrowserRouter>
       </BetSlipProvider>
     </TooltipProvider>
