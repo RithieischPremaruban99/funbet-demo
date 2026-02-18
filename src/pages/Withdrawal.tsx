@@ -2,12 +2,16 @@ import MobileLayout from "@/components/MobileLayout";
 import { useState } from "react";
 import { ArrowLeft, CheckCircle, Info, Phone, Shield, Smartphone } from "lucide-react";
 import { Link } from "react-router-dom";
+import mpesaLogo from "@/assets/mpesa.svg";
+import airtelLogo from "@/assets/airtel.svg";
+import orangeLogo from "@/assets/orange.svg";
+import africellLogo from "@/assets/africell.png";
 
 const providers = [
-  { id: "mpesa", name: "M-Pesa", color: "bg-green-600", prefix: "081/082" },
-  { id: "airtel", name: "Airtel Money", color: "bg-red-600", prefix: "099/097" },
-  { id: "orange", name: "Orange Money", color: "bg-orange-500", prefix: "084/085" },
-  { id: "africell", name: "Africell Money", color: "bg-blue-600", prefix: "090/091" },
+  { id: "mpesa", name: "M-Pesa", logo: mpesaLogo, prefix: "081/082" },
+  { id: "airtel", name: "Airtel Money", logo: airtelLogo, prefix: "099/097" },
+  { id: "orange", name: "Orange Money", logo: orangeLogo, prefix: "084/085" },
+  { id: "africell", name: "Africell Money", logo: africellLogo, prefix: "090/091" },
 ];
 
 const Withdrawal = () => {
@@ -56,8 +60,8 @@ const Withdrawal = () => {
                       selectedProvider === p.id ? "border-primary card-gradient-warm" : "border-border bg-card-elevated hover:border-highlight/30"
                     }`}
                   >
-                    <div className={`w-8 h-8 rounded-lg ${p.color} flex items-center justify-center mb-2`}>
-                      <Phone size={14} className="text-white" />
+                    <div className="w-10 h-10 rounded-lg bg-card border border-border flex items-center justify-center mb-2 p-1.5">
+                      <img src={p.logo} alt={p.name} className="w-full h-full object-contain" />
                     </div>
                     <p className="text-xs font-bold">{p.name}</p>
                     <p className="text-[9px] text-muted-foreground">{p.prefix}</p>
