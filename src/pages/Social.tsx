@@ -107,6 +107,41 @@ const FeedTab = () => {
   const { isFollowing, toggleFollow, followedUsers } = useFollow();
   const [copiedId, setCopiedId] = useState<number | null>(null);
   const [feedFilter, setFeedFilter] = useState<"all" | "following">("all");
+  const [likedPosts, setLikedPosts] = useState<Set<number>>(new Set());
+  const [likeCounts, setLikeCounts] = useState<Record<number, number>>(() =>
+    Object.fromEntries(feedPosts.map((p) => [p.id, p.likes]))
+  );
+  const [openComments, setOpenComments] = useState<number | null>(null);
+  const [commentTexts, setCommentTexts] = useState<Record<number, string>>({});
+  const [userComments, setUserComments] = useState<Record<number, string[]>>({});
+  const [sharedId, setSharedId] = useState<number | null>(null);
+  const [composeText, setComposeText] = useState("");
+
+  const handleLike = (postId: number) => {
+    setLikedPosts((prev) => {
+      const next = new Set(prev);
+      if (next.has(postId)) {
+        next.delete(postId);
+        setLikeCounts((c) => ({ ...c, [postId]: (c[postId] || 0) - 1 }));
+      } else {
+        next.add(postId);
+        setLikeCounts((c) => ({ ...c, [postId]: (c[postId] || 0) + 1 }));
+      }
+      return next;
+    });
+  };
+
+  const handleShare = (postId: number) => {
+    setSharedId(postId);
+    setTimeout(() => setSharedId(null), 1500);
+  };
+
+  const handleAddComment = (postId: number) => {
+    const text = commentTexts[postId]?.trim();
+    if (!text) return;
+    setUserComments((prev) => ({ ...prev, [postId]: [...(prev[postId] || []), text] }));
+    setCommentTexts((prev) => ({ ...prev, [postId]: "" }));
+  };
 
   const handleCopyBet = (post: typeof feedPosts[0]) => {
     if (post.bet) {
@@ -151,19 +186,27 @@ const FeedTab = () => {
           <div className="w-9 h-9 rounded-full orange-gradient flex items-center justify-center text-xs font-bold text-highlight-foreground">
             Moi
           </div>
-          <div className="flex-1 px-3 py-2.5 rounded-xl bg-card-elevated border border-border text-sm text-muted-foreground cursor-pointer">
-            Partagez votre pronostic...
-          </div>
+          <input
+            type="text"
+            value={composeText}
+            onChange={(e) => setComposeText(e.target.value)}
+            placeholder="Partagez votre pronostic..."
+            className="flex-1 px-3 py-2.5 rounded-xl bg-card-elevated border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary"
+          />
         </div>
         <div className="flex items-center justify-between mt-2 px-1">
           <div className="flex gap-3">
-            <button className="flex items-center gap-1 text-muted-foreground"><ImageIcon size={14} /><span className="text-[10px]">Photo</span></button>
-            <button className="flex items-center gap-1 text-muted-foreground"><Target size={14} /><span className="text-[10px]">Pari</span></button>
-            <button className="flex items-center gap-1 text-muted-foreground"><Smile size={14} /><span className="text-[10px]">Emoji</span></button>
+            <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"><ImageIcon size={14} /><span className="text-[10px]">Photo</span></button>
+            <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"><Target size={14} /><span className="text-[10px]">Pari</span></button>
+            <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"><Smile size={14} /><span className="text-[10px]">Emoji</span></button>
           </div>
           <motion.button
-            className="px-4 py-1.5 rounded-full orange-gradient text-[11px] font-bold text-highlight-foreground"
+            className={`px-4 py-1.5 rounded-full text-[11px] font-bold transition-all ${
+              composeText.trim() ? "orange-gradient text-highlight-foreground" : "bg-muted text-muted-foreground"
+            }`}
             whileTap={{ scale: 0.95 }}
+            disabled={!composeText.trim()}
+            onClick={() => { if (composeText.trim()) setComposeText(""); }}
           >
             Publier
           </motion.button>
@@ -363,16 +406,69 @@ const FeedTab = () => {
 
             {/* Actions */}
             <div className="flex items-center justify-around py-2 px-3 border-t border-border/50">
-              <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
-                <Heart size={14} /><span className="text-[10px]">{post.likes}</span>
-              </button>
-              <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
-                <MessageCircle size={14} /><span className="text-[10px]">{post.comments}</span>
-              </button>
-              <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
-                <Share2 size={14} /><span className="text-[10px]">{post.shares}</span>
-              </button>
+              <motion.button
+                onClick={() => handleLike(post.id)}
+                className={`flex items-center gap-1 transition-colors ${likedPosts.has(post.id) ? "text-destructive" : "text-muted-foreground hover:text-destructive"}`}
+                whileTap={{ scale: 1.3 }}
+              >
+                <Heart size={14} className={likedPosts.has(post.id) ? "fill-destructive" : ""} />
+                <span className="text-[10px]">{likeCounts[post.id] ?? post.likes}</span>
+              </motion.button>
+              <motion.button
+                onClick={() => setOpenComments(openComments === post.id ? null : post.id)}
+                className={`flex items-center gap-1 transition-colors ${openComments === post.id ? "text-primary" : "text-muted-foreground hover:text-primary"}`}
+                whileTap={{ scale: 1.1 }}
+              >
+                <MessageCircle size={14} />
+                <span className="text-[10px]">{post.comments + (userComments[post.id]?.length || 0)}</span>
+              </motion.button>
+              <motion.button
+                onClick={() => handleShare(post.id)}
+                className={`flex items-center gap-1 transition-colors ${sharedId === post.id ? "text-primary" : "text-muted-foreground hover:text-primary"}`}
+                whileTap={{ scale: 1.1 }}
+              >
+                {sharedId === post.id ? <Check size={14} /> : <Share2 size={14} />}
+                <span className="text-[10px]">{sharedId === post.id ? "Partagé!" : post.shares}</span>
+              </motion.button>
             </div>
+
+            {/* Comments section */}
+            <AnimatePresence>
+              {openComments === post.id && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  className="overflow-hidden border-t border-border/50"
+                >
+                  <div className="p-3 space-y-2">
+                    {(userComments[post.id] || []).map((c, ci) => (
+                      <div key={ci} className="flex items-start gap-2">
+                        <div className="w-6 h-6 rounded-full orange-gradient flex items-center justify-center text-[8px] font-bold text-highlight-foreground flex-shrink-0">Moi</div>
+                        <p className="text-[11px] bg-card-elevated rounded-xl px-3 py-1.5 border border-border">{c}</p>
+                      </div>
+                    ))}
+                    <div className="flex items-center gap-2">
+                      <input
+                        type="text"
+                        value={commentTexts[post.id] || ""}
+                        onChange={(e) => setCommentTexts((prev) => ({ ...prev, [post.id]: e.target.value }))}
+                        onKeyDown={(e) => e.key === "Enter" && handleAddComment(post.id)}
+                        placeholder="Écrire un commentaire..."
+                        className="flex-1 px-3 py-2 rounded-xl bg-card-elevated border border-border text-[11px] text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary"
+                      />
+                      <motion.button
+                        onClick={() => handleAddComment(post.id)}
+                        className="p-2 rounded-full orange-gradient text-highlight-foreground"
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <Send size={12} />
+                      </motion.button>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         );
       });
@@ -381,14 +477,17 @@ const FeedTab = () => {
   );
 };
 
-const LeaderboardTab = () => (
+const LeaderboardTab = () => {
+  const [activePeriod, setActivePeriod] = useState(0);
+  return (
   <div className="space-y-3">
     <div className="flex gap-2">
       {["Cette semaine", "Ce mois", "Historique"].map((period, i) => (
         <button
           key={period}
+          onClick={() => setActivePeriod(i)}
           className={`px-3 py-1.5 rounded-full text-[10px] font-semibold transition-all ${
-            i === 0 ? "orange-gradient text-highlight-foreground" : "bg-card-elevated border border-border text-muted-foreground"
+            activePeriod === i ? "orange-gradient text-highlight-foreground" : "bg-card-elevated border border-border text-muted-foreground hover:border-primary/30"
           }`}
         >
           {period}
@@ -453,9 +552,22 @@ const LeaderboardTab = () => (
       </Link>
     ))}
   </div>
-);
+  );
+};
 
-const ChallengesTab = () => (
+const ChallengesTab = () => {
+  const navigate = useNavigate();
+  const [joinedChallenges, setJoinedChallenges] = useState<Set<number>>(new Set());
+
+  const handleJoin = (id: number) => {
+    setJoinedChallenges((prev) => {
+      const next = new Set(prev);
+      next.add(id);
+      return next;
+    });
+  };
+
+  return (
   <div className="space-y-3">
     <motion.div
       className="rounded-2xl border border-primary/30 bg-primary/5 p-4 text-center"
@@ -469,11 +581,14 @@ const ChallengesTab = () => (
       <motion.button
         className="mt-3 px-6 py-2 rounded-full orange-gradient text-xs font-bold text-highlight-foreground glow-orange"
         whileTap={{ scale: 0.95 }}
+        onClick={() => navigate("/challenge")}
       >
         Créer un défi
       </motion.button>
     </motion.div>
-    {challenges.map((c, i) => (
+    {challenges.map((c, i) => {
+      const joined = joinedChallenges.has(c.id);
+      return (
       <motion.div
         key={c.id}
         className={`rounded-2xl border overflow-hidden card-gradient ${c.hot ? "border-primary/30" : "border-border"}`}
@@ -495,24 +610,31 @@ const ChallengesTab = () => (
           <div className="flex items-center justify-between mt-3">
             <div className="flex items-center gap-3">
               <span className="text-[9px] text-muted-foreground flex items-center gap-1">
-                <Users size={10} />{c.participants} joueurs
+                <Users size={10} />{c.participants + (joined ? 1 : 0)} joueurs
               </span>
               <span className="text-[10px] font-bold text-highlight flex items-center gap-1">
                 <Zap size={10} />{c.prize}
               </span>
             </div>
             <motion.button
-              className="px-3 py-1.5 rounded-full orange-gradient text-[10px] font-bold text-highlight-foreground"
-              whileTap={{ scale: 0.95 }}
+              onClick={() => !joined && handleJoin(c.id)}
+              className={`px-3 py-1.5 rounded-full text-[10px] font-bold transition-all ${
+                joined
+                  ? "bg-primary/20 text-primary border border-primary/30"
+                  : "orange-gradient text-highlight-foreground"
+              }`}
+              whileTap={joined ? {} : { scale: 0.95 }}
             >
-              Participer
+              {joined ? "✓ Inscrit" : "Participer"}
             </motion.button>
           </div>
         </div>
       </motion.div>
-    ))}
+      );
+    })}
   </div>
-);
+  );
+};
 
 const ChatTab = () => {
   const [chatSearch, setChatSearch] = useState("");
