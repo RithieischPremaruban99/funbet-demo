@@ -1,11 +1,11 @@
 import MobileLayout from "@/components/MobileLayout";
-import { Clock, Gift, Percent, Star, Trophy } from "lucide-react";
+import { Clock, Gift, Percent, Star, Trophy, Smartphone } from "lucide-react";
 
 const promos = [
   {
     id: 1,
     title: "Bonus de bienvenue",
-    description: "100% jusqu'à 500€ sur votre premier dépôt",
+    description: "100% jusqu'à 50 000 CDF sur votre premier dépôt",
     icon: Gift,
     tag: "Nouveau",
     expiry: "Offre permanente",
@@ -13,8 +13,8 @@ const promos = [
   },
   {
     id: 2,
-    title: "Paris gratuits",
-    description: "10€ de paris gratuits chaque week-end",
+    title: "Paris gratuits Linafoot",
+    description: "5 000 CDF de paris gratuits chaque week-end",
     icon: Trophy,
     tag: "Sports",
     expiry: "Chaque semaine",
@@ -22,6 +22,15 @@ const promos = [
   },
   {
     id: 3,
+    title: "Bonus Mobile Money",
+    description: "5% bonus sur chaque dépôt via M-Pesa ou Airtel Money",
+    icon: Smartphone,
+    tag: "Dépôt",
+    expiry: "Jusqu'au 31 mars",
+    featured: false,
+  },
+  {
+    id: 4,
     title: "Cashback Casino",
     description: "10% de cashback sur vos pertes au casino",
     icon: Percent,
@@ -30,7 +39,7 @@ const promos = [
     featured: false,
   },
   {
-    id: 4,
+    id: 5,
     title: "Programme VIP",
     description: "Points fidélité doublés ce mois-ci",
     icon: Star,
@@ -45,7 +54,7 @@ const Promotions = () => {
     <MobileLayout>
       <section className="px-4 mt-3">
         <h2 className="text-lg font-bold">Découvrir</h2>
-        <p className="text-xs text-muted-foreground mt-0.5">Offres exclusives Partouche</p>
+        <p className="text-xs text-muted-foreground mt-0.5">Offres exclusives Partouche RDC</p>
       </section>
 
       <section className="px-4 mt-4 mb-6 space-y-3">

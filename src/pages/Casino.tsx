@@ -61,6 +61,9 @@ const Casino = () => {
               Jouer maintenant
             </button>
           </div>
+          <div className="absolute bottom-2 right-3">
+            <span className="text-[9px] px-2 py-0.5 rounded-full bg-primary/80 text-primary-foreground font-bold">18+</span>
+          </div>
         </div>
       </section>
 
