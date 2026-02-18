@@ -22,32 +22,32 @@ const Splash = () => {
   }, [navigate]);
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center red-gradient">
+    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background">
       {/* Logo */}
       <div className="animate-fade-in mb-8">
         <img
           src={partoucheLogo}
           alt="Groupe Partouche"
-          className="w-48 h-auto brightness-0 invert"
+          className="w-52 h-auto"
         />
       </div>
 
       {/* Spinner */}
       <div className="mb-6">
-        <div className="w-10 h-10 border-3 border-white/30 border-t-white rounded-full animate-spin" />
+        <div className="w-10 h-10 border-[3px] border-primary/20 border-t-primary rounded-full animate-spin" />
       </div>
 
       {/* Status text */}
-      <p className="text-primary-foreground/80 text-sm text-center px-8 animate-fade-in">
+      <p className="text-muted-foreground text-sm text-center px-8 animate-fade-in">
         Vérification de votre emplacement{dots}
       </p>
 
       {/* Footer branding */}
       <div className="absolute bottom-12 text-center">
-        <p className="text-primary-foreground/40 text-xs">
+        <p className="text-muted-foreground/50 text-xs">
           Licence N°2024/GJ/001 — RDC
         </p>
-        <p className="text-primary-foreground/40 text-xs mt-1">
+        <p className="text-muted-foreground/50 text-xs mt-1">
           🔞 Réservé aux personnes de 18 ans et plus
         </p>
       </div>
