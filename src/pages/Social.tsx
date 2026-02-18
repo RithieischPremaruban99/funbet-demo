@@ -1,7 +1,7 @@
 import MobileLayout from "@/components/MobileLayout";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useBetSlip } from "@/contexts/BetSlipContext";
 import {
   MessageSquare, Trophy, Swords, Users, Heart, MessageCircle, Share2,
@@ -22,14 +22,14 @@ type TabId = (typeof socialTabs)[number]["id"];
 // ─── Mock data ───
 const feedPosts = [
   {
-    id: 1, user: "Patrice M.", avatar: "PM", time: "il y a 5 min", verified: true,
+    id: 1, user: "Patrice M.", avatar: "PM", slug: "patrice-m", time: "il y a 5 min", verified: true,
     text: "🔥 TP Mazembe va gagner ce soir, j'en suis sûr! Cote 1.85 c'est du cadeau!",
     bet: { matchId: 101, match: "TP Mazembe vs AS Vita", pick: "TP Mazembe (1)", odds: 1.85, amount: "5 000 CDF", status: "en cours", league: "Linafoot" },
     multiBet: null,
     likes: 42, comments: 12, shares: 5,
   },
   {
-    id: 2, user: "Aimée K.", avatar: "AK", time: "il y a 18 min", verified: false,
+    id: 2, user: "Aimée K.", avatar: "AK", slug: "aimee-k", time: "il y a 18 min", verified: false,
     text: "Combo de 3 matchs validé hier soir! 💰 Les Léopards ne déçoivent jamais 🇨🇩",
     bet: null,
     multiBet: {
@@ -45,14 +45,14 @@ const feedPosts = [
     likes: 128, comments: 34, shares: 18,
   },
   {
-    id: 3, user: "David N.", avatar: "DN", time: "il y a 32 min", verified: true,
+    id: 3, user: "David N.", avatar: "DN", slug: "david-n", time: "il y a 32 min", verified: true,
     text: "Qui suit le match DCMP vs Lupopo? Le nul à 3.20 me tente bien...",
     bet: { matchId: 301, match: "DCMP vs FC Lupopo", pick: "Nul (X)", odds: 3.20, amount: "2 000 CDF", status: "en cours", league: "Linafoot" },
     multiBet: null,
     likes: 21, comments: 8, shares: 2,
   },
   {
-    id: 4, user: "Serge T.", avatar: "ST", time: "il y a 45 min", verified: true,
+    id: 4, user: "Serge T.", avatar: "ST", slug: "serge-t", time: "il y a 45 min", verified: true,
     text: "Mon combo du jour 🎯 Confiance totale sur ces 4 matchs!",
     bet: null,
     multiBet: {
@@ -70,12 +70,12 @@ const feedPosts = [
 ];
 
 const leaderboardUsers = [
-  { rank: 1, name: "Serge T.", avatar: "ST", winRate: "78%", profit: "+420 000 CDF", streak: 12, badge: "diamond" },
-  { rank: 2, name: "Gloire M.", avatar: "GM", winRate: "72%", profit: "+315 000 CDF", streak: 8, badge: "gold" },
-  { rank: 3, name: "Rachel B.", avatar: "RB", winRate: "69%", profit: "+280 000 CDF", streak: 6, badge: "gold" },
-  { rank: 4, name: "Patrick K.", avatar: "PK", winRate: "65%", profit: "+195 000 CDF", streak: 5, badge: "silver" },
-  { rank: 5, name: "Esther L.", avatar: "EL", winRate: "63%", profit: "+170 000 CDF", streak: 4, badge: "silver" },
-  { rank: 6, name: "Christian W.", avatar: "CW", winRate: "61%", profit: "+145 000 CDF", streak: 3, badge: "bronze" },
+  { rank: 1, name: "Serge T.", avatar: "ST", slug: "serge-t", winRate: "78%", profit: "+420 000 CDF", streak: 12, badge: "diamond" },
+  { rank: 2, name: "Gloire M.", avatar: "GM", slug: "gloire-m", winRate: "72%", profit: "+315 000 CDF", streak: 8, badge: "gold" },
+  { rank: 3, name: "Rachel B.", avatar: "RB", slug: "rachel-b", winRate: "69%", profit: "+280 000 CDF", streak: 6, badge: "gold" },
+  { rank: 4, name: "Patrick K.", avatar: "PK", slug: "patrick-k", winRate: "65%", profit: "+195 000 CDF", streak: 5, badge: "silver" },
+  { rank: 5, name: "Esther L.", avatar: "EL", slug: "esther-l", winRate: "63%", profit: "+170 000 CDF", streak: 4, badge: "silver" },
+  { rank: 6, name: "Christian W.", avatar: "CW", slug: "christian-w", winRate: "61%", profit: "+145 000 CDF", streak: 3, badge: "bronze" },
 ];
 
 const challenges = [
@@ -179,7 +179,7 @@ const FeedTab = () => {
           >
             {/* Header */}
             <div className="flex items-center justify-between p-3 pb-0">
-              <div className="flex items-center gap-2">
+              <Link to={`/profile/${post.slug}`} className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-card-elevated border border-border flex items-center justify-center text-[10px] font-bold text-foreground">
                   {post.avatar}
                 </div>
@@ -190,7 +190,7 @@ const FeedTab = () => {
                   </div>
                   <span className="text-[9px] text-muted-foreground">{post.time}</span>
                 </div>
-              </div>
+              </Link>
               <button className="text-muted-foreground"><MoreHorizontal size={16} /></button>
             </div>
 
@@ -353,7 +353,7 @@ const LeaderboardTab = () => (
               {user.avatar}
             </div>
             <RankBadge rank={user.rank} />
-            <span className="text-[10px] font-bold mt-0.5">{user.name}</span>
+            <Link to={`/profile/${user.slug}`} className="text-[10px] font-bold mt-0.5 hover:text-primary transition-colors">{user.name}</Link>
             <span className="text-[9px] text-success font-semibold">{user.profit}</span>
             <div className={`${heights[i]} w-16 rounded-t-xl mt-1 ${
               user.rank === 1 ? "orange-gradient" : "bg-card-elevated border border-border"
@@ -365,26 +365,31 @@ const LeaderboardTab = () => (
       })}
     </div>
     {leaderboardUsers.slice(3).map((user, i) => (
-      <motion.div
+      <Link
         key={user.rank}
+        to={`/profile/${user.slug}`}
         className="flex items-center gap-3 p-3 rounded-2xl border border-border card-gradient"
-        initial={{ opacity: 0, x: -12 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.3 + i * 0.06 }}
       >
-        <RankBadge rank={user.rank} />
-        <div className="w-9 h-9 rounded-full bg-card-elevated border border-border flex items-center justify-center text-[10px] font-bold">
-          {user.avatar}
-        </div>
-        <div className="flex-1">
-          <span className="text-xs font-bold">{user.name}</span>
-          <div className="flex items-center gap-2 mt-0.5">
-            <span className="text-[9px] text-muted-foreground">Win: {user.winRate}</span>
-            <span className="text-[9px] text-muted-foreground">🔥 {user.streak}</span>
+        <motion.div
+          className="flex items-center gap-3 flex-1"
+          initial={{ opacity: 0, x: -12 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 + i * 0.06 }}
+        >
+          <RankBadge rank={user.rank} />
+          <div className="w-9 h-9 rounded-full bg-card-elevated border border-border flex items-center justify-center text-[10px] font-bold">
+            {user.avatar}
           </div>
-        </div>
-        <span className="text-xs font-bold text-success">{user.profit}</span>
-      </motion.div>
+          <div className="flex-1">
+            <span className="text-xs font-bold">{user.name}</span>
+            <div className="flex items-center gap-2 mt-0.5">
+              <span className="text-[9px] text-muted-foreground">Win: {user.winRate}</span>
+              <span className="text-[9px] text-muted-foreground">🔥 {user.streak}</span>
+            </div>
+          </div>
+          <span className="text-xs font-bold text-success">{user.profit}</span>
+        </motion.div>
+      </Link>
     ))}
   </div>
 );
