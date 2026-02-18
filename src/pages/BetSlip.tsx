@@ -14,14 +14,14 @@ const BetSlip = () => {
   const [confirmed, setConfirmed] = useState(false);
 
   const canUseFlex = betType === "combi" && selections.length >= 3;
-  const maxFlex = Math.max(0, selections.length - 2); // at least 2 must be correct
+  const maxFlex = Math.min(Math.max(0, selections.length - 1), 6); // up to 6 wrong, at least 1 correct
 
   // Calculate flex odds reduction factor
   const getFlexMultiplier = (total: number, wrong: number): number => {
     if (wrong === 0) return 1;
     // Each allowed wrong pick reduces payout significantly
-    const reductionPerWrong = [1, 0.45, 0.18, 0.06];
-    return reductionPerWrong[Math.min(wrong, reductionPerWrong.length - 1)] || 0.03;
+    const reductionPerWrong = [1, 0.45, 0.18, 0.06, 0.02, 0.008, 0.003];
+    return reductionPerWrong[Math.min(wrong, reductionPerWrong.length - 1)] || 0.001;
   };
 
   const totalOdds = selections.reduce((acc, s) => acc * s.odds, 1);
