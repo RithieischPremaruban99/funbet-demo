@@ -1,10 +1,12 @@
 import MobileLayout from "@/components/MobileLayout";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { useBetSlip } from "@/contexts/BetSlipContext";
 import {
   MessageSquare, Trophy, Swords, Users, Heart, MessageCircle, Share2,
   Send, Crown, Medal, Award, Flame, TrendingUp, Clock, ChevronRight,
-  Smile, Image as ImageIcon, MoreHorizontal, Star, Zap, Target
+  Smile, Image as ImageIcon, MoreHorizontal, Star, Zap, Target, ShoppingCart, Copy, Check
 } from "lucide-react";
 
 // ─── Tab definitions ───
@@ -22,21 +24,48 @@ const feedPosts = [
   {
     id: 1, user: "Patrice M.", avatar: "PM", time: "il y a 5 min", verified: true,
     text: "🔥 TP Mazembe va gagner ce soir, j'en suis sûr! Cote 1.85 c'est du cadeau!",
-    bet: { match: "TP Mazembe vs AS Vita", pick: "TP Mazembe", odds: "1.85", amount: "5,000 FC", status: "en cours" },
+    bet: { matchId: 101, match: "TP Mazembe vs AS Vita", pick: "TP Mazembe (1)", odds: 1.85, amount: "5,000 FC", status: "en cours", league: "Linafoot" },
+    multiBet: null,
     likes: 42, comments: 12, shares: 5,
   },
   {
     id: 2, user: "Aimée K.", avatar: "AK", time: "il y a 18 min", verified: false,
     text: "Combo de 3 matchs validé hier soir! 💰 Les Léopards ne déçoivent jamais 🇨🇩",
     bet: null,
+    multiBet: {
+      legs: [
+        { matchId: 201, match: "RD Congo vs Zambie", pick: "RD Congo (1)", odds: 1.95, league: "Éliminatoires CAN" },
+        { matchId: 202, match: "TP Mazembe vs Al Ahly", pick: "TP Mazembe (1)", odds: 2.60, league: "Champions CAF" },
+        { matchId: 203, match: "AS Vita vs DCMP", pick: "Nul (X)", odds: 3.10, league: "Linafoot" },
+      ],
+      totalOdds: 15.71,
+      stake: "2,000 FC",
+    },
     result: { amount: "+25,000 FC", type: "win" },
     likes: 128, comments: 34, shares: 18,
   },
   {
     id: 3, user: "David N.", avatar: "DN", time: "il y a 32 min", verified: true,
     text: "Qui suit le match DCMP vs Lupopo? Le nul à 3.20 me tente bien...",
-    bet: { match: "DCMP vs FC Lupopo", pick: "Nul", odds: "3.20", amount: "2,000 FC", status: "en cours" },
+    bet: { matchId: 301, match: "DCMP vs FC Lupopo", pick: "Nul (X)", odds: 3.20, amount: "2,000 FC", status: "en cours", league: "Linafoot" },
+    multiBet: null,
     likes: 21, comments: 8, shares: 2,
+  },
+  {
+    id: 4, user: "Serge T.", avatar: "ST", time: "il y a 45 min", verified: true,
+    text: "Mon combo du jour 🎯 Confiance totale sur ces 4 matchs!",
+    bet: null,
+    multiBet: {
+      legs: [
+        { matchId: 401, match: "FC Lupopo vs CS Don Bosco", pick: "CS Don Bosco (2)", odds: 2.30, league: "Linafoot" },
+        { matchId: 402, match: "JS Bazano vs FC Blessing", pick: "JS Bazano (1)", odds: 1.80, league: "Linafoot" },
+        { matchId: 403, match: "AS Maniema vs Rangers", pick: "AS Maniema (1)", odds: 2.10, league: "Coupe du Congo" },
+        { matchId: 404, match: "Mazembe vs Renaissance", pick: "TP Mazembe (1)", odds: 1.15, league: "Linafoot" },
+      ],
+      totalOdds: 10.05,
+      stake: "10,000 FC",
+    },
+    likes: 87, comments: 22, shares: 14,
   },
 ];
 
@@ -62,8 +91,6 @@ const chatGroups = [
   { id: 4, name: "🎰 Casino & Slots", members: 320, lastMessage: "Jackpot gagné sur Mega Fortune!", unread: 3, active: true },
 ];
 
-// ─── Subcomponents ───
-
 const RankBadge = ({ rank }: { rank: number }) => {
   if (rank === 1) return <Crown size={18} className="text-highlight" />;
   if (rank === 2) return <Medal size={18} className="text-muted-foreground" />;
@@ -71,107 +98,230 @@ const RankBadge = ({ rank }: { rank: number }) => {
   return <span className="text-sm font-bold text-muted-foreground w-[18px] text-center">{rank}</span>;
 };
 
-const FeedTab = () => (
-  <div className="space-y-3">
-    {/* Compose */}
-    <div className="rounded-2xl border border-border card-gradient p-3">
-      <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded-full orange-gradient flex items-center justify-center text-xs font-bold text-highlight-foreground">
-          Moi
-        </div>
-        <div className="flex-1 px-3 py-2.5 rounded-xl bg-card-elevated border border-border text-sm text-muted-foreground cursor-pointer">
-          Partagez votre pronostic...
-        </div>
-      </div>
-      <div className="flex items-center justify-between mt-2 px-1">
-        <div className="flex gap-3">
-          <button className="flex items-center gap-1 text-muted-foreground"><ImageIcon size={14} /><span className="text-[10px]">Photo</span></button>
-          <button className="flex items-center gap-1 text-muted-foreground"><Target size={14} /><span className="text-[10px]">Pari</span></button>
-          <button className="flex items-center gap-1 text-muted-foreground"><Smile size={14} /><span className="text-[10px]">Emoji</span></button>
-        </div>
-        <motion.button
-          className="px-4 py-1.5 rounded-full orange-gradient text-[11px] font-bold text-highlight-foreground"
-          whileTap={{ scale: 0.95 }}
-        >
-          Publier
-        </motion.button>
-      </div>
-    </div>
+// ─── Feed Tab with Multi-Leg Integration ───
 
-    {/* Posts */}
-    {feedPosts.map((post, i) => (
-      <motion.div
-        key={post.id}
-        className="rounded-2xl border border-border card-gradient overflow-hidden"
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: i * 0.08, duration: 0.35 }}
-      >
-        {/* Header */}
-        <div className="flex items-center justify-between p-3 pb-0">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-card-elevated border border-border flex items-center justify-center text-[10px] font-bold text-foreground">
-              {post.avatar}
-            </div>
-            <div>
-              <div className="flex items-center gap-1">
-                <span className="text-xs font-bold">{post.user}</span>
-                {post.verified && <Star size={10} className="text-primary fill-primary" />}
-              </div>
-              <span className="text-[9px] text-muted-foreground">{post.time}</span>
-            </div>
+const FeedTab = () => {
+  const { toggleSelection, isSelected, selections } = useBetSlip();
+  const [copiedId, setCopiedId] = useState<number | null>(null);
+
+  const handleCopyBet = (post: typeof feedPosts[0]) => {
+    if (post.bet) {
+      const id = `${post.bet.matchId}-${post.bet.pick}`;
+      toggleSelection({
+        id,
+        matchId: post.bet.matchId,
+        match: post.bet.match,
+        pick: post.bet.pick,
+        odds: post.bet.odds,
+        league: post.bet.league,
+      });
+    }
+    if (post.multiBet) {
+      post.multiBet.legs.forEach((leg) => {
+        const id = `${leg.matchId}-${leg.pick}`;
+        toggleSelection({
+          id,
+          matchId: leg.matchId,
+          match: leg.match,
+          pick: leg.pick,
+          odds: leg.odds,
+          league: leg.league,
+        });
+      });
+    }
+    setCopiedId(post.id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
+
+  const isBetCopied = (post: typeof feedPosts[0]) => {
+    if (post.bet) return isSelected(`${post.bet.matchId}-${post.bet.pick}`);
+    if (post.multiBet) return post.multiBet.legs.every((leg) => isSelected(`${leg.matchId}-${leg.pick}`));
+    return false;
+  };
+
+  return (
+    <div className="space-y-3">
+      {/* Compose */}
+      <div className="rounded-2xl border border-border card-gradient p-3">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-full orange-gradient flex items-center justify-center text-xs font-bold text-highlight-foreground">
+            Moi
           </div>
-          <button className="text-muted-foreground"><MoreHorizontal size={16} /></button>
+          <div className="flex-1 px-3 py-2.5 rounded-xl bg-card-elevated border border-border text-sm text-muted-foreground cursor-pointer">
+            Partagez votre pronostic...
+          </div>
         </div>
+        <div className="flex items-center justify-between mt-2 px-1">
+          <div className="flex gap-3">
+            <button className="flex items-center gap-1 text-muted-foreground"><ImageIcon size={14} /><span className="text-[10px]">Photo</span></button>
+            <button className="flex items-center gap-1 text-muted-foreground"><Target size={14} /><span className="text-[10px]">Pari</span></button>
+            <button className="flex items-center gap-1 text-muted-foreground"><Smile size={14} /><span className="text-[10px]">Emoji</span></button>
+          </div>
+          <motion.button
+            className="px-4 py-1.5 rounded-full orange-gradient text-[11px] font-bold text-highlight-foreground"
+            whileTap={{ scale: 0.95 }}
+          >
+            Publier
+          </motion.button>
+        </div>
+      </div>
 
-        {/* Content */}
-        <p className="text-sm px-3 pt-2 pb-2 leading-relaxed">{post.text}</p>
-
-        {/* Bet card */}
-        {post.bet && (
-          <div className="mx-3 mb-2 rounded-xl bg-card-elevated border border-primary/20 p-2.5">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] text-muted-foreground">{post.bet.match}</span>
-              <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-primary/15 text-primary font-medium">{post.bet.status}</span>
-            </div>
-            <div className="flex items-center justify-between mt-1.5">
-              <span className="text-xs font-bold">{post.bet.pick}</span>
+      {/* Posts */}
+      {feedPosts.map((post, i) => {
+        const copied = isBetCopied(post);
+        return (
+          <motion.div
+            key={post.id}
+            className="rounded-2xl border border-border card-gradient overflow-hidden"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.08, duration: 0.35 }}
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between p-3 pb-0">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-highlight">@{post.bet.odds}</span>
-                <span className="text-[10px] text-muted-foreground">{post.bet.amount}</span>
+                <div className="w-8 h-8 rounded-full bg-card-elevated border border-border flex items-center justify-center text-[10px] font-bold text-foreground">
+                  {post.avatar}
+                </div>
+                <div>
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-bold">{post.user}</span>
+                    {post.verified && <Star size={10} className="text-primary fill-primary" />}
+                  </div>
+                  <span className="text-[9px] text-muted-foreground">{post.time}</span>
+                </div>
               </div>
+              <button className="text-muted-foreground"><MoreHorizontal size={16} /></button>
             </div>
-          </div>
-        )}
 
-        {/* Win result */}
-        {post.result && (
-          <div className="mx-3 mb-2 rounded-xl bg-success/10 border border-success/20 p-2.5 text-center">
-            <span className="text-lg font-bold text-success">{post.result.amount}</span>
-            <span className="text-[10px] text-success block">Pari gagné! 🎉</span>
-          </div>
-        )}
+            {/* Content */}
+            <p className="text-sm px-3 pt-2 pb-2 leading-relaxed">{post.text}</p>
 
-        {/* Actions */}
-        <div className="flex items-center justify-around py-2 px-3 border-t border-border/50">
-          <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
-            <Heart size={14} /><span className="text-[10px]">{post.likes}</span>
-          </button>
-          <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
-            <MessageCircle size={14} /><span className="text-[10px]">{post.comments}</span>
-          </button>
-          <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
-            <Share2 size={14} /><span className="text-[10px]">{post.shares}</span>
-          </button>
-        </div>
-      </motion.div>
-    ))}
-  </div>
-);
+            {/* Single bet card */}
+            {post.bet && (
+              <div className={`mx-3 mb-2 rounded-xl border p-2.5 transition-all ${
+                copied ? "bg-highlight/10 border-highlight/30" : "bg-card-elevated border-primary/20"
+              }`}>
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] text-muted-foreground">{post.bet.match}</span>
+                  <span className="text-[9px] px-1.5 py-0.5 rounded-full bg-primary/15 text-primary font-medium">{post.bet.status}</span>
+                </div>
+                <div className="flex items-center justify-between mt-1.5">
+                  <span className="text-xs font-bold">{post.bet.pick}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-highlight">@{post.bet.odds.toFixed(2)}</span>
+                    <span className="text-[10px] text-muted-foreground">{post.bet.amount}</span>
+                  </div>
+                </div>
+                <motion.button
+                  onClick={() => handleCopyBet(post)}
+                  className={`mt-2 w-full py-2 rounded-lg text-[10px] font-bold flex items-center justify-center gap-1.5 transition-all ${
+                    copied
+                      ? "bg-highlight/20 text-highlight border border-highlight/30"
+                      : "bg-card border border-border text-muted-foreground hover:border-highlight/40 hover:text-foreground"
+                  }`}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  {copied ? <Check size={12} /> : <Copy size={12} />}
+                  {copied ? "Ajouté au coupon!" : "Copier ce pari"}
+                </motion.button>
+              </div>
+            )}
+
+            {/* Multi-leg bet card */}
+            {post.multiBet && (
+              <div className={`mx-3 mb-2 rounded-xl border p-2.5 transition-all ${
+                copied ? "bg-highlight/10 border-highlight/30" : "bg-card-elevated border-primary/20"
+              }`}>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-1.5">
+                    <Zap size={12} className="text-highlight" />
+                    <span className="text-[10px] font-bold text-highlight">COMBINÉ × {post.multiBet.legs.length}</span>
+                  </div>
+                  <span className="text-[10px] font-bold text-highlight">Cote: {post.multiBet.totalOdds.toFixed(2)}</span>
+                </div>
+                <div className="space-y-1.5">
+                  {post.multiBet.legs.map((leg, li) => {
+                    const legSelected = isSelected(`${leg.matchId}-${leg.pick}`);
+                    return (
+                      <motion.button
+                        key={li}
+                        onClick={() => toggleSelection({
+                          id: `${leg.matchId}-${leg.pick}`,
+                          matchId: leg.matchId,
+                          match: leg.match,
+                          pick: leg.pick,
+                          odds: leg.odds,
+                          league: leg.league,
+                        })}
+                        className={`w-full flex items-center justify-between py-1.5 px-2 rounded-lg text-left transition-all ${
+                          legSelected ? "bg-highlight/15 border border-highlight/30" : "bg-card/50 border border-border/50 hover:border-primary/30"
+                        }`}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <div>
+                          <p className="text-[9px] text-muted-foreground">{leg.league}</p>
+                          <p className="text-[10px] font-medium">{leg.match}</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[10px] font-bold text-primary">{leg.pick}</span>
+                          <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                            legSelected ? "bg-highlight/20 text-highlight" : "bg-card-elevated text-highlight"
+                          }`}>
+                            {leg.odds.toFixed(2)}
+                          </span>
+                        </div>
+                      </motion.button>
+                    );
+                  })}
+                </div>
+                <div className="flex items-center justify-between mt-2 pt-2 border-t border-border/50">
+                  <span className="text-[9px] text-muted-foreground">Mise: {post.multiBet.stake}</span>
+                  <motion.button
+                    onClick={() => handleCopyBet(post)}
+                    className={`px-3 py-1.5 rounded-lg text-[10px] font-bold flex items-center gap-1.5 transition-all ${
+                      copied
+                        ? "bg-highlight/20 text-highlight border border-highlight/30"
+                        : "orange-gradient text-highlight-foreground"
+                    }`}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {copied ? <Check size={12} /> : <Copy size={12} />}
+                    {copied ? "Copié!" : "Copier tout le combo"}
+                  </motion.button>
+                </div>
+              </div>
+            )}
+
+            {/* Win result */}
+            {post.result && (
+              <div className="mx-3 mb-2 rounded-xl bg-success/10 border border-success/20 p-2.5 text-center">
+                <span className="text-lg font-bold text-success">{post.result.amount}</span>
+                <span className="text-[10px] text-success block">Pari gagné! 🎉</span>
+              </div>
+            )}
+
+            {/* Actions */}
+            <div className="flex items-center justify-around py-2 px-3 border-t border-border/50">
+              <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+                <Heart size={14} /><span className="text-[10px]">{post.likes}</span>
+              </button>
+              <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+                <MessageCircle size={14} /><span className="text-[10px]">{post.comments}</span>
+              </button>
+              <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors">
+                <Share2 size={14} /><span className="text-[10px]">{post.shares}</span>
+              </button>
+            </div>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+};
 
 const LeaderboardTab = () => (
   <div className="space-y-3">
-    {/* Time filter */}
     <div className="flex gap-2">
       {["Cette semaine", "Ce mois", "All-time"].map((period, i) => (
         <button
@@ -184,8 +334,6 @@ const LeaderboardTab = () => (
         </button>
       ))}
     </div>
-
-    {/* Top 3 podium */}
     <div className="flex items-end justify-center gap-3 py-4">
       {[leaderboardUsers[1], leaderboardUsers[0], leaderboardUsers[2]].map((user, i) => {
         const heights = ["h-20", "h-28", "h-16"];
@@ -216,8 +364,6 @@ const LeaderboardTab = () => (
         );
       })}
     </div>
-
-    {/* Rest of ranking */}
     {leaderboardUsers.slice(3).map((user, i) => (
       <motion.div
         key={user.rank}
@@ -245,7 +391,6 @@ const LeaderboardTab = () => (
 
 const ChallengesTab = () => (
   <div className="space-y-3">
-    {/* Active challenge banner */}
     <motion.div
       className="rounded-2xl border border-primary/30 bg-primary/5 p-4 text-center"
       initial={{ opacity: 0, scale: 0.95 }}
@@ -262,8 +407,6 @@ const ChallengesTab = () => (
         Créer un défi
       </motion.button>
     </motion.div>
-
-    {/* Challenge cards */}
     {challenges.map((c, i) => (
       <motion.div
         key={c.id}
@@ -307,7 +450,6 @@ const ChallengesTab = () => (
 
 const ChatTab = () => (
   <div className="space-y-3">
-    {/* Search */}
     <div className="relative">
       <input
         type="text"
@@ -315,8 +457,6 @@ const ChatTab = () => (
         className="w-full px-4 py-2.5 rounded-xl bg-card-elevated border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary"
       />
     </div>
-
-    {/* Groups */}
     {chatGroups.map((group, i) => (
       <motion.button
         key={group.id}
@@ -347,8 +487,6 @@ const ChatTab = () => (
         <ChevronRight size={14} className="text-muted-foreground flex-shrink-0" />
       </motion.button>
     ))}
-
-    {/* Create group */}
     <motion.button
       className="w-full py-3 rounded-xl border-2 border-dashed border-border hover:border-primary/40 transition-colors text-sm font-medium text-muted-foreground flex items-center justify-center gap-2"
       whileTap={{ scale: 0.97 }}
@@ -362,6 +500,9 @@ const ChatTab = () => (
 
 const Social = () => {
   const [activeTab, setActiveTab] = useState<TabId>("feed");
+  const { selections } = useBetSlip();
+  const navigate = useNavigate();
+  const totalOdds = selections.reduce((acc, s) => acc * s.odds, 1);
 
   return (
     <MobileLayout>
@@ -412,7 +553,7 @@ const Social = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25 }}
-            className="pb-6"
+            className="pb-24"
           >
             {activeTab === "feed" && <FeedTab />}
             {activeTab === "leaderboard" && <LeaderboardTab />}
@@ -421,6 +562,38 @@ const Social = () => {
           </motion.div>
         </AnimatePresence>
       </motion.section>
+
+      {/* Floating Bet Slip Indicator */}
+      <AnimatePresence>
+        {selections.length > 0 && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ type: "spring", damping: 20, stiffness: 300 }}
+            className="fixed bottom-20 left-4 right-4 z-50"
+          >
+            <button
+              onClick={() => navigate("/betslip")}
+              className="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl orange-gradient glow-orange shadow-2xl"
+            >
+              <div className="flex items-center gap-3">
+                <div className="relative">
+                  <ShoppingCart size={20} className="text-highlight-foreground" />
+                  <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-card text-highlight text-[10px] font-bold flex items-center justify-center">
+                    {selections.length}
+                  </span>
+                </div>
+                <div className="text-left">
+                  <p className="text-xs font-bold text-highlight-foreground">{selections.length} sélection{selections.length > 1 ? "s" : ""}</p>
+                  <p className="text-[10px] text-highlight-foreground/70">Cote totale: {totalOdds.toFixed(2)}</p>
+                </div>
+              </div>
+              <span className="text-sm font-bold text-highlight-foreground">Voir coupon →</span>
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </MobileLayout>
   );
 };
