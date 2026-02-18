@@ -4,6 +4,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Splash from "./pages/Splash";
+import AgeVerification from "./pages/AgeVerification";
+import AgeDenied from "./pages/AgeDenied";
 import Index from "./pages/Index";
 import Sports from "./pages/Sports";
 import Casino from "./pages/Casino";
@@ -31,6 +33,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Splash />} />
+          <Route path="/age-check" element={<AgeVerification />} />
+          <Route path="/age-denied" element={<AgeDenied />} />
           <Route path="/home" element={<Index />} />
           <Route path="/sports" element={<Sports />} />
           <Route path="/casino" element={<Casino />} />

@@ -12,7 +12,7 @@ const Splash = () => {
     }, 500);
 
     const timer = setTimeout(() => {
-      navigate("/home");
+      navigate("/age-check");
     }, 3500);
 
     return () => {
