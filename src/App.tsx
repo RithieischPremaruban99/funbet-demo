@@ -23,6 +23,7 @@ import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import ResponsibleGaming from "./pages/ResponsibleGaming";
 import Social from "./pages/Social";
+import Challenge from "./pages/Challenge";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -54,6 +55,7 @@ const App = () => (
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
+          <Route path="/challenge" element={<Challenge />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

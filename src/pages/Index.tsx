@@ -353,10 +353,10 @@ const Index = () => {
 
       {/* Challenge Banner */}
       <section className="px-4 mt-4">
-        <button className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-primary/30 bg-primary/5 hover:bg-primary/10 transition-colors">
+        <Link to="/challenge" className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-primary/30 bg-primary/5 hover:bg-primary/10 transition-colors">
           <Swords size={18} className="text-primary" />
           <span className="text-sm font-bold text-primary">Défiez vos amis</span>
-        </button>
+        </Link>
       </section>
 
       {/* Live Matches */}
