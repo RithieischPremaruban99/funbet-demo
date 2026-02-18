@@ -32,6 +32,7 @@ import miaLogo from "@/assets/clubs/mia.png";
 import nykLogo from "@/assets/clubs/nyk.png";
 import rmaLogo from "@/assets/clubs/rma.png";
 import fcbLogo from "@/assets/clubs/fcb.png";
+import fenLogo from "@/assets/clubs/fen.png";
 
 const clubLogos: Record<string, string> = {
   PSG: psgLogo,
@@ -68,6 +69,7 @@ const clubLogos: Record<string, string> = {
   NYK: nykLogo,
   RMA: rmaLogo,
   FCB: fcbLogo,
+  FEN: fenLogo,
 };
 
 const fallbackColors: Record<string, { bg: string; text: string }> = {
