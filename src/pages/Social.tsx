@@ -24,7 +24,7 @@ const feedPosts = [
   {
     id: 1, user: "Patrice M.", avatar: "PM", time: "il y a 5 min", verified: true,
     text: "🔥 TP Mazembe va gagner ce soir, j'en suis sûr! Cote 1.85 c'est du cadeau!",
-    bet: { matchId: 101, match: "TP Mazembe vs AS Vita", pick: "TP Mazembe (1)", odds: 1.85, amount: "5,000 FC", status: "en cours", league: "Linafoot" },
+    bet: { matchId: 101, match: "TP Mazembe vs AS Vita", pick: "TP Mazembe (1)", odds: 1.85, amount: "5 000 CDF", status: "en cours", league: "Linafoot" },
     multiBet: null,
     likes: 42, comments: 12, shares: 5,
   },
@@ -39,15 +39,15 @@ const feedPosts = [
         { matchId: 203, match: "AS Vita vs DCMP", pick: "Nul (X)", odds: 3.10, league: "Linafoot" },
       ],
       totalOdds: 15.71,
-      stake: "2,000 FC",
+      stake: "2 000 CDF",
     },
-    result: { amount: "+25,000 FC", type: "win" },
+    result: { amount: "+25 000 CDF", type: "win" },
     likes: 128, comments: 34, shares: 18,
   },
   {
     id: 3, user: "David N.", avatar: "DN", time: "il y a 32 min", verified: true,
     text: "Qui suit le match DCMP vs Lupopo? Le nul à 3.20 me tente bien...",
-    bet: { matchId: 301, match: "DCMP vs FC Lupopo", pick: "Nul (X)", odds: 3.20, amount: "2,000 FC", status: "en cours", league: "Linafoot" },
+    bet: { matchId: 301, match: "DCMP vs FC Lupopo", pick: "Nul (X)", odds: 3.20, amount: "2 000 CDF", status: "en cours", league: "Linafoot" },
     multiBet: null,
     likes: 21, comments: 8, shares: 2,
   },
@@ -63,25 +63,25 @@ const feedPosts = [
         { matchId: 404, match: "Mazembe vs Renaissance", pick: "TP Mazembe (1)", odds: 1.15, league: "Linafoot" },
       ],
       totalOdds: 10.05,
-      stake: "10,000 FC",
+      stake: "10 000 CDF",
     },
     likes: 87, comments: 22, shares: 14,
   },
 ];
 
 const leaderboardUsers = [
-  { rank: 1, name: "Serge T.", avatar: "ST", winRate: "78%", profit: "+420,000 FC", streak: 12, badge: "diamond" },
-  { rank: 2, name: "Gloire M.", avatar: "GM", winRate: "72%", profit: "+315,000 FC", streak: 8, badge: "gold" },
-  { rank: 3, name: "Rachel B.", avatar: "RB", winRate: "69%", profit: "+280,000 FC", streak: 6, badge: "gold" },
-  { rank: 4, name: "Patrick K.", avatar: "PK", winRate: "65%", profit: "+195,000 FC", streak: 5, badge: "silver" },
-  { rank: 5, name: "Esther L.", avatar: "EL", winRate: "63%", profit: "+170,000 FC", streak: 4, badge: "silver" },
-  { rank: 6, name: "Christian W.", avatar: "CW", winRate: "61%", profit: "+145,000 FC", streak: 3, badge: "bronze" },
+  { rank: 1, name: "Serge T.", avatar: "ST", winRate: "78%", profit: "+420 000 CDF", streak: 12, badge: "diamond" },
+  { rank: 2, name: "Gloire M.", avatar: "GM", winRate: "72%", profit: "+315 000 CDF", streak: 8, badge: "gold" },
+  { rank: 3, name: "Rachel B.", avatar: "RB", winRate: "69%", profit: "+280 000 CDF", streak: 6, badge: "gold" },
+  { rank: 4, name: "Patrick K.", avatar: "PK", winRate: "65%", profit: "+195 000 CDF", streak: 5, badge: "silver" },
+  { rank: 5, name: "Esther L.", avatar: "EL", winRate: "63%", profit: "+170 000 CDF", streak: 4, badge: "silver" },
+  { rank: 6, name: "Christian W.", avatar: "CW", winRate: "61%", profit: "+145 000 CDF", streak: 3, badge: "bronze" },
 ];
 
 const challenges = [
-  { id: 1, title: "Derby de Kinshasa", description: "TP Mazembe vs AS Vita – Qui gagne?", participants: 234, prize: "50,000 FC", deadline: "Ce soir 20h", hot: true },
-  { id: 2, title: "Roi du Weekend", description: "Le meilleur combo de 3 matchs ce weekend", participants: 89, prize: "100,000 FC", deadline: "Dim 23h59", hot: false },
-  { id: 3, title: "Chasseur de Cotes", description: "Trouvez la plus grosse cote gagnante", participants: 156, prize: "75,000 FC", deadline: "7 jours", hot: true },
+  { id: 1, title: "Derby de Kinshasa", description: "TP Mazembe vs AS Vita – Qui gagne ?", participants: 234, prize: "50 000 CDF", deadline: "Ce soir 20h", hot: true },
+  { id: 2, title: "Roi du Weekend", description: "Le meilleur combo de 3 matchs ce weekend", participants: 89, prize: "100 000 CDF", deadline: "Dim 23h59", hot: false },
+  { id: 3, title: "Chasseur de Cotes", description: "Trouvez la plus grosse cote gagnante", participants: 156, prize: "75 000 CDF", deadline: "7 jours", hot: true },
 ];
 
 const chatGroups = [
@@ -323,7 +323,7 @@ const FeedTab = () => {
 const LeaderboardTab = () => (
   <div className="space-y-3">
     <div className="flex gap-2">
-      {["Cette semaine", "Ce mois", "All-time"].map((period, i) => (
+      {["Cette semaine", "Ce mois", "Historique"].map((period, i) => (
         <button
           key={period}
           className={`px-3 py-1.5 rounded-full text-[10px] font-semibold transition-all ${

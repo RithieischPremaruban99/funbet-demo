@@ -37,7 +37,7 @@ const betSlips = [
     wins: "1 sur 2",
     odds: "2.00x",
     picks: [
-      { name: "M. Chancel", team: "TP Mazembe", match: "@DCM - AUJOURD'HUI", stat: "Tacles", value: "1.5", badge: "TPM", badgeColor: "bg-primary", status: "lost" },
+      { name: "M. Chancel", team: "TP Mazembe", match: "vs DCMP - AUJOURD'HUI", stat: "Tacles", value: "1.5", badge: "TPM", badgeColor: "bg-primary", status: "lost" },
       { name: "Y. Mulumba", team: "AS Vita", match: "vs. Lupopo - HIER", stat: "Passes", value: "3.5", badge: "ASV", badgeColor: "bg-accent", status: "won" },
     ],
     amount: "10 000 CDF",
