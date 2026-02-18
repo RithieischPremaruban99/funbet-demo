@@ -1,7 +1,8 @@
 import MobileLayout from "@/components/MobileLayout";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowUp, ChevronDown, ChevronRight, CreditCard, FileText, HelpCircle, History, LogOut, Settings, Shield, Smartphone, Swords, User, Users, Wallet, AlertTriangle } from "lucide-react";
+import { ArrowUp, ChevronDown, ChevronRight, CreditCard, Eye, EyeOff, FileText, Globe, HelpCircle, History, Lock, LogOut, Settings, Shield, Smartphone, Swords, User, Users, Wallet, AlertTriangle } from "lucide-react";
+import { useFollow } from "@/contexts/FollowContext";
 import mpesaLogo from "@/assets/mpesa.svg";
 import airtelLogo from "@/assets/airtel.svg";
 import orangeLogo from "@/assets/orange.svg";
@@ -49,6 +50,7 @@ const betSlips = [
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState<"bets" | "friends" | "explore">("bets");
+  const { isProfilePrivate, toggleProfilePrivacy } = useFollow();
 
   return (
     <MobileLayout>
@@ -61,7 +63,14 @@ const Account = () => {
             </div>
             <div>
               <h2 className="text-base font-bold">Jean-Pierre K.</h2>
-              <p className="text-xs text-muted-foreground">Kinshasa, RDC • Vérifié ✓</p>
+              <div className="flex items-center gap-1.5">
+                <p className="text-xs text-muted-foreground">Kinshasa, RDC • Vérifié ✓</p>
+                {isProfilePrivate ? (
+                  <Lock size={10} className="text-muted-foreground" />
+                ) : (
+                  <Globe size={10} className="text-success" />
+                )}
+              </div>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -121,6 +130,41 @@ const Account = () => {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Privacy Toggle */}
+      <section className="px-4 mt-3">
+        <button
+          onClick={toggleProfilePrivacy}
+          className={`w-full flex items-center justify-between p-3 rounded-xl border transition-all ${
+            isProfilePrivate
+              ? "border-highlight/30 bg-highlight/5"
+              : "border-border card-gradient"
+          }`}
+        >
+          <div className="flex items-center gap-3">
+            <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
+              isProfilePrivate ? "bg-highlight/15" : "bg-card-elevated border border-border"
+            }`}>
+              {isProfilePrivate ? <Lock size={16} className="text-highlight" /> : <Globe size={16} className="text-success" />}
+            </div>
+            <div className="text-left">
+              <p className="text-sm font-medium">
+                {isProfilePrivate ? "Profil privé" : "Profil public"}
+              </p>
+              <p className="text-[10px] text-muted-foreground">
+                {isProfilePrivate ? "Seuls vos abonnés voient vos paris" : "Tout le monde peut voir votre profil"}
+              </p>
+            </div>
+          </div>
+          <div className={`w-10 h-6 rounded-full p-0.5 transition-colors ${
+            isProfilePrivate ? "bg-highlight" : "bg-border"
+          }`}>
+            <div className={`w-5 h-5 rounded-full bg-background shadow transition-transform ${
+              isProfilePrivate ? "translate-x-4" : "translate-x-0"
+            }`} />
+          </div>
+        </button>
       </section>
 
       {/* Challenge Banner */}
