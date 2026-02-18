@@ -1,8 +1,9 @@
 import MobileLayout from "@/components/MobileLayout";
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { ArrowLeft, Info, Shield, Trash2, X, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useBetSlip } from "@/contexts/BetSlipContext";
+import { motion, AnimatePresence } from "framer-motion";
 
 const BetSlip = () => {
   const { selections, removeSelection, clearSelections } = useBetSlip();
@@ -125,12 +126,60 @@ const BetSlip = () => {
           <>
             {/* FlexBet Option */}
             {canUseFlex && (
-              <div className="rounded-2xl border border-primary/30 bg-primary/5 p-4 mb-4">
-                <div className="flex items-center justify-between mb-2">
+              <motion.div
+                animate={flexEnabled ? {
+                  borderColor: "hsl(var(--primary))",
+                  boxShadow: [
+                    "0 0 0px hsl(var(--primary) / 0)",
+                    "0 0 20px hsl(var(--primary) / 0.4)",
+                    "0 0 8px hsl(var(--primary) / 0.2)",
+                  ],
+                } : {
+                  borderColor: "hsl(var(--primary) / 0.3)",
+                  boxShadow: "0 0 0px hsl(var(--primary) / 0)",
+                }}
+                transition={{ duration: 0.6, boxShadow: { duration: 1, ease: "easeOut" } }}
+                className="rounded-2xl border border-primary/30 bg-primary/5 p-4 mb-4 relative overflow-hidden"
+              >
+                {/* Particle burst on activation */}
+                <AnimatePresence>
+                  {flexEnabled && (
+                    <>
+                      {Array.from({ length: 12 }).map((_, i) => (
+                        <motion.span
+                          key={`particle-${i}`}
+                          initial={{ opacity: 1, scale: 0, x: "50%", y: "50%" }}
+                          animate={{
+                            opacity: 0,
+                            scale: 1,
+                            x: `${50 + (Math.cos((i * 30 * Math.PI) / 180) * 120)}%`,
+                            y: `${50 + (Math.sin((i * 30 * Math.PI) / 180) * 80)}%`,
+                          }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.7, ease: "easeOut" }}
+                          className="absolute w-1.5 h-1.5 rounded-full bg-primary pointer-events-none"
+                          style={{ left: 0, top: 0 }}
+                        />
+                      ))}
+                      <motion.div
+                        initial={{ opacity: 0.6, scale: 0.3 }}
+                        animate={{ opacity: 0, scale: 2.5 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="absolute inset-0 m-auto w-16 h-16 rounded-full bg-primary/30 pointer-events-none"
+                      />
+                    </>
+                  )}
+                </AnimatePresence>
+
+                <div className="flex items-center justify-between mb-2 relative z-10">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                      <Zap size={16} className="text-primary" />
-                    </div>
+                    <motion.div
+                      animate={flexEnabled ? { rotate: [0, -10, 10, -5, 5, 0], scale: [1, 1.2, 1] } : {}}
+                      transition={{ duration: 0.5 }}
+                      className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center"
+                    >
+                      <Zap size={16} className={`transition-colors ${flexEnabled ? "text-primary drop-shadow-[0_0_6px_hsl(var(--primary))]" : "text-primary"}`} />
+                    </motion.div>
                     <div>
                       <h4 className="text-xs font-bold">FlexBet</h4>
                       <p className="text-[10px] text-muted-foreground">Gagne même sans tout juste !</p>
@@ -138,9 +187,13 @@ const BetSlip = () => {
                   </div>
                   <button
                     onClick={() => { setFlexEnabled(!flexEnabled); setFlexCount(1); }}
-                    className={`w-11 h-6 rounded-full transition-all ${flexEnabled ? "bg-primary" : "bg-muted"} relative`}
+                    className={`w-11 h-6 rounded-full transition-all ${flexEnabled ? "bg-primary shadow-[0_0_10px_hsl(var(--primary)/0.5)]" : "bg-muted"} relative`}
                   >
-                    <span className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-all ${flexEnabled ? "left-[22px]" : "left-0.5"}`} />
+                    <motion.span
+                      layout
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      className={`absolute top-0.5 w-5 h-5 rounded-full bg-white shadow ${flexEnabled ? "left-[22px]" : "left-0.5"}`}
+                    />
                   </button>
                 </div>
                 {flexEnabled && (
@@ -174,7 +227,7 @@ const BetSlip = () => {
                     </div>
                   </div>
                 )}
-              </div>
+              </motion.div>
             )}
 
             {/* Stake */}
