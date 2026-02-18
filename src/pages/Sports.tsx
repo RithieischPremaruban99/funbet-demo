@@ -16,8 +16,8 @@ const sports = [
 
 const liveMatches = [
   {
-    id: 1, league: "Linafoot - Journée 18", time: "72'", score: "2 - 0",
-    home: { name: "TP Mazembe", abbr: "TPM" }, away: { name: "FC Renaissance", abbr: "REN" },
+    id: 1, league: "Ligue 1 - Journée 24", time: "72'", score: "2 - 0",
+    home: { name: "Paris SG", abbr: "PSG" }, away: { name: "Olympique Lyonnais", abbr: "OL" },
     odds: { home: "1.15", draw: "7.50", away: "18.00" },
   },
   {
@@ -26,31 +26,31 @@ const liveMatches = [
     odds: { home: "2.20", draw: "3.10", away: "3.40" },
   },
   {
-    id: 3, league: "Linafoot - Journée 18", time: "38'", score: "0 - 1",
-    home: { name: "FC Lupopo", abbr: "LUP" }, away: { name: "CS Don Bosco", abbr: "DON" },
+    id: 3, league: "Ligue 1 - Journée 24", time: "38'", score: "0 - 1",
+    home: { name: "LOSC Lille", abbr: "LOSC" }, away: { name: "OGC Nice", abbr: "NICE" },
     odds: { home: "3.00", draw: "3.20", away: "2.30" },
   },
 ];
 
 const upcomingMatches = [
   {
-    id: 4, league: "Ligue des Champions CAF", date: "AUJ 20:00",
+    id: 4, league: "Champions League", date: "AUJ 20:00",
     home: { name: "TP Mazembe", abbr: "TPM" }, away: { name: "Al Ahly SC", abbr: "AHL" },
     odds: { home: "2.60", draw: "3.10", away: "2.70" },
   },
   {
-    id: 5, league: "Éliminatoires CAN 2026", date: "DEMAIN 17:00",
-    home: { name: "RD Congo", abbr: "RDC" }, away: { name: "Zambie", abbr: "ZAM" },
-    odds: { home: "1.95", draw: "3.30", away: "3.90" },
+    id: 5, league: "Champions League", date: "DEMAIN 21:00",
+    home: { name: "FC Barcelona", abbr: "BAR" }, away: { name: "Inter Milan", abbr: "INT" },
+    odds: { home: "1.80", draw: "3.60", away: "4.20" },
   },
   {
-    id: 6, league: "Coupe du Congo", date: "SAM 15:00",
-    home: { name: "AS Maniema Union", abbr: "MAN" }, away: { name: "Rangers FC", abbr: "RNG" },
+    id: 6, league: "Ligue 1 - Journée 25", date: "SAM 17:00",
+    home: { name: "Olympique Marseille", abbr: "OM" }, away: { name: "AS Monaco", abbr: "ASM" },
     odds: { home: "2.10", draw: "3.00", away: "3.60" },
   },
   {
-    id: 7, league: "Linafoot - Journée 19", date: "DIM 16:00",
-    home: { name: "JS Groupe Bazano", abbr: "BAZ" }, away: { name: "FC Blessing", abbr: "BLE" },
+    id: 7, league: "Premier League", date: "DIM 16:00",
+    home: { name: "Liverpool FC", abbr: "LIV" }, away: { name: "Manchester City", abbr: "MCI" },
     odds: { home: "1.80", draw: "3.50", away: "4.50" },
   },
 ];
