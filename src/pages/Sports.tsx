@@ -21,8 +21,8 @@ const liveMatches = [
     odds: { home: "1.15", draw: "7.50", away: "18.00" },
   },
   {
-    id: 2, league: "Linafoot - Journée 18", time: "55'", score: "1 - 1",
-    home: { name: "AS Vita Club", abbr: "ASV" }, away: { name: "DC Motema Pembe", abbr: "DCMP" },
+    id: 2, league: "Ligue 1 - Journée 24", time: "55'", score: "1 - 1",
+    home: { name: "RC Lens", abbr: "LENS" }, away: { name: "AS Monaco", abbr: "ASM" },
     odds: { home: "2.20", draw: "3.10", away: "3.40" },
   },
   {
@@ -35,7 +35,7 @@ const liveMatches = [
 const upcomingMatches = [
   {
     id: 4, league: "Champions League", date: "AUJ 20:00",
-    home: { name: "TP Mazembe", abbr: "TPM" }, away: { name: "Al Ahly SC", abbr: "AHL" },
+    home: { name: "FC Bayern", abbr: "BAY" }, away: { name: "FC Barcelona", abbr: "BAR" },
     odds: { home: "2.60", draw: "3.10", away: "2.70" },
   },
   {
