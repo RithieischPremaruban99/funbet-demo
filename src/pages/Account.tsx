@@ -1,8 +1,9 @@
 import MobileLayout from "@/components/MobileLayout";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { ArrowUp, ChevronDown, ChevronRight, CreditCard, Eye, EyeOff, FileText, Globe, HelpCircle, History, Lock, LogOut, Settings, Shield, Smartphone, Swords, User, Users, Wallet, AlertTriangle } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowUp, Check, ChevronDown, ChevronRight, Copy, CreditCard, Eye, EyeOff, FileText, Globe, HelpCircle, History, Lock, LogOut, Settings, Shield, ShoppingCart, Smartphone, Swords, User, Users, Wallet, AlertTriangle } from "lucide-react";
 import { useFollow } from "@/contexts/FollowContext";
+import { useBetSlip } from "@/contexts/BetSlipContext";
 import mpesaLogo from "@/assets/mpesa.svg";
 import airtelLogo from "@/assets/airtel.svg";
 import orangeLogo from "@/assets/orange.svg";
@@ -24,8 +25,8 @@ const betSlips = [
     wins: "3 sur 3",
     odds: "4.50x",
     picks: [
-      { name: "V. Osimhen", team: "TP Mazembe", match: "vs. AS Vita - AUJOURD'HUI", stat: "Buts", value: "0.5", badge: "TPM", badgeColor: "bg-primary", status: "won" },
-      { name: "C. Bakambu", team: "RD Congo", match: "vs. Zambie - DEMAIN", stat: "Tirs", value: "2.5", badge: "RDC", badgeColor: "bg-highlight", status: "won" },
+      { name: "V. Osimhen", team: "TP Mazembe", match: "vs. AS Vita - AUJOURD'HUI", stat: "Buts", value: "0.5", badge: "TPM", badgeColor: "bg-primary", status: "won", matchId: 501, fullMatch: "TP Mazembe vs AS Vita", pick: "V. Osimhen +0.5 Buts", pickOdds: 1.75, league: "Linafoot" },
+      { name: "C. Bakambu", team: "RD Congo", match: "vs. Zambie - DEMAIN", stat: "Tirs", value: "2.5", badge: "RDC", badgeColor: "bg-highlight", status: "won", matchId: 502, fullMatch: "RD Congo vs Zambie", pick: "C. Bakambu +2.5 Tirs", pickOdds: 1.90, league: "Éliminatoires CAN" },
     ],
     amount: "5 000 CDF",
     payout: "22 500 CDF",
@@ -40,8 +41,8 @@ const betSlips = [
     wins: "1 sur 2",
     odds: "2.00x",
     picks: [
-      { name: "M. Chancel", team: "TP Mazembe", match: "vs DCMP - AUJOURD'HUI", stat: "Tacles", value: "1.5", badge: "TPM", badgeColor: "bg-primary", status: "lost" },
-      { name: "Y. Mulumba", team: "AS Vita", match: "vs. Lupopo - HIER", stat: "Passes", value: "3.5", badge: "ASV", badgeColor: "bg-accent", status: "won" },
+      { name: "M. Chancel", team: "TP Mazembe", match: "vs DCMP - AUJOURD'HUI", stat: "Tacles", value: "1.5", badge: "TPM", badgeColor: "bg-primary", status: "lost", matchId: 503, fullMatch: "TP Mazembe vs DCMP", pick: "M. Chancel +1.5 Tacles", pickOdds: 2.10, league: "Linafoot" },
+      { name: "Y. Mulumba", team: "AS Vita", match: "vs. Lupopo - HIER", stat: "Passes", value: "3.5", badge: "ASV", badgeColor: "bg-accent", status: "won", matchId: 504, fullMatch: "AS Vita vs Lupopo", pick: "Y. Mulumba +3.5 Passes", pickOdds: 1.65, league: "Linafoot" },
     ],
     amount: "10 000 CDF",
     payout: "0 CDF",
@@ -51,6 +52,27 @@ const betSlips = [
 const Account = () => {
   const [activeTab, setActiveTab] = useState<"bets" | "friends" | "explore">("bets");
   const { isProfilePrivate, toggleProfilePrivacy } = useFollow();
+  const { toggleSelection, isSelected, selections } = useBetSlip();
+  const navigate = useNavigate();
+  const [copiedSlip, setCopiedSlip] = useState<number | null>(null);
+
+  const handleCopySlip = (slip: typeof betSlips[0], idx: number) => {
+    slip.picks.forEach((pick) => {
+      const id = `${pick.matchId}-${pick.pick}`;
+      if (!isSelected(id)) {
+        toggleSelection({
+          id,
+          matchId: pick.matchId,
+          match: pick.fullMatch,
+          pick: pick.pick,
+          odds: pick.pickOdds,
+          league: pick.league,
+        });
+      }
+    });
+    setCopiedSlip(idx);
+    setTimeout(() => setCopiedSlip(null), 2000);
+  };
 
   return (
     <MobileLayout>
@@ -306,6 +328,22 @@ const Account = () => {
                     <span className="text-[10px] text-muted-foreground">GAIN</span>
                   </div>
                 </div>
+
+                {/* Copy Bet Button */}
+                <button
+                  onClick={() => handleCopySlip(slip, idx)}
+                  className={`mt-3 w-full py-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition-all ${
+                    copiedSlip === idx
+                      ? "bg-highlight/20 text-highlight border border-highlight/30"
+                      : "orange-gradient text-highlight-foreground glow-orange"
+                  }`}
+                >
+                  {copiedSlip === idx ? (
+                    <><Check size={14} /> Ajouté au coupon!</>
+                  ) : (
+                    <><Copy size={14} /> Copier ce pari</>
+                  )}
+                </button>
               </div>
             </div>
           ))}
@@ -350,6 +388,30 @@ const Account = () => {
           <p className="text-[9px] text-muted-foreground">© 2025 Partouche RDC - Tous droits réservés</p>
         </div>
       </section>
+
+      {/* Floating Bet Slip Indicator */}
+      {selections.length > 0 && (
+        <div className="fixed bottom-20 left-4 right-4 z-50">
+          <button
+            onClick={() => navigate("/betslip")}
+            className="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl orange-gradient glow-orange shadow-2xl"
+          >
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <ShoppingCart size={20} className="text-highlight-foreground" />
+                <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-card text-highlight text-[10px] font-bold flex items-center justify-center">
+                  {selections.length}
+                </span>
+              </div>
+              <div className="text-left">
+                <p className="text-xs font-bold text-highlight-foreground">{selections.length} sélection{selections.length > 1 ? "s" : ""}</p>
+                <p className="text-[10px] text-highlight-foreground/70">Cote totale: {selections.reduce((acc, s) => acc * s.odds, 1).toFixed(2)}</p>
+              </div>
+            </div>
+            <span className="text-sm font-bold text-highlight-foreground">Voir coupon →</span>
+          </button>
+        </div>
+      )}
     </MobileLayout>
   );
 };
