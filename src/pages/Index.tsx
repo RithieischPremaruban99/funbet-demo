@@ -1,4 +1,4 @@
-import { ChevronRight, Flame, Zap, Swords, Radio, Trophy, Dices, Shield, ShoppingCart, ChevronDown } from "lucide-react";
+import { ChevronRight, Flame, Zap, Swords, Radio, Trophy, Dices, Shield, ShoppingCart, ChevronDown, X } from "lucide-react";
 import MobileLayout from "@/components/MobileLayout";
 import { Link, useNavigate } from "react-router-dom";
 import TeamBadge from "@/components/TeamBadge";
@@ -292,7 +292,7 @@ const ExpandedMarkets = ({
 );
 
 const Index = () => {
-  const { selections, toggleSelection, isSelected } = useBetSlip();
+  const { selections, toggleSelection, isSelected, clearSelections } = useBetSlip();
   const navigate = useNavigate();
   const [expandedMatch, setExpandedMatch] = useState<number | null>(null);
 
@@ -514,24 +514,32 @@ const Index = () => {
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
             className="fixed bottom-20 left-4 right-4 z-50"
           >
-            <button
-              onClick={() => navigate("/betslip")}
-              className="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl orange-gradient glow-orange shadow-2xl"
-            >
-              <div className="flex items-center gap-3">
-                <div className="relative">
-                  <ShoppingCart size={20} className="text-highlight-foreground" />
-                  <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-card text-highlight text-[10px] font-bold flex items-center justify-center">
-                    {selections.length}
-                  </span>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => navigate("/betslip")}
+                className="flex-1 flex items-center justify-between px-4 py-3.5 rounded-2xl orange-gradient glow-orange shadow-2xl"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="relative">
+                    <ShoppingCart size={20} className="text-highlight-foreground" />
+                    <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-card text-highlight text-[10px] font-bold flex items-center justify-center">
+                      {selections.length}
+                    </span>
+                  </div>
+                  <div className="text-left">
+                    <p className="text-xs font-bold text-highlight-foreground">{selections.length} sélection{selections.length > 1 ? "s" : ""}</p>
+                    <p className="text-[10px] text-highlight-foreground/70">Cote totale: {totalOdds.toFixed(2)}</p>
+                  </div>
                 </div>
-                <div className="text-left">
-                  <p className="text-xs font-bold text-highlight-foreground">{selections.length} sélection{selections.length > 1 ? "s" : ""}</p>
-                  <p className="text-[10px] text-highlight-foreground/70">Cote totale: {totalOdds.toFixed(2)}</p>
-                </div>
-              </div>
-              <span className="text-sm font-bold text-highlight-foreground">Voir coupon →</span>
-            </button>
+                <span className="text-sm font-bold text-highlight-foreground">Voir coupon →</span>
+              </button>
+              <button
+                onClick={() => clearSelections()}
+                className="w-12 h-12 rounded-2xl bg-destructive/90 flex items-center justify-center shadow-2xl shrink-0"
+              >
+                <X size={18} className="text-destructive-foreground" />
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
