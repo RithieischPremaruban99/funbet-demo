@@ -10,6 +10,17 @@ import lensLogo from "@/assets/clubs/lens.png";
 import loscLogo from "@/assets/clubs/losc.svg";
 import niceLogo from "@/assets/clubs/nice.png";
 import intLogo from "@/assets/clubs/int.svg";
+import tpmLogo from "@/assets/clubs/tpm.png";
+import asvLogo from "@/assets/clubs/asv.png";
+import dcmpLogo from "@/assets/clubs/dcmp.png";
+import lupopoLogo from "@/assets/clubs/lupopo.png";
+import donboscoLogo from "@/assets/clubs/donbosco.png";
+import renaissanceLogo from "@/assets/clubs/renaissance.png";
+import alahlyLogo from "@/assets/clubs/alahly.png";
+import maniemaLogo from "@/assets/clubs/maniema.png";
+import bazanoLogo from "@/assets/clubs/bazano.png";
+import rdcFlag from "@/assets/clubs/rdc.svg";
+import zamFlag from "@/assets/clubs/zam.svg";
 
 const clubLogos: Record<string, string> = {
   PSG: psgLogo,
@@ -24,6 +35,17 @@ const clubLogos: Record<string, string> = {
   LOSC: loscLogo,
   NICE: niceLogo,
   INT: intLogo,
+  TPM: tpmLogo,
+  ASV: asvLogo,
+  DCMP: dcmpLogo,
+  LUP: lupopoLogo,
+  DON: donboscoLogo,
+  REN: renaissanceLogo,
+  AHL: alahlyLogo,
+  MAN: maniemaLogo,
+  BAZ: bazanoLogo,
+  RDC: rdcFlag,
+  ZAM: zamFlag,
 };
 
 const fallbackColors: Record<string, { bg: string; text: string }> = {
@@ -35,11 +57,15 @@ const fallbackColors: Record<string, { bg: string; text: string }> = {
   LENS: { bg: "#FFD700", text: "#E2001A" },
   NICE: { bg: "#000", text: "#E2001A" },
   BAR: { bg: "#A91B2E", text: "#004D98" },
-  RMA: { bg: "#FEBE10", text: "#000" },
   MCI: { bg: "#6CABDD", text: "#fff" },
   LIV: { bg: "#C8102E", text: "#fff" },
   BAY: { bg: "#DC052D", text: "#fff" },
   INT: { bg: "#010E80", text: "#fff" },
+  TPM: { bg: "#000", text: "#fff" },
+  ASV: { bg: "#000", text: "#FFD700" },
+  DCMP: { bg: "#fff", text: "#E2001A" },
+  RDC: { bg: "#007FFF", text: "#FFD700" },
+  ZAM: { bg: "#198754", text: "#fff" },
 };
 
 const TeamBadge = ({ abbr, size = 28 }: { abbr: string; size?: number }) => {
