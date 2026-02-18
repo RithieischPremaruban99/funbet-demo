@@ -64,7 +64,7 @@ const Splash = () => {
         transition={{ delay: 0.7, duration: 0.5 }}
         className="text-muted-foreground text-sm text-center px-8"
       >
-        Vérification de votre emplacement{dots}
+        Vérification de votre localisation{dots}
       </motion.p>
 
       {/* Footer */}
