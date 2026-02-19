@@ -353,9 +353,9 @@ const Index = () => {
 
       {/* Gamification Banner */}
       <section className="px-4 mt-4">
-        <Link to="/rewards" className="rounded-2xl border border-highlight/30 bg-highlight/5 p-3 flex items-center gap-3 hover:bg-highlight/10 transition-colors">
-          <div className="w-11 h-11 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
-            <Crown size={22} className="text-primary" />
+        <Link to="/rewards" className="rounded-2xl border-2 border-yellow-500/50 bg-gradient-to-r from-yellow-500/10 via-amber-500/5 to-yellow-600/10 p-3 flex items-center gap-3 hover:border-yellow-400/70 hover:from-yellow-500/15 hover:to-yellow-600/15 transition-all shadow-[0_0_20px_hsla(45,90%,50%,0.12)]">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-yellow-500/30 to-amber-600/20 border border-yellow-500/30 flex items-center justify-center flex-shrink-0">
+            <Crown size={22} className="text-yellow-400" />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
@@ -383,7 +383,7 @@ const Index = () => {
               </div>
             </div>
           </div>
-          <ChevronRight size={16} className="text-highlight flex-shrink-0" />
+          <ChevronRight size={16} className="text-yellow-400 flex-shrink-0" />
         </Link>
       </section>
 
