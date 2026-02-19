@@ -13,7 +13,7 @@ const TopBar = () => {
         <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
           <Link to="/" className="flex items-center gap-2">
             <img src={triveltaLogo} alt="Trivelta" className="h-7 object-contain" />
-            <span className="text-[15px] font-light text-white/90 tracking-[0.25em] uppercase" style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}>TRIVELTA</span>
+            <span className="text-base font-black text-white tracking-wide uppercase">TRIVELTA</span>
           </Link>
           <div className="flex items-center gap-2">
             <button
