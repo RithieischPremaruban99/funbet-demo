@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import partoucheLogo from "@/assets/partouche-logo.png";
+import triveltaLogo from "@/assets/trivelta-logo.png";
 
 const AgeVerification = () => {
   const navigate = useNavigate();
@@ -31,8 +31,8 @@ const AgeVerification = () => {
 
       {/* Logo */}
       <motion.img
-        src={partoucheLogo}
-        alt="Groupe Partouche"
+        src={triveltaLogo}
+        alt="Trivelta"
         className="w-40 h-auto mb-8 relative z-10"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

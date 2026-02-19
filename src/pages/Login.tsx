@@ -18,7 +18,7 @@ const Login = () => {
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
         <h1 className="text-xl font-bold">Connexion</h1>
-        <p className="text-xs text-muted-foreground mt-1">Accédez à votre compte Partouche RDC</p>
+        <p className="text-xs text-muted-foreground mt-1">Accédez à votre compte Trivelta</p>
 
         <div className="mt-6 space-y-4">
           <motion.div
