@@ -1,5 +1,6 @@
 import MobileLayout from "@/components/MobileLayout";
-import { ChevronRight, Filter, Flame, Search, ShoppingCart, X } from "lucide-react";
+import { ChevronRight, Filter, Flame, Search, ShoppingCart, Wrench, X } from "lucide-react";
+import BetBuilder from "@/components/BetBuilder";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useBetSlip } from "@/contexts/BetSlipContext";
@@ -9,6 +10,7 @@ import TeamBadge from "@/components/TeamBadge";
 const sports = [
   { name: "Football", emoji: "⚽", count: 245 },
   { name: "Basketball", emoji: "🏀", count: 42 },
+  { name: "Bet Builder", emoji: "🛠️", count: 0, isBetBuilder: true },
   { name: "Tennis", emoji: "🎾", count: 67 },
   { name: "Boxing", emoji: "🥊", count: 8 },
   { name: "Athletics", emoji: "🏃", count: 15 },
@@ -100,8 +102,9 @@ const Sports = () => {
   const { selections, toggleSelection, isSelected, clearSelections } = useBetSlip();
   const navigate = useNavigate();
 
+  const isBetBuilder = (sports[activeSport] as any).isBetBuilder;
   const currentSport = sports[activeSport].name;
-  const allData = matchesBySport[currentSport] || { live: [], upcoming: [] };
+  const allData = !isBetBuilder ? (matchesBySport[currentSport] || { live: [], upcoming: [] }) : { live: [], upcoming: [] };
   
   const filterMatches = (matches: MatchData[]) =>
     searchQuery.trim() === ""
@@ -160,20 +163,29 @@ const Sports = () => {
               onClick={() => { setActiveSport(i); setSearchQuery(""); }}
               className={`flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-all ${
                 i === activeSport
-                  ? "border-highlight/30 card-gradient-warm text-foreground"
+                  ? (sport as any).isBetBuilder
+                    ? "border-highlight/30 bg-highlight/10 text-highlight"
+                    : "border-highlight/30 card-gradient-warm text-foreground"
                   : "border-border bg-card text-secondary-foreground hover:bg-card-elevated"
               }`}
             >
               <span>{sport.emoji}</span>
               <span className="text-xs font-semibold">{sport.name}</span>
-              <span className="text-[10px] text-muted-foreground">({sport.count})</span>
+              {!(sport as any).isBetBuilder && <span className="text-[10px] text-muted-foreground">({sport.count})</span>}
             </button>
           ))}
         </div>
       </section>
 
+      {/* Bet Builder Mode */}
+      {isBetBuilder && (
+        <section className="px-4 mt-4 mb-24">
+          <BetBuilder />
+        </section>
+      )}
+
       {/* No results */}
-      {searchQuery && liveMatches.length === 0 && upcomingMatches.length === 0 && (
+      {!isBetBuilder && searchQuery && liveMatches.length === 0 && upcomingMatches.length === 0 && (
         <div className="text-center py-12 px-4">
           <Search size={32} className="mx-auto text-muted-foreground mb-3" />
           <p className="text-sm font-medium">No results for "{searchQuery}"</p>
@@ -182,7 +194,7 @@ const Sports = () => {
       )}
 
       {/* Live */}
-      {liveMatches.length > 0 && (
+      {!isBetBuilder && liveMatches.length > 0 && (
         <section className="mt-5 px-4">
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2 h-2 rounded-full bg-live animate-pulse-live" />
@@ -230,6 +242,7 @@ const Sports = () => {
       )}
 
       {/* Upcoming */}
+      {!isBetBuilder && (
       <section className={`${liveMatches.length > 0 ? "mt-6" : "mt-5"} px-4 mb-24`}>
         <h3 className="text-sm font-bold mb-3">
           {liveMatches.length > 0 ? "UPCOMING MATCHES" : `${currentSport.toUpperCase()} — UPCOMING EVENTS`}
@@ -274,6 +287,7 @@ const Sports = () => {
           </div>
         )}
       </section>
+      )}
 
       {/* Floating Bet Slip Indicator */}
       <AnimatePresence>
