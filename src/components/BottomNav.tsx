@@ -2,11 +2,11 @@ import { NavLink, useLocation } from "react-router-dom";
 import { Home, Trophy, Gamepad2, Compass, User } from "lucide-react";
 
 const tabs = [
-  { to: "/home", icon: Home, label: "Accueil" },
+  { to: "/home", icon: Home, label: "Home" },
   { to: "/sports", icon: Trophy, label: "Sports" },
   { to: "/casino", icon: Gamepad2, label: "Casino" },
   { to: "/social", icon: Compass, label: "Social" },
-  { to: "/account", icon: User, label: "Compte" },
+  { to: "/account", icon: User, label: "Account" },
 ];
 
 const BottomNav = () => {

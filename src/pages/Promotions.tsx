@@ -2,77 +2,28 @@ import MobileLayout from "@/components/MobileLayout";
 import { Clock, Gift, Percent, Star, Trophy, Smartphone } from "lucide-react";
 
 const promos = [
-  {
-    id: 1,
-    title: "Bonus de bienvenue",
-    description: "100% jusqu'à 50 000 CDF sur votre premier dépôt",
-    icon: Gift,
-    tag: "Nouveau",
-    expiry: "Offre permanente",
-    featured: true,
-  },
-  {
-    id: 2,
-    title: "Paris gratuits Linafoot",
-    description: "5 000 CDF de paris gratuits chaque week-end",
-    icon: Trophy,
-    tag: "Sports",
-    expiry: "Chaque semaine",
-    featured: false,
-  },
-  {
-    id: 3,
-    title: "Bonus Mobile Money",
-    description: "5% bonus sur chaque dépôt via M-Pesa ou Airtel Money",
-    icon: Smartphone,
-    tag: "Dépôt",
-    expiry: "Jusqu'au 31 mars",
-    featured: false,
-  },
-  {
-    id: 4,
-    title: "Cashback Casino",
-    description: "10% de cashback sur vos pertes au casino",
-    icon: Percent,
-    tag: "Casino",
-    expiry: "Expire dans 3 jours",
-    featured: false,
-  },
-  {
-    id: 5,
-    title: "Programme VIP",
-    description: "Points fidélité doublés ce mois-ci",
-    icon: Star,
-    tag: "VIP",
-    expiry: "Jusqu'au 28 fév.",
-    featured: false,
-  },
+  { id: 1, title: "Welcome Bonus", description: "100% up to 50,000 CDF on your first deposit", icon: Gift, tag: "New", expiry: "Permanent offer", featured: true },
+  { id: 2, title: "Free Bets Linafoot", description: "5,000 CDF in free bets every weekend", icon: Trophy, tag: "Sports", expiry: "Every week", featured: false },
+  { id: 3, title: "Mobile Money Bonus", description: "5% bonus on every deposit via M-Pesa or Airtel Money", icon: Smartphone, tag: "Deposit", expiry: "Until March 31", featured: false },
+  { id: 4, title: "Casino Cashback", description: "10% cashback on your casino losses", icon: Percent, tag: "Casino", expiry: "Expires in 3 days", featured: false },
+  { id: 5, title: "VIP Program", description: "Double loyalty points this month", icon: Star, tag: "VIP", expiry: "Until Feb 28", featured: false },
 ];
 
 const Promotions = () => {
   return (
     <MobileLayout>
       <section className="px-4 mt-3">
-        <h2 className="text-lg font-bold">Découvrir</h2>
-        <p className="text-xs text-muted-foreground mt-0.5">Offres exclusives Trivelta</p>
+        <h2 className="text-lg font-bold">Discover</h2>
+        <p className="text-xs text-muted-foreground mt-0.5">Exclusive Trivelta offers</p>
       </section>
 
       <section className="px-4 mt-4 mb-6 space-y-3">
         {promos.map((promo) => {
           const Icon = promo.icon;
           return (
-            <div
-              key={promo.id}
-              className={`rounded-2xl p-4 border cursor-pointer transition-all hover:border-highlight/30 ${
-                promo.featured
-                  ? "border-highlight/20 card-gradient-warm glow-orange"
-                  : "border-border card-gradient"
-              }`}
-            >
+            <div key={promo.id} className={`rounded-2xl p-4 border cursor-pointer transition-all hover:border-highlight/30 ${promo.featured ? "border-highlight/20 card-gradient-warm glow-orange" : "border-border card-gradient"}`}>
               <div className="flex gap-3">
-                <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${
-                  promo.featured ? "orange-gradient" : "bg-card-elevated"
-                }`}>
+                <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center ${promo.featured ? "orange-gradient" : "bg-card-elevated"}`}>
                   <Icon size={20} className={promo.featured ? "text-highlight-foreground" : "text-primary"} />
                 </div>
                 <div className="flex-1 min-w-0">

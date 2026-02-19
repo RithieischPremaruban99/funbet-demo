@@ -26,10 +26,8 @@ const AgeVerification = () => {
       animate={{ opacity: exiting ? 0 : 1, y: exiting ? -20 : 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
     >
-      {/* Ambient glow */}
       <div className="absolute w-48 h-48 rounded-full bg-primary/8 blur-[80px]" />
 
-      {/* Logo */}
       <motion.img
         src={triveltaLogo}
         alt="Trivelta"
@@ -39,7 +37,6 @@ const AgeVerification = () => {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       />
 
-      {/* Card */}
       <motion.div
         className="w-full max-w-sm rounded-2xl border border-border bg-card p-6 text-center relative z-10"
         initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -55,14 +52,14 @@ const AgeVerification = () => {
           <Shield size={32} className="text-primary" />
         </motion.div>
 
-        <h1 className="text-xl font-bold mb-2">Vérification d'âge</h1>
+        <h1 className="text-xl font-bold mb-2">Age Verification</h1>
         <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-          Conformément à la législation de la RDC, les jeux d'argent sont
-          strictement réservés aux personnes âgées de{" "}
-          <span className="text-primary font-bold">18 ans et plus</span>.
+          In accordance with DRC legislation, gambling is
+          strictly reserved for persons aged{" "}
+          <span className="text-primary font-bold">18 and over</span>.
         </p>
 
-        <p className="text-sm font-semibold mb-6">Avez-vous 18 ans ou plus ?</p>
+        <p className="text-sm font-semibold mb-6">Are you 18 or older?</p>
 
         <motion.div
           className="flex gap-3"
@@ -75,7 +72,7 @@ const AgeVerification = () => {
             className="flex-1 py-3 rounded-xl border border-border bg-card hover:bg-muted text-sm font-semibold transition-colors"
             whileTap={{ scale: 0.96 }}
           >
-            Non
+            No
           </motion.button>
           <motion.button
             onClick={handleConfirm}
@@ -83,20 +80,19 @@ const AgeVerification = () => {
             whileTap={{ scale: 0.96 }}
             whileHover={{ scale: 1.02 }}
           >
-            Oui, j'ai 18+
+            Yes, I'm 18+
           </motion.button>
         </motion.div>
       </motion.div>
 
-      {/* Footer */}
       <motion.div
         className="absolute bottom-12 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.6 }}
       >
-        <p className="text-muted-foreground/50 text-xs">Licence N°2024/GJ/001 — RDC</p>
-        <p className="text-muted-foreground/50 text-xs mt-1">🔞 Jeu responsable | jouez avec modération</p>
+        <p className="text-muted-foreground/50 text-xs">License N°2024/GJ/001 — DRC</p>
+        <p className="text-muted-foreground/50 text-xs mt-1">🔞 Responsible gaming | gamble in moderation</p>
       </motion.div>
     </motion.div>
   );

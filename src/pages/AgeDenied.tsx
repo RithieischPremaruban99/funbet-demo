@@ -15,10 +15,10 @@ const AgeDenied = () => {
           <XCircle size={32} className="text-destructive" />
         </div>
 
-        <h1 className="text-xl font-bold mb-2">Accès refusé</h1>
+        <h1 className="text-xl font-bold mb-2">Access Denied</h1>
         <p className="text-sm text-muted-foreground leading-relaxed">
-          Vous devez avoir au moins 18 ans pour accéder à cette plateforme.
-          Si vous pensez avoir un problème de jeu, contactez l'aide au{" "}
+          You must be at least 18 years old to access this platform.
+          If you think you have a gambling problem, contact support at{" "}
           <span className="text-primary font-semibold">+243 800 000 000</span>.
         </p>
       </div>

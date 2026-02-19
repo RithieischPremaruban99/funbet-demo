@@ -3,13 +3,13 @@ import { ArrowLeft, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const sections = [
-  { title: "1. Introduction", content: "Trivelta s'engage à protéger la vie privée de ses utilisateurs. Cette politique décrit comment nous collectons, utilisons et protégeons vos données personnelles, conformément à la Loi 20/017 du 25 novembre 2020 relative aux télécommunications et technologies de l'information et de la communication, et au Code Numérique 23/010 de 2023 de la République Démocratique du Congo." },
-  { title: "2. Données collectées", content: "Nous collectons : nom complet, numéro de téléphone (+243), date de naissance, adresse, pièce d'identité (carte nationale, passeport ou permis de conduire), historique des transactions et des paris. Ces données sont nécessaires pour la vérification KYC obligatoire et la fourniture de nos services." },
-  { title: "3. Utilisation des données", content: "Vos données sont utilisées pour : vérifier votre identité (KYC), gérer votre compte et vos transactions, respecter les obligations légales et réglementaires, prévenir la fraude et le blanchiment d'argent, vous informer des promotions (avec votre consentement)." },
-  { title: "4. Partage des données", content: "Vos données peuvent être partagées avec : les autorités de régulation des jeux de la RDC (obligation légale), les opérateurs Mobile Money pour le traitement des paiements, les autorités judiciaires sur réquisition légale. Nous ne vendons jamais vos données à des tiers." },
-  { title: "5. Sécurité", content: "Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles pour protéger vos données : chiffrement des données en transit et au repos, accès restreint aux données personnelles, surveillance continue des systèmes." },
-  { title: "6. Vos droits", content: "Conformément au Code Numérique 23/010, vous disposez des droits suivants : droit d'accès à vos données, droit de rectification, droit à l'effacement (dans les limites légales), droit d'opposition au traitement à des fins marketing. Pour exercer vos droits, contactez-nous à privacy@trivelta.cd." },
-  { title: "7. Conservation", content: "Vos données sont conservées pendant la durée de votre compte actif, plus 5 ans après la clôture conformément aux obligations légales de la RDC en matière de lutte contre le blanchiment d'argent." },
+  { title: "1. Introduction", content: "Trivelta is committed to protecting the privacy of its users. This policy describes how we collect, use and protect your personal data, in accordance with Law 20/017 of November 25, 2020 on telecommunications and information and communication technologies, and the Digital Code 23/010 of 2023 of the Democratic Republic of Congo." },
+  { title: "2. Data Collected", content: "We collect: full name, phone number (+243), date of birth, address, identity document (national card, passport or driver's license), transaction and betting history. This data is necessary for mandatory KYC verification and the provision of our services." },
+  { title: "3. Use of Data", content: "Your data is used to: verify your identity (KYC), manage your account and transactions, comply with legal and regulatory obligations, prevent fraud and money laundering, inform you of promotions (with your consent)." },
+  { title: "4. Data Sharing", content: "Your data may be shared with: DRC gaming regulatory authorities (legal obligation), Mobile Money operators for payment processing, judicial authorities upon legal request. We never sell your data to third parties." },
+  { title: "5. Security", content: "We implement technical and organizational security measures to protect your data: encryption of data in transit and at rest, restricted access to personal data, continuous system monitoring." },
+  { title: "6. Your Rights", content: "In accordance with Digital Code 23/010, you have the following rights: right of access to your data, right of rectification, right to erasure (within legal limits), right to object to processing for marketing purposes. To exercise your rights, contact us at privacy@trivelta.cd." },
+  { title: "7. Retention", content: "Your data is retained for the duration of your active account, plus 5 years after closure in accordance with DRC legal obligations regarding anti-money laundering." },
 ];
 
 const Privacy = () => (
@@ -19,7 +19,7 @@ const Privacy = () => (
         <Link to="/account" className="p-2 rounded-xl hover:bg-secondary transition-colors">
           <ArrowLeft size={18} className="text-muted-foreground" />
         </Link>
-        <h1 className="text-lg font-bold">Politique de Confidentialité</h1>
+        <h1 className="text-lg font-bold">Privacy Policy</h1>
       </div>
 
       <div className="space-y-4">
@@ -33,7 +33,7 @@ const Privacy = () => (
 
       <div className="mt-4 flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/10 border border-primary/20">
         <Shield size={14} className="text-primary flex-shrink-0" />
-        <span className="text-[10px] text-primary">Loi 20/017 (2020) | Code Numérique 23/010 (2023)</span>
+        <span className="text-[10px] text-primary">Law 20/017 (2020) | Digital Code 23/010 (2023)</span>
       </div>
     </section>
   </MobileLayout>
