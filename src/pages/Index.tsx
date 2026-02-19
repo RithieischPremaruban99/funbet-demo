@@ -1,4 +1,4 @@
-import { ChevronRight, Flame, Zap, Swords, Radio, Trophy, Dices, Shield, ShoppingCart, ChevronDown, X } from "lucide-react";
+import { ChevronRight, Crown, Flame, Zap, Swords, Radio, Trophy, Dices, Shield, ShoppingCart, ChevronDown, X, Target } from "lucide-react";
 import MobileLayout from "@/components/MobileLayout";
 import { Link, useNavigate } from "react-router-dom";
 import TeamBadge from "@/components/TeamBadge";
@@ -351,8 +351,44 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Challenge Banner */}
+      {/* Gamification Banner */}
       <section className="px-4 mt-4">
+        <Link to="/rewards" className="rounded-2xl border border-highlight/30 bg-highlight/5 p-3 flex items-center gap-3 hover:bg-highlight/10 transition-colors">
+          <div className="w-11 h-11 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
+            <Crown size={22} className="text-primary" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold">Level 12</span>
+              <span className="text-[10px] text-muted-foreground">•</span>
+              <div className="flex items-center gap-1">
+                <Flame size={11} className="text-live" />
+                <span className="text-[10px] font-bold text-live">4-day streak</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 mt-1">
+              <div className="flex-1 h-1.5 rounded-full bg-border overflow-hidden">
+                <div className="h-full rounded-full bg-gradient-to-r from-primary to-highlight" style={{ width: "78%" }} />
+              </div>
+              <span className="text-[9px] text-muted-foreground">2,340 / 3,000 XP</span>
+            </div>
+            <div className="flex items-center gap-3 mt-1">
+              <div className="flex items-center gap-1">
+                <Target size={10} className="text-primary" />
+                <span className="text-[9px] text-muted-foreground">2/4 missions</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <Trophy size={10} className="text-highlight" />
+                <span className="text-[9px] text-muted-foreground">3/8 badges</span>
+              </div>
+            </div>
+          </div>
+          <ChevronRight size={16} className="text-highlight flex-shrink-0" />
+        </Link>
+      </section>
+
+      {/* Challenge Banner */}
+      <section className="px-4 mt-3">
         <Link to="/challenge" className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-primary/30 bg-primary/5 hover:bg-primary/10 transition-colors">
           <Swords size={18} className="text-primary" />
           <span className="text-sm font-bold text-primary">Challenge your friends</span>
