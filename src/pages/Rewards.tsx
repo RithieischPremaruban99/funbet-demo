@@ -15,40 +15,14 @@ import {
   Trophy,
   TrendingUp,
   Zap,
+  Check,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useGamification, getXPForNextLevel, LEVEL_PERKS } from "@/contexts/GamificationContext";
 
-// --- XP & Level System ---
-const currentXP = 2_340;
-const currentLevel = 12;
-const xpForNextLevel = 3_000;
-const xpProgress = (currentXP / xpForNextLevel) * 100;
-
-const levelPerks = [
-  { level: 5, perk: "Unlock FlexBet" },
-  { level: 10, perk: "Bonus multiplier ×1.1" },
-  { level: 15, perk: "Free bet $10" },
-  { level: 20, perk: "VIP access" },
-];
-
-// --- Daily Missions ---
-const dailyMissions = [
-  { id: 1, title: "Daily Login", icon: CalendarCheck, xp: 20, progress: 1, total: 1, done: true },
-  { id: 2, title: "Place 3 bets", icon: Target, xp: 50, progress: 2, total: 3, done: false },
-  { id: 3, title: "Win a combo bet", icon: Zap, xp: 100, progress: 0, total: 1, done: false },
-  { id: 4, title: "Deposit $20+", icon: TrendingUp, xp: 30, progress: 1, total: 1, done: true },
-  { id: 5, title: "Share a bet slip", icon: Gift, xp: 25, progress: 0, total: 1, done: false },
-  { id: 6, title: "Try a live bet", icon: Flame, xp: 40, progress: 0, total: 1, done: false },
-];
-
-const weeklyMissions = [
-  { id: 10, title: "Place 20 bets", icon: Target, xp: 300, progress: 14, total: 20, done: false },
-  { id: 11, title: "Win 5 combo bets", icon: Trophy, xp: 500, progress: 3, total: 5, done: false },
-  { id: 12, title: "7-day login streak", icon: CalendarCheck, xp: 200, progress: 5, total: 7, done: false },
-  { id: 13, title: "Bet on 3 different sports", icon: Award, xp: 150, progress: 1, total: 3, done: false },
-  { id: 14, title: "Invite a friend", icon: Gift, xp: 250, progress: 0, total: 1, done: false },
-  { id: 15, title: "Win $100+ total", icon: TrendingUp, xp: 400, progress: 65, total: 100, done: false },
-];
+const iconMap: Record<string, any> = {
+  CalendarCheck, Target, Zap, TrendingUp, Gift, Flame, Trophy, Award,
+};
 
 // --- Achievement Badges ---
 const achievements = [
@@ -72,19 +46,25 @@ const leaderboard = [
   { rank: 6, name: "KanangaFlash", xp: 6_300, streak: 4, avatar: "KF" },
 ];
 
-const myRank = { rank: 8, name: "Jean-Pierre K.", xp: currentXP, streak: 4, avatar: "JP" };
-
 type Tab = "missions" | "badges" | "leaderboard";
 
 const Rewards = () => {
   const [tab, setTab] = useState<Tab>("missions");
   const [missionType, setMissionType] = useState<"daily" | "weekly">("daily");
+  const { xp, level, streak, bestStreak, dailyMissions, weeklyMissions, claimMission } = useGamification();
+
+  const xpNext = getXPForNextLevel(level);
+  const xpCurrent = getXPForNextLevel(level - 1);
+  const xpProgress = ((xp - xpCurrent) / (xpNext - xpCurrent)) * 100;
 
   const unlockedCount = achievements.filter((a) => a.unlocked).length;
+  const myRank = { rank: 8, name: "Jean-Pierre K.", xp, streak, avatar: "JP" };
+
+  const missions = missionType === "daily" ? dailyMissions : weeklyMissions;
 
   return (
     <MobileLayout>
-      <section className="px-4 mt-4">
+      <section className="px-4 mt-4 mb-24">
         {/* Header */}
         <div className="flex items-center gap-3 mb-4">
           <Link to="/account" className="p-2 rounded-xl hover:bg-secondary transition-colors">
@@ -99,7 +79,6 @@ const Rewards = () => {
           animate={{ opacity: 1, y: 0 }}
           className="rounded-2xl border border-primary/30 bg-primary/5 p-4 mb-4 relative overflow-hidden"
         >
-          {/* Glow */}
           <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-primary/10 blur-2xl pointer-events-none" />
 
           <div className="flex items-center justify-between mb-3 relative z-10">
@@ -109,26 +88,34 @@ const Rewards = () => {
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Level</p>
-                <p className="text-2xl font-black text-primary">{currentLevel}</p>
+                <p className="text-2xl font-black text-primary">{level}</p>
               </div>
             </div>
             <div className="text-right">
               <p className="text-xs text-muted-foreground">Total XP</p>
-              <p className="text-lg font-bold text-foreground">{currentXP.toLocaleString()}</p>
+              <motion.p
+                key={xp}
+                initial={{ scale: 1.3, color: "hsl(var(--highlight))" }}
+                animate={{ scale: 1, color: "hsl(var(--foreground))" }}
+                transition={{ duration: 0.4 }}
+                className="text-lg font-bold"
+              >
+                {xp.toLocaleString()}
+              </motion.p>
             </div>
           </div>
 
           {/* XP Progress Bar */}
           <div className="relative z-10">
             <div className="flex justify-between text-[10px] text-muted-foreground mb-1">
-              <span>Level {currentLevel}</span>
-              <span>{currentXP.toLocaleString()} / {xpForNextLevel.toLocaleString()} XP</span>
-              <span>Level {currentLevel + 1}</span>
+              <span>Level {level}</span>
+              <span>{xp.toLocaleString()} / {xpNext.toLocaleString()} XP</span>
+              <span>Level {level + 1}</span>
             </div>
             <div className="w-full h-3 rounded-full bg-card-elevated border border-border overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
-                animate={{ width: `${xpProgress}%` }}
+                animate={{ width: `${Math.min(xpProgress, 100)}%` }}
                 transition={{ duration: 1, ease: "easeOut" }}
                 className="h-full rounded-full bg-gradient-to-r from-primary to-highlight"
               />
@@ -137,13 +124,13 @@ const Rewards = () => {
 
           {/* Next Perk */}
           {(() => {
-            const nextPerk = levelPerks.find((p) => p.level > currentLevel);
-            if (!nextPerk) return null;
+            const nextPerkLevel = Object.keys(LEVEL_PERKS).map(Number).find((l) => l > level);
+            if (!nextPerkLevel) return null;
             return (
               <div className="mt-3 flex items-center gap-2 text-[10px] relative z-10">
                 <Gift size={12} className="text-highlight" />
-                <span className="text-muted-foreground">Next reward at Level {nextPerk.level}:</span>
-                <span className="font-bold text-highlight">{nextPerk.perk}</span>
+                <span className="text-muted-foreground">Next reward at Level {nextPerkLevel}:</span>
+                <span className="font-bold text-highlight">{LEVEL_PERKS[nextPerkLevel]}</span>
               </div>
             );
           })()}
@@ -151,8 +138,8 @@ const Rewards = () => {
           {/* Streak */}
           <div className="mt-3 flex items-center gap-2 px-3 py-2 rounded-lg bg-card-elevated border border-border relative z-10">
             <Flame size={16} className="text-live" />
-            <span className="text-xs font-bold">4-day streak</span>
-            <span className="text-[10px] text-muted-foreground ml-auto">Best: 12 days</span>
+            <span className="text-xs font-bold">{streak}-day streak</span>
+            <span className="text-[10px] text-muted-foreground ml-auto">Best: {bestStreak} days</span>
           </div>
         </motion.div>
 
@@ -184,7 +171,6 @@ const Rewards = () => {
         {/* ====== MISSIONS TAB ====== */}
         {tab === "missions" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-3">
-            {/* Daily / Weekly Toggle */}
             <div className="flex gap-2 mb-2">
               {(["daily", "weekly"] as const).map((type) => (
                 <button
@@ -201,44 +187,61 @@ const Rewards = () => {
               ))}
             </div>
 
-            {(missionType === "daily" ? dailyMissions : weeklyMissions).map((m) => {
-              const Icon = m.icon;
+            {missions.map((m) => {
+              const Icon = iconMap[m.icon] || Target;
               const pct = Math.round((m.progress / m.total) * 100);
+              const canClaim = m.done && !m.claimed;
               return (
-                <div
+                <motion.div
                   key={m.id}
+                  layout
                   className={`rounded-xl border p-3 flex items-center gap-3 transition-all ${
-                    m.done
-                      ? "border-success/30 bg-success/5"
+                    m.claimed
+                      ? "border-success/30 bg-success/5 opacity-60"
+                      : m.done
+                      ? "border-highlight/40 bg-highlight/5"
                       : "border-border card-gradient"
                   }`}
                 >
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
-                    m.done ? "bg-success/20" : "bg-primary/10"
+                    m.claimed ? "bg-success/20" : m.done ? "bg-highlight/20" : "bg-primary/10"
                   }`}>
-                    <Icon size={18} className={m.done ? "text-success" : "text-primary"} />
+                    <Icon size={18} className={m.claimed ? "text-success" : m.done ? "text-highlight" : "text-primary"} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <p className={`text-xs font-bold ${m.done ? "text-success line-through" : ""}`}>{m.title}</p>
+                      <p className={`text-xs font-bold ${m.claimed ? "text-success line-through" : ""}`}>{m.title}</p>
                       <span className="text-[10px] font-bold text-highlight">+{m.xp} XP</span>
                     </div>
                     <div className="mt-1.5 flex items-center gap-2">
                       <div className="flex-1 h-1.5 rounded-full bg-border overflow-hidden">
                         <div
-                          className={`h-full rounded-full transition-all ${m.done ? "bg-success" : "bg-primary"}`}
+                          className={`h-full rounded-full transition-all ${m.claimed ? "bg-success" : m.done ? "bg-highlight" : "bg-primary"}`}
                           style={{ width: `${pct}%` }}
                         />
                       </div>
                       <span className="text-[10px] text-muted-foreground">{m.progress}/{m.total}</span>
                     </div>
                   </div>
-                  {m.done && (
+
+                  {/* Claim button */}
+                  {canClaim && (
+                    <motion.button
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={() => claimMission(m.id, missionType)}
+                      className="flex-shrink-0 px-3 py-1.5 rounded-lg orange-gradient text-highlight-foreground text-[10px] font-bold glow-orange"
+                    >
+                      Claim
+                    </motion.button>
+                  )}
+                  {m.claimed && (
                     <div className="w-6 h-6 rounded-full bg-success/20 flex items-center justify-center flex-shrink-0">
-                      <Star size={12} className="text-success" />
+                      <Check size={12} className="text-success" />
                     </div>
                   )}
-                </div>
+                </motion.div>
               );
             })}
           </motion.div>
@@ -254,7 +257,6 @@ const Rewards = () => {
                 <span className="text-xs font-bold text-highlight">{Math.round((unlockedCount / achievements.length) * 100)}%</span>
               </div>
             </div>
-            {/* Progress bar */}
             <div className="w-full h-2 rounded-full bg-border overflow-hidden mb-4">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-highlight to-primary"
@@ -290,7 +292,6 @@ const Rewards = () => {
         {/* ====== LEADERBOARD TAB ====== */}
         {tab === "leaderboard" && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-2">
-            {/* Top 3 Podium */}
             <div className="flex items-end justify-center gap-3 mb-4 pt-2">
               {[leaderboard[1], leaderboard[0], leaderboard[2]].map((p, idx) => {
                 const heights = ["h-16", "h-20", "h-12"];
@@ -313,7 +314,6 @@ const Rewards = () => {
               })}
             </div>
 
-            {/* Full list */}
             {leaderboard.map((p) => (
               <div
                 key={p.rank}
@@ -340,7 +340,6 @@ const Rewards = () => {
               </div>
             ))}
 
-            {/* My position */}
             <div className="rounded-xl border border-primary/30 bg-primary/5 p-3 flex items-center gap-3 mt-2">
               <span className="w-7 text-center text-xs font-black text-primary">#{myRank.rank}</span>
               <div className="w-8 h-8 rounded-full orange-gradient flex items-center justify-center text-[10px] font-bold text-highlight-foreground">
