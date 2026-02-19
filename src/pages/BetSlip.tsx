@@ -10,16 +10,14 @@ const BetSlip = () => {
   const [stake, setStake] = useState("5000");
   const [betType, setBetType] = useState<"single" | "combi">("combi");
   const [flexEnabled, setFlexEnabled] = useState(false);
-  const [flexCount, setFlexCount] = useState(0); // how many can be wrong
+  const [flexCount, setFlexCount] = useState(0);
   const [confirmed, setConfirmed] = useState(false);
 
   const canUseFlex = betType === "combi" && selections.length >= 3;
-  const maxFlex = Math.min(Math.max(0, selections.length - 1), 6); // up to 6 wrong, at least 1 correct
+  const maxFlex = Math.min(Math.max(0, selections.length - 1), 6);
 
-  // Calculate flex odds reduction factor
   const getFlexMultiplier = (total: number, wrong: number): number => {
     if (wrong === 0) return 1;
-    // Each allowed wrong pick reduces payout significantly
     const reductionPerWrong = [1, 0.45, 0.18, 0.06, 0.02, 0.008, 0.003];
     return reductionPerWrong[Math.min(wrong, reductionPerWrong.length - 1)] || 0.001;
   };
@@ -39,30 +37,30 @@ const BetSlip = () => {
           <div className="w-16 h-16 rounded-full bg-success/20 flex items-center justify-center mx-auto">
             <Shield size={32} className="text-success" />
           </div>
-          <h2 className="text-lg font-bold">Pari confirmé !</h2>
-          <p className="text-xs text-muted-foreground">Votre coupon a été enregistré avec succès</p>
+          <h2 className="text-lg font-bold">Bet Confirmed!</h2>
+          <p className="text-xs text-muted-foreground">Your slip has been successfully registered</p>
           <div className="rounded-2xl border border-border card-gradient p-4 text-left">
             <div className="space-y-2">
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Type</span><span className="font-bold">{betType === "combi" ? "Combiné" : "Simple"}</span></div>
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Sélections</span><span className="font-bold">{selections.length}</span></div>
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Cote totale</span><span className="font-bold text-highlight">{totalOdds.toFixed(2)}</span></div>
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Type</span><span className="font-bold">{betType === "combi" ? "Combo" : "Single"}</span></div>
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Selections</span><span className="font-bold">{selections.length}</span></div>
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Total odds</span><span className="font-bold text-highlight">{totalOdds.toFixed(2)}</span></div>
               {flexEnabled && canUseFlex && (
                 <>
                   <div className="flex justify-between text-xs"><span className="text-muted-foreground">FlexBet</span><span className="font-bold text-primary">{selections.length - flexCount}/{selections.length} correct</span></div>
-                  <div className="flex justify-between text-xs"><span className="text-muted-foreground">Cote ajustée</span><span className="font-bold text-highlight">{adjustedOdds.toFixed(2)}</span></div>
+                  <div className="flex justify-between text-xs"><span className="text-muted-foreground">Adjusted odds</span><span className="font-bold text-highlight">{adjustedOdds.toFixed(2)}</span></div>
                 </>
               )}
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Mise</span><span className="font-bold">{numStake.toLocaleString()} CDF</span></div>
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Gain potentiel</span><span className="font-bold">{potentialWin.toLocaleString()} CDF</span></div>
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Taxe (10%)</span><span className="font-medium text-destructive">-{tax.toLocaleString()} CDF</span></div>
-              <div className="border-t border-border pt-2 flex justify-between text-sm"><span className="font-bold">Net à percevoir</span><span className="font-bold text-highlight">{netPayout.toLocaleString()} CDF</span></div>
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Stake</span><span className="font-bold">{numStake.toLocaleString()} CDF</span></div>
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Potential win</span><span className="font-bold">{potentialWin.toLocaleString()} CDF</span></div>
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Tax (10%)</span><span className="font-medium text-destructive">-{tax.toLocaleString()} CDF</span></div>
+              <div className="border-t border-border pt-2 flex justify-between text-sm"><span className="font-bold">Net payout</span><span className="font-bold text-highlight">{netPayout.toLocaleString()} CDF</span></div>
             </div>
           </div>
           <Link to="/sports" className="block w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange">
-            Continuer à parier
+            Continue Betting
           </Link>
           <Link to="/" className="block w-full py-3 rounded-xl border border-border bg-card-elevated text-sm font-medium text-center">
-            Retour à l'accueil
+            Back to Home
           </Link>
         </section>
       </MobileLayout>
@@ -76,15 +74,15 @@ const BetSlip = () => {
           <Link to="/sports" className="p-2 rounded-xl hover:bg-secondary transition-colors">
             <ArrowLeft size={18} className="text-muted-foreground" />
           </Link>
-          <h1 className="text-lg font-bold">Coupon de paris</h1>
-          <span className="ml-auto text-xs text-muted-foreground">{selections.length} sélection(s)</span>
+          <h1 className="text-lg font-bold">Bet Slip</h1>
+          <span className="ml-auto text-xs text-muted-foreground">{selections.length} selection(s)</span>
         </div>
 
         {/* Bet Type Toggle */}
         <div className="flex gap-2 mb-4">
           {[
-            { key: "single" as const, label: "Simple" },
-            { key: "combi" as const, label: "Combiné" },
+            { key: "single" as const, label: "Single" },
+            { key: "combi" as const, label: "Combo" },
           ].map((t) => (
             <button
               key={t.key}
@@ -119,8 +117,8 @@ const BetSlip = () => {
 
         {selections.length === 0 ? (
           <div className="text-center py-8">
-            <p className="text-sm text-muted-foreground">Aucune sélection</p>
-            <Link to="/sports" className="text-xs text-primary font-semibold mt-2 block">Parcourir les matchs →</Link>
+            <p className="text-sm text-muted-foreground">No selections</p>
+            <Link to="/sports" className="text-xs text-primary font-semibold mt-2 block">Browse matches →</Link>
           </div>
         ) : (
           <>
@@ -141,7 +139,6 @@ const BetSlip = () => {
                 transition={{ duration: 0.6, boxShadow: { duration: 1, ease: "easeOut" } }}
                 className="rounded-2xl border border-primary/30 bg-primary/5 p-4 mb-4 relative overflow-hidden"
               >
-                {/* Particle burst on activation */}
                 <AnimatePresence>
                   {flexEnabled && (
                     <>
@@ -182,7 +179,7 @@ const BetSlip = () => {
                     </motion.div>
                     <div>
                       <h4 className="text-xs font-bold">FlexBet</h4>
-                      <p className="text-[10px] text-muted-foreground">Gagne même sans tout juste !</p>
+                      <p className="text-[10px] text-muted-foreground">Win even without getting all right!</p>
                     </div>
                   </div>
                   <button
@@ -198,7 +195,7 @@ const BetSlip = () => {
                 </div>
                 {flexEnabled && (
                   <div className="mt-3 space-y-2">
-                    <p className="text-[10px] text-muted-foreground">Combien de sélections peuvent être fausses ?</p>
+                    <p className="text-[10px] text-muted-foreground">How many selections can be wrong?</p>
                     <div className="flex gap-2">
                       {Array.from({ length: maxFlex }, (_, i) => i + 1).map((n) => (
                         <button
@@ -210,7 +207,7 @@ const BetSlip = () => {
                               : "bg-card border border-border text-muted-foreground hover:border-primary/40"
                           }`}
                         >
-                          {n} fausse{n > 1 ? "s" : ""}
+                          {n} wrong
                         </button>
                       ))}
                     </div>
@@ -220,10 +217,10 @@ const BetSlip = () => {
                         <span className="font-bold text-primary">{selections.length - flexCount} / {selections.length}</span>
                       </div>
                       <div className="flex justify-between text-[10px] mt-1">
-                        <span className="text-muted-foreground">Multiplicateur</span>
+                        <span className="text-muted-foreground">Multiplier</span>
                         <span className="font-bold text-highlight">×{flexMultiplier.toFixed(2)}</span>
                       </div>
-                      <p className="text-[9px] text-muted-foreground mt-1.5">⚡ Gain réduit mais plus de chances de gagner</p>
+                      <p className="text-[9px] text-muted-foreground mt-1.5">⚡ Lower payout but better chances of winning</p>
                     </div>
                   </div>
                 )}
@@ -232,7 +229,7 @@ const BetSlip = () => {
 
             {/* Stake */}
             <div className="rounded-2xl border border-border card-gradient p-4 mb-4">
-              <label className="text-xs font-medium text-muted-foreground mb-2 block">Mise (CDF)</label>
+              <label className="text-xs font-medium text-muted-foreground mb-2 block">Stake (CDF)</label>
               <input type="number" value={stake} onChange={(e) => setStake(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-card-elevated border border-border text-lg font-bold text-foreground outline-none focus:ring-1 focus:ring-primary text-center" />
               <div className="flex gap-2 mt-2">
@@ -242,44 +239,44 @@ const BetSlip = () => {
                   </button>
                 ))}
               </div>
-              <p className="text-[9px] text-muted-foreground mt-2">Mise minimum : 500 CDF • Maximum : 200 000 CDF</p>
+              <p className="text-[9px] text-muted-foreground mt-2">Minimum stake: 500 CDF • Maximum: 200,000 CDF</p>
             </div>
 
             {/* Summary */}
             <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4 mb-4">
               <h4 className="text-xs font-bold flex items-center gap-1.5 mb-2">
                 <Info size={14} className="text-primary" />
-                Récapitulatif
+                Summary
               </h4>
               <div className="space-y-1.5">
-                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Cote totale</span><span className="font-bold">{totalOdds.toFixed(2)}</span></div>
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Total odds</span><span className="font-bold">{totalOdds.toFixed(2)}</span></div>
                 {flexEnabled && canUseFlex && (
                   <>
                     <div className="flex justify-between text-xs"><span className="text-muted-foreground">FlexBet ({selections.length - flexCount}/{selections.length})</span><span className="font-bold text-primary">×{flexMultiplier.toFixed(2)}</span></div>
-                    <div className="flex justify-between text-xs"><span className="text-muted-foreground">Cote ajustée</span><span className="font-bold text-highlight">{adjustedOdds.toFixed(2)}</span></div>
+                    <div className="flex justify-between text-xs"><span className="text-muted-foreground">Adjusted odds</span><span className="font-bold text-highlight">{adjustedOdds.toFixed(2)}</span></div>
                   </>
                 )}
-                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Mise</span><span className="font-medium">{numStake.toLocaleString()} CDF</span></div>
-                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Gain potentiel</span><span className="font-medium">{potentialWin.toLocaleString()} CDF</span></div>
-                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Taxe sur gain (10%)</span><span className="font-medium text-destructive">-{tax.toLocaleString()} CDF</span></div>
-                <div className="border-t border-border pt-1.5 flex justify-between text-sm"><span className="font-bold">Net à percevoir</span><span className="font-bold text-highlight">{netPayout.toLocaleString()} CDF</span></div>
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Stake</span><span className="font-medium">{numStake.toLocaleString()} CDF</span></div>
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Potential win</span><span className="font-medium">{potentialWin.toLocaleString()} CDF</span></div>
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Winnings tax (10%)</span><span className="font-medium text-destructive">-{tax.toLocaleString()} CDF</span></div>
+                <div className="border-t border-border pt-1.5 flex justify-between text-sm"><span className="font-bold">Net payout</span><span className="font-bold text-highlight">{netPayout.toLocaleString()} CDF</span></div>
               </div>
             </div>
 
             <button onClick={() => setConfirmed(true)} className="w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange mb-4">
-              Placer le pari — {numStake.toLocaleString()} CDF
+              Place Bet — {numStake.toLocaleString()} CDF
             </button>
 
             <button onClick={() => clearSelections()} className="w-full py-2 flex items-center justify-center gap-1.5 text-xs text-destructive">
               <Trash2 size={12} />
-              Vider le coupon
+              Clear slip
             </button>
           </>
         )}
 
         <div className="mt-6 mb-6 flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/10 border border-primary/20">
           <Shield size={14} className="text-primary flex-shrink-0" />
-          <span className="text-[10px] text-primary">18+ | Jouez responsablement</span>
+          <span className="text-[10px] text-primary">18+ | Play responsibly</span>
         </div>
       </section>
     </MobileLayout>

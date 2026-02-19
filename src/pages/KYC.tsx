@@ -21,12 +21,12 @@ const KYC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
-        <h1 className="text-lg font-bold">Vérification KYC</h1>
-        <p className="text-xs text-muted-foreground mt-1">Obligation légale - Vérification d'identité</p>
+        <h1 className="text-lg font-bold">KYC Verification</h1>
+        <p className="text-xs text-muted-foreground mt-1">Legal requirement - Identity verification</p>
 
         {/* Progress */}
         <div className="flex items-center gap-1 mt-4">
-          {["Identité", "Photo ID", "Selfie"].map((label, i) => (
+          {["Identity", "Photo ID", "Selfie"].map((label, i) => (
             <div key={label} className="flex-1">
               <div className="h-1 rounded-full bg-border overflow-hidden">
                 <motion.div
@@ -47,13 +47,13 @@ const KYC = () => {
               <div className="rounded-2xl border border-border card-gradient p-4">
                 <h3 className="text-sm font-bold flex items-center gap-2">
                   <User size={16} className="text-primary" />
-                  Informations personnelles
+                  Personal Information
                 </h3>
                 <div className="mt-3 space-y-3">
                   {[
-                    { label: "Nom complet (tel que sur la pièce d'identité)", type: "text", placeholder: "Jean-Pierre Kabongo Mutombo" },
-                    { label: "Date de naissance", type: "date", placeholder: "" },
-                    { label: "Adresse", type: "text", placeholder: "Avenue Lumumba 45, Kinshasa" },
+                    { label: "Full name (as on ID document)", type: "text", placeholder: "John Doe" },
+                    { label: "Date of birth", type: "date", placeholder: "" },
+                    { label: "Address", type: "text", placeholder: "45 Lumumba Avenue, Kinshasa" },
                   ].map((field, i) => (
                     <motion.div
                       key={field.label}
@@ -70,15 +70,15 @@ const KYC = () => {
                     </motion.div>
                   ))}
                   <div>
-                    <label className="text-[10px] font-medium text-muted-foreground mb-1 block">Type de pièce d'identité</label>
+                    <label className="text-[10px] font-medium text-muted-foreground mb-1 block">ID document type</label>
                     <select className="w-full px-3 py-2.5 rounded-xl bg-card-elevated border border-border text-sm text-foreground outline-none focus:ring-1 focus:ring-primary">
-                      <option>Carte d'identité nationale</option>
-                      <option>Passeport</option>
-                      <option>Permis de conduire</option>
+                      <option>National ID Card</option>
+                      <option>Passport</option>
+                      <option>Driver's License</option>
                     </select>
                   </div>
                   <div>
-                    <label className="text-[10px] font-medium text-muted-foreground mb-1 block">Numéro de la pièce d'identité</label>
+                    <label className="text-[10px] font-medium text-muted-foreground mb-1 block">ID document number</label>
                     <input type="text" placeholder="ID-XXXXXXXXX" className="w-full px-3 py-2.5 rounded-xl bg-card-elevated border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary" />
                   </div>
                 </div>
@@ -88,7 +88,7 @@ const KYC = () => {
                 className="w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange"
                 whileTap={{ scale: 0.97 }}
               >
-                Continuer
+                Continue
               </motion.button>
             </div>
           )}
@@ -98,12 +98,12 @@ const KYC = () => {
               <div className="rounded-2xl border border-border card-gradient p-4">
                 <h3 className="text-sm font-bold flex items-center gap-2">
                   <FileText size={16} className="text-primary" />
-                  Photo de la pièce d'identité
+                  ID Document Photo
                 </h3>
-                <p className="text-[10px] text-muted-foreground mt-1">Prenez une photo claire de votre carte d'identité nationale (recto et verso)</p>
+                <p className="text-[10px] text-muted-foreground mt-1">Take a clear photo of your national ID card (front and back)</p>
 
                 <div className="grid grid-cols-2 gap-3 mt-4">
-                  {["Recto", "Verso"].map((side, i) => (
+                  {["Front", "Back"].map((side, i) => (
                     <motion.button
                       key={side}
                       className="flex flex-col items-center gap-2 py-6 rounded-xl border-2 border-dashed border-border hover:border-primary/40 transition-colors bg-card-elevated"
@@ -114,7 +114,7 @@ const KYC = () => {
                     >
                       <Upload size={24} className="text-muted-foreground" />
                       <span className="text-xs font-medium text-muted-foreground">{side}</span>
-                      <span className="text-[9px] text-muted-foreground">Appuyez pour charger</span>
+                      <span className="text-[9px] text-muted-foreground">Tap to upload</span>
                     </motion.button>
                   ))}
                 </div>
@@ -126,14 +126,14 @@ const KYC = () => {
                   className="flex-1 py-3 rounded-xl border border-border bg-card-elevated text-sm font-medium"
                   whileTap={{ scale: 0.97 }}
                 >
-                  Retour
+                  Back
                 </motion.button>
                 <motion.button
                   onClick={() => goTo(3)}
                   className="flex-1 py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange"
                   whileTap={{ scale: 0.97 }}
                 >
-                  Continuer
+                  Continue
                 </motion.button>
               </div>
             </div>
@@ -144,9 +144,9 @@ const KYC = () => {
               <div className="rounded-2xl border border-border card-gradient p-4 text-center">
                 <h3 className="text-sm font-bold flex items-center justify-center gap-2">
                   <Camera size={16} className="text-primary" />
-                  Selfie de vérification
+                  Verification Selfie
                 </h3>
-                <p className="text-[10px] text-muted-foreground mt-1">Prenez un selfie en tenant votre pièce d'identité à côté de votre visage</p>
+                <p className="text-[10px] text-muted-foreground mt-1">Take a selfie holding your ID document next to your face</p>
 
                 <motion.button
                   className="mt-4 mx-auto flex flex-col items-center gap-2 py-8 px-12 rounded-xl border-2 border-dashed border-border hover:border-primary/40 transition-colors bg-card-elevated"
@@ -156,7 +156,7 @@ const KYC = () => {
                   whileTap={{ scale: 0.96 }}
                 >
                   <Camera size={32} className="text-muted-foreground" />
-                  <span className="text-xs font-medium text-muted-foreground">Prendre un selfie</span>
+                  <span className="text-xs font-medium text-muted-foreground">Take a selfie</span>
                 </motion.button>
               </div>
 
@@ -166,13 +166,13 @@ const KYC = () => {
                   className="flex-1 py-3 rounded-xl border border-border bg-card-elevated text-sm font-medium"
                   whileTap={{ scale: 0.97 }}
                 >
-                  Retour
+                  Back
                 </motion.button>
                 <motion.button
                   className="flex-1 py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange"
                   whileTap={{ scale: 0.97 }}
                 >
-                  Soumettre
+                  Submit
                 </motion.button>
               </div>
 
@@ -180,8 +180,8 @@ const KYC = () => {
                 <div className="flex items-start gap-2">
                   <Shield size={14} className="text-primary mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="text-[10px] text-primary font-medium">Vos documents sont sécurisés</p>
-                    <p className="text-[9px] text-muted-foreground mt-0.5">Conformément à la Loi 20/017 et au Code Numérique 23/010 de la RDC</p>
+                    <p className="text-[10px] text-primary font-medium">Your documents are secure</p>
+                    <p className="text-[9px] text-muted-foreground mt-0.5">In compliance with DRC Law 20/017 and Digital Code 23/010</p>
                   </div>
                 </div>
               </div>

@@ -31,16 +31,15 @@ const Deposit = () => {
           <Link to="/account" className="p-2 rounded-xl hover:bg-secondary transition-colors">
             <ArrowLeft size={18} className="text-muted-foreground" />
           </Link>
-          <h1 className="text-lg font-bold">Déposer</h1>
+          <h1 className="text-lg font-bold">Deposit</h1>
         </div>
 
         {step === "select" && (
           <div className="space-y-4">
-            {/* Provider Selection */}
             <div className="rounded-2xl border border-border card-gradient p-4">
               <h3 className="text-sm font-bold flex items-center gap-2 mb-3">
                 <Smartphone size={16} className="text-highlight" />
-                Choisir le fournisseur
+                Choose Provider
               </h3>
               <div className="grid grid-cols-2 gap-2">
                 {providers.map((p) => (
@@ -65,9 +64,8 @@ const Deposit = () => {
 
             {selectedProvider && (
               <>
-                {/* Phone Number */}
                 <div className="rounded-2xl border border-border card-gradient p-4">
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Numéro Mobile Money</label>
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Mobile Money Number</label>
                   <div className="relative">
                     <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground font-medium">+243</span>
                     <input
@@ -80,14 +78,13 @@ const Deposit = () => {
                   </div>
                 </div>
 
-                {/* Amount */}
                 <div className="rounded-2xl border border-border card-gradient p-4">
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Montant (CDF)</label>
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Amount (CDF)</label>
                   <input
                     type="number"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    placeholder="10 000"
+                    placeholder="10,000"
                     className="w-full px-4 py-3 rounded-xl bg-card-elevated border border-border text-lg font-bold text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary text-center"
                   />
                   <div className="flex gap-2 mt-3 overflow-x-auto hide-scrollbar">
@@ -101,11 +98,11 @@ const Deposit = () => {
                       </button>
                     ))}
                   </div>
-                  <p className="text-[9px] text-muted-foreground mt-2">Dépôt minimum : 1 000 CDF • Maximum : 500 000 CDF</p>
+                  <p className="text-[9px] text-muted-foreground mt-2">Minimum deposit: 1,000 CDF • Maximum: 500,000 CDF</p>
                 </div>
 
                 <button onClick={() => setStep("confirm")} className="w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange">
-                  Continuer
+                  Continue
                 </button>
               </>
             )}
@@ -115,12 +112,12 @@ const Deposit = () => {
         {step === "confirm" && (
           <div className="space-y-4">
             <div className="rounded-2xl border border-border card-gradient p-4">
-              <h3 className="text-sm font-bold mb-3">Confirmer le dépôt</h3>
+              <h3 className="text-sm font-bold mb-3">Confirm Deposit</h3>
               <div className="space-y-2">
                 {[
-                  { label: "Fournisseur", value: providers.find((p) => p.id === selectedProvider)?.name },
-                  { label: "Numéro", value: `+243 ${phone}` },
-                  { label: "Montant", value: `${Number(amount).toLocaleString()} CDF` },
+                  { label: "Provider", value: providers.find((p) => p.id === selectedProvider)?.name },
+                  { label: "Number", value: `+243 ${phone}` },
+                  { label: "Amount", value: `${Number(amount).toLocaleString()} CDF` },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center justify-between py-2 border-b border-border last:border-0">
                     <span className="text-xs text-muted-foreground">{item.label}</span>
@@ -131,15 +128,15 @@ const Deposit = () => {
             </div>
 
             <div className="rounded-xl bg-primary/10 border border-primary/20 p-3">
-              <p className="text-[10px] text-primary">Vous recevrez une notification de votre opérateur pour confirmer le paiement.</p>
+              <p className="text-[10px] text-primary">You will receive a notification from your operator to confirm the payment.</p>
             </div>
 
             <div className="flex gap-2">
               <button onClick={() => setStep("select")} className="flex-1 py-3 rounded-xl border border-border bg-card-elevated text-sm font-medium">
-                Modifier
+                Edit
               </button>
               <button onClick={handleConfirm} className="flex-1 py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange">
-                Confirmer
+                Confirm
               </button>
             </div>
           </div>
@@ -150,18 +147,18 @@ const Deposit = () => {
             <div className="w-16 h-16 rounded-full bg-success/20 flex items-center justify-center mx-auto">
               <CheckCircle size={32} className="text-success" />
             </div>
-            <h3 className="text-lg font-bold">Dépôt initié !</h3>
-            <p className="text-xs text-muted-foreground">Confirmez le paiement sur votre téléphone via {providers.find((p) => p.id === selectedProvider)?.name}</p>
+            <h3 className="text-lg font-bold">Deposit Initiated!</h3>
+            <p className="text-xs text-muted-foreground">Confirm the payment on your phone via {providers.find((p) => p.id === selectedProvider)?.name}</p>
             <p className="text-lg font-bold text-highlight">{Number(amount).toLocaleString()} CDF</p>
             <Link to="/account" className="block w-full py-3 rounded-xl border border-border bg-card-elevated text-sm font-medium text-center">
-              Retour au compte
+              Back to Account
             </Link>
           </div>
         )}
 
         <div className="mt-6 mb-6 flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/10 border border-primary/20">
           <Shield size={14} className="text-primary flex-shrink-0" />
-          <span className="text-[10px] text-primary">Transactions sécurisées et cryptées</span>
+          <span className="text-[10px] text-primary">Secure and encrypted transactions</span>
         </div>
       </section>
     </MobileLayout>

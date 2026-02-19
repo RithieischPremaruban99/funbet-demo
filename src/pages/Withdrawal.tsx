@@ -33,13 +33,12 @@ const Withdrawal = () => {
           <Link to="/account" className="p-2 rounded-xl hover:bg-secondary transition-colors">
             <ArrowLeft size={18} className="text-muted-foreground" />
           </Link>
-          <h1 className="text-lg font-bold">Retirer</h1>
+          <h1 className="text-lg font-bold">Withdraw</h1>
         </div>
 
-        {/* Balance */}
         <div className="rounded-xl border border-border card-gradient p-3 mb-4">
           <div className="flex items-center justify-between">
-            <span className="text-xs text-muted-foreground">Solde disponible</span>
+            <span className="text-xs text-muted-foreground">Available Balance</span>
             <span className="text-sm font-bold text-highlight">{balance.toLocaleString()} CDF</span>
           </div>
         </div>
@@ -49,7 +48,7 @@ const Withdrawal = () => {
             <div className="rounded-2xl border border-border card-gradient p-4">
               <h3 className="text-sm font-bold flex items-center gap-2 mb-3">
                 <Smartphone size={16} className="text-highlight" />
-                Fournisseur de retrait
+                Withdrawal Provider
               </h3>
               <div className="grid grid-cols-2 gap-2">
                 {providers.map((p) => (
@@ -73,7 +72,7 @@ const Withdrawal = () => {
             {selectedProvider && (
               <>
                 <div className="rounded-2xl border border-border card-gradient p-4">
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Numéro Mobile Money</label>
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Mobile Money Number</label>
                   <div className="relative">
                     <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground font-medium">+243</span>
                     <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="812 345 678"
@@ -82,30 +81,29 @@ const Withdrawal = () => {
                 </div>
 
                 <div className="rounded-2xl border border-border card-gradient p-4">
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Montant à retirer (CDF)</label>
-                  <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="50 000"
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Withdrawal Amount (CDF)</label>
+                  <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="50,000"
                     className="w-full px-4 py-3 rounded-xl bg-card-elevated border border-border text-lg font-bold text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary text-center" />
-                  <p className="text-[9px] text-muted-foreground mt-2">Retrait minimum : 5 000 CDF • Maximum : 1 000 000 CDF</p>
+                  <p className="text-[9px] text-muted-foreground mt-2">Minimum withdrawal: 5,000 CDF • Maximum: 1,000,000 CDF</p>
                 </div>
 
-                {/* Tax Breakdown */}
                 {numAmount > 0 && (
                   <div className="rounded-2xl border border-primary/20 bg-primary/5 p-4">
                     <h4 className="text-xs font-bold flex items-center gap-1.5 mb-2">
                       <Info size={14} className="text-primary" />
-                      Détail fiscal (Loi de Finances 2025)
+                      Tax Breakdown (Finance Law 2025)
                     </h4>
                     <div className="space-y-1.5">
                       <div className="flex justify-between text-xs">
-                        <span className="text-muted-foreground">Montant demandé</span>
+                        <span className="text-muted-foreground">Requested amount</span>
                         <span className="font-medium">{numAmount.toLocaleString()} CDF</span>
                       </div>
                       <div className="flex justify-between text-xs">
-                        <span className="text-muted-foreground">Taxe sur gains (10%)</span>
+                        <span className="text-muted-foreground">Winnings tax (10%)</span>
                         <span className="font-medium text-destructive">-{tax.toLocaleString()} CDF</span>
                       </div>
                       <div className="border-t border-border pt-1.5 flex justify-between text-sm">
-                        <span className="font-bold">Montant net</span>
+                        <span className="font-bold">Net amount</span>
                         <span className="font-bold text-highlight">{netPayout.toLocaleString()} CDF</span>
                       </div>
                     </div>
@@ -113,7 +111,7 @@ const Withdrawal = () => {
                 )}
 
                 <button onClick={() => setStep("confirm")} className="w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange">
-                  Continuer
+                  Continue
                 </button>
               </>
             )}
@@ -123,14 +121,14 @@ const Withdrawal = () => {
         {step === "confirm" && (
           <div className="space-y-4">
             <div className="rounded-2xl border border-border card-gradient p-4">
-              <h3 className="text-sm font-bold mb-3">Confirmer le retrait</h3>
+              <h3 className="text-sm font-bold mb-3">Confirm Withdrawal</h3>
               <div className="space-y-2">
                 {[
-                  { label: "Fournisseur", value: providers.find((p) => p.id === selectedProvider)?.name },
-                  { label: "Numéro", value: `+243 ${phone}` },
-                  { label: "Montant brut", value: `${numAmount.toLocaleString()} CDF` },
-                  { label: "Taxe (10%)", value: `-${tax.toLocaleString()} CDF`, red: true },
-                  { label: "Montant net", value: `${netPayout.toLocaleString()} CDF`, bold: true },
+                  { label: "Provider", value: providers.find((p) => p.id === selectedProvider)?.name },
+                  { label: "Number", value: `+243 ${phone}` },
+                  { label: "Gross amount", value: `${numAmount.toLocaleString()} CDF` },
+                  { label: "Tax (10%)", value: `-${tax.toLocaleString()} CDF`, red: true },
+                  { label: "Net amount", value: `${netPayout.toLocaleString()} CDF`, bold: true },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center justify-between py-2 border-b border-border last:border-0">
                     <span className="text-xs text-muted-foreground">{item.label}</span>
@@ -143,8 +141,8 @@ const Withdrawal = () => {
             </div>
 
             <div className="flex gap-2">
-              <button onClick={() => setStep("select")} className="flex-1 py-3 rounded-xl border border-border bg-card-elevated text-sm font-medium">Modifier</button>
-              <button onClick={() => setStep("success")} className="flex-1 py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange">Confirmer</button>
+              <button onClick={() => setStep("select")} className="flex-1 py-3 rounded-xl border border-border bg-card-elevated text-sm font-medium">Edit</button>
+              <button onClick={() => setStep("success")} className="flex-1 py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange">Confirm</button>
             </div>
           </div>
         )}
@@ -154,18 +152,18 @@ const Withdrawal = () => {
             <div className="w-16 h-16 rounded-full bg-success/20 flex items-center justify-center mx-auto">
               <CheckCircle size={32} className="text-success" />
             </div>
-            <h3 className="text-lg font-bold">Retrait en cours !</h3>
-            <p className="text-xs text-muted-foreground">Vous recevrez {netPayout.toLocaleString()} CDF sur votre compte {providers.find((p) => p.id === selectedProvider)?.name}</p>
-            <p className="text-[10px] text-muted-foreground">Délai estimé : 5-30 minutes</p>
+            <h3 className="text-lg font-bold">Withdrawal in Progress!</h3>
+            <p className="text-xs text-muted-foreground">You will receive {netPayout.toLocaleString()} CDF on your {providers.find((p) => p.id === selectedProvider)?.name} account</p>
+            <p className="text-[10px] text-muted-foreground">Estimated time: 5-30 minutes</p>
             <Link to="/account" className="block w-full py-3 rounded-xl border border-border bg-card-elevated text-sm font-medium text-center">
-              Retour au compte
+              Back to Account
             </Link>
           </div>
         )}
 
         <div className="mt-6 mb-6 flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/10 border border-primary/20">
           <Shield size={14} className="text-primary flex-shrink-0" />
-          <span className="text-[10px] text-primary">Taxe de 10% prélevée conformément à la Loi de Finances 2025 RDC</span>
+          <span className="text-[10px] text-primary">10% tax deducted per DRC Finance Law 2025</span>
         </div>
       </section>
     </MobileLayout>
