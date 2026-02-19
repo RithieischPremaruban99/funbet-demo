@@ -33,16 +33,21 @@ const levelPerks = [
 
 // --- Daily Missions ---
 const dailyMissions = [
-  { id: 1, title: "Place 3 bets", icon: Target, xp: 50, progress: 2, total: 3, done: false },
-  { id: 2, title: "Win a combo bet", icon: Zap, xp: 100, progress: 0, total: 1, done: false },
-  { id: 3, title: "Deposit $20+", icon: TrendingUp, xp: 30, progress: 1, total: 1, done: true },
-  { id: 4, title: "Share a bet slip", icon: Gift, xp: 25, progress: 0, total: 1, done: false },
+  { id: 1, title: "Daily Login", icon: CalendarCheck, xp: 20, progress: 1, total: 1, done: true },
+  { id: 2, title: "Place 3 bets", icon: Target, xp: 50, progress: 2, total: 3, done: false },
+  { id: 3, title: "Win a combo bet", icon: Zap, xp: 100, progress: 0, total: 1, done: false },
+  { id: 4, title: "Deposit $20+", icon: TrendingUp, xp: 30, progress: 1, total: 1, done: true },
+  { id: 5, title: "Share a bet slip", icon: Gift, xp: 25, progress: 0, total: 1, done: false },
+  { id: 6, title: "Try a live bet", icon: Flame, xp: 40, progress: 0, total: 1, done: false },
 ];
 
 const weeklyMissions = [
   { id: 10, title: "Place 20 bets", icon: Target, xp: 300, progress: 14, total: 20, done: false },
   { id: 11, title: "Win 5 combo bets", icon: Trophy, xp: 500, progress: 3, total: 5, done: false },
   { id: 12, title: "7-day login streak", icon: CalendarCheck, xp: 200, progress: 5, total: 7, done: false },
+  { id: 13, title: "Bet on 3 different sports", icon: Award, xp: 150, progress: 1, total: 3, done: false },
+  { id: 14, title: "Invite a friend", icon: Gift, xp: 250, progress: 0, total: 1, done: false },
+  { id: 15, title: "Win $100+ total", icon: TrendingUp, xp: 400, progress: 65, total: 100, done: false },
 ];
 
 // --- Achievement Badges ---
