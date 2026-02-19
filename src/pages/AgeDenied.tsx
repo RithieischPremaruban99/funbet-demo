@@ -1,12 +1,12 @@
 import { XCircle } from "lucide-react";
-import partoucheLogo from "@/assets/partouche-logo.png";
+import triveltaLogo from "@/assets/trivelta-logo.png";
 
 const AgeDenied = () => {
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background px-6">
       <img
-        src={partoucheLogo}
-        alt="Groupe Partouche"
+        src={triveltaLogo}
+        alt="Trivelta"
         className="w-36 h-auto mb-8 opacity-50"
       />
 

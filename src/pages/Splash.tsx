@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import partoucheLogo from "@/assets/partouche-logo.png";
+import triveltaLogo from "@/assets/trivelta-logo.png";
 
 const Splash = () => {
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ const Splash = () => {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="mb-8 relative z-10"
       >
-        <img src={partoucheLogo} alt="Groupe Partouche" className="w-52 h-auto" />
+        <img src={triveltaLogo} alt="Trivelta" className="w-52 h-auto" />
       </motion.div>
 
       {/* Spinner */}

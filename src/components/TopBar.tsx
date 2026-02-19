@@ -1,7 +1,7 @@
 import { Bell, Search, Wallet } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import partoucheLogo from "@/assets/partouche-logo.png";
+import triveltaLogo from "@/assets/trivelta-logo.png";
 import GlobalSearch from "@/components/GlobalSearch";
 
 const TopBar = () => {
@@ -12,7 +12,7 @@ const TopBar = () => {
       <header className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-border">
         <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
           <Link to="/">
-            <img src={partoucheLogo} alt="Partouche RDC" className="h-7 object-contain" />
+            <img src={triveltaLogo} alt="Trivelta" className="h-7 object-contain" />
           </Link>
           <div className="flex items-center gap-2">
             <button

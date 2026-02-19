@@ -385,7 +385,7 @@ const Account = () => {
         {/* Footer License */}
         <div className="text-center py-2">
           <p className="text-[9px] text-muted-foreground">Licence N°2024/GJ/001 | 18+ | Jeu responsable</p>
-          <p className="text-[9px] text-muted-foreground">© 2025 Partouche RDC - Tous droits réservés</p>
+          <p className="text-[9px] text-muted-foreground">© 2025 Trivelta - Tous droits réservés</p>
         </div>
       </section>
 
