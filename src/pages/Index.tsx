@@ -7,10 +7,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 const categories = [
-  { icon: Flame, label: "Top Paris", sublabel: "Populaire", gradient: true, to: "/sports" },
+  { icon: Flame, label: "Top Bets", sublabel: "Popular", gradient: true, to: "/sports" },
   { icon: Dices, label: "Casino", sublabel: "Live", gradient: false, to: "/casino" },
-  { icon: Radio, label: "Live", sublabel: "En direct", gradient: true, to: "/sports" },
-  { icon: Trophy, label: "Tous les", sublabel: "Sports", gradient: false, to: "/sports" },
+  { icon: Radio, label: "Live", sublabel: "Now", gradient: true, to: "/sports" },
+  { icon: Trophy, label: "All", sublabel: "Sports", gradient: false, to: "/sports" },
 ];
 
 const liveMatches = [
@@ -24,12 +24,12 @@ const liveMatches = [
     score: "2 - 1",
     markets: {
       overUnder: [
-        { label: "Plus de 2.5", odds: "1.55" },
-        { label: "Moins de 2.5", odds: "2.40" },
+        { label: "Over 2.5", odds: "1.55" },
+        { label: "Under 2.5", odds: "2.40" },
       ],
       btts: [
-        { label: "Les 2 marquent - Oui", odds: "1.65" },
-        { label: "Les 2 marquent - Non", odds: "2.15" },
+        { label: "Both Score - Yes", odds: "1.65" },
+        { label: "Both Score - No", odds: "2.15" },
       ],
       doubleChance: [
         { label: "1X", odds: "1.20" },
@@ -48,12 +48,12 @@ const liveMatches = [
     score: "1 - 1",
     markets: {
       overUnder: [
-        { label: "Plus de 2.5", odds: "1.80" },
-        { label: "Moins de 2.5", odds: "1.95" },
+        { label: "Over 2.5", odds: "1.80" },
+        { label: "Under 2.5", odds: "1.95" },
       ],
       btts: [
-        { label: "Les 2 marquent - Oui", odds: "1.50" },
-        { label: "Les 2 marquent - Non", odds: "2.45" },
+        { label: "Both Score - Yes", odds: "1.50" },
+        { label: "Both Score - No", odds: "2.45" },
       ],
       doubleChance: [
         { label: "1X", odds: "1.30" },
@@ -72,12 +72,12 @@ const liveMatches = [
     score: "1 - 0",
     markets: {
       overUnder: [
-        { label: "Plus de 2.5", odds: "2.10" },
-        { label: "Moins de 2.5", odds: "1.70" },
+        { label: "Over 2.5", odds: "2.10" },
+        { label: "Under 2.5", odds: "1.70" },
       ],
       btts: [
-        { label: "Les 2 marquent - Oui", odds: "1.85" },
-        { label: "Les 2 marquent - Non", odds: "1.90" },
+        { label: "Both Score - Yes", odds: "1.85" },
+        { label: "Both Score - No", odds: "1.90" },
       ],
       doubleChance: [
         { label: "1X", odds: "1.25" },
@@ -93,18 +93,18 @@ const upcomingMatches = [
     id: 4,
     league: "Champions League",
     date: "21:00",
-    dateLabel: "DEMAIN",
+    dateLabel: "TOMORROW",
     home: { name: "Paris SG", abbr: "PSG" },
     away: { name: "FC Bayern", abbr: "BAY" },
     odds: { home: "2.20", draw: "3.40", away: "3.00" },
     markets: {
       overUnder: [
-        { label: "Plus de 2.5", odds: "1.75" },
-        { label: "Moins de 2.5", odds: "2.00" },
+        { label: "Over 2.5", odds: "1.75" },
+        { label: "Under 2.5", odds: "2.00" },
       ],
       btts: [
-        { label: "Les 2 marquent - Oui", odds: "1.60" },
-        { label: "Les 2 marquent - Non", odds: "2.20" },
+        { label: "Both Score - Yes", odds: "1.60" },
+        { label: "Both Score - No", odds: "2.20" },
       ],
       doubleChance: [
         { label: "1X", odds: "1.35" },
@@ -117,18 +117,18 @@ const upcomingMatches = [
     id: 5,
     league: "Champions League",
     date: "21:00",
-    dateLabel: "DEMAIN",
+    dateLabel: "TOMORROW",
     home: { name: "FC Barcelona", abbr: "BAR" },
     away: { name: "Inter Milan", abbr: "INT" },
     odds: { home: "1.80", draw: "3.60", away: "4.20" },
     markets: {
       overUnder: [
-        { label: "Plus de 2.5", odds: "1.65" },
-        { label: "Moins de 2.5", odds: "2.15" },
+        { label: "Over 2.5", odds: "1.65" },
+        { label: "Under 2.5", odds: "2.15" },
       ],
       btts: [
-        { label: "Les 2 marquent - Oui", odds: "1.70" },
-        { label: "Les 2 marquent - Non", odds: "2.05" },
+        { label: "Both Score - Yes", odds: "1.70" },
+        { label: "Both Score - No", odds: "2.05" },
       ],
       doubleChance: [
         { label: "1X", odds: "1.20" },
@@ -141,18 +141,18 @@ const upcomingMatches = [
     id: 6,
     league: "Ligue 1 - Journée 25",
     date: "17:00",
-    dateLabel: "SAM",
+    dateLabel: "SAT",
     home: { name: "Olympique Marseille", abbr: "OM" },
     away: { name: "Paris SG", abbr: "PSG" },
     odds: { home: "3.40", draw: "3.30", away: "2.10" },
     markets: {
       overUnder: [
-        { label: "Plus de 2.5", odds: "1.85" },
-        { label: "Moins de 2.5", odds: "1.90" },
+        { label: "Over 2.5", odds: "1.85" },
+        { label: "Under 2.5", odds: "1.90" },
       ],
       btts: [
-        { label: "Les 2 marquent - Oui", odds: "1.55" },
-        { label: "Les 2 marquent - Non", odds: "2.30" },
+        { label: "Both Score - Yes", odds: "1.55" },
+        { label: "Both Score - No", odds: "2.30" },
       ],
       doubleChance: [
         { label: "1X", odds: "1.60" },
@@ -165,18 +165,18 @@ const upcomingMatches = [
     id: 7,
     league: "Premier League",
     date: "16:00",
-    dateLabel: "DIM",
+    dateLabel: "SUN",
     home: { name: "Liverpool FC", abbr: "LIV" },
     away: { name: "Manchester City", abbr: "MCI" },
     odds: { home: "2.00", draw: "3.50", away: "3.40" },
     markets: {
       overUnder: [
-        { label: "Plus de 2.5", odds: "1.70" },
-        { label: "Moins de 2.5", odds: "2.05" },
+        { label: "Over 2.5", odds: "1.70" },
+        { label: "Under 2.5", odds: "2.05" },
       ],
       btts: [
-        { label: "Les 2 marquent - Oui", odds: "1.60" },
-        { label: "Les 2 marquent - Non", odds: "2.20" },
+        { label: "Both Score - Yes", odds: "1.60" },
+        { label: "Both Score - No", odds: "2.20" },
       ],
       doubleChance: [
         { label: "1X", odds: "1.30" },
@@ -244,7 +244,7 @@ const ExpandedMarkets = ({
     <div className="px-3 pb-3 space-y-3">
       {/* Over/Under */}
       <div>
-        <p className="text-[10px] font-bold text-muted-foreground mb-1.5 uppercase">Buts - Plus/Moins</p>
+        <p className="text-[10px] font-bold text-muted-foreground mb-1.5 uppercase">Goals - Over/Under</p>
         <div className="grid grid-cols-2 gap-1.5">
           {markets.overUnder.map((m) => (
             <MarketOddsButton
@@ -259,7 +259,7 @@ const ExpandedMarkets = ({
       </div>
       {/* BTTS */}
       <div>
-        <p className="text-[10px] font-bold text-muted-foreground mb-1.5 uppercase">Les deux équipes marquent</p>
+        <p className="text-[10px] font-bold text-muted-foreground mb-1.5 uppercase">Both Teams to Score</p>
         <div className="grid grid-cols-2 gap-1.5">
           {markets.btts.map((m) => (
             <MarketOddsButton
@@ -311,9 +311,9 @@ const Index = () => {
     <MobileLayout>
       {/* Top actions */}
       <section className="px-4 mt-3 flex items-center justify-between">
-        <Link to="/login" className="text-sm font-medium text-foreground hover:text-primary transition-colors">Connexion</Link>
+        <Link to="/login" className="text-sm font-medium text-foreground hover:text-primary transition-colors">Log In</Link>
         <Link to="/register" className="px-5 py-2 rounded-full orange-gradient text-highlight-foreground text-sm font-bold glow-orange">
-          Créer un compte
+          Create Account
         </Link>
       </section>
 
@@ -321,7 +321,7 @@ const Index = () => {
       <section className="px-4 mt-2">
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20">
           <Shield size={14} className="text-primary" />
-          <span className="text-[10px] text-primary font-semibold">18+ | Jeu responsable | Licence N°2024/GJ/001 — RDC</span>
+          <span className="text-[10px] text-primary font-semibold">18+ | Responsible Gaming | License N°2024/GJ/001 — DRC</span>
         </div>
       </section>
 
@@ -355,7 +355,7 @@ const Index = () => {
       <section className="px-4 mt-4">
         <Link to="/challenge" className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-primary/30 bg-primary/5 hover:bg-primary/10 transition-colors">
           <Swords size={18} className="text-primary" />
-          <span className="text-sm font-bold text-primary">Défiez vos amis</span>
+          <span className="text-sm font-bold text-primary">Challenge your friends</span>
         </Link>
       </section>
 
@@ -364,10 +364,10 @@ const Index = () => {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-live animate-pulse-live" />
-            <span className="text-sm font-bold text-live">EN DIRECT</span>
+            <span className="text-sm font-bold text-live">LIVE</span>
           </div>
           <Link to="/sports" className="flex items-center gap-1 text-xs text-highlight font-semibold">
-            Tous les matchs <ChevronRight size={14} />
+            All matches <ChevronRight size={14} />
           </Link>
         </div>
 
@@ -399,7 +399,7 @@ const Index = () => {
                   </div>
                   <div className="flex gap-2">
                     <OddsButton label="1" value={match.odds.home} selected={isSelected(`${match.id}-${match.home.name} (1)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, `${match.home.name} (1)`, match.odds.home)} />
-                    <OddsButton label="X" value={match.odds.draw} selected={isSelected(`${match.id}-Nul (X)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, "Nul (X)", match.odds.draw)} />
+                    <OddsButton label="X" value={match.odds.draw} selected={isSelected(`${match.id}-Draw (X)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, "Draw (X)", match.odds.draw)} />
                     <OddsButton label="2" value={match.odds.away} selected={isSelected(`${match.id}-${match.away.name} (2)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, `${match.away.name} (2)`, match.odds.away)} />
                   </div>
                 </div>
@@ -423,9 +423,9 @@ const Index = () => {
                     className="flex items-center gap-1 text-[10px] text-highlight font-semibold"
                   >
                     <ChevronDown size={12} className={`transition-transform ${isExpanded ? "rotate-180" : ""}`} />
-                    {isExpanded ? "Moins de marchés" : "+3 marchés"}
+                    {isExpanded ? "Less markets" : "+3 markets"}
                   </button>
-                  <Link to="/sports" className="text-[10px] text-muted-foreground font-semibold">Tous les paris →</Link>
+                  <Link to="/sports" className="text-[10px] text-muted-foreground font-semibold">All bets →</Link>
                 </div>
               </div>
             );
@@ -438,10 +438,10 @@ const Index = () => {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Zap size={16} className="text-highlight" />
-            <span className="text-sm font-bold">À VENIR</span>
+            <span className="text-sm font-bold">UPCOMING</span>
           </div>
           <Link to="/sports" className="flex items-center gap-1 text-xs text-highlight font-semibold">
-            Tout voir <ChevronRight size={14} />
+            View all <ChevronRight size={14} />
           </Link>
         </div>
 
@@ -470,7 +470,7 @@ const Index = () => {
                   </div>
                   <div className="flex gap-2">
                     <OddsButton label="1" value={match.odds.home} selected={isSelected(`${match.id}-${match.home.name} (1)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, `${match.home.name} (1)`, match.odds.home)} />
-                    <OddsButton label="X" value={match.odds.draw} selected={isSelected(`${match.id}-Nul (X)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, "Nul (X)", match.odds.draw)} />
+                    <OddsButton label="X" value={match.odds.draw} selected={isSelected(`${match.id}-Draw (X)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, "Draw (X)", match.odds.draw)} />
                     <OddsButton label="2" value={match.odds.away} selected={isSelected(`${match.id}-${match.away.name} (2)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, `${match.away.name} (2)`, match.odds.away)} />
                   </div>
                 </div>
@@ -494,9 +494,9 @@ const Index = () => {
                     className="flex items-center gap-1 text-[10px] text-highlight font-semibold"
                   >
                     <ChevronDown size={12} className={`transition-transform ${isExpanded ? "rotate-180" : ""}`} />
-                    {isExpanded ? "Moins de marchés" : "+3 marchés"}
+                    {isExpanded ? "Less markets" : "+3 markets"}
                   </button>
-                  <Link to="/sports" className="text-[10px] text-muted-foreground font-semibold">Tous les paris →</Link>
+                  <Link to="/sports" className="text-[10px] text-muted-foreground font-semibold">All bets →</Link>
                 </div>
               </div>
             );
@@ -527,11 +527,11 @@ const Index = () => {
                     </span>
                   </div>
                   <div className="text-left">
-                    <p className="text-xs font-bold text-highlight-foreground">{selections.length} sélection{selections.length > 1 ? "s" : ""}</p>
-                    <p className="text-[10px] text-highlight-foreground/70">Cote totale: {totalOdds.toFixed(2)}</p>
+                    <p className="text-xs font-bold text-highlight-foreground">{selections.length} selection{selections.length > 1 ? "s" : ""}</p>
+                    <p className="text-[10px] text-highlight-foreground/70">Total odds: {totalOdds.toFixed(2)}</p>
                   </div>
                 </div>
-                <span className="text-sm font-bold text-highlight-foreground">Voir coupon →</span>
+                <span className="text-sm font-bold text-highlight-foreground">View slip →</span>
               </button>
               <button
                 onClick={() => clearSelections()}
