@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import triveltaLogo from "@/assets/trivelta-logo.png";
+import soccabetLogo from "@/assets/soccabet-logo.png";
 
 const AgeVerification = () => {
   const navigate = useNavigate();
@@ -29,9 +29,9 @@ const AgeVerification = () => {
       <div className="absolute w-48 h-48 rounded-full bg-primary/8 blur-[80px]" />
 
       <motion.img
-        src={triveltaLogo}
-        alt="Trivelta"
-        className="w-40 h-auto mb-8 relative z-10"
+        src={soccabetLogo}
+        alt="Soccabet"
+        className="w-48 h-auto mb-8 relative z-10"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -54,9 +54,8 @@ const AgeVerification = () => {
 
         <h1 className="text-xl font-bold mb-2">Age Verification</h1>
         <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-          In accordance with applicable legislation, gambling is
-          strictly reserved for persons aged{" "}
-          <span className="text-primary font-bold">18 and over</span>.
+          Gambling is strictly reserved for persons aged{" "}
+          <span className="text-accent font-bold">18 and over</span>.
         </p>
 
         <p className="text-sm font-semibold mb-6">Are you 18 or older?</p>
@@ -91,8 +90,8 @@ const AgeVerification = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.6 }}
       >
-        <p className="text-muted-foreground/50 text-xs">License N°2024/GJ/001</p>
-        <p className="text-muted-foreground/50 text-xs mt-1">🔞 Responsible gaming | gamble in moderation</p>
+        <p className="text-muted-foreground/50 text-xs">Licensed & Regulated</p>
+        <p className="text-muted-foreground/50 text-xs mt-1">🔞 Gamble Responsibly</p>
       </motion.div>
     </motion.div>
   );

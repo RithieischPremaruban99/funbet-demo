@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import triveltaLogo from "@/assets/trivelta-logo.png";
+import soccabetLogo from "@/assets/soccabet-logo.png";
 
 const Splash = () => {
   const navigate = useNavigate();
@@ -44,7 +44,7 @@ const Splash = () => {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="mb-8 relative z-10"
       >
-        <img src={triveltaLogo} alt="Trivelta" className="w-52 h-auto" />
+        <img src={soccabetLogo} alt="Soccabet" className="w-60 h-auto" />
       </motion.div>
 
       {/* Spinner */}
@@ -54,7 +54,7 @@ const Splash = () => {
         transition={{ delay: 0.5, duration: 0.4 }}
         className="mb-6"
       >
-        <div className="w-10 h-10 border-[3px] border-primary/20 border-t-primary rounded-full animate-spin" />
+        <div className="w-10 h-10 border-[3px] border-accent/20 border-t-accent rounded-full animate-spin" />
       </motion.div>
 
       {/* Status text */}
@@ -64,7 +64,7 @@ const Splash = () => {
         transition={{ delay: 0.7, duration: 0.5 }}
         className="text-muted-foreground text-sm text-center px-8"
       >
-        Verifying your location{dots}
+        Loading{dots}
       </motion.p>
 
       {/* Footer */}
@@ -74,8 +74,8 @@ const Splash = () => {
         transition={{ delay: 1.2, duration: 0.8 }}
         className="absolute bottom-12 text-center"
       >
-        <p className="text-muted-foreground/50 text-xs">License N°2024/GJ/001</p>
-        <p className="text-muted-foreground/50 text-xs mt-1">🔞 Restricted to persons aged 18 and over</p>
+        <p className="text-muted-foreground/50 text-xs">Licensed & Regulated</p>
+        <p className="text-muted-foreground/50 text-xs mt-1">🔞 18+ | Gamble Responsibly</p>
       </motion.div>
     </motion.div>
   );
