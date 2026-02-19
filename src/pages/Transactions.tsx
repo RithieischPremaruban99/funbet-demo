@@ -4,13 +4,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const mockTransactions = [
-  { id: 1, type: "deposit", provider: "M-Pesa", amount: 50000, date: "Feb 18, 14:32", status: "success" },
-  { id: 2, type: "bet", provider: "Bet - TP Mazembe vs Vita", amount: -10000, date: "Feb 18, 14:45", status: "pending" },
-  { id: 3, type: "withdrawal", provider: "Airtel Money", amount: -30000, tax: 3000, netAmount: -27000, date: "Feb 17, 10:15", status: "success" },
-  { id: 4, type: "win", provider: "Win - Linafoot Combo", amount: 45000, date: "Feb 16, 21:00", status: "success" },
-  { id: 5, type: "deposit", provider: "Orange Money", amount: 25000, date: "Feb 15, 09:30", status: "success" },
-  { id: 6, type: "withdrawal", provider: "M-Pesa", amount: -20000, tax: 2000, netAmount: -18000, date: "Feb 14, 16:45", status: "success" },
-  { id: 7, type: "bet", provider: "Bet - DRC vs Zambia", amount: -5000, date: "Feb 14, 12:00", status: "lost" },
+  { id: 1, type: "deposit", provider: "M-Pesa", amount: 500, date: "Feb 18, 14:32", status: "success" },
+  { id: 2, type: "bet", provider: "Bet - TP Mazembe vs Vita", amount: -100, date: "Feb 18, 14:45", status: "pending" },
+  { id: 3, type: "withdrawal", provider: "Airtel Money", amount: -300, tax: 30, netAmount: -270, date: "Feb 17, 10:15", status: "success" },
+  { id: 4, type: "win", provider: "Win - Linafoot Combo", amount: 450, date: "Feb 16, 21:00", status: "success" },
+  { id: 5, type: "deposit", provider: "Orange Money", amount: 250, date: "Feb 15, 09:30", status: "success" },
+  { id: 6, type: "withdrawal", provider: "M-Pesa", amount: -200, tax: 20, netAmount: -180, date: "Feb 14, 16:45", status: "success" },
+  { id: 7, type: "bet", provider: "Bet - DRC vs Zambia", amount: -50, date: "Feb 14, 12:00", status: "lost" },
 ];
 
 const typeLabels: Record<string, string> = { deposit: "Deposit", withdrawal: "Withdrawal", bet: "Bet", win: "Win" };
@@ -70,7 +70,7 @@ const Transactions = () => {
                   <div className="flex items-center justify-between">
                     <p className="text-xs font-semibold truncate">{tx.provider}</p>
                     <span className={`text-xs font-bold ${isPositive ? "text-success" : "text-foreground"}`}>
-                      {isPositive ? "+" : ""}{tx.amount.toLocaleString()} CDF
+                      {isPositive ? "+" : ""}${Math.abs(tx.amount).toLocaleString()}
                     </span>
                   </div>
                   <div className="flex items-center justify-between mt-0.5">
@@ -79,7 +79,7 @@ const Transactions = () => {
                   </div>
                   {tx.type === "withdrawal" && tx.tax && (
                     <p className="text-[9px] text-muted-foreground mt-0.5">
-                      Tax 10%: -{tx.tax.toLocaleString()} CDF | Net: {Math.abs(tx.netAmount || 0).toLocaleString()} CDF
+                      Tax 10%: -${tx.tax?.toLocaleString()} | Net: ${Math.abs(tx.netAmount || 0).toLocaleString()}
                     </p>
                   )}
                 </div>

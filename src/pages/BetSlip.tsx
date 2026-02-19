@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const BetSlip = () => {
   const { selections, removeSelection, clearSelections } = useBetSlip();
-  const [stake, setStake] = useState("5000");
+  const [stake, setStake] = useState("50");
   const [betType, setBetType] = useState<"single" | "combi">("combi");
   const [flexEnabled, setFlexEnabled] = useState(false);
   const [flexCount, setFlexCount] = useState(0);
@@ -50,10 +50,10 @@ const BetSlip = () => {
                   <div className="flex justify-between text-xs"><span className="text-muted-foreground">Adjusted odds</span><span className="font-bold text-highlight">{adjustedOdds.toFixed(2)}</span></div>
                 </>
               )}
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Stake</span><span className="font-bold">{numStake.toLocaleString()} CDF</span></div>
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Potential win</span><span className="font-bold">{potentialWin.toLocaleString()} CDF</span></div>
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Tax (10%)</span><span className="font-medium text-destructive">-{tax.toLocaleString()} CDF</span></div>
-              <div className="border-t border-border pt-2 flex justify-between text-sm"><span className="font-bold">Net payout</span><span className="font-bold text-highlight">{netPayout.toLocaleString()} CDF</span></div>
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Stake</span><span className="font-bold">${numStake.toLocaleString()}</span></div>
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Potential win</span><span className="font-bold">${potentialWin.toLocaleString()}</span></div>
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Tax (10%)</span><span className="font-medium text-destructive">-${tax.toLocaleString()}</span></div>
+              <div className="border-t border-border pt-2 flex justify-between text-sm"><span className="font-bold">Net payout</span><span className="font-bold text-highlight">${netPayout.toLocaleString()}</span></div>
             </div>
           </div>
           <Link to="/sports" className="block w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange">
@@ -229,17 +229,17 @@ const BetSlip = () => {
 
             {/* Stake */}
             <div className="rounded-2xl border border-border card-gradient p-4 mb-4">
-              <label className="text-xs font-medium text-muted-foreground mb-2 block">Stake (CDF)</label>
+              <label className="text-xs font-medium text-muted-foreground mb-2 block">Stake (USD)</label>
               <input type="number" value={stake} onChange={(e) => setStake(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-card-elevated border border-border text-lg font-bold text-foreground outline-none focus:ring-1 focus:ring-primary text-center" />
               <div className="flex gap-2 mt-2">
-                {[1000, 5000, 10000, 25000].map((a) => (
+                {[10, 50, 100, 250].map((a) => (
                   <button key={a} onClick={() => setStake(String(a))} className="flex-1 py-1.5 rounded-lg bg-card-elevated border border-border text-[10px] font-bold hover:border-highlight/40 transition-all">
-                    {a.toLocaleString()}
+                    ${a.toLocaleString()}
                   </button>
                 ))}
               </div>
-              <p className="text-[9px] text-muted-foreground mt-2">Minimum stake: 500 CDF • Maximum: 200,000 CDF</p>
+              <p className="text-[9px] text-muted-foreground mt-2">Minimum stake: $5 • Maximum: $2,000</p>
             </div>
 
             {/* Summary */}
@@ -256,15 +256,15 @@ const BetSlip = () => {
                     <div className="flex justify-between text-xs"><span className="text-muted-foreground">Adjusted odds</span><span className="font-bold text-highlight">{adjustedOdds.toFixed(2)}</span></div>
                   </>
                 )}
-                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Stake</span><span className="font-medium">{numStake.toLocaleString()} CDF</span></div>
-                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Potential win</span><span className="font-medium">{potentialWin.toLocaleString()} CDF</span></div>
-                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Winnings tax (10%)</span><span className="font-medium text-destructive">-{tax.toLocaleString()} CDF</span></div>
-                <div className="border-t border-border pt-1.5 flex justify-between text-sm"><span className="font-bold">Net payout</span><span className="font-bold text-highlight">{netPayout.toLocaleString()} CDF</span></div>
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Stake</span><span className="font-medium">${numStake.toLocaleString()}</span></div>
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Potential win</span><span className="font-medium">${potentialWin.toLocaleString()}</span></div>
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Winnings tax (10%)</span><span className="font-medium text-destructive">-${tax.toLocaleString()}</span></div>
+                <div className="border-t border-border pt-1.5 flex justify-between text-sm"><span className="font-bold">Net payout</span><span className="font-bold text-highlight">${netPayout.toLocaleString()}</span></div>
               </div>
             </div>
 
             <button onClick={() => setConfirmed(true)} className="w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange mb-4">
-              Place Bet — {numStake.toLocaleString()} CDF
+              Place Bet — ${numStake.toLocaleString()}
             </button>
 
             <button onClick={() => clearSelections()} className="w-full py-2 flex items-center justify-center gap-1.5 text-xs text-destructive">

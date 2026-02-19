@@ -21,7 +21,7 @@ const Withdrawal = () => {
   const [step, setStep] = useState<"select" | "confirm" | "success">("select");
 
   const numAmount = Number(amount) || 0;
-  const balance = 125000;
+  const balance = 1250;
   const winnings = Math.max(0, numAmount - 0);
   const tax = Math.round(winnings * 0.1);
   const netPayout = numAmount - tax;
@@ -39,7 +39,7 @@ const Withdrawal = () => {
         <div className="rounded-xl border border-border card-gradient p-3 mb-4">
           <div className="flex items-center justify-between">
             <span className="text-xs text-muted-foreground">Available Balance</span>
-            <span className="text-sm font-bold text-highlight">{balance.toLocaleString()} CDF</span>
+            <span className="text-sm font-bold text-highlight">${balance.toLocaleString()}</span>
           </div>
         </div>
 
@@ -81,10 +81,10 @@ const Withdrawal = () => {
                 </div>
 
                 <div className="rounded-2xl border border-border card-gradient p-4">
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Withdrawal Amount (CDF)</label>
-                  <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="50,000"
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Withdrawal Amount (USD)</label>
+                  <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="500"
                     className="w-full px-4 py-3 rounded-xl bg-card-elevated border border-border text-lg font-bold text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary text-center" />
-                  <p className="text-[9px] text-muted-foreground mt-2">Minimum withdrawal: 5,000 CDF • Maximum: 1,000,000 CDF</p>
+                  <p className="text-[9px] text-muted-foreground mt-2">Minimum withdrawal: $50 • Maximum: $10,000</p>
                 </div>
 
                 {numAmount > 0 && (
@@ -96,15 +96,15 @@ const Withdrawal = () => {
                     <div className="space-y-1.5">
                       <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">Requested amount</span>
-                        <span className="font-medium">{numAmount.toLocaleString()} CDF</span>
+                        <span className="font-medium">${numAmount.toLocaleString()}</span>
                       </div>
                       <div className="flex justify-between text-xs">
                         <span className="text-muted-foreground">Winnings tax (10%)</span>
-                        <span className="font-medium text-destructive">-{tax.toLocaleString()} CDF</span>
+                        <span className="font-medium text-destructive">-${tax.toLocaleString()}</span>
                       </div>
                       <div className="border-t border-border pt-1.5 flex justify-between text-sm">
                         <span className="font-bold">Net amount</span>
-                        <span className="font-bold text-highlight">{netPayout.toLocaleString()} CDF</span>
+                        <span className="font-bold text-highlight">${netPayout.toLocaleString()}</span>
                       </div>
                     </div>
                   </div>
@@ -126,9 +126,9 @@ const Withdrawal = () => {
                 {[
                   { label: "Provider", value: providers.find((p) => p.id === selectedProvider)?.name },
                   { label: "Number", value: `+243 ${phone}` },
-                  { label: "Gross amount", value: `${numAmount.toLocaleString()} CDF` },
-                  { label: "Tax (10%)", value: `-${tax.toLocaleString()} CDF`, red: true },
-                  { label: "Net amount", value: `${netPayout.toLocaleString()} CDF`, bold: true },
+                  { label: "Gross amount", value: `$${numAmount.toLocaleString()}` },
+                  { label: "Tax (10%)", value: `-$${tax.toLocaleString()}`, red: true },
+                  { label: "Net amount", value: `$${netPayout.toLocaleString()}`, bold: true },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center justify-between py-2 border-b border-border last:border-0">
                     <span className="text-xs text-muted-foreground">{item.label}</span>
@@ -153,7 +153,7 @@ const Withdrawal = () => {
               <CheckCircle size={32} className="text-success" />
             </div>
             <h3 className="text-lg font-bold">Withdrawal in Progress!</h3>
-            <p className="text-xs text-muted-foreground">You will receive {netPayout.toLocaleString()} CDF on your {providers.find((p) => p.id === selectedProvider)?.name} account</p>
+            <p className="text-xs text-muted-foreground">You will receive ${netPayout.toLocaleString()} on your {providers.find((p) => p.id === selectedProvider)?.name} account</p>
             <p className="text-[10px] text-muted-foreground">Estimated time: 5-30 minutes</p>
             <Link to="/account" className="block w-full py-3 rounded-xl border border-border bg-card-elevated text-sm font-medium text-center">
               Back to Account

@@ -10,8 +10,8 @@ import orangeLogo from "@/assets/orange.svg";
 import africellLogo from "@/assets/africell.png";
 
 const activeBets = [
-  { match: "TP Mazembe vs AS Vita Club", pick: "TP Mazembe (1)", odds: 1.85, stake: 10000, status: "live", time: "67'" },
-  { match: "RD Congo vs Zambie", pick: "RD Congo (1)", odds: 1.95, stake: 5000, status: "upcoming", time: "SAM 17:00" },
+  { match: "TP Mazembe vs AS Vita Club", pick: "TP Mazembe (1)", odds: 1.85, stake: 100, status: "live", time: "67'" },
+  { match: "DR Congo vs Zambia", pick: "DR Congo (1)", odds: 1.95, stake: 50, status: "upcoming", time: "SAT 5:00 PM" },
 ];
 
 const betSlips = [
@@ -19,33 +19,33 @@ const betSlips = [
     user: "KinshasaBet",
     avatar: "KB",
     slug: "kinshasabet",
-    title: "Combi 3 Sélections",
-    status: "GAGNÉ",
+    title: "Combo 3 Selections",
+    status: "WON",
     statusColor: "bg-success text-success-foreground",
-    wins: "3 sur 3",
+    wins: "3 of 3",
     odds: "4.50x",
     picks: [
-      { name: "V. Osimhen", team: "TP Mazembe", match: "vs. AS Vita - AUJOURD'HUI", stat: "Buts", value: "0.5", badge: "TPM", badgeColor: "bg-primary", status: "won", matchId: 501, fullMatch: "TP Mazembe vs AS Vita", pick: "V. Osimhen +0.5 Buts", pickOdds: 1.75, league: "Linafoot" },
-      { name: "C. Bakambu", team: "RD Congo", match: "vs. Zambie - DEMAIN", stat: "Tirs", value: "2.5", badge: "RDC", badgeColor: "bg-highlight", status: "won", matchId: 502, fullMatch: "RD Congo vs Zambie", pick: "C. Bakambu +2.5 Tirs", pickOdds: 1.90, league: "Éliminatoires CAN" },
+      { name: "V. Osimhen", team: "TP Mazembe", match: "vs. AS Vita - TODAY", stat: "Goals", value: "0.5", badge: "TPM", badgeColor: "bg-primary", status: "won", matchId: 501, fullMatch: "TP Mazembe vs AS Vita", pick: "V. Osimhen +0.5 Goals", pickOdds: 1.75, league: "Linafoot" },
+      { name: "C. Bakambu", team: "DR Congo", match: "vs. Zambia - TOMORROW", stat: "Shots", value: "2.5", badge: "RDC", badgeColor: "bg-highlight", status: "won", matchId: 502, fullMatch: "DR Congo vs Zambia", pick: "C. Bakambu +2.5 Shots", pickOdds: 1.90, league: "AFCON Qualifiers" },
     ],
-    amount: "5 000 CDF",
-    payout: "22 500 CDF",
+    amount: "$50",
+    payout: "$225",
   },
   {
     user: "LubumParieur",
     avatar: "LP",
     slug: "lubumparieur",
-    title: "Combi 2 Sélections",
-    status: "PERDU",
+    title: "Combo 2 Selections",
+    status: "LOST",
     statusColor: "bg-destructive text-destructive-foreground",
-    wins: "1 sur 2",
+    wins: "1 of 2",
     odds: "2.00x",
     picks: [
-      { name: "M. Chancel", team: "TP Mazembe", match: "vs DCMP - AUJOURD'HUI", stat: "Tacles", value: "1.5", badge: "TPM", badgeColor: "bg-primary", status: "lost", matchId: 503, fullMatch: "TP Mazembe vs DCMP", pick: "M. Chancel +1.5 Tacles", pickOdds: 2.10, league: "Linafoot" },
-      { name: "Y. Mulumba", team: "AS Vita", match: "vs. Lupopo - HIER", stat: "Passes", value: "3.5", badge: "ASV", badgeColor: "bg-accent", status: "won", matchId: 504, fullMatch: "AS Vita vs Lupopo", pick: "Y. Mulumba +3.5 Passes", pickOdds: 1.65, league: "Linafoot" },
+      { name: "M. Chancel", team: "TP Mazembe", match: "vs DCMP - TODAY", stat: "Tackles", value: "1.5", badge: "TPM", badgeColor: "bg-primary", status: "lost", matchId: 503, fullMatch: "TP Mazembe vs DCMP", pick: "M. Chancel +1.5 Tackles", pickOdds: 2.10, league: "Linafoot" },
+      { name: "Y. Mulumba", team: "AS Vita", match: "vs. Lupopo - YESTERDAY", stat: "Passes", value: "3.5", badge: "ASV", badgeColor: "bg-accent", status: "won", matchId: 504, fullMatch: "AS Vita vs Lupopo", pick: "Y. Mulumba +3.5 Passes", pickOdds: 1.65, league: "Linafoot" },
     ],
-    amount: "10 000 CDF",
-    payout: "0 CDF",
+    amount: "$100",
+    payout: "$0",
   },
 ];
 
@@ -109,8 +109,8 @@ const Account = () => {
         <div className="mt-3 rounded-2xl p-3 border border-border card-gradient">
           <div className="grid grid-cols-3 gap-2">
             {[
-              { label: "Balance", value: "125,000 CDF" },
-              { label: "Bonus", value: "37,500 CDF" },
+              { label: "Balance", value: "$1,250" },
+              { label: "Bonus", value: "$375" },
               { label: "Points", value: "1,240" },
             ].map((stat) => (
               <div key={stat.label} className="text-center p-2 rounded-xl bg-card-elevated border border-border">
@@ -136,7 +136,7 @@ const Account = () => {
           <div className="flex items-center gap-2 mb-2">
             <Smartphone size={16} className="text-highlight" />
             <span className="text-xs font-bold">Mobile Money</span>
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-success/20 text-success ml-auto">Actif</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-success/20 text-success ml-auto">Active</span>
           </div>
           <div className="flex items-center gap-2">
             {[
@@ -239,7 +239,7 @@ const Account = () => {
                   <span className="text-xs text-primary font-medium">{bet.pick}</span>
                   <span className="text-xs text-highlight font-bold ml-2">@ {bet.odds.toFixed(2)}</span>
                 </div>
-                <span className="text-xs font-bold">{bet.stake.toLocaleString()} CDF</span>
+                <span className="text-xs font-bold">${bet.stake.toLocaleString()}</span>
               </div>
             </div>
           ))}
@@ -320,12 +320,12 @@ const Account = () => {
                 {/* Amount */}
                 <div className="flex items-center justify-between mt-3 pt-3 border-t border-border">
                   <div className="flex items-center gap-1">
-                    <span className="text-[10px] text-muted-foreground">MISE</span>
+                    <span className="text-[10px] text-muted-foreground">STAKE</span>
                     <span className="text-sm font-bold">{slip.amount}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <span className="text-sm font-bold">{slip.payout}</span>
-                    <span className="text-[10px] text-muted-foreground">GAIN</span>
+                    <span className="text-[10px] text-muted-foreground">WIN</span>
                   </div>
                 </div>
 

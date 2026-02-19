@@ -14,7 +14,7 @@ const providers = [
   { id: "africell", name: "Africell Money", logo: africellLogo, prefix: "090/091" },
 ];
 
-const quickAmounts = [5000, 10000, 20000, 50000, 100000];
+const quickAmounts = [50, 100, 200, 500, 1000];
 
 const Deposit = () => {
   const [selectedProvider, setSelectedProvider] = useState<string | null>(null);
@@ -79,7 +79,7 @@ const Deposit = () => {
                 </div>
 
                 <div className="rounded-2xl border border-border card-gradient p-4">
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Amount (CDF)</label>
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Amount (USD)</label>
                   <input
                     type="number"
                     value={amount}
@@ -94,11 +94,11 @@ const Deposit = () => {
                         onClick={() => setAmount(String(a))}
                         className="flex-shrink-0 px-3 py-1.5 rounded-lg bg-card-elevated border border-border text-[10px] font-bold hover:border-highlight/40 transition-all"
                       >
-                        {a.toLocaleString()} CDF
+                        ${a.toLocaleString()}
                       </button>
                     ))}
                   </div>
-                  <p className="text-[9px] text-muted-foreground mt-2">Minimum deposit: 1,000 CDF • Maximum: 500,000 CDF</p>
+                  <p className="text-[9px] text-muted-foreground mt-2">Minimum deposit: $10 • Maximum: $5,000</p>
                 </div>
 
                 <button onClick={() => setStep("confirm")} className="w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange">
@@ -117,7 +117,7 @@ const Deposit = () => {
                 {[
                   { label: "Provider", value: providers.find((p) => p.id === selectedProvider)?.name },
                   { label: "Number", value: `+243 ${phone}` },
-                  { label: "Amount", value: `${Number(amount).toLocaleString()} CDF` },
+                  { label: "Amount", value: `$${Number(amount).toLocaleString()}` },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center justify-between py-2 border-b border-border last:border-0">
                     <span className="text-xs text-muted-foreground">{item.label}</span>
@@ -149,7 +149,7 @@ const Deposit = () => {
             </div>
             <h3 className="text-lg font-bold">Deposit Initiated!</h3>
             <p className="text-xs text-muted-foreground">Confirm the payment on your phone via {providers.find((p) => p.id === selectedProvider)?.name}</p>
-            <p className="text-lg font-bold text-highlight">{Number(amount).toLocaleString()} CDF</p>
+            <p className="text-lg font-bold text-highlight">${Number(amount).toLocaleString()}</p>
             <Link to="/account" className="block w-full py-3 rounded-xl border border-border bg-card-elevated text-sm font-medium text-center">
               Back to Account
             </Link>
