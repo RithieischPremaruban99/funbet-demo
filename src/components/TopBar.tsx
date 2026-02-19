@@ -11,8 +11,9 @@ const TopBar = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-border">
         <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
-          <Link to="/">
+          <Link to="/" className="flex items-center gap-2">
             <img src={triveltaLogo} alt="Trivelta" className="h-7 object-contain" />
+            <span className="text-base font-bold text-white tracking-tight">Trivelta</span>
           </Link>
           <div className="flex items-center gap-2">
             <button
