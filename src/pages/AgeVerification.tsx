@@ -54,7 +54,7 @@ const AgeVerification = () => {
 
         <h1 className="text-xl font-bold mb-2">Age Verification</h1>
         <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
-          In accordance with DRC legislation, gambling is
+          In accordance with applicable legislation, gambling is
           strictly reserved for persons aged{" "}
           <span className="text-primary font-bold">18 and over</span>.
         </p>
@@ -91,7 +91,7 @@ const AgeVerification = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.6 }}
       >
-        <p className="text-muted-foreground/50 text-xs">License N°2024/GJ/001 — DRC</p>
+        <p className="text-muted-foreground/50 text-xs">License N°2024/GJ/001</p>
         <p className="text-muted-foreground/50 text-xs mt-1">🔞 Responsible gaming | gamble in moderation</p>
       </motion.div>
     </motion.div>
