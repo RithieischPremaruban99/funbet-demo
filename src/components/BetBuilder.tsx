@@ -158,11 +158,14 @@ const calcOdds = (stat: string, condition: Condition, value: number): number => 
 };
 
 type Step = "match" | "player" | "build";
+type SportFilter = "All" | "Football" | "Basketball" | "Tennis";
+const sportFilters: SportFilter[] = ["All", "Football", "Basketball", "Tennis"];
 
 const BetBuilder = () => {
   const { toggleSelection, isSelected } = useBetSlip();
   const [step, setStep] = useState<Step>("match");
   const [search, setSearch] = useState("");
+  const [sportFilter, setSportFilter] = useState<SportFilter>("All");
   const [build, setBuild] = useState<PropBuild>({
     player: null,
     match: null,
@@ -219,9 +222,28 @@ const BetBuilder = () => {
           <p className="text-[10px] text-muted-foreground">Build your own custom player props. Choose a match to start.</p>
         </div>
 
+        {/* Sport Filter */}
+        <div className="flex gap-1.5">
+          {sportFilters.map((sf) => (
+            <button
+              key={sf}
+              onClick={() => setSportFilter(sf)}
+              className={`px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all ${
+                sportFilter === sf
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-card border border-border text-muted-foreground hover:border-primary/40"
+              }`}
+            >
+              {sf === "All" ? "🔥 All" : sf === "Football" ? "⚽ Football" : sf === "Basketball" ? "🏀 Basketball" : "🎾 Tennis"}
+            </button>
+          ))}
+        </div>
+
         {/* Match List */}
         <div className="space-y-2">
-          {availableMatches.map((m) => (
+          {availableMatches
+            .filter((m) => sportFilter === "All" || m.sport === sportFilter)
+            .map((m) => (
             <motion.button
               key={m.matchId}
               whileTap={{ scale: 0.97 }}
