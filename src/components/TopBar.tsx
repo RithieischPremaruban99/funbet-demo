@@ -15,8 +15,10 @@ const TopBar = () => {
             <img
               src={triveltaLogo}
               alt="Trivelta"
-              className="h-6 object-contain"
-              style={{ filter: "brightness(0) saturate(100%) invert(22%) sepia(85%) saturate(1800%) hue-rotate(200deg) brightness(95%) contrast(95%) drop-shadow(0 0 10px hsl(212, 80%, 42%, 0.6))" }}
+              className="h-7 object-contain"
+              style={{ 
+                filter: "brightness(0) saturate(100%) invert(15%) sepia(90%) saturate(2200%) hue-rotate(205deg) brightness(75%) contrast(110%) drop-shadow(0 0 18px hsl(212, 85%, 38%, 0.7)) drop-shadow(0 0 40px hsl(212, 80%, 30%, 0.4)) drop-shadow(0 0 6px hsl(212, 90%, 50%, 0.5))" 
+              }}
             />
           </Link>
           <div className="flex items-center gap-2">
