@@ -74,7 +74,7 @@ const Splash = () => {
         transition={{ delay: 1.2, duration: 0.8 }}
         className="absolute bottom-12 text-center"
       >
-        <p className="text-muted-foreground/50 text-xs">License N°2024/GJ/001 — DRC</p>
+        <p className="text-muted-foreground/50 text-xs">License N°2024/GJ/001</p>
         <p className="text-muted-foreground/50 text-xs mt-1">🔞 Restricted to persons aged 18 and over</p>
       </motion.div>
     </motion.div>
