@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import soccabetLogo from "@/assets/soccabet-logo.png";
 
 const Splash = () => {
   const navigate = useNavigate();
@@ -47,20 +46,33 @@ const Splash = () => {
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
 
-      {/* Logo image */}
+      {/* Text Logo */}
       <motion.div
         initial={{ opacity: 0, scale: 0.6, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 mb-4"
+        className="relative z-10 mb-2 flex flex-col items-center"
       >
-        <motion.img
-          src={soccabetLogo}
-          alt="Soccabet"
-          className="w-72 h-auto drop-shadow-[0_4px_30px_hsla(45,90%,50%,0.25)]"
-          animate={{ y: [0, -6, 0] }}
+        <motion.div
+          className="flex items-baseline gap-1"
+          animate={{ y: [0, -4, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        />
+        >
+          <span className="text-5xl font-black tracking-tight text-white drop-shadow-[0_2px_20px_rgba(255,255,255,0.1)]"
+            style={{ textShadow: "0 2px 30px rgba(255,255,255,0.08)" }}>
+            S
+          </span>
+          {/* Soccer ball as O */}
+          <span className="text-4xl drop-shadow-[0_2px_15px_rgba(255,255,255,0.15)]">⚽</span>
+          <span className="text-5xl font-black tracking-tight text-white drop-shadow-[0_2px_20px_rgba(255,255,255,0.1)]"
+            style={{ textShadow: "0 2px 30px rgba(255,255,255,0.08)" }}>
+            CCA
+          </span>
+          <span className="text-5xl font-black tracking-tight drop-shadow-[0_2px_25px_hsla(45,95%,50%,0.4)]"
+            style={{ color: "hsl(45,95%,50%)", textShadow: "0 0 40px hsla(45,95%,50%,0.3), 0 2px 15px hsla(45,95%,50%,0.2)" }}>
+            BET
+          </span>
+        </motion.div>
       </motion.div>
 
       {/* Tagline */}
@@ -68,7 +80,8 @@ const Splash = () => {
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 text-xs font-bold tracking-[0.35em] uppercase text-accent/70 mb-10"
+        className="relative z-10 text-[10px] font-bold tracking-[0.35em] uppercase mb-12"
+        style={{ color: "hsla(45,80%,60%,0.5)" }}
       >
         Play • Win • Repeat
       </motion.p>
@@ -95,10 +108,11 @@ const Splash = () => {
       {[...Array(5)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-1 h-1 rounded-full bg-accent/20"
+          className="absolute w-1 h-1 rounded-full"
           style={{
             left: `${20 + i * 15}%`,
             top: `${30 + (i % 3) * 20}%`,
+            backgroundColor: "hsla(45,90%,55%,0.2)",
           }}
           animate={{
             y: [0, -30, 0],
