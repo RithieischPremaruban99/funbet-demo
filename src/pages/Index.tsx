@@ -321,7 +321,7 @@ const Index = () => {
       <section className="px-4 mt-2">
         <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-primary/10 border border-primary/20">
           <Shield size={14} className="text-primary" />
-          <span className="text-[10px] text-primary font-semibold">18+ | Responsible Gaming | License N°2024/GJ/001</span>
+          <span className="text-[10px] text-primary font-semibold">18+ | Responsible Gaming</span>
         </div>
       </section>
 
