@@ -16,7 +16,7 @@ const TopBar = () => {
               src={triveltaLogo}
               alt="Trivelta"
               className="h-7 object-contain"
-              style={{ filter: "brightness(0) saturate(100%) invert(18%) sepia(60%) saturate(1500%) hue-rotate(200deg) brightness(80%) contrast(100%)" }}
+              style={{ filter: "brightness(0) saturate(100%) invert(25%) sepia(60%) saturate(1500%) hue-rotate(200deg) brightness(90%) contrast(100%)" }}
             />
           </Link>
           <div className="flex items-center gap-2">
