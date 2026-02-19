@@ -220,6 +220,27 @@ const BetSlip = () => {
                         <span className="text-muted-foreground">Multiplier</span>
                         <span className="font-bold text-highlight">×{flexMultiplier.toFixed(2)}</span>
                       </div>
+                      {/* Payout Range */}
+                      <div className="mt-2 pt-2 border-t border-border space-y-1">
+                        <p className="text-[10px] font-semibold text-muted-foreground mb-1">Payout Range</p>
+                        {Array.from({ length: flexCount + 1 }, (_, i) => {
+                          const wrong = i;
+                          const correct = selections.length - wrong;
+                          const mult = getFlexMultiplier(selections.length, wrong);
+                          const payout = Math.round(numStake * totalOdds * mult);
+                          const payoutAfterTax = Math.round(payout * 0.9);
+                          return (
+                            <div key={wrong} className="flex justify-between text-[10px]">
+                              <span className="text-muted-foreground">
+                                {correct}/{selections.length} correct {wrong === 0 && "✨"}
+                              </span>
+                              <span className={`font-bold ${wrong === 0 ? "text-success" : wrong === flexCount ? "text-highlight" : "text-foreground"}`}>
+                                ${payoutAfterTax.toLocaleString()}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
                       <p className="text-[9px] text-muted-foreground mt-1.5">⚡ Lower payout but better chances of winning</p>
                     </div>
                   </div>
