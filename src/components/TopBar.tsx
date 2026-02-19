@@ -1,7 +1,6 @@
 import { Bell, Search, Wallet } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import soccabetLogo from "@/assets/soccabet-logo.png";
 import GlobalSearch from "@/components/GlobalSearch";
 
 const TopBar = () => {
@@ -9,16 +8,17 @@ const TopBar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 glass-effect border-b border-border">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-[hsl(140,30%,8%)] to-[hsl(140,25%,6%)] border-b border-border/60">
         <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
-          <Link to="/" className="flex items-center gap-2">
-            <img
-              src={soccabetLogo}
-              alt="Soccabet"
-              className="h-8 object-contain"
-            />
+          <Link to="/" className="flex items-center gap-1.5">
+            {/* Inline SVG-style text logo for crisp rendering */}
+            <span className="text-lg font-black tracking-tight leading-none">
+              <span className="text-white">SOCCA</span>
+              <span className="text-accent">BET</span>
+            </span>
+            <span className="text-accent text-lg">⚽</span>
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <button
               onClick={() => setSearchOpen(true)}
               className="p-2 rounded-xl hover:bg-secondary transition-colors"
@@ -27,7 +27,7 @@ const TopBar = () => {
             </button>
             <button className="p-2 rounded-xl hover:bg-secondary transition-colors relative">
               <Bell size={18} className="text-muted-foreground" />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary animate-pulse-live" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-accent animate-pulse-live" />
             </button>
             <Link to="/deposit" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl orange-gradient text-highlight-foreground text-xs font-bold shadow-lg glow-orange">
               <Wallet size={14} />

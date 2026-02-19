@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import soccabetLogo from "@/assets/soccabet-logo.png";
 
 const AgeVerification = () => {
   const navigate = useNavigate();
@@ -21,24 +20,34 @@ const AgeVerification = () => {
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background px-6"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-[hsl(130,50%,18%)] via-[hsl(140,40%,12%)] to-[hsl(140,30%,6%)] px-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: exiting ? 0 : 1, y: exiting ? -20 : 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
     >
-      <div className="absolute w-48 h-48 rounded-full bg-primary/8 blur-[80px]" />
+      {/* Subtle field pattern */}
+      <div className="absolute inset-0 opacity-[0.04]" style={{
+        backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 40px, hsl(120,40%,30%) 40px, hsl(120,40%,30%) 41px)`,
+      }} />
 
-      <motion.img
-        src={soccabetLogo}
-        alt="Soccabet"
-        className="w-48 h-auto mb-8 relative z-10"
+      <div className="absolute w-48 h-48 rounded-full bg-accent/8 blur-[80px]" />
+
+      {/* Text logo */}
+      <motion.div
+        className="mb-8 relative z-10 flex items-center gap-2"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      />
+      >
+        <span className="text-3xl font-black tracking-tight">
+          <span className="text-white">SOCCA</span>
+          <span className="text-accent">BET</span>
+        </span>
+        <span className="text-2xl">⚽</span>
+      </motion.div>
 
       <motion.div
-        className="w-full max-w-sm rounded-2xl border border-border bg-card p-6 text-center relative z-10"
+        className="w-full max-w-sm rounded-2xl border border-border bg-card/80 backdrop-blur-sm p-6 text-center relative z-10"
         initial={{ opacity: 0, y: 30, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -90,8 +99,8 @@ const AgeVerification = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.6 }}
       >
-        <p className="text-muted-foreground/50 text-xs">Licensed & Regulated</p>
-        <p className="text-muted-foreground/50 text-xs mt-1">🔞 Gamble Responsibly</p>
+        <p className="text-muted-foreground/40 text-xs">Licensed & Regulated</p>
+        <p className="text-muted-foreground/40 text-xs mt-1">🔞 Gamble Responsibly</p>
       </motion.div>
     </motion.div>
   );
