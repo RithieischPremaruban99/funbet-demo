@@ -16,7 +16,7 @@ const categories = [
 const liveMatches = [
   {
     id: 1,
-    league: "Ligue 1 - Journée 24",
+    league: "Ligue 1 - Matchday 24",
     time: "67'",
     home: { name: "Paris SG", abbr: "PSG" },
     away: { name: "Olympique Lyonnais", abbr: "OL" },
@@ -40,7 +40,7 @@ const liveMatches = [
   },
   {
     id: 2,
-    league: "Ligue 1 - Journée 24",
+    league: "Ligue 1 - Matchday 24",
     time: "52'",
     home: { name: "RC Lens", abbr: "LENS" },
     away: { name: "AS Monaco", abbr: "ASM" },
@@ -64,7 +64,7 @@ const liveMatches = [
   },
   {
     id: 3,
-    league: "Ligue 1 - Journée 24",
+    league: "Ligue 1 - Matchday 24",
     time: "38'",
     home: { name: "LOSC Lille", abbr: "LOSC" },
     away: { name: "OGC Nice", abbr: "NICE" },
@@ -139,7 +139,7 @@ const upcomingMatches = [
   },
   {
     id: 6,
-    league: "Ligue 1 - Journée 25",
+    league: "Ligue 1 - Matchday 25",
     date: "17:00",
     dateLabel: "SAT",
     home: { name: "Olympique Marseille", abbr: "OM" },

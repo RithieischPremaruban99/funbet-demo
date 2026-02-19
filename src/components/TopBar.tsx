@@ -27,7 +27,7 @@ const TopBar = () => {
             </button>
             <Link to="/deposit" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl orange-gradient text-highlight-foreground text-xs font-bold shadow-lg glow-orange">
               <Wallet size={14} />
-              <span>125K CDF</span>
+              <span>$1,250</span>
             </Link>
           </div>
         </div>
