@@ -34,8 +34,8 @@ const Register = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
-        <h1 className="text-xl font-bold">Créer un compte</h1>
-        <p className="text-xs text-muted-foreground mt-1">Inscription en 2 étapes</p>
+        <h1 className="text-xl font-bold">Create Account</h1>
+        <p className="text-xs text-muted-foreground mt-1">Registration in 2 steps</p>
 
         {/* Progress */}
         <div className="flex items-center gap-2 mt-4">
@@ -51,12 +51,10 @@ const Register = () => {
                 {step > s ? <CheckCircle size={14} /> : s}
               </motion.div>
               <span className="text-[10px] font-medium text-muted-foreground">
-                {s === 1 ? "Informations" : "Vérification"}
+                {s === 1 ? "Information" : "Verification"}
               </span>
               {s < 2 && (
-                <motion.div
-                  className="flex-1 h-0.5 rounded bg-border overflow-hidden"
-                >
+                <motion.div className="flex-1 h-0.5 rounded bg-border overflow-hidden">
                   <motion.div
                     className="h-full bg-primary"
                     initial={{ width: "0%" }}
@@ -73,21 +71,21 @@ const Register = () => {
           {step === 1 && (
             <div className="mt-6 space-y-4">
               <div>
-                <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Nom complet</label>
+                <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Full Name</label>
                 <div className="relative">
                   <User size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <input
                     type="text"
                     value={form.fullName}
                     onChange={(e) => updateForm("fullName", e.target.value)}
-                    placeholder="Jean-Pierre Kabongo"
+                    placeholder="John Doe"
                     className="w-full pl-10 pr-4 py-3 rounded-xl bg-card border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary focus:border-primary/50 transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Numéro de téléphone</label>
+                <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Phone Number</label>
                 <div className="relative">
                   <Phone size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <span className="absolute left-9 top-1/2 -translate-y-1/2 text-sm text-muted-foreground font-medium">+243</span>
@@ -102,7 +100,7 @@ const Register = () => {
               </div>
 
               <div>
-                <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Date de naissance</label>
+                <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Date of Birth</label>
                 <div className="relative">
                   <Calendar size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <input
@@ -112,18 +110,18 @@ const Register = () => {
                     className="w-full pl-10 pr-4 py-3 rounded-xl bg-card border border-border text-sm text-foreground outline-none focus:ring-1 focus:ring-primary focus:border-primary/50 transition-all"
                   />
                 </div>
-                <p className="text-[10px] text-muted-foreground mt-1">Vous devez avoir au moins 18 ans</p>
+                <p className="text-[10px] text-muted-foreground mt-1">You must be at least 18 years old</p>
               </div>
 
               <div>
-                <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Mot de passe</label>
+                <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Password</label>
                 <div className="relative">
                   <Lock size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <input
                     type={showPassword ? "text" : "password"}
                     value={form.password}
                     onChange={(e) => updateForm("password", e.target.value)}
-                    placeholder="Min. 8 caractères"
+                    placeholder="Min. 8 characters"
                     className="w-full pl-10 pr-12 py-3 rounded-xl bg-card border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary focus:border-primary/50 transition-all"
                   />
                   <button onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
@@ -136,12 +134,12 @@ const Register = () => {
                 <label className="flex items-start gap-2 cursor-pointer">
                   <input type="checkbox" checked={form.acceptTerms} onChange={(e) => updateForm("acceptTerms", e.target.checked)} className="mt-0.5 accent-primary" />
                   <span className="text-[11px] text-muted-foreground">
-                    J'accepte les <Link to="/terms" className="text-primary">conditions générales</Link> et la <Link to="/privacy" className="text-primary">politique de confidentialité</Link>
+                    I accept the <Link to="/terms" className="text-primary">terms & conditions</Link> and <Link to="/privacy" className="text-primary">privacy policy</Link>
                   </span>
                 </label>
                 <label className="flex items-start gap-2 cursor-pointer">
                   <input type="checkbox" checked={form.acceptAge} onChange={(e) => updateForm("acceptAge", e.target.checked)} className="mt-0.5 accent-primary" />
-                  <span className="text-[11px] text-muted-foreground">Je confirme avoir 18 ans ou plus</span>
+                  <span className="text-[11px] text-muted-foreground">I confirm I am 18 years or older</span>
                 </label>
               </div>
 
@@ -150,7 +148,7 @@ const Register = () => {
                 className="w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange"
                 whileTap={{ scale: 0.97 }}
               >
-                Continuer
+                Continue
               </motion.button>
             </div>
           )}
@@ -165,9 +163,9 @@ const Register = () => {
                 >
                   <Phone size={32} className="mx-auto text-highlight mb-3" />
                 </motion.div>
-                <h3 className="text-sm font-bold">Vérification SMS</h3>
+                <h3 className="text-sm font-bold">SMS Verification</h3>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Un code à 6 chiffres a été envoyé au <span className="text-foreground font-medium">+243 {form.phone || "XXX XXX XXX"}</span>
+                  A 6-digit code has been sent to <span className="text-foreground font-medium">+243 {form.phone || "XXX XXX XXX"}</span>
                 </p>
 
                 <div className="flex gap-2 justify-center mt-4">
@@ -184,31 +182,31 @@ const Register = () => {
                   ))}
                 </div>
 
-                <button className="text-xs text-primary font-medium mt-4">Renvoyer le code (59s)</button>
+                <button className="text-xs text-primary font-medium mt-4">Resend code (59s)</button>
               </div>
 
               <motion.button
                 className="w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange"
                 whileTap={{ scale: 0.97 }}
               >
-                Vérifier et créer mon compte
+                Verify and Create Account
               </motion.button>
 
               <button onClick={() => goTo(1)} className="w-full py-2 text-xs text-muted-foreground">
-                ← Retour
+                ← Back
               </button>
             </div>
           )}
         </StepTransition>
 
         <p className="text-center text-xs text-muted-foreground mt-4">
-          Déjà un compte ?{" "}
-          <Link to="/login" className="text-primary font-semibold">Se connecter</Link>
+          Already have an account?{" "}
+          <Link to="/login" className="text-primary font-semibold">Log In</Link>
         </p>
 
         <div className="mt-6 mb-6 flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/10 border border-primary/20">
           <Shield size={14} className="text-primary flex-shrink-0" />
-          <span className="text-[10px] text-primary">18+ | Inscription obligatoire - Loi RDC sur les jeux d'argent</span>
+          <span className="text-[10px] text-primary">18+ | Registration required - DRC Gambling Law</span>
         </div>
       </motion.section>
     </MobileLayout>

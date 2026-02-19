@@ -4,20 +4,20 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const mockTransactions = [
-  { id: 1, type: "deposit", provider: "M-Pesa", amount: 50000, date: "18 fév. 14:32", status: "success" },
-  { id: 2, type: "bet", provider: "Pari - TP Mazembe vs Vita", amount: -10000, date: "18 fév. 14:45", status: "pending" },
-  { id: 3, type: "withdrawal", provider: "Airtel Money", amount: -30000, tax: 3000, netAmount: -27000, date: "17 fév. 10:15", status: "success" },
-  { id: 4, type: "win", provider: "Gain - Linafoot Combi", amount: 45000, date: "16 fév. 21:00", status: "success" },
-  { id: 5, type: "deposit", provider: "Orange Money", amount: 25000, date: "15 fév. 09:30", status: "success" },
-  { id: 6, type: "withdrawal", provider: "M-Pesa", amount: -20000, tax: 2000, netAmount: -18000, date: "14 fév. 16:45", status: "success" },
-  { id: 7, type: "bet", provider: "Pari - RDC vs Zambie", amount: -5000, date: "14 fév. 12:00", status: "lost" },
+  { id: 1, type: "deposit", provider: "M-Pesa", amount: 50000, date: "Feb 18, 14:32", status: "success" },
+  { id: 2, type: "bet", provider: "Bet - TP Mazembe vs Vita", amount: -10000, date: "Feb 18, 14:45", status: "pending" },
+  { id: 3, type: "withdrawal", provider: "Airtel Money", amount: -30000, tax: 3000, netAmount: -27000, date: "Feb 17, 10:15", status: "success" },
+  { id: 4, type: "win", provider: "Win - Linafoot Combo", amount: 45000, date: "Feb 16, 21:00", status: "success" },
+  { id: 5, type: "deposit", provider: "Orange Money", amount: 25000, date: "Feb 15, 09:30", status: "success" },
+  { id: 6, type: "withdrawal", provider: "M-Pesa", amount: -20000, tax: 2000, netAmount: -18000, date: "Feb 14, 16:45", status: "success" },
+  { id: 7, type: "bet", provider: "Bet - DRC vs Zambia", amount: -5000, date: "Feb 14, 12:00", status: "lost" },
 ];
 
-const typeLabels: Record<string, string> = { deposit: "Dépôt", withdrawal: "Retrait", bet: "Pari", win: "Gain" };
+const typeLabels: Record<string, string> = { deposit: "Deposit", withdrawal: "Withdrawal", bet: "Bet", win: "Win" };
 const statusLabels: Record<string, { label: string; color: string }> = {
-  success: { label: "Réussi", color: "text-success" },
-  pending: { label: "En cours", color: "text-highlight" },
-  lost: { label: "Perdu", color: "text-destructive" },
+  success: { label: "Success", color: "text-success" },
+  pending: { label: "Pending", color: "text-highlight" },
+  lost: { label: "Lost", color: "text-destructive" },
 };
 
 const Transactions = () => {
@@ -32,17 +32,17 @@ const Transactions = () => {
           <Link to="/account" className="p-2 rounded-xl hover:bg-secondary transition-colors">
             <ArrowLeft size={18} className="text-muted-foreground" />
           </Link>
-          <h1 className="text-lg font-bold">Historique</h1>
+          <h1 className="text-lg font-bold">History</h1>
         </div>
 
         {/* Filters */}
         <div className="flex gap-2 overflow-x-auto hide-scrollbar mb-4">
           {[
-            { key: "all", label: "Tout" },
-            { key: "deposit", label: "Dépôts" },
-            { key: "withdrawal", label: "Retraits" },
-            { key: "bet", label: "Paris" },
-            { key: "win", label: "Gains" },
+            { key: "all", label: "All" },
+            { key: "deposit", label: "Deposits" },
+            { key: "withdrawal", label: "Withdrawals" },
+            { key: "bet", label: "Bets" },
+            { key: "win", label: "Wins" },
           ].map((f) => (
             <button
               key={f.key}
@@ -79,7 +79,7 @@ const Transactions = () => {
                   </div>
                   {tx.type === "withdrawal" && tx.tax && (
                     <p className="text-[9px] text-muted-foreground mt-0.5">
-                      Taxe 10% : -{tx.tax.toLocaleString()} CDF | Net : {Math.abs(tx.netAmount || 0).toLocaleString()} CDF
+                      Tax 10%: -{tx.tax.toLocaleString()} CDF | Net: {Math.abs(tx.netAmount || 0).toLocaleString()} CDF
                     </p>
                   )}
                 </div>

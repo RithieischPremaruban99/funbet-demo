@@ -86,7 +86,7 @@ const Account = () => {
             <div>
               <h2 className="text-base font-bold">Jean-Pierre K.</h2>
               <div className="flex items-center gap-1.5">
-                <p className="text-xs text-muted-foreground">Kinshasa, RDC • Vérifié ✓</p>
+                <p className="text-xs text-muted-foreground">Kinshasa, DRC • Verified ✓</p>
                 {isProfilePrivate ? (
                   <Lock size={10} className="text-muted-foreground" />
                 ) : (
@@ -109,9 +109,9 @@ const Account = () => {
         <div className="mt-3 rounded-2xl p-3 border border-border card-gradient">
           <div className="grid grid-cols-3 gap-2">
             {[
-              { label: "Solde", value: "125 000 CDF" },
-              { label: "Bonus", value: "37 500 CDF" },
-              { label: "Points", value: "1 240" },
+              { label: "Balance", value: "125,000 CDF" },
+              { label: "Bonus", value: "37,500 CDF" },
+              { label: "Points", value: "1,240" },
             ].map((stat) => (
               <div key={stat.label} className="text-center p-2 rounded-xl bg-card-elevated border border-border">
                 <p className="text-[10px] text-muted-foreground">{stat.label}</p>
@@ -122,11 +122,11 @@ const Account = () => {
           <div className="grid grid-cols-2 gap-2 mt-2">
             <Link to="/deposit" className="orange-gradient py-2.5 rounded-xl text-highlight-foreground text-sm font-bold glow-orange flex items-center justify-center gap-1.5">
               <Wallet size={14} />
-              Déposer
+              Deposit
             </Link>
             <Link to="/withdrawal" className="py-2.5 rounded-xl text-sm font-medium border border-border bg-card-elevated hover:bg-secondary transition-colors flex items-center justify-center gap-1.5">
               <CreditCard size={14} />
-              Retirer
+              Withdraw
             </Link>
           </div>
         </div>
@@ -172,10 +172,10 @@ const Account = () => {
             </div>
             <div className="text-left">
               <p className="text-sm font-medium">
-                {isProfilePrivate ? "Profil privé" : "Profil public"}
+                {isProfilePrivate ? "Private Profile" : "Public Profile"}
               </p>
               <p className="text-[10px] text-muted-foreground">
-                {isProfilePrivate ? "Seuls vos abonnés voient vos paris" : "Tout le monde peut voir votre profil"}
+                {isProfilePrivate ? "Only followers can see your bets" : "Everyone can see your profile"}
               </p>
             </div>
           </div>
@@ -193,7 +193,7 @@ const Account = () => {
       <section className="px-4 mt-3">
         <button className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-primary/30 bg-primary/5 hover:bg-primary/10 transition-colors">
           <Swords size={18} className="text-primary" />
-          <span className="text-sm font-bold text-primary">Défiez vos amis</span>
+          <span className="text-sm font-bold text-primary">Challenge your friends</span>
         </button>
       </section>
 
@@ -201,9 +201,9 @@ const Account = () => {
       <section className="px-4 mt-4">
         <div className="flex border-b border-border">
           {[
-            { key: "bets" as const, label: "Paris actifs" },
-            { key: "friends" as const, label: "Amis" },
-            { key: "explore" as const, label: "Explorer" },
+            { key: "bets" as const, label: "Active Bets" },
+            { key: "friends" as const, label: "Friends" },
+            { key: "explore" as const, label: "Explore" },
           ].map((tab) => (
             <button
               key={tab.key}
@@ -244,12 +244,12 @@ const Account = () => {
             </div>
           ))}
           <Link to="/betslip" className="block text-center text-xs text-primary font-semibold py-2">
-            Voir le coupon →
+            View slip →
           </Link>
           <Link to="/transactions" className="flex items-center justify-between p-3 rounded-xl border border-border card-gradient">
             <div className="flex items-center gap-2">
               <History size={16} className="text-highlight" />
-              <span className="text-sm font-medium">Historique des transactions</span>
+              <span className="text-sm font-medium">Transaction History</span>
             </div>
             <ChevronRight size={16} className="text-muted-foreground" />
           </Link>
@@ -339,9 +339,9 @@ const Account = () => {
                   }`}
                 >
                   {copiedSlip === idx ? (
-                    <><Check size={14} /> Ajouté au coupon!</>
+                    <><Check size={14} /> Added to slip!</>
                   ) : (
-                    <><Copy size={14} /> Copier ce pari</>
+                    <><Copy size={14} /> Copy this bet</>
                   )}
                 </button>
               </div>
@@ -354,12 +354,12 @@ const Account = () => {
       <section className="px-4 mt-4 mb-6 space-y-3">
         <div className="rounded-2xl border border-border overflow-hidden card-gradient divide-y divide-border">
           {[
-            { icon: Shield, label: "Vérification KYC", subtitle: "Documents d'identité", to: "/kyc" },
-            { icon: Users, label: "Parrainage", subtitle: "Invitez vos amis, gagnez des bonus", to: "/account" },
-            { icon: AlertTriangle, label: "Jeu responsable", subtitle: "Limites, auto-exclusion", to: "/responsible-gaming" },
-            { icon: FileText, label: "Conditions générales", subtitle: "CGU et mentions légales", to: "/terms" },
-            { icon: Shield, label: "Confidentialité", subtitle: "Loi 20/017, Code 23/010", to: "/privacy" },
-            { icon: Settings, label: "Paramètres", subtitle: "Langue, notifications", to: "/account" },
+            { icon: Shield, label: "KYC Verification", subtitle: "Identity documents", to: "/kyc" },
+            { icon: Users, label: "Referral", subtitle: "Invite friends, earn bonuses", to: "/account" },
+            { icon: AlertTriangle, label: "Responsible Gaming", subtitle: "Limits, self-exclusion", to: "/responsible-gaming" },
+            { icon: FileText, label: "Terms & Conditions", subtitle: "Legal terms and notices", to: "/terms" },
+            { icon: Shield, label: "Privacy", subtitle: "Law 20/017, Code 23/010", to: "/privacy" },
+            { icon: Settings, label: "Settings", subtitle: "Language, notifications", to: "/account" },
           ].map((item) => {
             const Icon = item.icon;
             return (
@@ -379,13 +379,13 @@ const Account = () => {
 
         <button className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-destructive/20 text-destructive text-sm font-medium hover:bg-destructive/5 transition-colors">
           <LogOut size={16} />
-          <span>Déconnexion</span>
+          <span>Log Out</span>
         </button>
 
         {/* Footer License */}
         <div className="text-center py-2">
-          <p className="text-[9px] text-muted-foreground">Licence N°2024/GJ/001 | 18+ | Jeu responsable</p>
-          <p className="text-[9px] text-muted-foreground">© 2025 Trivelta - Tous droits réservés</p>
+          <p className="text-[9px] text-muted-foreground">License N°2024/GJ/001 | 18+ | Responsible Gaming</p>
+          <p className="text-[9px] text-muted-foreground">© 2025 Trivelta - All rights reserved</p>
         </div>
       </section>
 
@@ -404,11 +404,11 @@ const Account = () => {
                 </span>
               </div>
               <div className="text-left">
-                <p className="text-xs font-bold text-highlight-foreground">{selections.length} sélection{selections.length > 1 ? "s" : ""}</p>
-                <p className="text-[10px] text-highlight-foreground/70">Cote totale: {selections.reduce((acc, s) => acc * s.odds, 1).toFixed(2)}</p>
+                <p className="text-xs font-bold text-highlight-foreground">{selections.length} selection{selections.length > 1 ? "s" : ""}</p>
+                <p className="text-[10px] text-highlight-foreground/70">Total odds: {selections.reduce((acc, s) => acc * s.odds, 1).toFixed(2)}</p>
               </div>
             </div>
-            <span className="text-sm font-bold text-highlight-foreground">Voir coupon →</span>
+            <span className="text-sm font-bold text-highlight-foreground">View slip →</span>
           </button>
         </div>
       )}

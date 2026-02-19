@@ -11,7 +11,7 @@ const sports = [
   { name: "Basketball", emoji: "🏀", count: 42 },
   { name: "Tennis", emoji: "🎾", count: 67 },
   { name: "Boxing", emoji: "🥊", count: 8 },
-  { name: "Athlétisme", emoji: "🏃", count: 15 },
+  { name: "Athletics", emoji: "🏃", count: 15 },
 ];
 
 interface MatchData {
@@ -29,27 +29,27 @@ interface MatchData {
 const matchesBySport: Record<string, { live: MatchData[]; upcoming: MatchData[] }> = {
   Football: {
     live: [
-      { id: 1, league: "Ligue 1 - Journée 24", time: "72'", score: "2 - 0", home: { name: "Paris SG", abbr: "PSG" }, away: { name: "Olympique Lyonnais", abbr: "OL" }, odds: { home: "1.15", draw: "7.50", away: "18.00" }, live: true },
-      { id: 2, league: "Ligue 1 - Journée 24", time: "55'", score: "1 - 1", home: { name: "RC Lens", abbr: "LENS" }, away: { name: "AS Monaco", abbr: "ASM" }, odds: { home: "2.20", draw: "3.10", away: "3.40" }, live: true },
-      { id: 3, league: "Ligue 1 - Journée 24", time: "38'", score: "0 - 1", home: { name: "LOSC Lille", abbr: "LOSC" }, away: { name: "OGC Nice", abbr: "NICE" }, odds: { home: "3.00", draw: "3.20", away: "2.30" }, live: true },
+      { id: 1, league: "Ligue 1 - Matchday 24", time: "72'", score: "2 - 0", home: { name: "Paris SG", abbr: "PSG" }, away: { name: "Olympique Lyonnais", abbr: "OL" }, odds: { home: "1.15", draw: "7.50", away: "18.00" }, live: true },
+      { id: 2, league: "Ligue 1 - Matchday 24", time: "55'", score: "1 - 1", home: { name: "RC Lens", abbr: "LENS" }, away: { name: "AS Monaco", abbr: "ASM" }, odds: { home: "2.20", draw: "3.10", away: "3.40" }, live: true },
+      { id: 3, league: "Ligue 1 - Matchday 24", time: "38'", score: "0 - 1", home: { name: "LOSC Lille", abbr: "LOSC" }, away: { name: "OGC Nice", abbr: "NICE" }, odds: { home: "3.00", draw: "3.20", away: "2.30" }, live: true },
     ],
     upcoming: [
-      { id: 4, league: "Champions League", date: "AUJ 20:00", home: { name: "FC Bayern", abbr: "BAY" }, away: { name: "FC Barcelona", abbr: "BAR" }, odds: { home: "2.60", draw: "3.10", away: "2.70" } },
-      { id: 5, league: "Champions League", date: "DEMAIN 21:00", home: { name: "FC Barcelona", abbr: "BAR" }, away: { name: "Inter Milan", abbr: "INT" }, odds: { home: "1.80", draw: "3.60", away: "4.20" } },
-      { id: 6, league: "Ligue 1 - Journée 25", date: "SAM 17:00", home: { name: "Olympique Marseille", abbr: "OM" }, away: { name: "AS Monaco", abbr: "ASM" }, odds: { home: "2.10", draw: "3.00", away: "3.60" } },
-      { id: 7, league: "Premier League", date: "DIM 16:00", home: { name: "Liverpool FC", abbr: "LIV" }, away: { name: "Manchester City", abbr: "MCI" }, odds: { home: "1.80", draw: "3.50", away: "4.50" } },
+      { id: 4, league: "Champions League", date: "TODAY 20:00", home: { name: "FC Bayern", abbr: "BAY" }, away: { name: "FC Barcelona", abbr: "BAR" }, odds: { home: "2.60", draw: "3.10", away: "2.70" } },
+      { id: 5, league: "Champions League", date: "TOMORROW 21:00", home: { name: "FC Barcelona", abbr: "BAR" }, away: { name: "Inter Milan", abbr: "INT" }, odds: { home: "1.80", draw: "3.60", away: "4.20" } },
+      { id: 6, league: "Ligue 1 - Matchday 25", date: "SAT 17:00", home: { name: "Olympique Marseille", abbr: "OM" }, away: { name: "AS Monaco", abbr: "ASM" }, odds: { home: "2.10", draw: "3.00", away: "3.60" } },
+      { id: 7, league: "Premier League", date: "SUN 16:00", home: { name: "Liverpool FC", abbr: "LIV" }, away: { name: "Manchester City", abbr: "MCI" }, odds: { home: "1.80", draw: "3.50", away: "4.50" } },
     ],
   },
   Basketball: {
     live: [
-      { id: 101, league: "NBA - Saison régulière", time: "Q3 5:42", score: "78 - 82", home: { name: "LA Lakers", abbr: "LAL" }, away: { name: "Boston Celtics", abbr: "BOS" }, odds: { home: "2.10", draw: "-", away: "1.75" }, live: true },
-      { id: 102, league: "NBA - Saison régulière", time: "Q2 8:15", score: "45 - 51", home: { name: "Golden State", abbr: "GSW" }, away: { name: "Milwaukee Bucks", abbr: "MIL" }, odds: { home: "1.90", draw: "-", away: "1.95" }, live: true },
+      { id: 101, league: "NBA - Regular Season", time: "Q3 5:42", score: "78 - 82", home: { name: "LA Lakers", abbr: "LAL" }, away: { name: "Boston Celtics", abbr: "BOS" }, odds: { home: "2.10", draw: "-", away: "1.75" }, live: true },
+      { id: 102, league: "NBA - Regular Season", time: "Q2 8:15", score: "45 - 51", home: { name: "Golden State", abbr: "GSW" }, away: { name: "Milwaukee Bucks", abbr: "MIL" }, odds: { home: "1.90", draw: "-", away: "1.95" }, live: true },
     ],
     upcoming: [
-      { id: 103, league: "NBA - Saison régulière", date: "AUJ 01:00", home: { name: "Phoenix Suns", abbr: "PHX" }, away: { name: "Denver Nuggets", abbr: "DEN" }, odds: { home: "2.30", draw: "-", away: "1.65" } },
-      { id: 104, league: "NBA - Saison régulière", date: "DEMAIN 02:00", home: { name: "Miami Heat", abbr: "MIA" }, away: { name: "NY Knicks", abbr: "NYK" }, odds: { home: "1.85", draw: "-", away: "2.00" } },
-      { id: 105, league: "Euroleague", date: "MER 20:00", home: { name: "Real Madrid", abbr: "RMA" }, away: { name: "Olympiacos", abbr: "OLY" }, odds: { home: "1.55", draw: "-", away: "2.50" } },
-      { id: 106, league: "Euroleague", date: "JEU 20:45", home: { name: "FC Barcelona", abbr: "FCB" }, away: { name: "Fenerbahçe", abbr: "FEN" }, odds: { home: "1.40", draw: "-", away: "2.90" } },
+      { id: 103, league: "NBA - Regular Season", date: "TODAY 01:00", home: { name: "Phoenix Suns", abbr: "PHX" }, away: { name: "Denver Nuggets", abbr: "DEN" }, odds: { home: "2.30", draw: "-", away: "1.65" } },
+      { id: 104, league: "NBA - Regular Season", date: "TOMORROW 02:00", home: { name: "Miami Heat", abbr: "MIA" }, away: { name: "NY Knicks", abbr: "NYK" }, odds: { home: "1.85", draw: "-", away: "2.00" } },
+      { id: 105, league: "Euroleague", date: "WED 20:00", home: { name: "Real Madrid", abbr: "RMA" }, away: { name: "Olympiacos", abbr: "OLY" }, odds: { home: "1.55", draw: "-", away: "2.50" } },
+      { id: 106, league: "Euroleague", date: "THU 20:45", home: { name: "FC Barcelona", abbr: "FCB" }, away: { name: "Fenerbahçe", abbr: "FEN" }, odds: { home: "1.40", draw: "-", away: "2.90" } },
     ],
   },
   Tennis: {
@@ -57,26 +57,26 @@ const matchesBySport: Record<string, { live: MatchData[]; upcoming: MatchData[] 
       { id: 201, league: "ATP Masters 1000 - Indian Wells", time: "Set 2 - 4:3", score: "6-4 / 4-3", home: { name: "C. Alcaraz", abbr: "ALC" }, away: { name: "N. Djokovic", abbr: "DJO" }, odds: { home: "1.60", draw: "-", away: "2.30" }, live: true },
     ],
     upcoming: [
-      { id: 202, league: "ATP Masters 1000 - Indian Wells", date: "AUJ 18:00", home: { name: "J. Sinner", abbr: "SIN" }, away: { name: "D. Medvedev", abbr: "MED" }, odds: { home: "1.45", draw: "-", away: "2.70" } },
-      { id: 203, league: "WTA 1000 - Indian Wells", date: "AUJ 20:00", home: { name: "I. Świątek", abbr: "SWI" }, away: { name: "A. Sabalenka", abbr: "SAB" }, odds: { home: "1.80", draw: "-", away: "2.00" } },
-      { id: 204, league: "ATP 500 - Dubai", date: "DEMAIN 16:00", home: { name: "S. Tsitsipas", abbr: "TSI" }, away: { name: "A. Rublev", abbr: "RUB" }, odds: { home: "2.10", draw: "-", away: "1.75" } },
-      { id: 205, league: "ATP 500 - Dubai", date: "DEMAIN 19:00", home: { name: "H. Rune", abbr: "RUN" }, away: { name: "T. Fritz", abbr: "FRI" }, odds: { home: "2.40", draw: "-", away: "1.58" } },
+      { id: 202, league: "ATP Masters 1000 - Indian Wells", date: "TODAY 18:00", home: { name: "J. Sinner", abbr: "SIN" }, away: { name: "D. Medvedev", abbr: "MED" }, odds: { home: "1.45", draw: "-", away: "2.70" } },
+      { id: 203, league: "WTA 1000 - Indian Wells", date: "TODAY 20:00", home: { name: "I. Świątek", abbr: "SWI" }, away: { name: "A. Sabalenka", abbr: "SAB" }, odds: { home: "1.80", draw: "-", away: "2.00" } },
+      { id: 204, league: "ATP 500 - Dubai", date: "TOMORROW 16:00", home: { name: "S. Tsitsipas", abbr: "TSI" }, away: { name: "A. Rublev", abbr: "RUB" }, odds: { home: "2.10", draw: "-", away: "1.75" } },
+      { id: 205, league: "ATP 500 - Dubai", date: "TOMORROW 19:00", home: { name: "H. Rune", abbr: "RUN" }, away: { name: "T. Fritz", abbr: "FRI" }, odds: { home: "2.40", draw: "-", away: "1.58" } },
     ],
   },
   Boxing: {
     live: [],
     upcoming: [
-      { id: 301, league: "WBC Heavyweight", date: "SAM 22:00", home: { name: "T. Fury", abbr: "FUR" }, away: { name: "O. Usyk", abbr: "USY" }, odds: { home: "2.20", draw: "21.00", away: "1.70" } },
-      { id: 302, league: "WBA Middleweight", date: "SAM 20:00", home: { name: "C. Alvarez", abbr: "CAN" }, away: { name: "D. Benavidez", abbr: "BEN" }, odds: { home: "1.55", draw: "17.00", away: "2.50" } },
-      { id: 303, league: "IBF Welterweight", date: "DIM 23:00", home: { name: "T. Crawford", abbr: "CRA" }, away: { name: "E. Spence", abbr: "SPE" }, odds: { home: "1.65", draw: "19.00", away: "2.25" } },
+      { id: 301, league: "WBC Heavyweight", date: "SAT 22:00", home: { name: "T. Fury", abbr: "FUR" }, away: { name: "O. Usyk", abbr: "USY" }, odds: { home: "2.20", draw: "21.00", away: "1.70" } },
+      { id: 302, league: "WBA Middleweight", date: "SAT 20:00", home: { name: "C. Alvarez", abbr: "CAN" }, away: { name: "D. Benavidez", abbr: "BEN" }, odds: { home: "1.55", draw: "17.00", away: "2.50" } },
+      { id: 303, league: "IBF Welterweight", date: "SUN 23:00", home: { name: "T. Crawford", abbr: "CRA" }, away: { name: "E. Spence", abbr: "SPE" }, odds: { home: "1.65", draw: "19.00", away: "2.25" } },
     ],
   },
-  "Athlétisme": {
+  "Athletics": {
     live: [],
     upcoming: [
-      { id: 401, league: "Diamond League - Doha", date: "VEN 18:00", home: { name: "N. Lyles", abbr: "LYL" }, away: { name: "F. Kerley", abbr: "KER" }, odds: { home: "1.50", draw: "-", away: "2.60" } },
-      { id: 402, league: "Diamond League - Doha", date: "VEN 19:30", home: { name: "J. Ingebrigtsen", abbr: "ING" }, away: { name: "J. Nuguse", abbr: "NUG" }, odds: { home: "1.70", draw: "-", away: "2.15" } },
-      { id: 403, league: "Diamond League - Doha", date: "VEN 20:00", home: { name: "S. El Hassan", abbr: "ELH" }, away: { name: "F. Kipyegon", abbr: "KIP" }, odds: { home: "3.20", draw: "-", away: "1.35" } },
+      { id: 401, league: "Diamond League - Doha", date: "FRI 18:00", home: { name: "N. Lyles", abbr: "LYL" }, away: { name: "F. Kerley", abbr: "KER" }, odds: { home: "1.50", draw: "-", away: "2.60" } },
+      { id: 402, league: "Diamond League - Doha", date: "FRI 19:30", home: { name: "J. Ingebrigtsen", abbr: "ING" }, away: { name: "J. Nuguse", abbr: "NUG" }, odds: { home: "1.70", draw: "-", away: "2.15" } },
+      { id: 403, league: "Diamond League - Doha", date: "FRI 20:00", home: { name: "S. El Hassan", abbr: "ELH" }, away: { name: "F. Kipyegon", abbr: "KIP" }, odds: { home: "3.20", draw: "-", away: "1.35" } },
     ],
   },
 };
@@ -123,9 +123,8 @@ const Sports = () => {
 
   const totalOdds = selections.reduce((acc, s) => acc * s.odds, 1);
 
-  // Determine labels based on sport
   const getOddsLabels = () => {
-    if (currentSport === "Tennis" || currentSport === "Basketball" || currentSport === "Athlétisme") return { home: "1", draw: "", away: "2" };
+    if (currentSport === "Tennis" || currentSport === "Basketball" || currentSport === "Athletics") return { home: "1", draw: "", away: "2" };
     return { home: "1", draw: "X", away: "2" };
   };
   const oddsLabels = getOddsLabels();
@@ -135,14 +134,13 @@ const Sports = () => {
     <MobileLayout>
       {/* Sport filters */}
       <section className="px-4 mt-3">
-        {/* Search bar */}
         <div className="relative mb-3">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Rechercher un match, une équipe..."
+            placeholder="Search for a match, team..."
             className="w-full pl-9 pr-9 py-2.5 rounded-xl bg-card border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary focus:border-primary/50 transition-all"
           />
           {searchQuery && (
@@ -178,8 +176,8 @@ const Sports = () => {
       {searchQuery && liveMatches.length === 0 && upcomingMatches.length === 0 && (
         <div className="text-center py-12 px-4">
           <Search size={32} className="mx-auto text-muted-foreground mb-3" />
-          <p className="text-sm font-medium">Aucun résultat pour "{searchQuery}"</p>
-          <p className="text-xs text-muted-foreground mt-1">Essayez un autre terme</p>
+          <p className="text-sm font-medium">No results for "{searchQuery}"</p>
+          <p className="text-xs text-muted-foreground mt-1">Try another search term</p>
         </div>
       )}
 
@@ -188,7 +186,7 @@ const Sports = () => {
         <section className="mt-5 px-4">
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2 h-2 rounded-full bg-live animate-pulse-live" />
-            <span className="text-sm font-bold text-live">EN DIRECT</span>
+            <span className="text-sm font-bold text-live">LIVE</span>
           </div>
           <div className="space-y-3">
             {liveMatches.map((match) => {
@@ -216,13 +214,13 @@ const Sports = () => {
                     </div>
                     <div className="flex gap-2">
                       <OddsButton label={oddsLabels.home} value={match.odds.home} selected={isSelected(`${match.id}-${match.home.name} (1)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, `${match.home.name} (1)`, match.odds.home)} />
-                      {hasDraw && <OddsButton label="X" value={match.odds.draw} selected={isSelected(`${match.id}-Nul (X)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, "Nul (X)", match.odds.draw)} disabled={match.odds.draw === "-"} />}
+                      {hasDraw && <OddsButton label="X" value={match.odds.draw} selected={isSelected(`${match.id}-Draw (X)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, "Draw (X)", match.odds.draw)} disabled={match.odds.draw === "-"} />}
                       <OddsButton label={oddsLabels.away} value={match.odds.away} selected={isSelected(`${match.id}-${match.away.name} (2)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, `${match.away.name} (2)`, match.odds.away)} />
                     </div>
                   </div>
                   <div className="flex items-center justify-between px-3 py-2 border-t border-border/50">
-                    <span className="text-[10px] text-muted-foreground">+45 marchés</span>
-                    <span className="text-[10px] text-highlight font-semibold">Sélectionnez une cote ↑</span>
+                    <span className="text-[10px] text-muted-foreground">+45 markets</span>
+                    <span className="text-[10px] text-highlight font-semibold">Select an odd ↑</span>
                   </div>
                 </div>
               );
@@ -234,10 +232,10 @@ const Sports = () => {
       {/* Upcoming */}
       <section className={`${liveMatches.length > 0 ? "mt-6" : "mt-5"} px-4 mb-24`}>
         <h3 className="text-sm font-bold mb-3">
-          {liveMatches.length > 0 ? "PROCHAINS MATCHS" : `${currentSport.toUpperCase()} — PROCHAINS ÉVÉNEMENTS`}
+          {liveMatches.length > 0 ? "UPCOMING MATCHES" : `${currentSport.toUpperCase()} — UPCOMING EVENTS`}
         </h3>
         {upcomingMatches.length === 0 ? (
-          <div className="text-center py-8 text-sm text-muted-foreground">Aucun événement à venir</div>
+          <div className="text-center py-8 text-sm text-muted-foreground">No upcoming events</div>
         ) : (
           <div className="space-y-3">
             {upcomingMatches.map((match) => {
@@ -262,13 +260,13 @@ const Sports = () => {
                     </div>
                     <div className="flex gap-2">
                       <OddsButton label={oddsLabels.home} value={match.odds.home} selected={isSelected(`${match.id}-${match.home.name} (1)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, `${match.home.name} (1)`, match.odds.home)} />
-                      {hasDraw && <OddsButton label="X" value={match.odds.draw} selected={isSelected(`${match.id}-Nul (X)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, "Nul (X)", match.odds.draw)} disabled={match.odds.draw === "-"} />}
+                      {hasDraw && <OddsButton label="X" value={match.odds.draw} selected={isSelected(`${match.id}-Draw (X)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, "Draw (X)", match.odds.draw)} disabled={match.odds.draw === "-"} />}
                       <OddsButton label={oddsLabels.away} value={match.odds.away} selected={isSelected(`${match.id}-${match.away.name} (2)`)} onSelect={() => handleOddsSelect(match.id, matchName, match.league, `${match.away.name} (2)`, match.odds.away)} />
                     </div>
                   </div>
                   <div className="flex items-center justify-between px-3 py-2 border-t border-border/50">
-                    <span className="text-[10px] text-muted-foreground">+38 marchés</span>
-                    <span className="text-[10px] text-highlight font-semibold">Sélectionnez une cote ↑</span>
+                    <span className="text-[10px] text-muted-foreground">+38 markets</span>
+                    <span className="text-[10px] text-highlight font-semibold">Select an odd ↑</span>
                   </div>
                 </div>
               );
@@ -300,11 +298,11 @@ const Sports = () => {
                     </span>
                   </div>
                   <div className="text-left">
-                    <p className="text-xs font-bold text-highlight-foreground">{selections.length} sélection{selections.length > 1 ? "s" : ""}</p>
-                    <p className="text-[10px] text-highlight-foreground/70">Cote totale: {totalOdds.toFixed(2)}</p>
+                    <p className="text-xs font-bold text-highlight-foreground">{selections.length} selection{selections.length > 1 ? "s" : ""}</p>
+                    <p className="text-[10px] text-highlight-foreground/70">Total odds: {totalOdds.toFixed(2)}</p>
                   </div>
                 </div>
-                <span className="text-sm font-bold text-highlight-foreground">Voir coupon →</span>
+                <span className="text-sm font-bold text-highlight-foreground">View slip →</span>
               </button>
               <button
                 onClick={() => clearSelections()}
