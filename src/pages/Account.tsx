@@ -1,7 +1,7 @@
 import MobileLayout from "@/components/MobileLayout";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowUp, Check, ChevronDown, ChevronRight, Copy, CreditCard, Eye, EyeOff, FileText, Globe, HelpCircle, History, Lock, LogOut, Settings, Shield, ShoppingCart, Smartphone, Swords, User, Users, Wallet, AlertTriangle } from "lucide-react";
+import { ArrowUp, Check, ChevronDown, ChevronRight, Copy, CreditCard, Eye, EyeOff, FileText, Globe, HelpCircle, History, Lock, LogOut, Settings, Shield, ShoppingCart, Smartphone, Swords, Trophy, User, Users, Wallet, AlertTriangle } from "lucide-react";
 import { useFollow } from "@/contexts/FollowContext";
 import { useBetSlip } from "@/contexts/BetSlipContext";
 import mpesaLogo from "@/assets/mpesa.svg";
@@ -187,6 +187,20 @@ const Account = () => {
             }`} />
           </div>
         </button>
+      </section>
+
+      {/* Gamification Banner */}
+      <section className="px-4 mt-3">
+        <Link to="/rewards" className="w-full flex items-center justify-between py-3 px-4 rounded-xl border border-highlight/30 bg-highlight/5 hover:bg-highlight/10 transition-colors">
+          <div className="flex items-center gap-2">
+            <Trophy size={18} className="text-highlight" />
+            <div>
+              <span className="text-sm font-bold text-highlight">Rewards & Missions</span>
+              <p className="text-[10px] text-muted-foreground">Level 12 • 2,340 XP • 4-day streak 🔥</p>
+            </div>
+          </div>
+          <ChevronRight size={16} className="text-highlight" />
+        </Link>
       </section>
 
       {/* Challenge Banner */}

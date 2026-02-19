@@ -27,6 +27,7 @@ import ResponsibleGaming from "./pages/ResponsibleGaming";
 import Social from "./pages/Social";
 import Challenge from "./pages/Challenge";
 import UserProfile from "./pages/UserProfile";
+import Rewards from "./pages/Rewards";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -57,6 +58,7 @@ const AnimatedRoutes = () => {
         <Route path="/responsible-gaming" element={<ResponsibleGaming />} />
         <Route path="/challenge" element={<Challenge />} />
         <Route path="/profile/:username" element={<UserProfile />} />
+        <Route path="/rewards" element={<Rewards />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
