@@ -1,7 +1,7 @@
 import { Bell, Search, Wallet } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import triveltaLogo from "@/assets/trivelta-logo-horizontal.png";
+import soccabetLogo from "@/assets/soccabet-logo.png";
 import GlobalSearch from "@/components/GlobalSearch";
 
 const TopBar = () => {
@@ -13,10 +13,9 @@ const TopBar = () => {
         <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
           <Link to="/" className="flex items-center gap-2">
             <img
-              src={triveltaLogo}
-              alt="Trivelta"
-              className="h-7 object-contain"
-              style={{ filter: "brightness(0) saturate(100%) invert(25%) sepia(60%) saturate(1500%) hue-rotate(200deg) brightness(90%) contrast(100%)" }}
+              src={soccabetLogo}
+              alt="Soccabet"
+              className="h-8 object-contain"
             />
           </Link>
           <div className="flex items-center gap-2">
