@@ -13,44 +13,44 @@ const activeChallenges = [
     match: "PSG vs Bayern",
     myPick: "PSG (1)",
     opponentPick: "Bayern (2)",
-    stake: 5000,
-    status: "En cours",
+    stake: 50,
+    status: "In Progress",
     myOdds: "2.20",
   },
   {
     id: 2,
     opponent: "Sarah M.",
     match: "OM vs PSG",
-    myPick: "Plus de 2.5 buts",
-    opponentPick: "Moins de 2.5 buts",
-    stake: 2000,
-    status: "En attente",
+    myPick: "Over 2.5 goals",
+    opponentPick: "Under 2.5 goals",
+    stake: 20,
+    status: "Pending",
     myOdds: "1.85",
   },
 ];
 
 const leaderboard = [
-  { rank: 1, name: "Vous", wins: 12, losses: 3, profit: "+45 000 FC" },
-  { rank: 2, name: "Mike K.", wins: 10, losses: 5, profit: "+32 000 FC" },
-  { rank: 3, name: "Sarah M.", wins: 9, losses: 4, profit: "+28 500 FC" },
-  { rank: 4, name: "Amine L.", wins: 8, losses: 6, profit: "+15 000 FC" },
-  { rank: 5, name: "Jean-P.", wins: 7, losses: 7, profit: "+2 000 FC" },
+  { rank: 1, name: "You", wins: 12, losses: 3, profit: "+$450" },
+  { rank: 2, name: "Mike K.", wins: 10, losses: 5, profit: "+$320" },
+  { rank: 3, name: "Sarah M.", wins: 9, losses: 4, profit: "+$285" },
+  { rank: 4, name: "Amine L.", wins: 8, losses: 6, profit: "+$150" },
+  { rank: 5, name: "Jean-P.", wins: 7, losses: 7, profit: "+$20" },
 ];
 
 const challengeMatches = [
-  { id: 101, home: "Paris SG", homeAbbr: "PSG", away: "FC Bayern", awayAbbr: "BAY", league: "Champions League", date: "DEMAIN 21:00" },
-  { id: 102, home: "FC Barcelona", homeAbbr: "BAR", away: "Inter Milan", awayAbbr: "INT", league: "Champions League", date: "DEMAIN 21:00" },
-  { id: 103, home: "Olympique Marseille", homeAbbr: "OM", away: "Paris SG", awayAbbr: "PSG", league: "Ligue 1", date: "SAM 17:00" },
-  { id: 104, home: "Liverpool FC", homeAbbr: "LIV", away: "Manchester City", awayAbbr: "MCI", league: "Premier League", date: "DIM 16:00" },
+  { id: 101, home: "Paris SG", homeAbbr: "PSG", away: "FC Bayern", awayAbbr: "BAY", league: "Champions League", date: "TOMORROW 9:00 PM" },
+  { id: 102, home: "FC Barcelona", homeAbbr: "BAR", away: "Inter Milan", awayAbbr: "INT", league: "Champions League", date: "TOMORROW 9:00 PM" },
+  { id: 103, home: "Olympique Marseille", homeAbbr: "OM", away: "Paris SG", awayAbbr: "PSG", league: "Ligue 1", date: "SAT 5:00 PM" },
+  { id: 104, home: "Liverpool FC", homeAbbr: "LIV", away: "Manchester City", awayAbbr: "MCI", league: "Premier League", date: "SUN 4:00 PM" },
 ];
 
-const stakeOptions = [1000, 2000, 5000, 10000, 25000];
+const stakeOptions = [10, 20, 50, 100, 250];
 
 const Challenge = () => {
   const [step, setStep] = useState<ChallengeStep>("menu");
   const [selectedMatch, setSelectedMatch] = useState<number | null>(null);
   const [selectedPick, setSelectedPick] = useState<string | null>(null);
-  const [selectedStake, setSelectedStake] = useState(5000);
+  const [selectedStake, setSelectedStake] = useState(50);
   const [linkCopied, setLinkCopied] = useState(false);
   const [challengeCreated, setChallengCreated] = useState(false);
 
@@ -78,17 +78,17 @@ const Challenge = () => {
             <Swords size={20} className="text-highlight-foreground" />
           </div>
           <div>
-            <h1 className="text-lg font-bold">Défi entre amis</h1>
-            <p className="text-[11px] text-muted-foreground">Pariez contre vos potes</p>
+            <h1 className="text-lg font-bold">Challenge Friends</h1>
+            <p className="text-[11px] text-muted-foreground">Bet against your friends</p>
           </div>
         </motion.div>
 
         {/* Tab Navigation */}
         <div className="flex gap-2 mb-5">
           {[
-            { key: "menu" as ChallengeStep, label: "Mes défis", icon: Target },
-            { key: "create" as ChallengeStep, label: "Créer", icon: Plus },
-            { key: "leaderboard" as ChallengeStep, label: "Classement", icon: Crown },
+            { key: "menu" as ChallengeStep, label: "My Challenges", icon: Target },
+            { key: "create" as ChallengeStep, label: "Create", icon: Plus },
+            { key: "leaderboard" as ChallengeStep, label: "Rankings", icon: Crown },
           ].map((tab) => {
             const Icon = tab.icon;
             const isActive = step === tab.key;
@@ -110,20 +110,20 @@ const Challenge = () => {
         </div>
 
         <AnimatePresence mode="wait">
-          {/* ========== MES DÉFIS ========== */}
+          {/* ========== MY CHALLENGES ========== */}
           {step === "menu" && (
             <motion.div key="menu" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-3">
               {activeChallenges.length === 0 ? (
                 <div className="text-center py-12">
                   <Swords size={40} className="mx-auto text-muted-foreground mb-3" />
-                  <p className="text-sm text-muted-foreground">Aucun défi en cours</p>
+                  <p className="text-sm text-muted-foreground">No active challenges</p>
                   <button onClick={() => setStep("create")} className="mt-3 px-5 py-2 rounded-full orange-gradient text-highlight-foreground text-sm font-bold">
-                    Lancer un défi
+                    Start a challenge
                   </button>
                 </div>
               ) : (
                 <>
-                  <p className="text-xs text-muted-foreground font-semibold uppercase">Défis actifs</p>
+                  <p className="text-xs text-muted-foreground font-semibold uppercase">Active Challenges</p>
                   {activeChallenges.map((c, i) => (
                     <motion.div
                       key={c.id}
@@ -135,13 +135,13 @@ const Challenge = () => {
                       <div className="flex items-center justify-between px-3 py-2">
                         <span className="text-[10px] text-muted-foreground font-medium">{c.match}</span>
                         <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                          c.status === "En cours" ? "bg-live/20 text-live" : "bg-highlight/20 text-highlight"
+                          c.status === "In Progress" ? "bg-live/20 text-live" : "bg-highlight/20 text-highlight"
                         }`}>{c.status}</span>
                       </div>
                       <div className="px-3 pb-3">
                         <div className="flex items-center justify-between mb-2">
                           <div className="text-center flex-1">
-                            <p className="text-[10px] text-muted-foreground">Vous</p>
+                            <p className="text-[10px] text-muted-foreground">You</p>
                             <p className="text-xs font-bold text-primary">{c.myPick}</p>
                           </div>
                           <div className="px-3">
@@ -153,8 +153,8 @@ const Challenge = () => {
                           </div>
                         </div>
                         <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-background/50 border border-border">
-                          <span className="text-[10px] text-muted-foreground">Mise</span>
-                          <span className="text-xs font-bold text-highlight">{c.stake.toLocaleString()} FC</span>
+                          <span className="text-[10px] text-muted-foreground">Stake</span>
+                          <span className="text-xs font-bold text-highlight">${c.stake.toLocaleString()}</span>
                         </div>
                       </div>
                     </motion.div>
@@ -163,21 +163,21 @@ const Challenge = () => {
                     onClick={() => setStep("create")}
                     className="w-full flex items-center justify-center gap-2 py-3 rounded-xl border border-dashed border-highlight/30 text-highlight text-sm font-bold hover:bg-highlight/5 transition-colors"
                   >
-                    <Plus size={16} /> Nouveau défi
+                    <Plus size={16} /> New Challenge
                   </button>
                 </>
               )}
             </motion.div>
           )}
 
-          {/* ========== CRÉER UN DÉFI ========== */}
+          {/* ========== CREATE A CHALLENGE ========== */}
           {step === "create" && !challengeCreated && (
             <motion.div key="create" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-4">
               {/* Step 1: Choose match */}
               <div>
                 <p className="text-xs font-bold text-muted-foreground uppercase mb-2 flex items-center gap-1.5">
                   <span className="w-5 h-5 rounded-full orange-gradient text-highlight-foreground text-[10px] font-bold flex items-center justify-center">1</span>
-                  Choisir un match
+                  Choose a match
                 </p>
                 <div className="space-y-2">
                   {challengeMatches.map((m) => (
@@ -211,12 +211,12 @@ const Challenge = () => {
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
                   <p className="text-xs font-bold text-muted-foreground uppercase mb-2 flex items-center gap-1.5">
                     <span className="w-5 h-5 rounded-full orange-gradient text-highlight-foreground text-[10px] font-bold flex items-center justify-center">2</span>
-                    Votre pronostic
+                    Your Prediction
                   </p>
                   <div className="grid grid-cols-3 gap-2">
                     {[
                       { label: `${matchData.home} (1)`, pick: "home" },
-                      { label: "Nul (X)", pick: "draw" },
+                      { label: "Draw (X)", pick: "draw" },
                       { label: `${matchData.away} (2)`, pick: "away" },
                     ].map((opt) => (
                       <button
@@ -240,7 +240,7 @@ const Challenge = () => {
                 <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
                   <p className="text-xs font-bold text-muted-foreground uppercase mb-2 flex items-center gap-1.5">
                     <span className="w-5 h-5 rounded-full orange-gradient text-highlight-foreground text-[10px] font-bold flex items-center justify-center">3</span>
-                    Mise du défi
+                    Challenge Stake
                   </p>
                   <div className="flex gap-2 flex-wrap">
                     {stakeOptions.map((s) => (
@@ -253,7 +253,7 @@ const Challenge = () => {
                             : "border-border bg-card text-foreground hover:bg-card-elevated"
                         }`}
                       >
-                        {s.toLocaleString()} FC
+                        ${s.toLocaleString()}
                       </button>
                     ))}
                   </div>
@@ -268,7 +268,7 @@ const Challenge = () => {
                     className="w-full py-3.5 rounded-2xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange flex items-center justify-center gap-2"
                   >
                     <Zap size={16} />
-                    Créer le défi — {selectedStake.toLocaleString()} FC
+                    Create Challenge — ${selectedStake.toLocaleString()}
                   </button>
                 </motion.div>
               )}
@@ -292,8 +292,8 @@ const Challenge = () => {
                 <Swords size={28} className="text-highlight-foreground" />
               </motion.div>
               <div>
-                <h2 className="text-lg font-bold">Défi créé ! 🔥</h2>
-                <p className="text-xs text-muted-foreground mt-1">Partagez le lien avec votre ami pour qu'il accepte</p>
+                <h2 className="text-lg font-bold">Challenge Created! 🔥</h2>
+                <p className="text-xs text-muted-foreground mt-1">Share the link with your friend to accept</p>
               </div>
 
               {matchData && (
@@ -303,10 +303,10 @@ const Challenge = () => {
                     <span className="text-xs font-bold">{matchData.home} vs {matchData.away}</span>
                     <TeamBadge abbr={matchData.awayAbbr} />
                   </div>
-                  <p className="text-[10px] text-muted-foreground">Votre prono: <span className="text-highlight font-bold">{
-                    selectedPick === "home" ? `${matchData.home} (1)` : selectedPick === "draw" ? "Nul (X)" : `${matchData.away} (2)`
+                  <p className="text-[10px] text-muted-foreground">Your pick: <span className="text-highlight font-bold">{
+                    selectedPick === "home" ? `${matchData.home} (1)` : selectedPick === "draw" ? "Draw (X)" : `${matchData.away} (2)`
                   }</span></p>
-                  <p className="text-[10px] text-muted-foreground">Mise: <span className="text-highlight font-bold">{selectedStake.toLocaleString()} FC</span></p>
+                  <p className="text-[10px] text-muted-foreground">Stake: <span className="text-highlight font-bold">${selectedStake.toLocaleString()}</span></p>
                 </div>
               )}
 
@@ -316,11 +316,11 @@ const Challenge = () => {
                   className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-border bg-card text-sm font-bold hover:bg-card-elevated transition-colors"
                 >
                   {linkCopied ? <Check size={16} className="text-primary" /> : <Copy size={16} />}
-                  {linkCopied ? "Copié !" : "Copier le lien"}
+                  {linkCopied ? "Copied!" : "Copy Link"}
                 </button>
                 <button className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl orange-gradient text-highlight-foreground text-sm font-bold glow-orange">
                   <Share2 size={16} />
-                  Partager
+                  Share
                 </button>
               </div>
 
@@ -328,16 +328,16 @@ const Challenge = () => {
                 onClick={() => { setChallengCreated(false); setSelectedMatch(null); setSelectedPick(null); }}
                 className="text-xs text-highlight font-semibold"
               >
-                Créer un autre défi →
+                Create another challenge →
               </button>
             </motion.div>
           )}
 
-          {/* ========== CLASSEMENT ========== */}
+          {/* ========== RANKINGS ========== */}
           {step === "leaderboard" && (
             <motion.div key="leaderboard" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="space-y-3">
               <p className="text-xs text-muted-foreground font-semibold uppercase flex items-center gap-1.5">
-                <Crown size={12} className="text-highlight" /> Classement entre amis
+                <Crown size={12} className="text-highlight" /> Friends Rankings
               </p>
               {leaderboard.map((player, i) => (
                 <motion.div
@@ -368,7 +368,7 @@ const Challenge = () => {
                   </div>
                   <div className="flex-1">
                     <p className={`text-sm font-bold ${player.rank === 1 ? "text-highlight" : ""}`}>{player.name}</p>
-                    <p className="text-[10px] text-muted-foreground">{player.wins}V - {player.losses}D</p>
+                    <p className="text-[10px] text-muted-foreground">{player.wins}W - {player.losses}L</p>
                   </div>
                   <span className={`text-xs font-bold ${player.profit.startsWith("+") ? "text-primary" : "text-destructive"}`}>
                     {player.profit}

@@ -14,9 +14,9 @@ import {
 // ─── Tab definitions ───
 const socialTabs = [
   { id: "feed", label: "Feed", icon: MessageSquare },
-  { id: "leaderboard", label: "Classement", icon: Trophy },
-  { id: "challenges", label: "Défis", icon: Swords },
-  { id: "chat", label: "Groupes", icon: Users },
+  { id: "leaderboard", label: "Rankings", icon: Trophy },
+  { id: "challenges", label: "Challenges", icon: Swords },
+  { id: "chat", label: "Groups", icon: Users },
 ] as const;
 
 type TabId = (typeof socialTabs)[number]["id"];
@@ -24,73 +24,73 @@ type TabId = (typeof socialTabs)[number]["id"];
 // ─── Mock data ───
 const feedPosts = [
   {
-    id: 1, user: "Patrice M.", avatar: "PM", slug: "patrice-m", time: "il y a 5 min", verified: true,
-    text: "🔥 TP Mazembe va gagner ce soir, j'en suis sûr! Cote 1.85 c'est du cadeau!",
-    bet: { matchId: 101, match: "TP Mazembe vs AS Vita", pick: "TP Mazembe (1)", odds: 1.85, amount: "5 000 CDF", status: "en cours", league: "Linafoot" },
+    id: 1, user: "Patrice M.", avatar: "PM", slug: "patrice-m", time: "5 min ago", verified: true,
+    text: "🔥 TP Mazembe is winning tonight, I'm sure! Odds 1.85 are a steal!",
+    bet: { matchId: 101, match: "TP Mazembe vs AS Vita", pick: "TP Mazembe (1)", odds: 1.85, amount: "$50", status: "in play", league: "Linafoot" },
     multiBet: null,
     likes: 42, comments: 12, shares: 5,
   },
   {
-    id: 2, user: "Aimée K.", avatar: "AK", slug: "aimee-k", time: "il y a 18 min", verified: false,
-    text: "Combo de 3 matchs validé hier soir! 💰 Les Léopards ne déçoivent jamais 🇨🇩",
+    id: 2, user: "Aimée K.", avatar: "AK", slug: "aimee-k", time: "18 min ago", verified: false,
+    text: "3-match combo hit last night! 💰 The Leopards never disappoint 🇨🇩",
     bet: null,
     multiBet: {
       legs: [
-        { matchId: 201, match: "RD Congo vs Zambie", pick: "RD Congo (1)", odds: 1.95, league: "Éliminatoires CAN" },
-        { matchId: 202, match: "TP Mazembe vs Al Ahly", pick: "TP Mazembe (1)", odds: 2.60, league: "Champions CAF" },
-        { matchId: 203, match: "AS Vita vs DCMP", pick: "Nul (X)", odds: 3.10, league: "Linafoot" },
+        { matchId: 201, match: "DR Congo vs Zambia", pick: "DR Congo (1)", odds: 1.95, league: "AFCON Qualifiers" },
+        { matchId: 202, match: "TP Mazembe vs Al Ahly", pick: "TP Mazembe (1)", odds: 2.60, league: "CAF Champions" },
+        { matchId: 203, match: "AS Vita vs DCMP", pick: "Draw (X)", odds: 3.10, league: "Linafoot" },
       ],
       totalOdds: 15.71,
-      stake: "2 000 CDF",
+      stake: "$20",
     },
-    result: { amount: "+25 000 CDF", type: "win" },
+    result: { amount: "+$250", type: "win" },
     likes: 128, comments: 34, shares: 18,
   },
   {
-    id: 3, user: "David N.", avatar: "DN", slug: "david-n", time: "il y a 32 min", verified: true,
-    text: "Qui suit le match DCMP vs Lupopo? Le nul à 3.20 me tente bien...",
-    bet: { matchId: 301, match: "DCMP vs FC Lupopo", pick: "Nul (X)", odds: 3.20, amount: "2 000 CDF", status: "en cours", league: "Linafoot" },
+    id: 3, user: "David N.", avatar: "DN", slug: "david-n", time: "32 min ago", verified: true,
+    text: "Who's watching DCMP vs Lupopo? The draw at 3.20 looks tempting...",
+    bet: { matchId: 301, match: "DCMP vs FC Lupopo", pick: "Draw (X)", odds: 3.20, amount: "$20", status: "in play", league: "Linafoot" },
     multiBet: null,
     likes: 21, comments: 8, shares: 2,
   },
   {
-    id: 4, user: "Serge T.", avatar: "ST", slug: "serge-t", time: "il y a 45 min", verified: true,
-    text: "Mon combo du jour 🎯 Confiance totale sur ces 4 matchs!",
+    id: 4, user: "Serge T.", avatar: "ST", slug: "serge-t", time: "45 min ago", verified: true,
+    text: "My combo of the day 🎯 Full confidence on these 4 matches!",
     bet: null,
     multiBet: {
       legs: [
         { matchId: 401, match: "FC Lupopo vs CS Don Bosco", pick: "CS Don Bosco (2)", odds: 2.30, league: "Linafoot" },
         { matchId: 402, match: "JS Bazano vs FC Blessing", pick: "JS Bazano (1)", odds: 1.80, league: "Linafoot" },
-        { matchId: 403, match: "AS Maniema vs Rangers", pick: "AS Maniema (1)", odds: 2.10, league: "Coupe du Congo" },
+        { matchId: 403, match: "AS Maniema vs Rangers", pick: "AS Maniema (1)", odds: 2.10, league: "Congo Cup" },
         { matchId: 404, match: "Mazembe vs Renaissance", pick: "TP Mazembe (1)", odds: 1.15, league: "Linafoot" },
       ],
       totalOdds: 10.05,
-      stake: "10 000 CDF",
+      stake: "$100",
     },
     likes: 87, comments: 22, shares: 14,
   },
 ];
 
 const leaderboardUsers = [
-  { rank: 1, name: "Serge T.", avatar: "ST", slug: "serge-t", winRate: "78%", profit: "+420 000 CDF", streak: 12, badge: "diamond" },
-  { rank: 2, name: "Gloire M.", avatar: "GM", slug: "gloire-m", winRate: "72%", profit: "+315 000 CDF", streak: 8, badge: "gold" },
-  { rank: 3, name: "Rachel B.", avatar: "RB", slug: "rachel-b", winRate: "69%", profit: "+280 000 CDF", streak: 6, badge: "gold" },
-  { rank: 4, name: "Patrick K.", avatar: "PK", slug: "patrick-k", winRate: "65%", profit: "+195 000 CDF", streak: 5, badge: "silver" },
-  { rank: 5, name: "Esther L.", avatar: "EL", slug: "esther-l", winRate: "63%", profit: "+170 000 CDF", streak: 4, badge: "silver" },
-  { rank: 6, name: "Christian W.", avatar: "CW", slug: "christian-w", winRate: "61%", profit: "+145 000 CDF", streak: 3, badge: "bronze" },
+  { rank: 1, name: "Serge T.", avatar: "ST", slug: "serge-t", winRate: "78%", profit: "+$4,200", streak: 12, badge: "diamond" },
+  { rank: 2, name: "Gloire M.", avatar: "GM", slug: "gloire-m", winRate: "72%", profit: "+$3,150", streak: 8, badge: "gold" },
+  { rank: 3, name: "Rachel B.", avatar: "RB", slug: "rachel-b", winRate: "69%", profit: "+$2,800", streak: 6, badge: "gold" },
+  { rank: 4, name: "Patrick K.", avatar: "PK", slug: "patrick-k", winRate: "65%", profit: "+$1,950", streak: 5, badge: "silver" },
+  { rank: 5, name: "Esther L.", avatar: "EL", slug: "esther-l", winRate: "63%", profit: "+$1,700", streak: 4, badge: "silver" },
+  { rank: 6, name: "Christian W.", avatar: "CW", slug: "christian-w", winRate: "61%", profit: "+$1,450", streak: 3, badge: "bronze" },
 ];
 
 const challenges = [
-  { id: 1, title: "Derby de Kinshasa", description: "TP Mazembe vs AS Vita – Qui gagne ?", participants: 234, prize: "50 000 CDF", deadline: "Ce soir 20h", hot: true },
-  { id: 2, title: "Roi du Weekend", description: "Le meilleur combo de 3 matchs ce weekend", participants: 89, prize: "100 000 CDF", deadline: "Dim 23h59", hot: false },
-  { id: 3, title: "Chasseur de Cotes", description: "Trouvez la plus grosse cote gagnante", participants: 156, prize: "75 000 CDF", deadline: "7 jours", hot: true },
+  { id: 1, title: "Kinshasa Derby", description: "TP Mazembe vs AS Vita – Who wins?", participants: 234, prize: "$500", deadline: "Tonight 8PM", hot: true },
+  { id: 2, title: "Weekend King", description: "Best 3-match combo this weekend", participants: 89, prize: "$1,000", deadline: "Sun 11:59PM", hot: false },
+  { id: 3, title: "Odds Hunter", description: "Find the biggest winning odds", participants: 156, prize: "$750", deadline: "7 days", hot: true },
 ];
 
 const chatGroups = [
-  { id: 1, name: "🇨🇩 Linafoot Fans", members: 1240, lastMessage: "Le match commence dans 30 min!", unread: 5, active: true },
-  { id: 2, name: "⚽ Tipsters Pro", members: 456, lastMessage: "Mon pronostic pour demain...", unread: 12, active: true },
-  { id: 3, name: "🏆 Champions League", members: 890, lastMessage: "Mazembe peut le faire!", unread: 0, active: false },
-  { id: 4, name: "🎰 Casino & Slots", members: 320, lastMessage: "Jackpot gagné sur Mega Fortune!", unread: 3, active: true },
+  { id: 1, name: "🇨🇩 Linafoot Fans", members: 1240, lastMessage: "Match starts in 30 min!", unread: 5, active: true },
+  { id: 2, name: "⚽ Pro Tipsters", members: 456, lastMessage: "My prediction for tomorrow...", unread: 12, active: true },
+  { id: 3, name: "🏆 Champions League", members: 890, lastMessage: "Mazembe can do it!", unread: 0, active: false },
+  { id: 4, name: "🎰 Casino & Slots", members: 320, lastMessage: "Jackpot hit on Mega Fortune!", unread: 3, active: true },
 ];
 
 const RankBadge = ({ rank }: { rank: number }) => {
@@ -100,7 +100,7 @@ const RankBadge = ({ rank }: { rank: number }) => {
   return <span className="text-sm font-bold text-muted-foreground w-[18px] text-center">{rank}</span>;
 };
 
-// ─── Feed Tab with Multi-Leg Integration ───
+// ─── Feed Tab ───
 
 const FeedTab = () => {
   const { toggleSelection, isSelected, selections } = useBetSlip();
@@ -146,26 +146,12 @@ const FeedTab = () => {
   const handleCopyBet = (post: typeof feedPosts[0]) => {
     if (post.bet) {
       const id = `${post.bet.matchId}-${post.bet.pick}`;
-      toggleSelection({
-        id,
-        matchId: post.bet.matchId,
-        match: post.bet.match,
-        pick: post.bet.pick,
-        odds: post.bet.odds,
-        league: post.bet.league,
-      });
+      toggleSelection({ id, matchId: post.bet.matchId, match: post.bet.match, pick: post.bet.pick, odds: post.bet.odds, league: post.bet.league });
     }
     if (post.multiBet) {
       post.multiBet.legs.forEach((leg) => {
         const id = `${leg.matchId}-${leg.pick}`;
-        toggleSelection({
-          id,
-          matchId: leg.matchId,
-          match: leg.match,
-          pick: leg.pick,
-          odds: leg.odds,
-          league: leg.league,
-        });
+        toggleSelection({ id, matchId: leg.matchId, match: leg.match, pick: leg.pick, odds: leg.odds, league: leg.league });
       });
     }
     setCopiedId(post.id);
@@ -184,20 +170,20 @@ const FeedTab = () => {
       <div className="rounded-2xl border border-border card-gradient p-3">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-full orange-gradient flex items-center justify-center text-xs font-bold text-highlight-foreground">
-            Moi
+            Me
           </div>
           <input
             type="text"
             value={composeText}
             onChange={(e) => setComposeText(e.target.value)}
-            placeholder="Partagez votre pronostic..."
+            placeholder="Share your prediction..."
             className="flex-1 px-3 py-2.5 rounded-xl bg-card-elevated border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary"
           />
         </div>
         <div className="flex items-center justify-between mt-2 px-1">
           <div className="flex gap-3">
             <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"><ImageIcon size={14} /><span className="text-[10px]">Photo</span></button>
-            <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"><Target size={14} /><span className="text-[10px]">Pari</span></button>
+            <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"><Target size={14} /><span className="text-[10px]">Bet</span></button>
             <button className="flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"><Smile size={14} /><span className="text-[10px]">Emoji</span></button>
           </div>
           <motion.button
@@ -208,7 +194,7 @@ const FeedTab = () => {
             disabled={!composeText.trim()}
             onClick={() => { if (composeText.trim()) setComposeText(""); }}
           >
-            Publier
+            Post
           </motion.button>
         </div>
       </div>
@@ -216,8 +202,8 @@ const FeedTab = () => {
       {/* Feed Filter */}
       <div className="flex gap-2">
         {[
-          { key: "all" as const, label: "Tous" },
-          { key: "following" as const, label: `Abonnements (${followedUsers.size})` },
+          { key: "all" as const, label: "All" },
+          { key: "following" as const, label: `Following (${followedUsers.size})` },
         ].map((f) => (
           <button
             key={f.key}
@@ -247,7 +233,7 @@ const FeedTab = () => {
         if (filteredPosts.length === 0) {
           return (
             <div className="text-center py-8 text-sm text-muted-foreground">
-              Vous ne suivez personne encore. Explorez le feed !
+              You're not following anyone yet. Explore the feed!
             </div>
           );
         }
@@ -267,7 +253,7 @@ const FeedTab = () => {
             {followed && (
               <div className="px-3 pt-2 flex items-center gap-1">
                 <UserCheck size={10} className="text-primary" />
-                <span className="text-[9px] text-primary font-semibold">Abonné</span>
+                <span className="text-[9px] text-primary font-semibold">Following</span>
               </div>
             )}
             {/* Header */}
@@ -326,7 +312,7 @@ const FeedTab = () => {
                   whileTap={{ scale: 0.97 }}
                 >
                   {copied ? <Check size={12} /> : <Copy size={12} />}
-                  {copied ? "Ajouté au coupon!" : "Copier ce pari"}
+                  {copied ? "Added to slip!" : "Copy this bet"}
                 </motion.button>
               </div>
             )}
@@ -339,9 +325,9 @@ const FeedTab = () => {
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-1.5">
                     <Zap size={12} className="text-highlight" />
-                    <span className="text-[10px] font-bold text-highlight">COMBINÉ × {post.multiBet.legs.length}</span>
+                    <span className="text-[10px] font-bold text-highlight">COMBO × {post.multiBet.legs.length}</span>
                   </div>
-                  <span className="text-[10px] font-bold text-highlight">Cote: {post.multiBet.totalOdds.toFixed(2)}</span>
+                  <span className="text-[10px] font-bold text-highlight">Odds: {post.multiBet.totalOdds.toFixed(2)}</span>
                 </div>
                 <div className="space-y-1.5">
                   {post.multiBet.legs.map((leg, li) => {
@@ -379,7 +365,7 @@ const FeedTab = () => {
                   })}
                 </div>
                 <div className="flex items-center justify-between mt-2 pt-2 border-t border-border/50">
-                  <span className="text-[9px] text-muted-foreground">Mise: {post.multiBet.stake}</span>
+                  <span className="text-[9px] text-muted-foreground">Stake: {post.multiBet.stake}</span>
                   <motion.button
                     onClick={() => handleCopyBet(post)}
                     className={`px-3 py-1.5 rounded-lg text-[10px] font-bold flex items-center gap-1.5 transition-all ${
@@ -390,7 +376,7 @@ const FeedTab = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     {copied ? <Check size={12} /> : <Copy size={12} />}
-                    {copied ? "Copié!" : "Copier tout le combo"}
+                    {copied ? "Copied!" : "Copy full combo"}
                   </motion.button>
                 </div>
               </div>
@@ -400,7 +386,7 @@ const FeedTab = () => {
             {post.result && (
               <div className="mx-3 mb-2 rounded-xl bg-success/10 border border-success/20 p-2.5 text-center">
                 <span className="text-lg font-bold text-success">{post.result.amount}</span>
-                <span className="text-[10px] text-success block">Pari gagné! 🎉</span>
+                <span className="text-[10px] text-success block">Bet won! 🎉</span>
               </div>
             )}
 
@@ -428,7 +414,7 @@ const FeedTab = () => {
                 whileTap={{ scale: 1.1 }}
               >
                 {sharedId === post.id ? <Check size={14} /> : <Share2 size={14} />}
-                <span className="text-[10px]">{sharedId === post.id ? "Partagé!" : post.shares}</span>
+                <span className="text-[10px]">{sharedId === post.id ? "Shared!" : post.shares}</span>
               </motion.button>
             </div>
 
@@ -444,7 +430,7 @@ const FeedTab = () => {
                   <div className="p-3 space-y-2">
                     {(userComments[post.id] || []).map((c, ci) => (
                       <div key={ci} className="flex items-start gap-2">
-                        <div className="w-6 h-6 rounded-full orange-gradient flex items-center justify-center text-[8px] font-bold text-highlight-foreground flex-shrink-0">Moi</div>
+                        <div className="w-6 h-6 rounded-full orange-gradient flex items-center justify-center text-[8px] font-bold text-highlight-foreground flex-shrink-0">Me</div>
                         <p className="text-[11px] bg-card-elevated rounded-xl px-3 py-1.5 border border-border">{c}</p>
                       </div>
                     ))}
@@ -454,7 +440,7 @@ const FeedTab = () => {
                         value={commentTexts[post.id] || ""}
                         onChange={(e) => setCommentTexts((prev) => ({ ...prev, [post.id]: e.target.value }))}
                         onKeyDown={(e) => e.key === "Enter" && handleAddComment(post.id)}
-                        placeholder="Écrire un commentaire..."
+                        placeholder="Write a comment..."
                         className="flex-1 px-3 py-2 rounded-xl bg-card-elevated border border-border text-[11px] text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary"
                       />
                       <motion.button
@@ -482,7 +468,7 @@ const LeaderboardTab = () => {
   return (
   <div className="space-y-3">
     <div className="flex gap-2">
-      {["Cette semaine", "Ce mois", "Historique"].map((period, i) => (
+      {["This Week", "This Month", "All Time"].map((period, i) => (
         <button
           key={period}
           onClick={() => setActivePeriod(i)}
@@ -576,14 +562,14 @@ const ChallengesTab = () => {
       transition={{ duration: 0.4 }}
     >
       <Swords size={28} className="mx-auto text-primary mb-2" />
-      <h3 className="text-sm font-bold">Défis & Duels</h3>
-      <p className="text-[10px] text-muted-foreground mt-1">Affrontez d'autres parieurs et gagnez des prix!</p>
+      <h3 className="text-sm font-bold">Challenges & Duels</h3>
+      <p className="text-[10px] text-muted-foreground mt-1">Compete against other bettors and win prizes!</p>
       <motion.button
         className="mt-3 px-6 py-2 rounded-full orange-gradient text-xs font-bold text-highlight-foreground glow-orange"
         whileTap={{ scale: 0.95 }}
         onClick={() => navigate("/challenge")}
       >
-        Créer un défi
+        Create a challenge
       </motion.button>
     </motion.div>
     {challenges.map((c, i) => {
@@ -610,7 +596,7 @@ const ChallengesTab = () => {
           <div className="flex items-center justify-between mt-3">
             <div className="flex items-center gap-3">
               <span className="text-[9px] text-muted-foreground flex items-center gap-1">
-                <Users size={10} />{c.participants + (joined ? 1 : 0)} joueurs
+                <Users size={10} />{c.participants + (joined ? 1 : 0)} players
               </span>
               <span className="text-[10px] font-bold text-highlight flex items-center gap-1">
                 <Zap size={10} />{c.prize}
@@ -625,7 +611,7 @@ const ChallengesTab = () => {
               }`}
               whileTap={joined ? {} : { scale: 0.95 }}
             >
-              {joined ? "✓ Inscrit" : "Participer"}
+              {joined ? "✓ Joined" : "Join"}
             </motion.button>
           </div>
         </div>
@@ -649,7 +635,7 @@ const ChatTab = () => {
         type="text"
         value={chatSearch}
         onChange={(e) => setChatSearch(e.target.value)}
-        placeholder="Rechercher un groupe..."
+        placeholder="Search a group..."
         className="w-full px-4 py-2.5 rounded-xl bg-card-elevated border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary"
       />
       {chatSearch && (
@@ -660,7 +646,7 @@ const ChatTab = () => {
     </div>
     {filteredGroups.length === 0 && (
       <div className="text-center py-6 text-sm text-muted-foreground">
-        Aucun groupe trouvé
+        No groups found
       </div>
     )}
     {filteredGroups.map((group, i) => (
@@ -686,7 +672,7 @@ const ChatTab = () => {
           </div>
           <p className="text-[10px] text-muted-foreground truncate mt-0.5">{group.lastMessage}</p>
           <div className="flex items-center gap-2 mt-0.5">
-            <span className="text-[9px] text-muted-foreground">{group.members} membres</span>
+            <span className="text-[9px] text-muted-foreground">{group.members} members</span>
             {group.active && <span className="w-1.5 h-1.5 rounded-full bg-success" />}
           </div>
         </div>
@@ -697,7 +683,7 @@ const ChatTab = () => {
       className="w-full py-3 rounded-xl border-2 border-dashed border-border hover:border-primary/40 transition-colors text-sm font-medium text-muted-foreground flex items-center justify-center gap-2"
       whileTap={{ scale: 0.97 }}
     >
-      <Users size={16} /> Créer un groupe
+      <Users size={16} /> Create a group
     </motion.button>
   </div>
   );
@@ -722,12 +708,12 @@ const Social = () => {
         {/* Header */}
         <div className="flex items-center justify-between mb-3">
           <div>
-            <h1 className="text-lg font-bold">Communauté</h1>
-            <p className="text-[10px] text-muted-foreground">Partagez, défiez, gagnez ensemble</p>
+            <h1 className="text-lg font-bold">Community</h1>
+            <p className="text-[10px] text-muted-foreground">Share, challenge, win together</p>
           </div>
           <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-success/10 border border-success/20">
             <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
-            <span className="text-[9px] text-success font-semibold">1,247 en ligne</span>
+            <span className="text-[9px] text-success font-semibold">1,247 online</span>
           </div>
         </div>
 
@@ -792,11 +778,11 @@ const Social = () => {
                   </span>
                 </div>
                 <div className="text-left">
-                  <p className="text-xs font-bold text-highlight-foreground">{selections.length} sélection{selections.length > 1 ? "s" : ""}</p>
-                  <p className="text-[10px] text-highlight-foreground/70">Cote totale: {totalOdds.toFixed(2)}</p>
+                  <p className="text-xs font-bold text-highlight-foreground">{selections.length} selection{selections.length > 1 ? "s" : ""}</p>
+                  <p className="text-[10px] text-highlight-foreground/70">Total odds: {totalOdds.toFixed(2)}</p>
                 </div>
               </div>
-              <span className="text-sm font-bold text-highlight-foreground">Voir coupon →</span>
+              <span className="text-sm font-bold text-highlight-foreground">View slip →</span>
             </button>
           </motion.div>
         )}

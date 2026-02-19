@@ -7,7 +7,7 @@ import slotsGame from "@/assets/slots-game.jpg";
 import blackjackGame from "@/assets/blackjack-game.jpg";
 import crashRocket from "@/assets/crash-rocket.png";
 
-const categories = ["Tout", "Crash", "Slots", "Table", "Live", "Jackpot", "Nouveau"];
+const categories = ["All", "Crash", "Slots", "Table", "Live", "Jackpot", "New"];
 
 const games = [
   { id: 1, name: "Roulette VIP", image: casinoPromo, category: "Live", players: 234, rating: 4.8 },
@@ -33,7 +33,7 @@ interface LiveBet {
 const CrashGame = () => {
   const [phase, setPhase] = useState<"waiting" | "countdown" | "running" | "crashed">("waiting");
   const [multiplier, setMultiplier] = useState(1.0);
-  const [betAmount, setBetAmount] = useState("1000");
+  const [betAmount, setBetAmount] = useState("100");
   const [cashedOut, setCashedOut] = useState(false);
   const [cashOutAt, setCashOutAt] = useState(0);
   const [autoCashOut, setAutoCashOut] = useState("");
@@ -58,7 +58,7 @@ const CrashGame = () => {
       bets.push({
         id: betIdRef.current++,
         name: fakeNames[Math.floor(Math.random() * fakeNames.length)],
-        amount: [500, 1000, 2000, 5000, 10000, 25000][Math.floor(Math.random() * 6)],
+        amount: [5, 10, 20, 50, 100, 250][Math.floor(Math.random() * 6)],
         active: true,
       });
     }
@@ -73,7 +73,6 @@ const CrashGame = () => {
       setLiveBets(prev => {
         const active = prev.filter(b => b.active);
         if (active.length === 0) return prev;
-        // Random player cashes out
         if (Math.random() < 0.3) {
           const idx = Math.floor(Math.random() * active.length);
           const target = active[idx];
@@ -100,13 +99,11 @@ const CrashGame = () => {
     const h = canvas.offsetHeight;
     ctx.clearRect(0, 0, w, h);
 
-    // Animated grid
     ctx.strokeStyle = "hsla(0,0%,100%,0.04)";
     ctx.lineWidth = 1;
     for (let i = 1; i <= 5; i++) {
       const y = h - (i / 6) * h;
       ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
-      // Labels
       ctx.fillStyle = "hsla(0,0%,100%,0.15)";
       ctx.font = "10px sans-serif";
       ctx.fillText(`${(i * 2).toFixed(0)}x`, 4, y - 4);
@@ -115,7 +112,6 @@ const CrashGame = () => {
     if (points.length < 2) return;
     const maxY = Math.max(...points, 2.5);
 
-    // Gradient fill
     const grad = ctx.createLinearGradient(0, 0, 0, h);
     if (crashed) {
       grad.addColorStop(0, "hsla(0, 72%, 50%, 0.3)");
@@ -138,7 +134,6 @@ const CrashGame = () => {
     ctx.fillStyle = grad;
     ctx.fill();
 
-    // Line with glow
     const lineHue = crashed ? 0 : points[points.length - 1] > 3 ? 120 : points[points.length - 1] > 2 ? 60 : 350;
     ctx.shadowColor = `hsla(${lineHue}, 72%, 50%, 0.5)`;
     ctx.shadowBlur = 8;
@@ -154,23 +149,19 @@ const CrashGame = () => {
     ctx.stroke();
     ctx.shadowBlur = 0;
 
-    // Pulsing dot at end
     const lastX = (points.length - 1) / (points.length - 1) * w;
     const lastY = h - ((points[points.length - 1] - 1) / (maxY - 1)) * h * 0.85;
     
     if (!crashed) {
-      // Outer glow
       ctx.beginPath();
       ctx.arc(lastX, lastY, 10, 0, Math.PI * 2);
       ctx.fillStyle = `hsla(${lineHue}, 72%, 50%, 0.15)`;
       ctx.fill();
-      // Inner glow
       ctx.beginPath();
       ctx.arc(lastX, lastY, 6, 0, Math.PI * 2);
       ctx.fillStyle = `hsla(${lineHue}, 72%, 50%, 0.3)`;
       ctx.fill();
     }
-    // Dot
     ctx.beginPath();
     ctx.arc(lastX, lastY, 4, 0, Math.PI * 2);
     ctx.fillStyle = `hsl(${lineHue}, 72%, 55%)`;
@@ -186,7 +177,6 @@ const CrashGame = () => {
     crashPointRef.current = 1 + Math.random() * 12 + 0.1;
     generateFakeBets();
 
-    // Countdown phase
     setCountdown(3);
     setPhase("countdown");
     let c = 3;
@@ -196,7 +186,6 @@ const CrashGame = () => {
       if (c <= 0) {
         clearInterval(countdownRef.current!);
         setPhase("running");
-        // Start the actual game
         intervalRef.current = setInterval(() => {
           setMultiplier((prev) => {
             const next = prev + 0.02 + prev * 0.008;
@@ -211,7 +200,6 @@ const CrashGame = () => {
               setTimeout(() => setScreenShake(false), 500);
               drawGraph(pointsRef.current, true);
               setHistory((h) => [parseFloat(crashPointRef.current.toFixed(2)), ...h.slice(0, 11)]);
-              // Mark all remaining active bets as lost
               setLiveBets(prev => prev.map(b => b.active ? { ...b, active: false } : b));
               return crashPointRef.current;
             }
@@ -222,7 +210,6 @@ const CrashGame = () => {
     }, 1000);
   };
 
-  // Auto cash out
   useEffect(() => {
     if (phase === "running" && !cashedOut && autoCashOut) {
       const target = parseFloat(autoCashOut);
@@ -303,8 +290,8 @@ const CrashGame = () => {
                 <motion.div animate={{ y: [0, -6, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}>
                   <Rocket size={32} className="text-primary mx-auto mb-2" />
                 </motion.div>
-                <p className="text-muted-foreground text-sm font-medium">Prêt à décoller 🚀</p>
-                <p className="text-[10px] text-muted-foreground mt-1">Placez votre mise et lancez</p>
+                <p className="text-muted-foreground text-sm font-medium">Ready to launch 🚀</p>
+                <p className="text-[10px] text-muted-foreground mt-1">Place your bet and launch</p>
               </motion.div>
             )}
             {phase === "countdown" && (
@@ -319,7 +306,7 @@ const CrashGame = () => {
                 >
                   {countdown}
                 </motion.span>
-                <p className="text-xs text-muted-foreground mt-2">Décollage imminent...</p>
+                <p className="text-xs text-muted-foreground mt-2">Launching soon...</p>
               </motion.div>
             )}
             {phase === "running" && (
@@ -339,7 +326,7 @@ const CrashGame = () => {
                 </motion.p>
                 {!cashedOut && potentialWin > 0 && (
                   <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[10px] text-muted-foreground mt-1">
-                    Gain: <span className="text-highlight font-bold">{potentialWin.toLocaleString()} CDF</span>
+                    Win: <span className="text-highlight font-bold">${potentialWin.toLocaleString()}</span>
                   </motion.p>
                 )}
               </motion.div>
@@ -363,7 +350,7 @@ const CrashGame = () => {
               transition={{ type: "spring", damping: 15 }}
               className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-success px-5 py-2 rounded-2xl shadow-lg shadow-success/30"
             >
-              <p className="text-sm font-bold text-success-foreground">+{profit.toLocaleString()} CDF à {cashOutAt.toFixed(2)}x 🎉</p>
+              <p className="text-sm font-bold text-success-foreground">+${profit.toLocaleString()} at {cashOutAt.toFixed(2)}x 🎉</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -402,7 +389,7 @@ const CrashGame = () => {
           >
             <div className="rounded-xl border border-border bg-card p-2.5 max-h-28 overflow-y-auto hide-scrollbar">
               <div className="flex items-center justify-between mb-1.5">
-                <p className="text-[10px] font-bold text-muted-foreground uppercase">Joueurs en direct</p>
+                <p className="text-[10px] font-bold text-muted-foreground uppercase">Live Players</p>
                 <button onClick={() => setShowLiveBets(false)} className="text-muted-foreground"><X size={12} /></button>
               </div>
               <div className="space-y-1">
@@ -415,11 +402,11 @@ const CrashGame = () => {
                     className="flex items-center justify-between text-[10px]"
                   >
                     <span className="text-foreground font-medium">{bet.name}</span>
-                    <span className="text-muted-foreground">{bet.amount.toLocaleString()} CDF</span>
+                    <span className="text-muted-foreground">${bet.amount.toLocaleString()}</span>
                     {bet.cashedAt ? (
                       <span className="text-success font-bold">✓ {bet.cashedAt.toFixed(2)}x</span>
                     ) : bet.active ? (
-                      <span className="text-highlight font-bold animate-pulse">En jeu</span>
+                      <span className="text-highlight font-bold animate-pulse">In play</span>
                     ) : (
                       <span className="text-destructive font-bold">✗</span>
                     )}
@@ -436,7 +423,7 @@ const CrashGame = () => {
         {/* Bet amount + Auto cash out */}
         <div className="flex gap-2">
           <div className="flex-1 relative">
-            <label className="text-[9px] text-muted-foreground font-bold uppercase absolute -top-1.5 left-2 bg-card px-1 z-10">Mise</label>
+            <label className="text-[9px] text-muted-foreground font-bold uppercase absolute -top-1.5 left-2 bg-card px-1 z-10">Bet</label>
             <input
               type="number"
               value={betAmount}
@@ -444,7 +431,7 @@ const CrashGame = () => {
               className="w-full px-3 py-2.5 rounded-xl bg-card border border-border text-sm font-bold text-foreground outline-none focus:ring-1 focus:ring-primary"
               disabled={phase === "running" || phase === "countdown"}
             />
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground">CDF</span>
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground">USD</span>
           </div>
           <div className="w-28 relative">
             <label className="text-[9px] text-muted-foreground font-bold uppercase absolute -top-1.5 left-2 bg-card px-1 z-10">Auto ×</label>
@@ -464,7 +451,7 @@ const CrashGame = () => {
 
         {/* Quick bet amounts */}
         <div className="flex gap-1.5">
-          {[500, 1000, 5000, 10000, 25000].map((a) => (
+          {[5, 10, 50, 100, 250].map((a) => (
             <button
               key={a}
               onClick={() => setBetAmount(String(a))}
@@ -475,7 +462,7 @@ const CrashGame = () => {
                   : "border-border bg-card-elevated text-muted-foreground hover:border-highlight/40"
               }`}
             >
-              {a >= 1000 ? `${a / 1000}K` : a}
+              ${a}
             </button>
           ))}
         </div>
@@ -488,12 +475,12 @@ const CrashGame = () => {
               onClick={startGame}
               className="flex-1 py-3 rounded-xl orange-gradient text-highlight-foreground text-sm font-bold glow-orange flex items-center justify-center gap-2"
             >
-              <Rocket size={16} /> Lancer — {numBet.toLocaleString()} CDF
+              <Rocket size={16} /> Launch — ${numBet.toLocaleString()}
             </motion.button>
           )}
           {phase === "countdown" && (
             <div className="flex-1 py-3 rounded-xl bg-primary/20 border border-primary/30 text-primary text-sm font-bold text-center animate-pulse">
-              Décollage dans {countdown}...
+              Launching in {countdown}...
             </div>
           )}
           {phase === "running" && !cashedOut && (
@@ -506,7 +493,7 @@ const CrashGame = () => {
               <motion.div animate={{ scale: [1, 1.15, 1] }} transition={{ repeat: Infinity, duration: 0.8 }}>
                 💰
               </motion.div>
-              Cash Out — {potentialWin.toLocaleString()} CDF
+              Cash Out — ${potentialWin.toLocaleString()}
             </motion.button>
           )}
           {(phase === "crashed" || (phase === "running" && cashedOut)) && (
@@ -515,7 +502,7 @@ const CrashGame = () => {
               onClick={reset}
               className="flex-1 py-3 rounded-xl bg-card border border-border text-sm font-bold flex items-center justify-center gap-2 hover:bg-card-elevated transition-colors"
             >
-              <RotateCcw size={14} /> Rejouer
+              <RotateCcw size={14} /> Play Again
             </motion.button>
           )}
         </div>
@@ -528,14 +515,14 @@ const CrashGame = () => {
             Max: <span className="text-highlight font-bold">{Math.max(...history).toFixed(2)}x</span>
           </div>
           <div className="text-[9px] text-muted-foreground">
-            Moy: <span className="font-bold">{(history.reduce((a, b) => a + b, 0) / history.length).toFixed(2)}x</span>
+            Avg: <span className="font-bold">{(history.reduce((a, b) => a + b, 0) / history.length).toFixed(2)}x</span>
           </div>
         </div>
         <button
           onClick={() => setShowLiveBets(!showLiveBets)}
           className="text-[9px] text-primary font-bold flex items-center gap-1"
         >
-          <Users size={10} /> {showLiveBets ? "Masquer" : "Joueurs"}
+          <Users size={10} /> {showLiveBets ? "Hide" : "Players"}
         </button>
       </div>
     </div>
@@ -570,7 +557,7 @@ const GameModal = ({ game, onClose }: { game: typeof games[0]; onClose: () => vo
           <h2 className="text-xl font-bold mt-2">{game.name}</h2>
           <div className="flex items-center gap-3 mt-1">
             <span className="flex items-center gap-1 text-xs text-muted-foreground"><Star size={12} className="text-highlight fill-highlight" /> {game.rating}</span>
-            <span className="flex items-center gap-1 text-xs text-muted-foreground"><Users size={12} /> {game.players} joueurs</span>
+            <span className="flex items-center gap-1 text-xs text-muted-foreground"><Users size={12} /> {game.players} players</span>
           </div>
         </div>
       </div>
@@ -579,16 +566,16 @@ const GameModal = ({ game, onClose }: { game: typeof games[0]; onClose: () => vo
           whileTap={{ scale: 0.97 }}
           className="w-full py-3.5 rounded-2xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange"
         >
-          🎮 Jouer maintenant
+          🎮 Play Now
         </motion.button>
         <div className="flex gap-2">
-          <button className="flex-1 py-2.5 rounded-xl bg-card border border-border text-xs font-semibold">Démo gratuite</button>
-          <button className="flex-1 py-2.5 rounded-xl bg-card border border-border text-xs font-semibold">Règles du jeu</button>
+          <button className="flex-1 py-2.5 rounded-xl bg-card border border-border text-xs font-semibold">Free Demo</button>
+          <button className="flex-1 py-2.5 rounded-xl bg-card border border-border text-xs font-semibold">Game Rules</button>
         </div>
         <div className="rounded-xl border border-border p-3 card-gradient">
-          <p className="text-[10px] text-muted-foreground uppercase font-bold mb-2">Derniers gains</p>
+          <p className="text-[10px] text-muted-foreground uppercase font-bold mb-2">Recent Wins</p>
           <div className="space-y-2">
-            {[{ user: "Joh***", amount: "12,500 CDF" }, { user: "Pat***", amount: "8,200 CDF" }, { user: "Kin***", amount: "45,000 CDF" }].map((w, i) => (
+            {[{ user: "Joh***", amount: "$125" }, { user: "Pat***", amount: "$82" }, { user: "Kin***", amount: "$450" }].map((w, i) => (
               <div key={i} className="flex items-center justify-between">
                 <span className="text-xs text-foreground">{w.user}</span>
                 <span className="text-xs font-bold text-success">+{w.amount}</span>
@@ -620,7 +607,7 @@ const Casino = () => {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Rechercher un jeu..."
+            placeholder="Search a game..."
             className="w-full pl-9 pr-9 py-2.5 rounded-xl bg-card border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary focus:border-primary/50 transition-all"
           />
           {searchQuery && (
@@ -672,11 +659,11 @@ const Casino = () => {
           <img src={casinoPromo} alt="Casino VIP" className="w-full h-36 object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/40 to-transparent" />
           <div className="absolute inset-0 flex flex-col justify-center pl-4">
-            <span className="text-[10px] text-primary font-bold uppercase tracking-wider">Exclusif</span>
+            <span className="text-[10px] text-primary font-bold uppercase tracking-wider">Exclusive</span>
             <h2 className="text-lg font-bold mt-1">Roulette VIP</h2>
-            <p className="text-xs text-muted-foreground mt-0.5">Tables privées disponibles</p>
+            <p className="text-xs text-muted-foreground mt-0.5">Private tables available</p>
             <motion.button whileTap={{ scale: 0.95 }} className="mt-2 orange-gradient px-4 py-1.5 rounded-lg text-highlight-foreground text-xs font-bold w-fit glow-orange">
-              Jouer maintenant
+              Play Now
             </motion.button>
           </div>
           <div className="absolute bottom-2 right-3">
@@ -687,12 +674,12 @@ const Casino = () => {
 
       {/* Games Grid */}
       <section className="px-4 mt-4 mb-6">
-        <h3 className="text-sm font-bold mb-3">JEUX POPULAIRES</h3>
+        <h3 className="text-sm font-bold mb-3">POPULAR GAMES</h3>
         {filtered.length === 0 ? (
           <div className="text-center py-8">
             <Search size={28} className="mx-auto text-muted-foreground mb-2" />
-            <p className="text-sm font-medium">Aucun jeu trouvé</p>
-            <p className="text-xs text-muted-foreground mt-1">Essayez un autre terme</p>
+            <p className="text-sm font-medium">No games found</p>
+            <p className="text-xs text-muted-foreground mt-1">Try another search term</p>
           </div>
         ) : (
         <div className="grid grid-cols-2 gap-3">
@@ -712,7 +699,7 @@ const Casino = () => {
                   </span>
                 </div>
                 <div className="absolute inset-0 bg-highlight/0 group-hover:bg-highlight/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                  <span className="text-xs font-bold bg-card/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-border">▶ Jouer</span>
+                  <span className="text-xs font-bold bg-card/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-border">▶ Play</span>
                 </div>
               </div>
               <div className="p-2.5 card-gradient">
