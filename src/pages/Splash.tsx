@@ -1,100 +1,127 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import soccabetLogo from "@/assets/soccabet-logo.png";
 
 const Splash = () => {
   const navigate = useNavigate();
-  const [dots, setDots] = useState("");
   const [exiting, setExiting] = useState(false);
 
   useEffect(() => {
-    const dotInterval = setInterval(() => {
-      setDots((prev) => (prev.length >= 3 ? "" : prev + "."));
-    }, 500);
-
     const timer = setTimeout(() => {
       setExiting(true);
-      setTimeout(() => navigate("/age-check"), 600);
-    }, 3000);
+      setTimeout(() => navigate("/age-check"), 700);
+    }, 3500);
 
-    return () => {
-      clearInterval(dotInterval);
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, [navigate]);
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-[hsl(130,50%,18%)] via-[hsl(140,40%,12%)] to-[hsl(140,30%,6%)]"
-      animate={{ opacity: exiting ? 0 : 1, scale: exiting ? 1.05 : 1 }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
+      animate={{ opacity: exiting ? 0 : 1, scale: exiting ? 1.08 : 1 }}
+      transition={{ duration: 0.7, ease: "easeInOut" }}
+      style={{
+        background: "radial-gradient(ellipse at 50% 40%, hsl(130,50%,20%) 0%, hsl(140,40%,10%) 50%, hsl(140,35%,5%) 100%)",
+      }}
     >
-      {/* Subtle field pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.04]" style={{
-        backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 40px, hsl(120,40%,30%) 40px, hsl(120,40%,30%) 41px)`,
-      }} />
+      {/* Stadium field lines */}
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full border-2 border-white" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-white" />
+      </div>
 
-      {/* Ambient glow */}
+      {/* Golden spotlight glow */}
       <motion.div
-        className="absolute w-72 h-72 rounded-full bg-[hsl(45,95%,50%)]/8 blur-[120px]"
-        animate={{ scale: [1, 1.3, 1], opacity: [0.15, 0.3, 0.15] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute w-80 h-80 rounded-full"
+        style={{ background: "radial-gradient(circle, hsla(45,95%,55%,0.08) 0%, transparent 70%)" }}
+        animate={{ scale: [1, 1.4, 1], opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Logo */}
+      {/* Green ambient glow */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+        className="absolute w-96 h-96 rounded-full"
+        style={{ background: "radial-gradient(circle, hsla(130,60%,30%,0.12) 0%, transparent 60%)" }}
+        animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+
+      {/* Logo image */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.6, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-8 relative z-10 flex flex-col items-center"
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 mb-4"
       >
-        <div className="flex items-center gap-2">
-          <span className="text-5xl font-black tracking-tight">
-            <span className="text-white drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)]">SOCCA</span>
-            <span className="text-accent drop-shadow-[0_2px_15px_hsla(45,95%,50%,0.4)]">BET</span>
-          </span>
-          <motion.span
-            className="text-4xl"
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-          >
-            ⚽
-          </motion.span>
-        </div>
-        <p className="text-[10px] text-muted-foreground/60 font-semibold tracking-[0.3em] uppercase mt-2">
-          Play • Win • Repeat
-        </p>
+        <motion.img
+          src={soccabetLogo}
+          alt="Soccabet"
+          className="w-72 h-auto drop-shadow-[0_4px_30px_hsla(45,90%,50%,0.25)]"
+          animate={{ y: [0, -6, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        />
       </motion.div>
 
-      {/* Spinner */}
+      {/* Tagline */}
+      <motion.p
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 text-xs font-bold tracking-[0.35em] uppercase text-accent/70 mb-10"
+      >
+        Play • Win • Repeat
+      </motion.p>
+
+      {/* Loading bar */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.4 }}
-        className="mb-6"
+        transition={{ delay: 0.8, duration: 0.5 }}
+        className="relative z-10 w-40"
       >
-        <div className="w-10 h-10 border-[3px] border-accent/20 border-t-accent rounded-full animate-spin" />
+        <div className="h-1 rounded-full bg-border/40 overflow-hidden">
+          <motion.div
+            className="h-full rounded-full"
+            style={{ background: "linear-gradient(90deg, hsl(130,60%,35%), hsl(45,95%,50%))" }}
+            initial={{ width: "0%" }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 3, ease: "easeInOut" }}
+          />
+        </div>
       </motion.div>
 
-      {/* Status text */}
-      <motion.p
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7, duration: 0.5 }}
-        className="text-muted-foreground text-sm text-center px-8"
-      >
-        Loading{dots}
-      </motion.p>
+      {/* Floating particles */}
+      {[...Array(5)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 rounded-full bg-accent/20"
+          style={{
+            left: `${20 + i * 15}%`,
+            top: `${30 + (i % 3) * 20}%`,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            opacity: [0, 0.6, 0],
+          }}
+          transition={{
+            duration: 2.5 + i * 0.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: i * 0.4,
+          }}
+        />
+      ))}
 
       {/* Footer */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-        className="absolute bottom-12 text-center"
+        transition={{ delay: 1.5, duration: 0.8 }}
+        className="absolute bottom-10 text-center z-10"
       >
-        <p className="text-muted-foreground/40 text-xs">Licensed & Regulated</p>
-        <p className="text-muted-foreground/40 text-xs mt-1">🔞 18+ | Gamble Responsibly</p>
+        <p className="text-muted-foreground/30 text-[10px] font-medium">Licensed & Regulated</p>
+        <p className="text-muted-foreground/30 text-[10px] mt-1">🔞 18+ | Gamble Responsibly</p>
       </motion.div>
     </motion.div>
   );
