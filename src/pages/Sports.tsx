@@ -320,9 +320,9 @@ const Sports = () => {
               </button>
               <button
                 onClick={() => clearSelections()}
-                className="w-12 h-12 rounded-2xl bg-destructive/90 flex items-center justify-center shadow-2xl shrink-0"
+                className="w-12 h-12 rounded-2xl bg-primary/90 flex items-center justify-center shadow-2xl shrink-0"
               >
-                <X size={18} className="text-destructive-foreground" />
+                <X size={18} className="text-primary-foreground" />
               </button>
             </div>
           </motion.div>
