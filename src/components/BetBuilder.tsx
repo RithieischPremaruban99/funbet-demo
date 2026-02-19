@@ -14,14 +14,17 @@ interface MatchPlayers {
   matchId: number;
   matchLabel: string;
   league: string;
+  sport: string;
   players: PlayerData[];
 }
 
 const availableMatches: MatchPlayers[] = [
+  // Football
   {
     matchId: 4,
     matchLabel: "FC Bayern vs FC Barcelona",
     league: "Champions League",
+    sport: "Football",
     players: [
       { name: "H. Kane", team: "FC Bayern", stats: ["Goals", "Shots", "Shots on Target", "Passes"] },
       { name: "J. Musiala", team: "FC Bayern", stats: ["Goals", "Assists", "Passes", "Dribbles"] },
@@ -37,6 +40,7 @@ const availableMatches: MatchPlayers[] = [
     matchId: 7,
     matchLabel: "Liverpool FC vs Manchester City",
     league: "Premier League",
+    sport: "Football",
     players: [
       { name: "M. Salah", team: "Liverpool FC", stats: ["Goals", "Shots", "Assists", "Dribbles"] },
       { name: "D. Núñez", team: "Liverpool FC", stats: ["Goals", "Shots", "Headers", "Shots on Target"] },
@@ -52,6 +56,7 @@ const availableMatches: MatchPlayers[] = [
     matchId: 1,
     matchLabel: "Paris SG vs Olympique Lyonnais",
     league: "Ligue 1 - Matchday 24",
+    sport: "Football",
     players: [
       { name: "K. Mbappé", team: "Paris SG", stats: ["Goals", "Shots", "Dribbles", "Assists"] },
       { name: "O. Dembélé", team: "Paris SG", stats: ["Goals", "Assists", "Dribbles", "Crosses"] },
@@ -59,6 +64,57 @@ const availableMatches: MatchPlayers[] = [
       { name: "V. Zaïre-Emery", team: "Paris SG", stats: ["Passes", "Tackles", "Interceptions", "Key Passes"] },
       { name: "A. Lacazette", team: "OL", stats: ["Goals", "Shots", "Headers", "Shots on Target"] },
       { name: "R. Cherki", team: "OL", stats: ["Goals", "Assists", "Dribbles", "Key Passes"] },
+    ],
+  },
+  // Basketball
+  {
+    matchId: 101,
+    matchLabel: "LA Lakers vs Boston Celtics",
+    league: "NBA - Regular Season",
+    sport: "Basketball",
+    players: [
+      { name: "LeBron James", team: "LA Lakers", stats: ["Points", "Rebounds", "Assists", "Steals", "3-Pointers", "Pts+Reb+Ast"] },
+      { name: "A. Davis", team: "LA Lakers", stats: ["Points", "Rebounds", "Blocks", "Steals", "Pts+Reb+Ast"] },
+      { name: "A. Reaves", team: "LA Lakers", stats: ["Points", "Assists", "3-Pointers", "Rebounds"] },
+      { name: "J. Tatum", team: "Boston Celtics", stats: ["Points", "Rebounds", "Assists", "3-Pointers", "Pts+Reb+Ast"] },
+      { name: "J. Brown", team: "Boston Celtics", stats: ["Points", "Rebounds", "Assists", "Steals", "3-Pointers"] },
+      { name: "D. White", team: "Boston Celtics", stats: ["Points", "Assists", "3-Pointers", "Steals"] },
+      { name: "K. Porzingis", team: "Boston Celtics", stats: ["Points", "Rebounds", "Blocks", "3-Pointers"] },
+    ],
+  },
+  {
+    matchId: 103,
+    matchLabel: "Phoenix Suns vs Denver Nuggets",
+    league: "NBA - Regular Season",
+    sport: "Basketball",
+    players: [
+      { name: "K. Durant", team: "Phoenix Suns", stats: ["Points", "Rebounds", "Assists", "3-Pointers", "Pts+Reb+Ast"] },
+      { name: "D. Booker", team: "Phoenix Suns", stats: ["Points", "Assists", "3-Pointers", "Steals"] },
+      { name: "B. Beal", team: "Phoenix Suns", stats: ["Points", "Assists", "Rebounds", "3-Pointers"] },
+      { name: "N. Jokić", team: "Denver Nuggets", stats: ["Points", "Rebounds", "Assists", "Steals", "Pts+Reb+Ast"] },
+      { name: "J. Murray", team: "Denver Nuggets", stats: ["Points", "Assists", "3-Pointers", "Steals"] },
+      { name: "M. Porter Jr.", team: "Denver Nuggets", stats: ["Points", "Rebounds", "3-Pointers"] },
+    ],
+  },
+  // Tennis
+  {
+    matchId: 201,
+    matchLabel: "C. Alcaraz vs N. Djokovic",
+    league: "ATP Masters 1000 - Indian Wells",
+    sport: "Tennis",
+    players: [
+      { name: "C. Alcaraz", team: "ESP", stats: ["Aces", "Double Faults", "Winners", "Unforced Errors", "Break Points Won", "Total Games"] },
+      { name: "N. Djokovic", team: "SRB", stats: ["Aces", "Double Faults", "Winners", "Unforced Errors", "Break Points Won", "Total Games"] },
+    ],
+  },
+  {
+    matchId: 202,
+    matchLabel: "J. Sinner vs D. Medvedev",
+    league: "ATP Masters 1000 - Indian Wells",
+    sport: "Tennis",
+    players: [
+      { name: "J. Sinner", team: "ITA", stats: ["Aces", "Double Faults", "Winners", "Unforced Errors", "Break Points Won", "Total Games"] },
+      { name: "D. Medvedev", team: "RUS", stats: ["Aces", "Double Faults", "Winners", "Unforced Errors", "Break Points Won", "Total Games"] },
     ],
   },
 ];
@@ -83,17 +139,16 @@ const conditionLabels: Record<Condition, string> = {
 // Generate a pseudo-random odds based on inputs
 const calcOdds = (stat: string, condition: Condition, value: number): number => {
   const base: Record<string, number> = {
-    Goals: 3.5,
-    Assists: 3.2,
-    Shots: 1.6,
-    "Shots on Target": 2.0,
-    Passes: 1.2,
-    Tackles: 1.8,
-    Interceptions: 2.1,
-    Dribbles: 1.9,
-    Crosses: 1.7,
-    Headers: 3.0,
-    "Key Passes": 2.2,
+    // Football
+    Goals: 3.5, Assists: 3.2, Shots: 1.6, "Shots on Target": 2.0,
+    Passes: 1.2, Tackles: 1.8, Interceptions: 2.1, Dribbles: 1.9,
+    Crosses: 1.7, Headers: 3.0, "Key Passes": 2.2,
+    // Basketball
+    Points: 1.3, Rebounds: 1.6, "3-Pointers": 2.0, Blocks: 2.5,
+    Steals: 2.3, "Pts+Reb+Ast": 1.1,
+    // Tennis
+    Aces: 1.8, "Double Faults": 2.2, Winners: 1.4, "Unforced Errors": 1.5,
+    "Break Points Won": 2.0, "Total Games": 1.2,
   };
   let odds = (base[stat] || 2.0) + value * 0.5;
   if (condition === "exactly") odds *= 1.8;
