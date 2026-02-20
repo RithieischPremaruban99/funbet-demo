@@ -4,8 +4,9 @@ const AgeDenied = () => {
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background px-6">
       <div className="flex flex-col items-center mb-8 opacity-50">
-        <span className="text-2xl font-black">
-          <span className="text-primary">bingo</span><span className="text-accent">bets</span>
+        <span className="text-3xl font-black italic tracking-tight leading-none">
+          <span style={{ color: "hsl(0, 72%, 51%)" }}>bingo</span>
+          <span style={{ color: "hsl(45, 95%, 55%)" }}>bets</span>
         </span>
       </div>
 

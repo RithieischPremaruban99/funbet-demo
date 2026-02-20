@@ -43,8 +43,9 @@ const AgeVerification = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <span className="text-2xl font-black tracking-tight">
-          <span className="text-primary">bingo</span><span className="text-accent">bets</span>
+        <span className="text-3xl font-black italic tracking-tight leading-none">
+          <span style={{ color: "hsl(0, 72%, 51%)" }}>bingo</span>
+          <span style={{ color: "hsl(45, 95%, 55%)" }}>bets</span>
         </span>
       </motion.div>
 
