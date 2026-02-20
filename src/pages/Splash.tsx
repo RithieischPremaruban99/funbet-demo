@@ -21,12 +21,12 @@ const Splash = () => {
       animate={{ opacity: exiting ? 0 : 1, scale: exiting ? 1.08 : 1 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
       style={{
-        background: "radial-gradient(ellipse at 50% 40%, hsl(220,40%,14%) 0%, hsl(220,42%,6%) 60%, hsl(220,45%,4%) 100%)",
+        background: "radial-gradient(ellipse at 50% 40%, hsl(220,15%,14%) 0%, hsl(220,12%,6%) 60%, hsl(0,0%,4%) 100%)",
       }}
     >
       {/* Subtle ambient glow */}
       <div className="absolute w-[500px] h-[500px] rounded-full opacity-20"
-        style={{ background: "radial-gradient(circle, hsla(0,72%,50%,0.15) 0%, transparent 70%)" }} />
+        style={{ background: "radial-gradient(circle, hsla(43,55%,52%,0.1) 0%, transparent 70%)" }} />
 
       {/* Logo */}
       <motion.div
@@ -35,14 +35,18 @@ const Splash = () => {
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 flex flex-col items-center"
       >
-        <div className="relative">
+        <div className="relative flex flex-col items-center">
+          {/* Tsogo-style gold ring */}
+          <div className="absolute -inset-8 flex items-center justify-center">
+            <div className="w-44 h-44 rounded-full border-[2.5px]" style={{ borderColor: "hsl(43, 55%, 52%)" }} />
+          </div>
           <h1 className="text-6xl font-black italic tracking-tight leading-none select-none">
-            <span style={{ color: "hsl(0, 72%, 51%)" }}>bingo</span>
-            <span style={{ color: "hsl(45, 95%, 55%)" }}>bets</span>
+            <span style={{ color: "hsl(220, 10%, 55%)" }}>bingo</span>
+            <span style={{ color: "hsl(43, 55%, 52%)" }}>bets</span>
           </h1>
           {/* Swoosh underline */}
-          <svg viewBox="0 0 200 20" className="w-48 mx-auto mt-1 opacity-80" fill="none">
-            <path d="M10 15 Q60 2 190 10" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+          <svg viewBox="0 0 200 20" className="w-48 mx-auto mt-1 opacity-60" fill="none">
+            <path d="M10 15 Q60 2 190 10" stroke="hsl(43, 55%, 52%)" strokeWidth="2.5" strokeLinecap="round" />
           </svg>
         </div>
       </motion.div>
@@ -67,7 +71,7 @@ const Splash = () => {
         <div className="h-[3px] rounded-full bg-white/10 overflow-hidden">
           <motion.div
             className="h-full rounded-full"
-            style={{ background: "linear-gradient(90deg, hsl(0,72%,51%), hsl(45,95%,55%))" }}
+            style={{ background: "linear-gradient(90deg, hsl(220,10%,55%), hsl(43,55%,52%))" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 3, ease: "easeInOut" }}

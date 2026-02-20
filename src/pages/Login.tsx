@@ -19,13 +19,18 @@ const Login = () => {
       >
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <h1 className="text-4xl font-black italic tracking-tight">
-            <span style={{ color: "hsl(0, 72%, 51%)" }}>bingo</span>
-            <span style={{ color: "hsl(45, 95%, 55%)" }}>bets</span>
-          </h1>
-          <svg viewBox="0 0 200 20" className="w-32 mx-auto -mt-1" preserveAspectRatio="none">
-            <path d="M10 15 Q60 2 190 10" stroke="hsla(0,0%,100%,0.25)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-          </svg>
+          <div className="relative flex flex-col items-center">
+            <div className="absolute -inset-5 flex items-center justify-center">
+              <div className="w-32 h-32 rounded-full border-2" style={{ borderColor: "hsl(43, 55%, 52%)" }} />
+            </div>
+            <h1 className="text-4xl font-black italic tracking-tight">
+              <span style={{ color: "hsl(220, 10%, 55%)" }}>bingo</span>
+              <span style={{ color: "hsl(43, 55%, 52%)" }}>bets</span>
+            </h1>
+            <svg viewBox="0 0 200 20" className="w-32 mx-auto -mt-1" preserveAspectRatio="none">
+              <path d="M10 15 Q60 2 190 10" stroke="hsla(43,55%,52%,0.4)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+            </svg>
+          </div>
           <p className="text-xs text-muted-foreground mt-2">Access your account</p>
         </div>
 
