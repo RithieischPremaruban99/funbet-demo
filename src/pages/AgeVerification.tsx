@@ -43,11 +43,9 @@ const AgeVerification = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="relative flex flex-col items-center">
-          <div className="absolute flex items-center justify-center" style={{ inset: "-2rem" }}>
-            <div className="w-36 h-36 rounded-full border-[2.5px]" style={{ borderColor: "hsl(40, 55%, 50%)" }} />
-          </div>
-          <span className="text-4xl font-black tracking-[0.18em] uppercase" style={{
+        <div className="relative flex flex-col items-center justify-center" style={{ width: "200px", height: "200px" }}>
+          <div className="absolute inset-0 rounded-full border-[2.5px]" style={{ borderColor: "hsl(40, 55%, 50%)" }} />
+          <span className="text-4xl font-black tracking-[0.18em] uppercase relative z-10" style={{
             background: "linear-gradient(135deg, hsl(40,60%,62%), hsl(40,40%,45%))",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
