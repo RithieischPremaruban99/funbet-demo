@@ -44,10 +44,10 @@ const AgeVerification = () => {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="relative flex flex-col items-center">
-          <div className="absolute flex items-center justify-center" style={{ inset: "-1.5rem" }}>
-            <div className="w-28 h-28 rounded-full border-[1.5px]" style={{ borderColor: "hsl(40, 55%, 50%)" }} />
+          <div className="absolute flex items-center justify-center" style={{ inset: "-2rem" }}>
+            <div className="w-36 h-36 rounded-full border-[2.5px]" style={{ borderColor: "hsl(40, 55%, 50%)" }} />
           </div>
-          <span className="text-3xl font-black tracking-[0.15em] uppercase" style={{
+          <span className="text-4xl font-black tracking-[0.18em] uppercase" style={{
             background: "linear-gradient(135deg, hsl(40,60%,62%), hsl(40,40%,45%))",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
