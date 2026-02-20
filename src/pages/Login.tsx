@@ -20,18 +20,16 @@ const Login = () => {
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
           <div className="relative flex flex-col items-center">
-            <div className="absolute -inset-5 flex items-center justify-center">
-              <div className="w-32 h-32 rounded-full border-2" style={{ borderColor: "hsl(43, 55%, 52%)" }} />
+            <div className="absolute flex items-center justify-center" style={{ inset: "-1.5rem" }}>
+              <div className="w-32 h-32 rounded-full border-[1.5px]" style={{ borderColor: "hsl(43, 45%, 40%)" }} />
             </div>
-            <h1 className="text-4xl font-black italic tracking-tight">
-              <span style={{ color: "hsl(220, 10%, 55%)" }}>bingo</span>
-              <span style={{ color: "hsl(43, 55%, 52%)" }}>bets</span>
-            </h1>
-            <svg viewBox="0 0 200 20" className="w-32 mx-auto -mt-1" preserveAspectRatio="none">
-              <path d="M10 15 Q60 2 190 10" stroke="hsla(43,55%,52%,0.4)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-            </svg>
+            <h1 className="text-4xl font-black tracking-[0.15em] uppercase" style={{
+              background: "linear-gradient(180deg, hsl(0,0%,65%) 0%, hsl(0,0%,35%) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}>TSOGO</h1>
           </div>
-          <p className="text-xs text-muted-foreground mt-2">Access your account</p>
+          <p className="text-xs text-muted-foreground mt-6">Access your account</p>
         </div>
 
         <div className="mt-6 space-y-4">
@@ -61,7 +59,7 @@ const Login = () => {
             <button className="text-xs text-primary font-medium">Forgot password?</button>
           </motion.div>
 
-          <motion.button className="w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange" whileTap={{ scale: 0.97 }} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}>
+          <motion.button className="w-full py-3 rounded-xl text-sm font-bold orange-gradient text-highlight-foreground glow-orange" whileTap={{ scale: 0.97 }} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}>
             Log In
           </motion.button>
 
@@ -71,9 +69,9 @@ const Login = () => {
           </p>
         </div>
 
-        <div className="mt-8 flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/10 border border-primary/20">
-          <Shield size={14} className="text-primary flex-shrink-0" />
-          <span className="text-[10px] text-primary">18+ | Gambling is prohibited for minors</span>
+        <div className="mt-8 flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "hsla(43,55%,48%,0.06)", borderColor: "hsla(43,55%,48%,0.15)" }}>
+          <Shield size={14} style={{ color: "hsl(43, 55%, 48%)" }} className="flex-shrink-0" />
+          <span className="text-[10px]" style={{ color: "hsl(43, 55%, 48%)" }}>18+ | Gambling is prohibited for minors</span>
         </div>
       </motion.section>
     </MobileLayout>

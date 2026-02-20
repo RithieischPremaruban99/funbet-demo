@@ -25,7 +25,7 @@ const AgeVerification = () => {
       animate={{ opacity: exiting ? 0 : 1, y: exiting ? -20 : 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       style={{
-        background: "radial-gradient(ellipse at 50% 40%, hsl(220,40%,16%) 0%, hsl(220,40%,8%) 50%, hsl(220,42%,4%) 100%)",
+        background: "radial-gradient(ellipse at 50% 40%, hsl(0,0%,10%) 0%, hsl(0,0%,5%) 50%, hsl(0,0%,2%) 100%)",
       }}
     >
       {/* Geometric pattern */}
@@ -34,7 +34,7 @@ const AgeVerification = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-white" />
       </div>
 
-      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(0,72%,51%,0.06) 0%, transparent 70%)" }} />
+      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(43,55%,48%,0.05) 0%, transparent 70%)" }} />
 
       {/* Logo */}
       <motion.div
@@ -44,13 +44,14 @@ const AgeVerification = () => {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="relative flex flex-col items-center">
-          <div className="absolute -inset-4 flex items-center justify-center">
-            <div className="w-28 h-28 rounded-full border-2" style={{ borderColor: "hsl(43, 55%, 52%)" }} />
+          <div className="absolute flex items-center justify-center" style={{ inset: "-1.5rem" }}>
+            <div className="w-28 h-28 rounded-full border-[1.5px]" style={{ borderColor: "hsl(43, 45%, 40%)" }} />
           </div>
-          <span className="text-3xl font-black italic tracking-tight leading-none">
-            <span style={{ color: "hsl(220, 10%, 55%)" }}>bingo</span>
-            <span style={{ color: "hsl(43, 55%, 52%)" }}>bets</span>
-          </span>
+          <span className="text-3xl font-black tracking-[0.15em] uppercase" style={{
+            background: "linear-gradient(180deg, hsl(0,0%,65%) 0%, hsl(0,0%,35%) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}>TSOGO</span>
         </div>
       </motion.div>
 
@@ -61,18 +62,19 @@ const AgeVerification = () => {
         transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
       >
         <motion.div
-          className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 border border-primary/30"
+          className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full border"
+          style={{ background: "hsla(43,55%,48%,0.08)", borderColor: "hsla(43,55%,48%,0.25)" }}
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.4, delay: 0.5, type: "spring", stiffness: 200 }}
         >
-          <Shield size={32} className="text-primary" />
+          <Shield size={32} style={{ color: "hsl(43, 55%, 48%)" }} />
         </motion.div>
 
         <h1 className="text-xl font-bold mb-2">Age Verification</h1>
         <p className="text-sm text-muted-foreground mb-6 leading-relaxed">
           Gambling is strictly reserved for persons aged{" "}
-          <span className="text-accent font-bold">18 and over</span>.
+          <span className="font-bold" style={{ color: "hsl(43, 55%, 52%)" }}>18 and over</span>.
         </p>
 
         <p className="text-sm font-semibold mb-6">Are you 18 or older?</p>
@@ -92,7 +94,12 @@ const AgeVerification = () => {
           </motion.button>
           <motion.button
             onClick={handleConfirm}
-            className="flex-1 py-3 rounded-xl orange-gradient text-highlight-foreground text-sm font-bold glow-orange"
+            className="flex-1 py-3 rounded-xl text-sm font-bold"
+            style={{ 
+              background: "linear-gradient(135deg, hsl(43,55%,48%), hsl(43,40%,35%))",
+              color: "hsl(0,0%,4%)",
+              boxShadow: "0 0 15px hsla(43,55%,48%,0.2)",
+            }}
             whileTap={{ scale: 0.96 }}
             whileHover={{ scale: 1.02 }}
           >
@@ -107,8 +114,8 @@ const AgeVerification = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.6 }}
       >
-        <p className="text-muted-foreground/30 text-[10px] font-medium">Licensed & Regulated</p>
-        <p className="text-muted-foreground/30 text-[10px] mt-1">🔞 Gamble Responsibly</p>
+        <p className="text-[10px] font-medium" style={{ color: "hsl(0,0%,25%)" }}>Licensed & Regulated</p>
+        <p className="text-[10px] mt-1" style={{ color: "hsl(0,0%,25%)" }}>🔞 Gamble Responsibly</p>
       </motion.div>
     </motion.div>
   );

@@ -8,13 +8,14 @@ const TopBar = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-[hsl(220,40%,8%)] to-[hsl(220,35%,6%)] border-b border-border/60">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-[hsl(0,0%,7%)] to-[hsl(0,0%,4%)] border-b border-border/60">
         <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
           <Link to="/" className="flex items-center">
-            <span className="text-xl font-black italic tracking-tight leading-none">
-              <span style={{ color: "hsl(0, 72%, 51%)" }}>bingo</span>
-              <span style={{ color: "hsl(45, 95%, 55%)" }}>bets</span>
-            </span>
+            <span className="text-xl font-black tracking-[0.12em] uppercase leading-none" style={{
+              background: "linear-gradient(180deg, hsl(0,0%,65%) 0%, hsl(0,0%,38%) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}>TSOGO</span>
           </Link>
           <div className="flex items-center gap-1.5">
             <button
