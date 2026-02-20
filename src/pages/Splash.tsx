@@ -35,36 +35,26 @@ const Splash = () => {
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 flex flex-col items-center"
       >
-        <div className="relative flex flex-col items-center">
-          {/* Gold circle ring with gradient shine */}
+        <div className="relative flex flex-col items-center justify-center" style={{ width: "180px", height: "180px" }}>
+          {/* Gold circle ring */}
           <motion.div
-            className="absolute flex items-center justify-center"
-            style={{ inset: "-3rem" }}
+            className="absolute inset-0 flex items-center justify-center"
             initial={{ scale: 0.7, opacity: 0, rotate: -90 }}
             animate={{ scale: 1, opacity: 1, rotate: 0 }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <svg width="200" height="200" viewBox="0 0 200 200">
-              <defs>
-                <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="hsl(40, 65%, 62%)" />
-                  <stop offset="30%" stopColor="hsl(40, 40%, 38%)" />
-                  <stop offset="60%" stopColor="hsl(40, 65%, 58%)" />
-                  <stop offset="100%" stopColor="hsl(40, 35%, 32%)" />
-                </linearGradient>
-              </defs>
-              <circle cx="100" cy="100" r="95" fill="none" stroke="url(#ringGrad)" strokeWidth="2" />
-            </svg>
+            <div className="w-full h-full rounded-full border-[2.5px]" style={{
+              borderColor: "hsl(40, 55%, 50%)",
+            }} />
           </motion.div>
-          <h1 className="text-7xl font-black tracking-[0.2em] uppercase leading-none select-none">
+          <h1 className="text-5xl font-black tracking-[0.18em] uppercase leading-none select-none relative z-10">
             <span style={{ 
               background: "linear-gradient(135deg, hsl(40,60%,62%), hsl(40,40%,45%), hsl(40,60%,58%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}>TSOGO</span>
           </h1>
-          {/* Thin gold line below */}
-          <div className="w-24 h-px mt-3 mx-auto" style={{ 
+          <div className="w-16 h-px mt-2 mx-auto relative z-10" style={{ 
             background: "linear-gradient(90deg, transparent, hsl(40,55%,55%), transparent)" 
           }} />
         </div>
