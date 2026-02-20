@@ -35,7 +35,7 @@ const Splash = () => {
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 flex flex-col items-center"
       >
-        <div className="relative flex flex-col items-center justify-center" style={{ width: "180px", height: "180px" }}>
+        <div className="relative flex flex-col items-center justify-center" style={{ width: "240px", height: "240px" }}>
           {/* Gold circle ring */}
           <motion.div
             className="absolute inset-0 flex items-center justify-center"
