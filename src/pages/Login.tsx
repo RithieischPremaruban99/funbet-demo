@@ -19,11 +19,9 @@ const Login = () => {
       >
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div className="relative flex flex-col items-center">
-            <div className="absolute flex items-center justify-center" style={{ inset: "-1.5rem" }}>
-              <div className="w-32 h-32 rounded-full border-[1.5px]" style={{ borderColor: "hsl(40, 55%, 50%)" }} />
-            </div>
-            <h1 className="text-4xl font-black tracking-[0.15em] uppercase" style={{
+          <div className="relative flex flex-col items-center justify-center" style={{ width: "200px", height: "200px" }}>
+            <div className="absolute inset-0 rounded-full border-[2.5px]" style={{ borderColor: "hsl(40, 55%, 50%)" }} />
+            <h1 className="text-4xl font-black tracking-[0.18em] uppercase relative z-10" style={{
               background: "linear-gradient(135deg, hsl(40,60%,62%), hsl(40,40%,45%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
