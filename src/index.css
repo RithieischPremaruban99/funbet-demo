@@ -6,27 +6,27 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
-    --foreground: 40 10% 90%;
+    --background: 220 30% 12%;
+    --foreground: 40 20% 90%;
 
-    --card: 0 0% 8%;
-    --card-foreground: 40 10% 90%;
-    --card-elevated: 0 0% 12%;
+    --card: 220 28% 16%;
+    --card-foreground: 40 20% 90%;
+    --card-elevated: 220 25% 20%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 40 10% 90%;
+    --popover: 220 28% 16%;
+    --popover-foreground: 40 20% 90%;
 
-    --primary: 43 55% 48%;
-    --primary-foreground: 0 0% 4%;
+    --primary: 40 55% 55%;
+    --primary-foreground: 220 30% 10%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 0 0% 55%;
+    --secondary: 220 25% 20%;
+    --secondary-foreground: 220 10% 55%;
 
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 220 25% 20%;
+    --muted-foreground: 220 10% 50%;
 
-    --accent: 43 55% 52%;
-    --accent-foreground: 0 0% 4%;
+    --accent: 40 60% 58%;
+    --accent-foreground: 220 30% 10%;
 
     --destructive: 0 60% 45%;
     --destructive-foreground: 0 0% 100%;
@@ -37,34 +37,34 @@
     --live: 0 60% 50%;
     --live-foreground: 0 0% 100%;
 
-    --highlight: 43 55% 52%;
-    --highlight-foreground: 0 0% 4%;
+    --highlight: 40 60% 58%;
+    --highlight-foreground: 220 30% 10%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 43 55% 48%;
+    --border: 220 20% 22%;
+    --input: 220 20% 22%;
+    --ring: 40 55% 55%;
 
     --radius: 0.75rem;
 
-    --red-gradient: linear-gradient(135deg, hsl(43, 55%, 52%), hsl(43, 40%, 35%));
-    --red-gradient-hover: linear-gradient(135deg, hsl(43, 55%, 58%), hsl(43, 45%, 40%));
-    --orange-gradient: linear-gradient(135deg, hsl(43, 55%, 48%), hsl(43, 65%, 38%));
-    --card-gradient: linear-gradient(180deg, hsl(0, 0%, 10%), hsl(0, 0%, 4%));
-    --card-gradient-warm: linear-gradient(180deg, hsla(43, 20%, 12%, 0.5), hsla(0, 0%, 4%, 0.9));
-    --hero-gradient: linear-gradient(135deg, hsl(0, 0%, 10%), hsl(0, 0%, 4%));
-    --glass: hsla(0, 0%, 4%, 0.92);
+    --red-gradient: linear-gradient(135deg, hsl(40, 60%, 58%), hsl(40, 45%, 40%));
+    --red-gradient-hover: linear-gradient(135deg, hsl(40, 60%, 64%), hsl(40, 50%, 45%));
+    --orange-gradient: linear-gradient(135deg, hsl(40, 55%, 55%), hsl(40, 65%, 42%));
+    --card-gradient: linear-gradient(180deg, hsl(220, 28%, 18%), hsl(220, 30%, 12%));
+    --card-gradient-warm: linear-gradient(180deg, hsla(40, 20%, 20%, 0.5), hsla(220, 30%, 12%, 0.9));
+    --hero-gradient: linear-gradient(135deg, hsl(220, 28%, 18%), hsl(220, 30%, 10%));
+    --glass: hsla(220, 30%, 12%, 0.92);
 
     --font-display: 'Inter', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    --sidebar-background: 0 0% 5%;
-    --sidebar-foreground: 40 10% 90%;
-    --sidebar-primary: 43 55% 48%;
-    --sidebar-primary-foreground: 0 0% 4%;
-    --sidebar-accent: 0 0% 12%;
-    --sidebar-accent-foreground: 40 10% 90%;
-    --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 43 55% 48%;
+    --sidebar-background: 220 30% 10%;
+    --sidebar-foreground: 40 20% 90%;
+    --sidebar-primary: 40 55% 55%;
+    --sidebar-primary-foreground: 220 30% 10%;
+    --sidebar-accent: 220 25% 20%;
+    --sidebar-accent-foreground: 40 20% 90%;
+    --sidebar-border: 220 20% 22%;
+    --sidebar-ring: 40 55% 55%;
   }
 }
 
@@ -125,7 +125,7 @@
   .odds-cell:active {
     transform: scale(0.92);
     border-color: hsl(var(--highlight));
-    box-shadow: 0 0 12px hsla(43, 55%, 48%, 0.3);
+    box-shadow: 0 0 12px hsla(40, 55%, 55%, 0.3);
   }
 
   button::after, [role="button"]::after {
@@ -188,15 +188,15 @@
   }
 
   .glow-red {
-    box-shadow: 0 0 20px hsla(43, 55%, 48%, 0.2), 0 0 40px hsla(43, 55%, 48%, 0.06);
+    box-shadow: 0 0 20px hsla(40, 55%, 55%, 0.2), 0 0 40px hsla(40, 55%, 55%, 0.06);
   }
 
   .glow-orange {
-    box-shadow: 0 0 15px hsla(43, 55%, 48%, 0.3), 0 0 30px hsla(43, 55%, 48%, 0.1);
+    box-shadow: 0 0 15px hsla(40, 55%, 55%, 0.3), 0 0 30px hsla(40, 55%, 55%, 0.1);
   }
 
   .border-glow {
-    border-color: hsla(43, 55%, 48%, 0.4);
+    border-color: hsla(40, 55%, 55%, 0.4);
   }
 
   .hide-scrollbar::-webkit-scrollbar {
@@ -212,6 +212,6 @@
   }
 
   .odds-cell:hover {
-    box-shadow: 0 0 8px hsla(43, 55%, 48%, 0.15);
+    box-shadow: 0 0 8px hsla(40, 55%, 55%, 0.15);
   }
 }

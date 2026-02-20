@@ -6,10 +6,10 @@ const AgeDenied = () => {
       <div className="flex flex-col items-center mb-8 opacity-40">
         <div className="relative flex flex-col items-center">
           <div className="absolute flex items-center justify-center" style={{ inset: "-1.2rem" }}>
-            <div className="w-24 h-24 rounded-full border-[1.5px]" style={{ borderColor: "hsl(43, 45%, 35%)" }} />
+            <div className="w-24 h-24 rounded-full border-[1.5px]" style={{ borderColor: "hsl(40, 50%, 45%)" }} />
           </div>
           <span className="text-3xl font-black tracking-[0.15em] uppercase" style={{
-            background: "linear-gradient(180deg, hsl(0,0%,55%) 0%, hsl(0,0%,30%) 100%)",
+            background: "linear-gradient(135deg, hsl(40,60%,58%), hsl(40,40%,40%))",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}>TSOGO</span>
