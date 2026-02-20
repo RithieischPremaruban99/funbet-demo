@@ -311,7 +311,7 @@ const Index = () => {
     <MobileLayout>
       {/* Top actions */}
       <section className="px-4 mt-3 flex items-center justify-between">
-        <Link to="/login" className="text-sm font-medium text-foreground hover:text-primary transition-colors">Log In</Link>
+        <Link to="/login" className="px-5 py-2 rounded-full border border-highlight/60 text-highlight text-sm font-bold hover:bg-highlight/10 transition-colors">Log In</Link>
         <Link to="/register" className="px-5 py-2 rounded-full orange-gradient text-highlight-foreground text-sm font-bold glow-orange">
           Create Account
         </Link>
