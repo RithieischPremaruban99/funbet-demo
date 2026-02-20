@@ -36,30 +36,37 @@ const Splash = () => {
         className="relative z-10 flex flex-col items-center"
       >
         <div className="relative flex flex-col items-center">
-          {/* Gold circle ring */}
+          {/* Gold circle ring with gradient shine */}
           <motion.div
             className="absolute flex items-center justify-center"
-            style={{ inset: "-2.5rem" }}
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            style={{ inset: "-3rem" }}
+            initial={{ scale: 0.7, opacity: 0, rotate: -90 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="w-48 h-48 rounded-full" style={{ 
-              border: "2px solid transparent",
-              background: "linear-gradient(135deg, hsl(43,55%,48%), hsl(43,35%,30%)) padding-box, linear-gradient(135deg, hsl(43,55%,55%), hsl(43,30%,25%)) border-box",
-              WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-              WebkitMaskComposite: "xor",
-              maskComposite: "exclude",
-              padding: "2px",
-            }} />
+            <svg width="200" height="200" viewBox="0 0 200 200">
+              <defs>
+                <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="hsl(43, 60%, 58%)" />
+                  <stop offset="30%" stopColor="hsl(43, 35%, 30%)" />
+                  <stop offset="60%" stopColor="hsl(43, 60%, 55%)" />
+                  <stop offset="100%" stopColor="hsl(43, 30%, 25%)" />
+                </linearGradient>
+              </defs>
+              <circle cx="100" cy="100" r="95" fill="none" stroke="url(#ringGrad)" strokeWidth="2" />
+            </svg>
           </motion.div>
-          <h1 className="text-7xl font-black tracking-[0.15em] uppercase leading-none select-none" style={{ fontFamily: "'Inter', sans-serif" }}>
+          <h1 className="text-7xl font-black tracking-[0.2em] uppercase leading-none select-none">
             <span style={{ 
-              background: "linear-gradient(180deg, hsl(0,0%,70%) 0%, hsl(0,0%,40%) 100%)",
+              background: "linear-gradient(135deg, hsl(43,50%,60%), hsl(0,0%,55%), hsl(43,50%,55%), hsl(0,0%,45%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}>TSOGO</span>
           </h1>
+          {/* Thin gold line below */}
+          <div className="w-24 h-px mt-3 mx-auto" style={{ 
+            background: "linear-gradient(90deg, transparent, hsl(43,55%,48%), transparent)" 
+          }} />
         </div>
       </motion.div>
 
