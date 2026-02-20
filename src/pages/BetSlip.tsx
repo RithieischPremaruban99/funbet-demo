@@ -1,19 +1,34 @@
 import MobileLayout from "@/components/MobileLayout";
-import { useState, useRef, useCallback } from "react";
+import { useState } from "react";
 import { ArrowLeft, Info, Shield, Trash2, X, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useBetSlip } from "@/contexts/BetSlipContext";
 import { motion, AnimatePresence } from "framer-motion";
+import AccaBonusBadge, { getAccaBonusPercent } from "@/components/betslip/AccaBonusBadge";
+import EarlyPayoutCard from "@/components/betslip/EarlyPayoutCard";
+import BetBoosters, { type BoosterState, getBoosterFeePercent, getOneCutMultiplier, getAnyWinMultiplier } from "@/components/betslip/BetBoosters";
+import SystemBetConfig, { combinations } from "@/components/betslip/SystemBetConfig";
 
 const BetSlip = () => {
   const { selections, removeSelection, clearSelections } = useBetSlip();
   const [stake, setStake] = useState("50");
-  const [betType, setBetType] = useState<"single" | "combi">("combi");
+  const [betType, setBetType] = useState<"single" | "combi" | "system">("combi");
   const [flexEnabled, setFlexEnabled] = useState(false);
   const [flexCount, setFlexCount] = useState(0);
   const [confirmed, setConfirmed] = useState(false);
+  const [boosters, setBoosters] = useState<BoosterState>({ insure: false, oneCut: false, earlyGoals: false, anyWin: false });
+  const [systemSize, setSystemSize] = useState(2);
 
-  const canUseFlex = betType === "combi" && selections.length >= 3;
+  const toggleBooster = (key: keyof BoosterState) => {
+    setBoosters((prev) => {
+      const next = { ...prev, [key]: !prev[key] };
+      if (key === "oneCut" && next.oneCut) { next.anyWin = false; setFlexEnabled(false); }
+      if (key === "anyWin" && next.anyWin) { next.oneCut = false; setFlexEnabled(false); }
+      return next;
+    });
+  };
+
+  const canUseFlex = betType === "combi" && selections.length >= 3 && !boosters.oneCut && !boosters.anyWin;
   const maxFlex = Math.min(Math.max(0, selections.length - 1), 6);
 
   const getFlexMultiplier = (total: number, wrong: number): number => {
@@ -24,9 +39,30 @@ const BetSlip = () => {
 
   const totalOdds = selections.reduce((acc, s) => acc * s.odds, 1);
   const numStake = Number(stake) || 0;
+  const accaBonusPercent = betType === "combi" ? getAccaBonusPercent(selections.length) : 0;
   const flexMultiplier = flexEnabled && canUseFlex ? getFlexMultiplier(selections.length, flexCount) : 1;
-  const adjustedOdds = totalOdds * flexMultiplier;
-  const potentialWin = Math.round(numStake * (betType === "combi" ? adjustedOdds : selections[0]?.odds || 1));
+
+  let boosterMultiplier = 1;
+  if (boosters.oneCut && selections.length >= 3) boosterMultiplier *= getOneCutMultiplier(totalOdds, selections.length);
+  if (boosters.anyWin && selections.length >= 3) boosterMultiplier *= getAnyWinMultiplier(selections.length);
+
+  const adjustedOdds = totalOdds * flexMultiplier * boosterMultiplier;
+  const boosterFeePercent = getBoosterFeePercent(boosters);
+
+  let rawWin: number;
+  let totalStake = numStake;
+  if (betType === "system") {
+    const numCombos = combinations(selections.length, systemSize);
+    totalStake = numStake * numCombos;
+    const avgComboOdds = Math.pow(totalOdds, systemSize / selections.length);
+    rawWin = Math.round(numStake * avgComboOdds * numCombos * 0.6);
+  } else {
+    rawWin = Math.round(numStake * (betType === "combi" ? adjustedOdds : selections[0]?.odds || 1));
+  }
+
+  const boosterFee = Math.round(rawWin * (boosterFeePercent / 100));
+  const accaBonusAmount = Math.round((rawWin - boosterFee) * (accaBonusPercent / 100));
+  const potentialWin = rawWin - boosterFee + accaBonusAmount;
   const tax = Math.round(potentialWin * 0.1);
   const netPayout = potentialWin - tax;
 
@@ -41,7 +77,7 @@ const BetSlip = () => {
           <p className="text-xs text-muted-foreground">Your slip has been successfully registered</p>
           <div className="rounded-2xl border border-border card-gradient p-4 text-left">
             <div className="space-y-2">
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Type</span><span className="font-bold">{betType === "combi" ? "Combo" : "Single"}</span></div>
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Type</span><span className="font-bold">{betType === "combi" ? "Combo" : betType === "system" ? `System ${systemSize}/${selections.length}` : "Single"}</span></div>
               <div className="flex justify-between text-xs"><span className="text-muted-foreground">Selections</span><span className="font-bold">{selections.length}</span></div>
               <div className="flex justify-between text-xs"><span className="text-muted-foreground">Total odds</span><span className="font-bold text-highlight">{totalOdds.toFixed(2)}</span></div>
               {flexEnabled && canUseFlex && (
@@ -50,7 +86,14 @@ const BetSlip = () => {
                   <div className="flex justify-between text-xs"><span className="text-muted-foreground">Adjusted odds</span><span className="font-bold text-highlight">{adjustedOdds.toFixed(2)}</span></div>
                 </>
               )}
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Stake</span><span className="font-bold">${numStake.toLocaleString()}</span></div>
+              {boosters.insure && <div className="flex justify-between text-xs"><span className="text-muted-foreground">🛡 Insure</span><span className="font-bold text-success">Active</span></div>}
+              {boosters.oneCut && <div className="flex justify-between text-xs"><span className="text-muted-foreground">✂️ 1Cut</span><span className="font-bold text-primary">Active</span></div>}
+              {boosters.earlyGoals && <div className="flex justify-between text-xs"><span className="text-muted-foreground">⏱ EarlyGoals</span><span className="font-bold text-accent">Active</span></div>}
+              {boosters.anyWin && <div className="flex justify-between text-xs"><span className="text-muted-foreground">⭐ AnyWin</span><span className="font-bold text-highlight">Active</span></div>}
+              {accaBonusPercent > 0 && (
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Acca Bonus</span><span className="font-bold text-highlight">+{accaBonusPercent}% (+${accaBonusAmount.toLocaleString()})</span></div>
+              )}
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Stake</span><span className="font-bold">${totalStake.toLocaleString()}</span></div>
               <div className="flex justify-between text-xs"><span className="text-muted-foreground">Potential win</span><span className="font-bold">${potentialWin.toLocaleString()}</span></div>
               <div className="flex justify-between text-xs"><span className="text-muted-foreground">Tax (10%)</span><span className="font-medium text-destructive">-${tax.toLocaleString()}</span></div>
               <div className="border-t border-border pt-2 flex justify-between text-sm"><span className="font-bold">Net payout</span><span className="font-bold text-highlight">${netPayout.toLocaleString()}</span></div>
@@ -82,7 +125,8 @@ const BetSlip = () => {
         <div className="flex gap-2 mb-4">
           {[
             { key: "single" as const, label: "Single" },
-            { key: "combi" as const, label: "Combo" },
+            { key: "combi" as const, label: "Multiple" },
+            { key: "system" as const, label: "System" },
           ].map((t) => (
             <button
               key={t.key}
@@ -122,8 +166,17 @@ const BetSlip = () => {
           </div>
         ) : (
           <>
+            <EarlyPayoutCard />
+            {betType === "combi" && <AccaBonusBadge selectionCount={selections.length} />}
+            {betType !== "single" && (
+              <BetBoosters boosters={boosters} onToggle={toggleBooster} selectionCount={selections.length} stake={numStake} potentialWin={rawWin} />
+            )}
+            {betType === "system" && (
+              <SystemBetConfig selectionCount={selections.length} systemSize={systemSize} onSystemSizeChange={setSystemSize} stake={numStake} />
+            )}
+
             {/* FlexBet Option */}
-            {canUseFlex && (
+            {canUseFlex && betType === "combi" && (
               <motion.div
                 animate={flexEnabled ? {
                   borderColor: "hsl(var(--primary))",
@@ -250,7 +303,9 @@ const BetSlip = () => {
 
             {/* Stake */}
             <div className="rounded-2xl border border-border card-gradient p-4 mb-4">
-              <label className="text-xs font-medium text-muted-foreground mb-2 block">Stake (USD)</label>
+              <label className="text-xs font-medium text-muted-foreground mb-2 block">
+                {betType === "system" ? "Stake per combo (USD)" : "Stake (USD)"}
+              </label>
               <input type="number" value={stake} onChange={(e) => setStake(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-card-elevated border border-border text-lg font-bold text-foreground outline-none focus:ring-1 focus:ring-primary text-center" />
               <div className="flex gap-2 mt-2">
@@ -260,7 +315,11 @@ const BetSlip = () => {
                   </button>
                 ))}
               </div>
-              <p className="text-[9px] text-muted-foreground mt-2">Minimum stake: $5 • Maximum: $2,000</p>
+              <p className="text-[9px] text-muted-foreground mt-2">
+                {betType === "system"
+                  ? `Total stake: $${totalStake.toLocaleString()} (${combinations(selections.length, systemSize)} combos × $${numStake})`
+                  : "Minimum stake: $5 • Maximum: $2,000"}
+              </p>
             </div>
 
             {/* Summary */}
@@ -277,7 +336,16 @@ const BetSlip = () => {
                     <div className="flex justify-between text-xs"><span className="text-muted-foreground">Adjusted odds</span><span className="font-bold text-highlight">{adjustedOdds.toFixed(2)}</span></div>
                   </>
                 )}
-                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Stake</span><span className="font-medium">${numStake.toLocaleString()}</span></div>
+                {boosters.oneCut && <div className="flex justify-between text-xs"><span className="text-muted-foreground">✂️ 1Cut multiplier</span><span className="font-bold text-primary">×{getOneCutMultiplier(totalOdds, selections.length).toFixed(2)}</span></div>}
+                {boosters.anyWin && <div className="flex justify-between text-xs"><span className="text-muted-foreground">⭐ AnyWin multiplier</span><span className="font-bold text-highlight">×{getAnyWinMultiplier(selections.length).toFixed(2)}</span></div>}
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">{betType === "system" ? "Total stake" : "Stake"}</span><span className="font-medium">${totalStake.toLocaleString()}</span></div>
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Base win</span><span className="font-medium">${rawWin.toLocaleString()}</span></div>
+                {boosterFee > 0 && (
+                  <div className="flex justify-between text-xs"><span className="text-muted-foreground">Booster fees ({boosterFeePercent}%)</span><span className="font-medium text-destructive">-${boosterFee.toLocaleString()}</span></div>
+                )}
+                {accaBonusPercent > 0 && (
+                  <div className="flex justify-between text-xs"><span className="text-muted-foreground">Acca Bonus (+{accaBonusPercent}%)</span><span className="font-medium text-success">+${accaBonusAmount.toLocaleString()}</span></div>
+                )}
                 <div className="flex justify-between text-xs"><span className="text-muted-foreground">Potential win</span><span className="font-medium">${potentialWin.toLocaleString()}</span></div>
                 <div className="flex justify-between text-xs"><span className="text-muted-foreground">Winnings tax (10%)</span><span className="font-medium text-destructive">-${tax.toLocaleString()}</span></div>
                 <div className="border-t border-border pt-1.5 flex justify-between text-sm"><span className="font-bold">Net payout</span><span className="font-bold text-highlight">${netPayout.toLocaleString()}</span></div>
@@ -285,7 +353,7 @@ const BetSlip = () => {
             </div>
 
             <button onClick={() => setConfirmed(true)} className="w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange mb-4">
-              Place Bet — ${numStake.toLocaleString()}
+              Place Bet — ${totalStake.toLocaleString()}
             </button>
 
             <button onClick={() => clearSelections()} className="w-full py-2 flex items-center justify-center gap-1.5 text-xs text-destructive">
