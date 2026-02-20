@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import scoramaLogo from "@/assets/scorama-logo.png";
 
 const Splash = () => {
   const navigate = useNavigate();
@@ -58,11 +59,7 @@ const Splash = () => {
           animate={{ y: [0, -4, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          {/* SC badge */}
-          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-1"
-            style={{ background: "linear-gradient(135deg, hsl(270,70%,55%), hsl(180,80%,50%))" }}>
-            <span className="text-2xl font-black text-white tracking-tight">SC</span>
-          </div>
+          <img src={scoramaLogo} alt="Scorama" className="w-20 h-20 rounded-2xl mb-1 shadow-lg" />
           {/* Brand name */}
           <span className="text-4xl font-black tracking-tight text-white drop-shadow-[0_2px_20px_rgba(255,255,255,0.1)]">
             Scorama

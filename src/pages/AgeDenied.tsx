@@ -1,12 +1,11 @@
 import { XCircle } from "lucide-react";
+import scoramaLogo from "@/assets/scorama-logo.png";
 
 const AgeDenied = () => {
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background px-6">
       <div className="flex flex-col items-center mb-8 opacity-50">
-        <div className="w-14 h-14 rounded-xl flex items-center justify-center mb-2" style={{ background: "linear-gradient(135deg, hsl(270,70%,55%), hsl(180,80%,50%))" }}>
-          <span className="text-xl font-black text-white">SC</span>
-        </div>
+        <img src={scoramaLogo} alt="Scorama" className="w-16 h-16 rounded-xl mb-2" />
         <span className="text-xl font-black text-white">Scorama</span>
       </div>
 

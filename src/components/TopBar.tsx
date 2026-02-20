@@ -2,6 +2,7 @@ import { Bell, Search, Wallet } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import GlobalSearch from "@/components/GlobalSearch";
+import scoramaLogo from "@/assets/scorama-logo.png";
 
 const TopBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -11,9 +12,7 @@ const TopBar = () => {
       <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-[hsl(260,30%,8%)] to-[hsl(260,25%,6%)] border-b border-border/60">
         <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, hsl(270,70%,55%), hsl(180,80%,50%))" }}>
-              <span className="text-[10px] font-black text-white">SC</span>
-            </div>
+            <img src={scoramaLogo} alt="Scorama" className="w-8 h-8 rounded-lg" />
             <span className="text-lg font-black tracking-tight text-white leading-none">Scorama</span>
           </Link>
           <div className="flex items-center gap-1.5">
