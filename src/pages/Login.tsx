@@ -18,7 +18,7 @@ const Login = () => {
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
         <h1 className="text-xl font-bold">Log In</h1>
-        <p className="text-xs text-muted-foreground mt-1">Access your Trivelta account</p>
+        <p className="text-xs text-muted-foreground mt-1">Access your Scorama account</p>
 
         <div className="mt-6 space-y-4">
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.35 }}>

@@ -21,32 +21,32 @@ const Splash = () => {
       animate={{ opacity: exiting ? 0 : 1, scale: exiting ? 1.08 : 1 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
       style={{
-        background: "radial-gradient(ellipse at 50% 40%, hsl(130,50%,20%) 0%, hsl(140,40%,10%) 50%, hsl(140,35%,5%) 100%)",
+        background: "radial-gradient(ellipse at 50% 40%, hsl(270,50%,22%) 0%, hsl(260,40%,10%) 50%, hsl(260,35%,5%) 100%)",
       }}
     >
-      {/* Stadium field lines */}
+      {/* Geometric pattern overlay */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full border-2 border-white" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-white" />
       </div>
 
-      {/* Golden spotlight glow */}
+      {/* Cyan spotlight glow */}
       <motion.div
         className="absolute w-80 h-80 rounded-full"
-        style={{ background: "radial-gradient(circle, hsla(45,95%,55%,0.08) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, hsla(180,80%,55%,0.08) 0%, transparent 70%)" }}
         animate={{ scale: [1, 1.4, 1], opacity: [0.5, 1, 0.5] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Green ambient glow */}
+      {/* Purple ambient glow */}
       <motion.div
         className="absolute w-96 h-96 rounded-full"
-        style={{ background: "radial-gradient(circle, hsla(130,60%,30%,0.12) 0%, transparent 60%)" }}
+        style={{ background: "radial-gradient(circle, hsla(270,60%,50%,0.12) 0%, transparent 60%)" }}
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
 
-      {/* Text Logo */}
+      {/* Logo */}
       <motion.div
         initial={{ opacity: 0, scale: 0.6, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -54,23 +54,18 @@ const Splash = () => {
         className="relative z-10 mb-2 flex flex-col items-center"
       >
         <motion.div
-          className="flex items-baseline gap-1"
+          className="flex flex-col items-center gap-2"
           animate={{ y: [0, -4, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          <span className="text-5xl font-black tracking-tight text-white drop-shadow-[0_2px_20px_rgba(255,255,255,0.1)]"
-            style={{ textShadow: "0 2px 30px rgba(255,255,255,0.08)" }}>
-            S
-          </span>
-          {/* Soccer ball as O */}
-          <span className="text-4xl drop-shadow-[0_2px_15px_rgba(255,255,255,0.15)]">⚽</span>
-          <span className="text-5xl font-black tracking-tight text-white drop-shadow-[0_2px_20px_rgba(255,255,255,0.1)]"
-            style={{ textShadow: "0 2px 30px rgba(255,255,255,0.08)" }}>
-            CCA
-          </span>
-          <span className="text-5xl font-black tracking-tight drop-shadow-[0_2px_25px_hsla(45,95%,50%,0.4)]"
-            style={{ color: "hsl(45,95%,50%)", textShadow: "0 0 40px hsla(45,95%,50%,0.3), 0 2px 15px hsla(45,95%,50%,0.2)" }}>
-            BET
+          {/* SC badge */}
+          <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-1"
+            style={{ background: "linear-gradient(135deg, hsl(270,70%,55%), hsl(180,80%,50%))" }}>
+            <span className="text-2xl font-black text-white tracking-tight">SC</span>
+          </div>
+          {/* Brand name */}
+          <span className="text-4xl font-black tracking-tight text-white drop-shadow-[0_2px_20px_rgba(255,255,255,0.1)]">
+            Scorama
           </span>
         </motion.div>
       </motion.div>
@@ -81,9 +76,9 @@ const Splash = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 text-[10px] font-bold tracking-[0.35em] uppercase mb-12"
-        style={{ color: "hsla(45,80%,60%,0.5)" }}
+        style={{ color: "hsla(180,80%,60%,0.5)" }}
       >
-        Play • Win • Repeat
+        Your Global Gaming Community
       </motion.p>
 
       {/* Loading bar */}
@@ -96,7 +91,7 @@ const Splash = () => {
         <div className="h-1 rounded-full bg-border/40 overflow-hidden">
           <motion.div
             className="h-full rounded-full"
-            style={{ background: "linear-gradient(90deg, hsl(130,60%,35%), hsl(45,95%,50%))" }}
+            style={{ background: "linear-gradient(90deg, hsl(270,70%,55%), hsl(180,80%,50%))" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 3, ease: "easeInOut" }}
@@ -112,7 +107,7 @@ const Splash = () => {
           style={{
             left: `${20 + i * 15}%`,
             top: `${30 + (i % 3) * 20}%`,
-            backgroundColor: "hsla(45,90%,55%,0.2)",
+            backgroundColor: i % 2 === 0 ? "hsla(270,70%,60%,0.2)" : "hsla(180,80%,55%,0.2)",
           }}
           animate={{
             y: [0, -30, 0],

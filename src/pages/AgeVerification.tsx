@@ -25,31 +25,29 @@ const AgeVerification = () => {
       animate={{ opacity: exiting ? 0 : 1, y: exiting ? -20 : 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       style={{
-        background: "radial-gradient(ellipse at 50% 40%, hsl(130,50%,20%) 0%, hsl(140,40%,10%) 50%, hsl(140,35%,5%) 100%)",
+        background: "radial-gradient(ellipse at 50% 40%, hsl(270,50%,22%) 0%, hsl(260,40%,10%) 50%, hsl(260,35%,5%) 100%)",
       }}
     >
-      {/* Stadium field lines */}
+      {/* Geometric pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full border-2 border-white" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-white" />
       </div>
 
-      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(45,95%,55%,0.06) 0%, transparent 70%)" }} />
+      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(270,70%,55%,0.06) 0%, transparent 70%)" }} />
 
-      {/* Text Logo */}
+      {/* Logo */}
       <motion.div
-        className="mb-8 relative z-10 flex items-baseline gap-0.5"
+        className="mb-8 relative z-10 flex flex-col items-center gap-2"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <span className="text-3xl font-black tracking-tight text-white">S</span>
-        <span className="text-2xl">⚽</span>
-        <span className="text-3xl font-black tracking-tight text-white">CCA</span>
-        <span className="text-3xl font-black tracking-tight"
-          style={{ color: "hsl(45,95%,50%)", textShadow: "0 0 25px hsla(45,95%,50%,0.25)" }}>
-          BET
-        </span>
+        <div className="w-12 h-12 rounded-xl flex items-center justify-center"
+          style={{ background: "linear-gradient(135deg, hsl(270,70%,55%), hsl(180,80%,50%))" }}>
+          <span className="text-lg font-black text-white">SC</span>
+        </div>
+        <span className="text-2xl font-black tracking-tight text-white">Scorama</span>
       </motion.div>
 
       <motion.div
