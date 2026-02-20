@@ -14,7 +14,7 @@ const Promotions = () => {
     <MobileLayout>
       <section className="px-4 mt-3">
         <h2 className="text-lg font-bold">Discover</h2>
-        <p className="text-xs text-muted-foreground mt-0.5">Exclusive Scorama offers</p>
+        <p className="text-xs text-muted-foreground mt-0.5">Exclusive BingoBets offers</p>
       </section>
 
       <section className="px-4 mt-4 mb-6 space-y-3">
