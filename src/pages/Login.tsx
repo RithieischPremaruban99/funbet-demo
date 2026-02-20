@@ -17,8 +17,17 @@ const Login = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
       >
-        <h1 className="text-xl font-bold">Log In</h1>
-        <p className="text-xs text-muted-foreground mt-1">Access your BingoBets account</p>
+        {/* Logo */}
+        <div className="flex flex-col items-center mb-8">
+          <h1 className="text-4xl font-black italic tracking-tight">
+            <span style={{ color: "hsl(0, 72%, 51%)" }}>bingo</span>
+            <span style={{ color: "hsl(45, 95%, 55%)" }}>bets</span>
+          </h1>
+          <svg viewBox="0 0 200 20" className="w-32 mx-auto -mt-1" preserveAspectRatio="none">
+            <path d="M10 15 Q60 2 190 10" stroke="hsla(0,0%,100%,0.25)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+          </svg>
+          <p className="text-xs text-muted-foreground mt-2">Access your account</p>
+        </div>
 
         <div className="mt-6 space-y-4">
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.35 }}>
