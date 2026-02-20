@@ -102,7 +102,7 @@ const ResponsibleGaming = () => {
             </div>
             <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-card-elevated border border-border">
               <span className="text-xs">✉️</span>
-              <span className="text-xs font-medium">help@scorama.com</span>
+              <span className="text-xs font-medium">help@bingobets.com</span>
             </div>
           </div>
         </div>

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import scoramaLogo from "@/assets/scorama-logo.png";
 
 const AgeVerification = () => {
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ const AgeVerification = () => {
       animate={{ opacity: exiting ? 0 : 1, y: exiting ? -20 : 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       style={{
-        background: "radial-gradient(ellipse at 50% 40%, hsl(270,50%,22%) 0%, hsl(260,40%,10%) 50%, hsl(260,35%,5%) 100%)",
+        background: "radial-gradient(ellipse at 50% 40%, hsl(220,40%,16%) 0%, hsl(220,40%,8%) 50%, hsl(220,42%,4%) 100%)",
       }}
     >
       {/* Geometric pattern */}
@@ -35,7 +34,7 @@ const AgeVerification = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-white" />
       </div>
 
-      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(270,70%,55%,0.06) 0%, transparent 70%)" }} />
+      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(0,72%,51%,0.06) 0%, transparent 70%)" }} />
 
       {/* Logo */}
       <motion.div
@@ -44,7 +43,9 @@ const AgeVerification = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <img src={scoramaLogo} alt="Scorama" className="w-14 h-14 rounded-xl shadow-lg" />
+        <span className="text-2xl font-black tracking-tight">
+          <span className="text-primary">bingo</span><span className="text-accent">bets</span>
+        </span>
       </motion.div>
 
       <motion.div

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import scoramaLogo from "@/assets/scorama-logo.png";
 
 const Splash = () => {
   const navigate = useNavigate();
@@ -22,7 +21,7 @@ const Splash = () => {
       animate={{ opacity: exiting ? 0 : 1, scale: exiting ? 1.08 : 1 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
       style={{
-        background: "radial-gradient(ellipse at 50% 40%, hsl(270,50%,22%) 0%, hsl(260,40%,10%) 50%, hsl(260,35%,5%) 100%)",
+        background: "radial-gradient(ellipse at 50% 40%, hsl(220,40%,16%) 0%, hsl(220,40%,8%) 50%, hsl(220,42%,4%) 100%)",
       }}
     >
       {/* Geometric pattern overlay */}
@@ -31,18 +30,18 @@ const Splash = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-white" />
       </div>
 
-      {/* Cyan spotlight glow */}
+      {/* Red spotlight glow */}
       <motion.div
         className="absolute w-80 h-80 rounded-full"
-        style={{ background: "radial-gradient(circle, hsla(180,80%,55%,0.08) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, hsla(0,72%,55%,0.1) 0%, transparent 70%)" }}
         animate={{ scale: [1, 1.4, 1], opacity: [0.5, 1, 0.5] }}
         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Purple ambient glow */}
+      {/* Yellow ambient glow */}
       <motion.div
         className="absolute w-96 h-96 rounded-full"
-        style={{ background: "radial-gradient(circle, hsla(270,60%,50%,0.12) 0%, transparent 60%)" }}
+        style={{ background: "radial-gradient(circle, hsla(45,95%,55%,0.08) 0%, transparent 60%)" }}
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       />
@@ -59,10 +58,9 @@ const Splash = () => {
           animate={{ y: [0, -4, 0] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         >
-          <img src={scoramaLogo} alt="Scorama" className="w-20 h-20 rounded-2xl mb-1 shadow-lg" />
           {/* Brand name */}
-          <span className="text-4xl font-black tracking-tight text-white drop-shadow-[0_2px_20px_rgba(255,255,255,0.1)]">
-            Scorama
+          <span className="text-5xl font-black tracking-tight drop-shadow-[0_2px_20px_rgba(255,255,255,0.1)]">
+            <span className="text-primary">bingo</span><span className="text-accent">bets</span>
           </span>
         </motion.div>
       </motion.div>
@@ -73,9 +71,9 @@ const Splash = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 text-[10px] font-bold tracking-[0.35em] uppercase mb-12"
-        style={{ color: "hsla(180,80%,60%,0.5)" }}
+        style={{ color: "hsla(45,95%,60%,0.5)" }}
       >
-        Your Global Gaming Community
+        Bet. Win. Repeat.
       </motion.p>
 
       {/* Loading bar */}
@@ -88,7 +86,7 @@ const Splash = () => {
         <div className="h-1 rounded-full bg-border/40 overflow-hidden">
           <motion.div
             className="h-full rounded-full"
-            style={{ background: "linear-gradient(90deg, hsl(270,70%,55%), hsl(180,80%,50%))" }}
+            style={{ background: "linear-gradient(90deg, hsl(0,72%,51%), hsl(45,95%,55%))" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 3, ease: "easeInOut" }}
@@ -104,7 +102,7 @@ const Splash = () => {
           style={{
             left: `${20 + i * 15}%`,
             top: `${30 + (i % 3) * 20}%`,
-            backgroundColor: i % 2 === 0 ? "hsla(270,70%,60%,0.2)" : "hsla(180,80%,55%,0.2)",
+            backgroundColor: i % 2 === 0 ? "hsla(0,72%,55%,0.2)" : "hsla(45,95%,55%,0.2)",
           }}
           animate={{
             y: [0, -30, 0],

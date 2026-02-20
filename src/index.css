@@ -6,26 +6,26 @@
 
 @layer base {
   :root {
-    --background: 260 30% 6%;
-    --foreground: 240 20% 95%;
+    --background: 220 40% 6%;
+    --foreground: 220 20% 95%;
 
-    --card: 260 25% 10%;
-    --card-foreground: 240 20% 95%;
-    --card-elevated: 260 22% 14%;
+    --card: 220 35% 10%;
+    --card-foreground: 220 20% 95%;
+    --card-elevated: 220 30% 14%;
 
-    --popover: 260 25% 10%;
-    --popover-foreground: 240 20% 95%;
+    --popover: 220 35% 10%;
+    --popover-foreground: 220 20% 95%;
 
-    --primary: 270 70% 55%;
+    --primary: 0 72% 51%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 260 20% 14%;
-    --secondary-foreground: 240 15% 70%;
+    --secondary: 220 25% 14%;
+    --secondary-foreground: 220 15% 70%;
 
-    --muted: 260 18% 14%;
-    --muted-foreground: 240 10% 50%;
+    --muted: 220 22% 14%;
+    --muted-foreground: 220 12% 50%;
 
-    --accent: 180 80% 50%;
+    --accent: 45 95% 55%;
     --accent-foreground: 0 0% 10%;
 
     --destructive: 0 72% 51%;
@@ -34,37 +34,37 @@
     --success: 160 70% 40%;
     --success-foreground: 0 0% 100%;
 
-    --live: 180 80% 50%;
-    --live-foreground: 0 0% 10%;
+    --live: 0 72% 55%;
+    --live-foreground: 0 0% 100%;
 
-    --highlight: 270 70% 55%;
-    --highlight-foreground: 0 0% 100%;
+    --highlight: 45 95% 55%;
+    --highlight-foreground: 0 0% 10%;
 
-    --border: 260 18% 18%;
-    --input: 260 18% 18%;
-    --ring: 270 70% 55%;
+    --border: 220 22% 18%;
+    --input: 220 22% 18%;
+    --ring: 0 72% 51%;
 
     --radius: 0.75rem;
 
-    --red-gradient: linear-gradient(135deg, hsl(270, 70%, 50%), hsl(260, 60%, 35%));
-    --red-gradient-hover: linear-gradient(135deg, hsl(270, 75%, 55%), hsl(260, 65%, 40%));
-    --orange-gradient: linear-gradient(135deg, hsl(270, 70%, 55%), hsl(180, 80%, 45%));
-    --card-gradient: linear-gradient(180deg, hsl(260, 25%, 12%), hsl(260, 30%, 6%));
-    --card-gradient-warm: linear-gradient(180deg, hsla(270, 30%, 16%, 0.5), hsla(260, 30%, 6%, 0.9));
-    --hero-gradient: linear-gradient(135deg, hsl(260, 25%, 12%), hsl(260, 30%, 6%));
-    --glass: hsla(260, 25%, 7%, 0.90);
+    --red-gradient: linear-gradient(135deg, hsl(0, 72%, 51%), hsl(0, 60%, 35%));
+    --red-gradient-hover: linear-gradient(135deg, hsl(0, 75%, 55%), hsl(0, 65%, 40%));
+    --orange-gradient: linear-gradient(135deg, hsl(0, 72%, 51%), hsl(45, 95%, 50%));
+    --card-gradient: linear-gradient(180deg, hsl(220, 35%, 12%), hsl(220, 40%, 6%));
+    --card-gradient-warm: linear-gradient(180deg, hsla(0, 30%, 16%, 0.5), hsla(220, 40%, 6%, 0.9));
+    --hero-gradient: linear-gradient(135deg, hsl(220, 35%, 12%), hsl(220, 40%, 6%));
+    --glass: hsla(220, 35%, 7%, 0.90);
 
     --font-display: 'Inter', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    --sidebar-background: 260 30% 7%;
-    --sidebar-foreground: 240 20% 95%;
-    --sidebar-primary: 270 70% 55%;
+    --sidebar-background: 220 40% 7%;
+    --sidebar-foreground: 220 20% 95%;
+    --sidebar-primary: 0 72% 51%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 260 20% 15%;
-    --sidebar-accent-foreground: 240 20% 95%;
-    --sidebar-border: 260 18% 18%;
-    --sidebar-ring: 270 70% 55%;
+    --sidebar-accent: 220 25% 15%;
+    --sidebar-accent-foreground: 220 20% 95%;
+    --sidebar-border: 220 22% 18%;
+    --sidebar-ring: 0 72% 51%;
   }
 }
 
@@ -103,12 +103,10 @@
     transform: scale(0.97);
   }
 
-  /* Cards & containers get a subtler press */
   .card-gradient:active, .card-gradient-warm:active {
     transform: scale(0.985);
   }
 
-  /* Orange gradient buttons get extra juice */
   .orange-gradient {
     transition: transform 0.15s cubic-bezier(0.22, 1, 0.36, 1), 
                 box-shadow 0.2s ease, 
@@ -124,14 +122,12 @@
     filter: brightness(1.08);
   }
 
-  /* Odds buttons special interaction */
   .odds-cell:active {
     transform: scale(0.92);
     border-color: hsl(var(--highlight));
-    box-shadow: 0 0 12px hsla(270, 70%, 55%, 0.3);
+    box-shadow: 0 0 12px hsla(45, 95%, 55%, 0.3);
   }
 
-  /* Ripple-like feedback for all buttons */
   button::after, [role="button"]::after {
     content: '';
     position: absolute;
@@ -192,15 +188,15 @@
   }
 
   .glow-red {
-    box-shadow: 0 0 20px hsla(270, 70%, 55%, 0.25), 0 0 40px hsla(270, 70%, 55%, 0.08);
+    box-shadow: 0 0 20px hsla(0, 72%, 51%, 0.25), 0 0 40px hsla(0, 72%, 51%, 0.08);
   }
 
   .glow-orange {
-    box-shadow: 0 0 15px hsla(270, 70%, 55%, 0.35), 0 0 30px hsla(180, 80%, 50%, 0.15);
+    box-shadow: 0 0 15px hsla(0, 72%, 51%, 0.35), 0 0 30px hsla(45, 95%, 55%, 0.15);
   }
 
   .border-glow {
-    border-color: hsla(270, 60%, 50%, 0.4);
+    border-color: hsla(0, 60%, 50%, 0.4);
   }
 
   .hide-scrollbar::-webkit-scrollbar {
@@ -216,6 +212,6 @@
   }
 
   .odds-cell:hover {
-    box-shadow: 0 0 8px hsla(270, 70%, 55%, 0.15);
+    box-shadow: 0 0 8px hsla(45, 95%, 55%, 0.15);
   }
 }
