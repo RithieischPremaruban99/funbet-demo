@@ -21,10 +21,10 @@ const Login = () => {
         <div className="flex flex-col items-center mb-8">
           <div className="relative flex flex-col items-center">
             <div className="absolute flex items-center justify-center" style={{ inset: "-1.5rem" }}>
-              <div className="w-32 h-32 rounded-full border-[1.5px]" style={{ borderColor: "hsl(43, 45%, 40%)" }} />
+              <div className="w-32 h-32 rounded-full border-[1.5px]" style={{ borderColor: "hsl(40, 55%, 50%)" }} />
             </div>
             <h1 className="text-4xl font-black tracking-[0.15em] uppercase" style={{
-              background: "linear-gradient(180deg, hsl(0,0%,65%) 0%, hsl(0,0%,35%) 100%)",
+              background: "linear-gradient(135deg, hsl(40,60%,62%), hsl(40,40%,45%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}>TSOGO</h1>
@@ -69,9 +69,9 @@ const Login = () => {
           </p>
         </div>
 
-        <div className="mt-8 flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "hsla(43,55%,48%,0.06)", borderColor: "hsla(43,55%,48%,0.15)" }}>
-          <Shield size={14} style={{ color: "hsl(43, 55%, 48%)" }} className="flex-shrink-0" />
-          <span className="text-[10px]" style={{ color: "hsl(43, 55%, 48%)" }}>18+ | Gambling is prohibited for minors</span>
+        <div className="mt-8 flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "hsla(40,55%,55%,0.06)", borderColor: "hsla(40,55%,55%,0.15)" }}>
+          <Shield size={14} style={{ color: "hsl(40, 55%, 55%)" }} className="flex-shrink-0" />
+          <span className="text-[10px]" style={{ color: "hsl(40, 55%, 55%)" }}>18+ | Gambling is prohibited for minors</span>
         </div>
       </motion.section>
     </MobileLayout>
