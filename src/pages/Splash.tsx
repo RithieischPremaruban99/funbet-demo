@@ -43,7 +43,7 @@ const Splash = () => {
             animate={{ scale: 1, opacity: 1, rotate: 0 }}
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="w-full h-full rounded-full border-[2.5px]" style={{
+            <div className="w-full h-full rounded-full border-[3.5px]" style={{
               borderColor: "hsl(40, 55%, 50%)",
             }} />
           </motion.div>
