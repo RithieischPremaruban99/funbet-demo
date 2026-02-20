@@ -3,15 +3,16 @@ import { XCircle } from "lucide-react";
 const AgeDenied = () => {
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background px-6">
-      <div className="flex flex-col items-center mb-8 opacity-50">
+      <div className="flex flex-col items-center mb-8 opacity-40">
         <div className="relative flex flex-col items-center">
-          <div className="absolute -inset-4 flex items-center justify-center">
-            <div className="w-28 h-28 rounded-full border-2" style={{ borderColor: "hsl(43, 55%, 52%)" }} />
+          <div className="absolute flex items-center justify-center" style={{ inset: "-1.2rem" }}>
+            <div className="w-24 h-24 rounded-full border-[1.5px]" style={{ borderColor: "hsl(43, 45%, 35%)" }} />
           </div>
-          <span className="text-3xl font-black italic tracking-tight leading-none">
-            <span style={{ color: "hsl(220, 10%, 55%)" }}>bingo</span>
-            <span style={{ color: "hsl(43, 55%, 52%)" }}>bets</span>
-          </span>
+          <span className="text-3xl font-black tracking-[0.15em] uppercase" style={{
+            background: "linear-gradient(180deg, hsl(0,0%,55%) 0%, hsl(0,0%,30%) 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+          }}>TSOGO</span>
         </div>
       </div>
 
