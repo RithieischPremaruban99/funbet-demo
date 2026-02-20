@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
+import scoramaLogo from "@/assets/scorama-logo.png";
 
 const AgeVerification = () => {
   const navigate = useNavigate();
@@ -43,11 +44,7 @@ const AgeVerification = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <div className="w-12 h-12 rounded-xl flex items-center justify-center"
-          style={{ background: "linear-gradient(135deg, hsl(270,70%,55%), hsl(180,80%,50%))" }}>
-          <span className="text-lg font-black text-white">SC</span>
-        </div>
-        <span className="text-2xl font-black tracking-tight text-white">Scorama</span>
+        <img src={scoramaLogo} alt="Scorama" className="w-14 h-14 rounded-xl shadow-lg" />
       </motion.div>
 
       <motion.div
