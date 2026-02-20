@@ -2,6 +2,7 @@ import { Bell, Search, Wallet } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import GlobalSearch from "@/components/GlobalSearch";
+import bingobetsLogo from "@/assets/bingobets-logo.png";
 
 const TopBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -10,10 +11,8 @@ const TopBar = () => {
     <>
       <header className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-[hsl(220,40%,8%)] to-[hsl(220,35%,6%)] border-b border-border/60">
         <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
-          <Link to="/" className="flex items-center gap-1">
-            <span className="text-lg font-black tracking-tight leading-none">
-              <span className="text-primary">bingo</span><span className="text-accent">bets</span>
-            </span>
+          <Link to="/">
+            <img src={bingobetsLogo} alt="BingoBets" className="h-7" />
           </Link>
           <div className="flex items-center gap-1.5">
             <button

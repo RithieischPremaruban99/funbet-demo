@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import bingobetsLogo from "@/assets/bingobets-logo.webp";
+import bingobetsLogo from "@/assets/bingobets-logo.png";
 
 const Splash = () => {
   const navigate = useNavigate();
@@ -22,22 +22,22 @@ const Splash = () => {
       animate={{ opacity: exiting ? 0 : 1, scale: exiting ? 1.08 : 1 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
     >
-      {/* Logo Image */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
+      {/* Logo */}
+      <motion.img
+        src={bingobetsLogo}
+        alt="BingoBets"
+        className="relative z-10 w-56"
+        initial={{ opacity: 0, scale: 0.7 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full max-w-sm px-6"
-      >
-        <img src={bingobetsLogo} alt="BingoBets" className="w-full rounded-2xl shadow-2xl" />
-      </motion.div>
+      />
 
       {/* Loading bar */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
-        className="relative z-10 w-40 mt-8"
+        transition={{ delay: 0.6, duration: 0.5 }}
+        className="relative z-10 w-36 mt-10"
       >
         <div className="h-1 rounded-full bg-border/40 overflow-hidden">
           <motion.div
@@ -51,15 +51,14 @@ const Splash = () => {
       </motion.div>
 
       {/* Footer */}
-      <motion.div
+      <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
-        className="absolute bottom-10 text-center z-10"
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute bottom-10 text-muted-foreground/30 text-[10px] font-medium z-10"
       >
-        <p className="text-muted-foreground/30 text-[10px] font-medium">Licensed & Regulated</p>
-        <p className="text-muted-foreground/30 text-[10px] mt-1">🔞 18+ | Gamble Responsibly</p>
-      </motion.div>
+        🔞 18+ | Gamble Responsibly
+      </motion.p>
     </motion.div>
   );
 };
