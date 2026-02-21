@@ -25,9 +25,9 @@ export const BetSlipProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const addSelection = useCallback((selection: BetSelection) => {
     setSelections((prev) => {
-      // Replace if same match already has a pick
-      const filtered = prev.filter((s) => s.matchId !== selection.matchId);
-      return [...filtered, selection];
+      const exists = prev.find((s) => s.id === selection.id);
+      if (exists) return prev;
+      return [...prev, selection];
     });
   }, []);
 
@@ -46,9 +46,7 @@ export const BetSlipProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setSelections((prev) => {
       const exists = prev.find((s) => s.id === selection.id);
       if (exists) return prev.filter((s) => s.id !== selection.id);
-      // Replace if same match already has a pick
-      const filtered = prev.filter((s) => s.matchId !== selection.matchId);
-      return [...filtered, selection];
+      return [...prev, selection];
     });
   }, []);
 
