@@ -267,6 +267,13 @@ const Account = () => {
             </div>
             <ChevronRight size={16} className="text-muted-foreground" />
           </Link>
+          <Link to="/bet-history" className="flex items-center justify-between p-3 rounded-xl border border-border card-gradient">
+            <div className="flex items-center gap-2">
+              <FileText size={16} className="text-primary" />
+              <span className="text-sm font-medium">Bet History</span>
+            </div>
+            <ChevronRight size={16} className="text-muted-foreground" />
+          </Link>
         </section>
       )}
 
