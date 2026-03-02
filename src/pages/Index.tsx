@@ -579,6 +579,18 @@ const Index = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Demo Disclaimer */}
+      <section className="px-4 mt-8 mb-6">
+        <div className="rounded-xl p-3 text-center" style={{
+          background: "rgba(212,175,55,0.04)",
+          border: "1px solid rgba(212,175,55,0.1)",
+        }}>
+          <p className="text-[10px] leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>
+            This is a demo environment. The final product may vary depending on integrations and variable factors.
+          </p>
+        </div>
+      </section>
     </MobileLayout>
   );
 };
