@@ -1,7 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import crownLogo from "@/assets/peermont-crown.jpg";
+import { motion } from "framer-motion";
 
 // Gold particle component
 const GoldParticle = ({ delay, x, y, size, duration }: { delay: number; x: number; y: number; size: number; duration: number }) => (
@@ -12,14 +11,14 @@ const GoldParticle = ({ delay, x, y, size, duration }: { delay: number; x: numbe
       height: size,
       left: "50%",
       top: "50%",
-      background: `radial-gradient(circle, hsla(43, 90%, ${55 + Math.random() * 20}%, 0.9), hsla(43, 80%, 50%, 0))`,
+      background: `radial-gradient(circle, hsla(43, 90%, ${55 + Math.random() * 15}%, 0.9), hsla(43, 80%, 50%, 0))`,
     }}
     initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
     animate={{
       x: x,
       y: y,
-      opacity: [0, 1, 1, 0],
-      scale: [0, 1.2, 0.8, 0],
+      opacity: [0, 1, 0.8, 0],
+      scale: [0, 1.5, 0.6, 0],
     }}
     transition={{
       duration: duration,
@@ -29,121 +28,218 @@ const GoldParticle = ({ delay, x, y, size, duration }: { delay: number; x: numbe
   />
 );
 
-// SVG Crown with stroke-dasharray animation
-const AnimatedCrown = ({ visible }: { visible: boolean }) => (
-  <svg
-    viewBox="0 0 200 140"
-    className="w-40 h-28"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <linearGradient id="crownGold" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="hsl(43, 90%, 65%)" />
-        <stop offset="30%" stopColor="hsl(38, 70%, 45%)" />
-        <stop offset="60%" stopColor="hsl(43, 85%, 60%)" />
-        <stop offset="100%" stopColor="hsl(40, 75%, 40%)" />
-      </linearGradient>
-      <linearGradient id="crownShimmer" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="hsl(43, 85%, 55%)">
-          <animate attributeName="stop-color" values="hsl(43,85%,55%);hsl(43,95%,72%);hsl(43,85%,55%)" dur="3s" repeatCount="indefinite" />
-        </stop>
-        <stop offset="50%" stopColor="hsl(43, 95%, 72%)">
-          <animate attributeName="stop-color" values="hsl(43,95%,72%);hsl(43,85%,55%);hsl(43,95%,72%)" dur="3s" repeatCount="indefinite" />
-        </stop>
-        <stop offset="100%" stopColor="hsl(38, 70%, 42%)">
-          <animate attributeName="stop-color" values="hsl(38,70%,42%);hsl(43,90%,65%);hsl(38,70%,42%)" dur="3s" repeatCount="indefinite" />
-        </stop>
-      </linearGradient>
-      <filter id="crownGlow">
-        <feGaussianBlur stdDeviation="3" result="blur" />
-        <feMerge>
-          <feMergeNode in="blur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    </defs>
-
-    {/* Sweeping chevron base */}
-    <motion.path
-      d="M 30 110 Q 50 130 100 130 Q 150 130 170 110 L 155 95 Q 130 115 100 115 Q 70 115 45 95 Z"
-      stroke="url(#crownGold)"
-      strokeWidth="2.5"
-      fill="url(#crownShimmer)"
-      filter="url(#crownGlow)"
-      initial={{ pathLength: 0, fillOpacity: 0 }}
-      animate={visible ? { pathLength: 1, fillOpacity: 1 } : {}}
-      transition={{ duration: 0.8, ease: "easeInOut", fillOpacity: { delay: 0.5, duration: 0.5 } }}
-    />
-
-    {/* Left petal */}
-    <motion.path
-      d="M 45 90 Q 35 60 55 35 Q 60 28 65 35 Q 75 55 60 85 Z"
-      stroke="url(#crownGold)"
-      strokeWidth="2"
-      fill="url(#crownShimmer)"
-      filter="url(#crownGlow)"
-      initial={{ pathLength: 0, fillOpacity: 0, scale: 0.5, opacity: 0 }}
-      animate={visible ? { pathLength: 1, fillOpacity: 1, scale: 1, opacity: 1 } : {}}
-      transition={{ duration: 0.6, delay: 0.6, ease: "easeOut", fillOpacity: { delay: 0.9, duration: 0.4 } }}
-      style={{ transformOrigin: "55px 85px" }}
-    />
-
-    {/* Center petal (tallest) */}
-    <motion.path
-      d="M 85 80 Q 80 40 100 10 Q 120 40 115 80 Z"
-      stroke="url(#crownGold)"
-      strokeWidth="2"
-      fill="url(#crownShimmer)"
-      filter="url(#crownGlow)"
-      initial={{ pathLength: 0, fillOpacity: 0, scale: 0.5, opacity: 0 }}
-      animate={visible ? { pathLength: 1, fillOpacity: 1, scale: 1, opacity: 1 } : {}}
-      transition={{ duration: 0.6, delay: 0.9, ease: "easeOut", fillOpacity: { delay: 1.2, duration: 0.4 } }}
-      style={{ transformOrigin: "100px 80px" }}
-    />
-
-    {/* Right petal */}
-    <motion.path
-      d="M 140 85 Q 125 55 135 35 Q 140 28 145 35 Q 165 60 155 90 Z"
-      stroke="url(#crownGold)"
-      strokeWidth="2"
-      fill="url(#crownShimmer)"
-      filter="url(#crownGlow)"
-      initial={{ pathLength: 0, fillOpacity: 0, scale: 0.5, opacity: 0 }}
-      animate={visible ? { pathLength: 1, fillOpacity: 1, scale: 1, opacity: 1 } : {}}
-      transition={{ duration: 0.6, delay: 1.2, ease: "easeOut", fillOpacity: { delay: 1.5, duration: 0.4 } }}
-      style={{ transformOrigin: "145px 85px" }}
-    />
-  </svg>
+// Floating ambient dust mote
+const DustMote = ({ delay, x }: { delay: number; x: number }) => (
+  <motion.div
+    className="absolute rounded-full"
+    style={{
+      width: 1.5 + Math.random() * 2,
+      height: 1.5 + Math.random() * 2,
+      background: `hsla(43, 70%, 52%, ${0.15 + Math.random() * 0.2})`,
+      left: `${x}%`,
+      bottom: -10,
+    }}
+    animate={{
+      y: [0, -window.innerHeight - 50],
+      opacity: [0, 0.4, 0.3, 0],
+      x: [0, Math.sin(x) * 30],
+    }}
+    transition={{
+      duration: 6 + Math.random() * 4,
+      delay: delay,
+      repeat: Infinity,
+      ease: "linear",
+    }}
+  />
 );
+
+// SVG Crown with stroke-dasharray animation
+const AnimatedCrown = ({ phase }: { phase: number }) => {
+  const visible = phase >= 2;
+  return (
+    <svg
+      viewBox="0 0 220 160"
+      className="w-36 h-[100px]"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <linearGradient id="crownGold" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#B8960C" />
+          <stop offset="30%" stopColor="#D4AF37" />
+          <stop offset="50%" stopColor="#F2D06B" />
+          <stop offset="70%" stopColor="#D4AF37" />
+          <stop offset="100%" stopColor="#B8960C" />
+        </linearGradient>
+        <linearGradient id="crownFill" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#B8960C" />
+          <stop offset="25%" stopColor="#D4AF37" />
+          <stop offset="50%" stopColor="#F2D06B" />
+          <stop offset="75%" stopColor="#D4AF37" />
+          <stop offset="100%" stopColor="#B8960C" />
+        </linearGradient>
+        {/* Shimmer sweep */}
+        <linearGradient id="crownSweep" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="transparent" />
+          <stop offset="45%" stopColor="rgba(242,208,107,0.4)" />
+          <stop offset="55%" stopColor="rgba(242,208,107,0.4)" />
+          <stop offset="100%" stopColor="transparent" />
+          <animateTransform attributeName="gradientTransform" type="translate" from="-1 0" to="1 0" dur="2.5s" repeatCount="indefinite" begin="2s" />
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="4" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+        <mask id="fillMask">
+          <motion.rect
+            x="0"
+            width="220"
+            height="160"
+            fill="white"
+            initial={{ y: 160 }}
+            animate={visible ? { y: 0 } : {}}
+            transition={{ duration: 1.2, delay: 0.5, ease: "easeInOut" }}
+          />
+        </mask>
+      </defs>
+
+      {/* Sweeping chevron base — stroke draws first */}
+      <motion.path
+        d="M 25 125 Q 55 145 110 145 Q 165 145 195 125 L 175 105 Q 150 128 110 128 Q 70 128 45 105 Z"
+        stroke="url(#crownGold)"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        fill="none"
+        filter="url(#glow)"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={visible ? { pathLength: 1, opacity: 1 } : {}}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+      />
+      {/* Chevron fill */}
+      <motion.path
+        d="M 25 125 Q 55 145 110 145 Q 165 145 195 125 L 175 105 Q 150 128 110 128 Q 70 128 45 105 Z"
+        fill="url(#crownFill)"
+        mask="url(#fillMask)"
+        initial={{ opacity: 0 }}
+        animate={visible ? { opacity: 1 } : {}}
+        transition={{ delay: 0.4, duration: 0.5 }}
+      />
+
+      {/* Left petal — blooms first */}
+      <motion.path
+        d="M 50 100 Q 30 65 55 30 Q 63 20 70 30 Q 85 58 65 95 Z"
+        stroke="url(#crownGold)"
+        strokeWidth="2"
+        fill="none"
+        filter="url(#glow)"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={visible ? { pathLength: 1, opacity: 1 } : {}}
+        transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
+      />
+      <motion.path
+        d="M 50 100 Q 30 65 55 30 Q 63 20 70 30 Q 85 58 65 95 Z"
+        fill="url(#crownFill)"
+        mask="url(#fillMask)"
+        initial={{ opacity: 0 }}
+        animate={visible ? { opacity: 1 } : {}}
+        transition={{ delay: 0.9, duration: 0.4 }}
+      />
+
+      {/* Center petal — tallest, blooms second */}
+      <motion.path
+        d="M 90 92 Q 85 40 110 5 Q 135 40 130 92 Z"
+        stroke="url(#crownGold)"
+        strokeWidth="2"
+        fill="none"
+        filter="url(#glow)"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={visible ? { pathLength: 1, opacity: 1 } : {}}
+        transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
+      />
+      <motion.path
+        d="M 90 92 Q 85 40 110 5 Q 135 40 130 92 Z"
+        fill="url(#crownFill)"
+        mask="url(#fillMask)"
+        initial={{ opacity: 0 }}
+        animate={visible ? { opacity: 1 } : {}}
+        transition={{ delay: 1.2, duration: 0.4 }}
+      />
+
+      {/* Right petal — blooms third */}
+      <motion.path
+        d="M 155 95 Q 135 58 150 30 Q 157 20 165 30 Q 190 65 170 100 Z"
+        stroke="url(#crownGold)"
+        strokeWidth="2"
+        fill="none"
+        filter="url(#glow)"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={visible ? { pathLength: 1, opacity: 1 } : {}}
+        transition={{ duration: 0.5, delay: 1.3, ease: "easeOut" }}
+      />
+      <motion.path
+        d="M 155 95 Q 135 58 150 30 Q 157 20 165 30 Q 190 65 170 100 Z"
+        fill="url(#crownFill)"
+        mask="url(#fillMask)"
+        initial={{ opacity: 0 }}
+        animate={visible ? { opacity: 1 } : {}}
+        transition={{ delay: 1.5, duration: 0.4 }}
+      />
+
+      {/* Shimmer sweep overlay */}
+      {visible && (
+        <motion.rect
+          x="0" y="0" width="220" height="160"
+          fill="url(#crownSweep)"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.0, duration: 0.5 }}
+          style={{ mixBlendMode: "overlay" }}
+        />
+      )}
+    </svg>
+  );
+};
 
 const Splash = () => {
   const navigate = useNavigate();
   const [phase, setPhase] = useState(0);
-  // 0: void, 1: particles, 2: crown draws, 3: brand name, 4: exit
+  // 0: black void, 1: particles, 2: crown draws, 3: brand reveal, 4: exit
 
-  // Generate particles once
-  const particles = useMemo(() => 
-    Array.from({ length: 40 }, (_, i) => {
-      const angle = (i / 40) * Math.PI * 2 + (Math.random() - 0.5) * 0.5;
-      const dist = 60 + Math.random() * 140;
+  // Particle burst
+  const particles = useMemo(() =>
+    Array.from({ length: 45 }, (_, i) => {
+      const angle = (i / 45) * Math.PI * 2 + (Math.random() - 0.5) * 0.4;
+      const dist = 50 + Math.random() * 160;
       return {
         id: i,
         x: Math.cos(angle) * dist,
         y: Math.sin(angle) * dist,
-        size: 2 + Math.random() * 5,
-        delay: 0.5 + Math.random() * 0.6,
-        duration: 0.8 + Math.random() * 0.8,
+        size: 2 + Math.random() * 6,
+        delay: 0.5 + Math.random() * 0.5,
+        duration: 0.6 + Math.random() * 0.7,
       };
     }), []
   );
 
+  // Ambient dust
+  const dustMotes = useMemo(() =>
+    Array.from({ length: 12 }, (_, i) => ({
+      id: i,
+      x: 10 + Math.random() * 80,
+      delay: Math.random() * 3,
+    })), []
+  );
+
   useEffect(() => {
     const timers = [
-      setTimeout(() => setPhase(1), 500),   // particles start
-      setTimeout(() => setPhase(2), 1500),   // crown draws
-      setTimeout(() => setPhase(3), 2800),   // brand name
-      setTimeout(() => setPhase(4), 3800),   // exit
+      setTimeout(() => setPhase(1), 500),
+      setTimeout(() => setPhase(2), 1500),
+      setTimeout(() => setPhase(3), 2800),
+      setTimeout(() => setPhase(4), 3800),
       setTimeout(() => navigate("/age-check"), 4500),
     ];
     return () => timers.forEach(clearTimeout);
@@ -152,12 +248,37 @@ const Splash = () => {
   return (
     <motion.div
       className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
-      animate={{ opacity: phase === 4 ? 0 : 1, scale: phase === 4 ? 1.05 : 1 }}
+      animate={{
+        opacity: phase === 4 ? 0 : 1,
+        scale: phase === 4 ? 1.05 : 1,
+      }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
-      style={{ background: "#000" }}
+      style={{ background: "#000000" }}
     >
+      {/* Ambient floating dust motes */}
+      {dustMotes.map((m) => (
+        <DustMote key={m.id} delay={m.delay} x={m.x} />
+      ))}
+
+      {/* Phase 0: Single seed particle */}
+      <motion.div
+        className="absolute rounded-full"
+        style={{
+          width: 4,
+          height: 4,
+          background: "#D4AF37",
+          boxShadow: "0 0 20px #D4AF37, 0 0 40px rgba(212,175,55,0.5)",
+        }}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{
+          scale: phase === 0 ? [0, 1, 1.2, 1] : phase === 1 ? [1, 3, 0] : 0,
+          opacity: phase === 0 ? [0, 1] : phase === 1 ? [1, 0.5, 0] : 0,
+        }}
+        transition={{ duration: phase === 0 ? 0.4 : 0.3, ease: "easeOut" }}
+      />
+
       {/* Phase 1: Gold particle explosion */}
-      {phase >= 1 && (
+      {phase >= 1 && phase < 3 && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           {particles.map((p) => (
             <GoldParticle key={p.id} delay={p.delay} x={p.x} y={p.y} size={p.size} duration={p.duration} />
@@ -165,81 +286,77 @@ const Splash = () => {
         </div>
       )}
 
-      {/* Ambient breathing glow */}
+      {/* Radial ambient glow */}
       <motion.div
         className="absolute"
         style={{
-          width: 500,
-          height: 500,
-          background: "radial-gradient(circle, hsla(43, 75%, 50%, 0.04) 0%, transparent 65%)",
+          width: 600,
+          height: 600,
+          background: "radial-gradient(circle, rgba(212,175,55,0.03) 0%, transparent 60%)",
         }}
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: phase >= 1 ? 1 : 0, scale: [1, 1.1, 1] }}
+        transition={{ opacity: { duration: 0.5 }, scale: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
       />
 
-      {/* Phase 2: Crown materializes — SVG stroke animation */}
+      {/* Phase 2: Crown materializes */}
       <motion.div
         className="relative z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: phase >= 2 ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       >
-        <AnimatedCrown visible={phase >= 2} />
+        <AnimatedCrown phase={phase} />
       </motion.div>
 
       {/* Phase 3: Brand name reveal */}
       <motion.div
-        className="relative z-10 mt-6 flex flex-col items-center overflow-hidden"
+        className="relative z-10 mt-6 flex flex-col items-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: phase >= 3 ? 1 : 0 }}
         transition={{ duration: 0.1 }}
       >
-        {/* Reveal mask animation */}
-        <motion.div
-          className="overflow-hidden"
-          initial={{ width: 0 }}
-          animate={{ width: phase >= 3 ? "auto" : 0 }}
+        {/* TSOGO with letter-spacing animation */}
+        <motion.h1
+          className="text-[28px] font-bold uppercase select-none"
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            background: "linear-gradient(135deg, #B8960C 0%, #D4AF37 30%, #F2D06B 50%, #D4AF37 70%, #B8960C 100%)",
+            backgroundSize: "200% 100%",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            animation: "textShimmer 4s ease-in-out infinite",
+          }}
+          initial={{ letterSpacing: "1em", opacity: 0, y: 15 }}
+          animate={phase >= 3 ? { letterSpacing: "0.3em", opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <h1
-            className="text-4xl font-bold tracking-[0.3em] uppercase select-none whitespace-nowrap"
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              background: "linear-gradient(110deg, hsl(43, 90%, 65%) 0%, hsl(38, 65%, 40%) 30%, hsl(43, 95%, 72%) 50%, hsl(38, 60%, 38%) 70%, hsl(43, 85%, 60%) 100%)",
-              backgroundSize: "200% 100%",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              animation: "textShimmer 4s ease-in-out infinite",
-            }}
-          >
-            TSOGO
-          </h1>
-        </motion.div>
+          TSOGO
+        </motion.h1>
 
-        {/* Gold line */}
+        {/* Gold horizontal line extends from center */}
         <motion.div
           className="mt-3"
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: phase >= 3 ? 1 : 0, opacity: phase >= 3 ? 1 : 0 }}
-          transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+          initial={{ width: 0, opacity: 0 }}
+          animate={phase >= 3 ? { width: 200, opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           style={{
             height: 1,
-            width: 80,
-            background: "linear-gradient(90deg, transparent, hsl(43, 72%, 52%), transparent)",
-            transformOrigin: "center",
+            background: "linear-gradient(90deg, transparent, #D4AF37, transparent)",
           }}
         />
 
         {/* Tagline */}
         <motion.p
-          className="mt-4 text-[9px] font-light tracking-[0.55em] uppercase"
+          className="mt-4 text-[12px] font-light uppercase select-none"
           style={{
             fontFamily: "'Inter', sans-serif",
-            color: "hsl(43, 35%, 40%)",
+            color: "rgba(255,255,255,0.5)",
+            letterSpacing: "0.4em",
           }}
           initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: phase >= 3 ? 1 : 0, y: phase >= 3 ? 0 : 8 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
+          animate={phase >= 3 ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.5 }}
         >
           Premium Gaming
         </motion.p>
@@ -249,14 +366,14 @@ const Splash = () => {
       <motion.div
         className="relative z-10 w-32 mt-16"
         initial={{ opacity: 0 }}
-        animate={{ opacity: phase >= 2 ? 0.6 : 0 }}
+        animate={{ opacity: phase >= 2 ? 0.5 : 0 }}
         transition={{ duration: 0.4 }}
       >
-        <div className="h-[1px] rounded-full overflow-hidden" style={{ background: "hsl(0, 0%, 12%)" }}>
+        <div className="h-[1px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
           <motion.div
             className="h-full rounded-full"
             style={{
-              background: "linear-gradient(90deg, hsl(43, 70%, 38%), hsl(43, 90%, 60%))",
+              background: "linear-gradient(90deg, #B8960C, #D4AF37, #F2D06B)",
             }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
@@ -265,18 +382,30 @@ const Splash = () => {
         </div>
       </motion.div>
 
+      {/* Skip button */}
+      <motion.button
+        className="absolute bottom-8 right-6 text-[11px] font-light z-20"
+        style={{ color: "rgba(255,255,255,0.2)" }}
+        onClick={() => navigate("/age-check")}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 0.5 }}
+        whileHover={{ color: "rgba(255,255,255,0.5)" }}
+      >
+        Skip
+      </motion.button>
+
       {/* Footer */}
       <motion.p
-        className="absolute bottom-7 text-[9px] font-light tracking-wider z-10"
-        style={{ color: "hsl(0, 0%, 22%)" }}
+        className="absolute bottom-8 text-[9px] font-light tracking-wider z-10"
+        style={{ color: "rgba(255,255,255,0.15)" }}
         initial={{ opacity: 0 }}
-        animate={{ opacity: phase >= 3 ? 0.6 : 0 }}
+        animate={{ opacity: phase >= 3 ? 1 : 0 }}
         transition={{ duration: 0.5 }}
       >
         🔞 18+ | Gamble Responsibly
       </motion.p>
 
-      {/* Shimmer keyframe for text */}
       <style>{`
         @keyframes textShimmer {
           0%, 100% { background-position: 200% 0; }
