@@ -12,7 +12,7 @@ const AgeDenied = () => {
             background: "linear-gradient(135deg, hsl(40,60%,58%), hsl(40,40%,40%))",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-          }}>TSOGO</span>
+          }}>PEERMONT</span>
         </div>
       </div>
 
