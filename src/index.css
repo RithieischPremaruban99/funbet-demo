@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 
 @layer base {
   :root {
@@ -54,7 +54,7 @@
     --hero-gradient: linear-gradient(135deg, hsl(0, 0%, 8%), hsl(0, 0%, 3%));
     --glass: hsla(0, 0%, 4%, 0.92);
 
-    --font-display: 'Cormorant Garamond', serif;
+    --font-display: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
 
     --sidebar-background: 0 0% 3%;
@@ -82,8 +82,8 @@
 
   h1, h2, h3 {
     font-family: var(--font-display);
-    font-weight: 600;
-    letter-spacing: 0.02em;
+    font-weight: 700;
+    letter-spacing: 0.03em;
   }
 
   button, a, [role="button"], .odds-cell {
