@@ -33,7 +33,7 @@ const TopBar = () => {
               background: "linear-gradient(135deg, #B8960C, #D4AF37, #F2D06B, #D4AF37, #B8960C)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-            }}>TSOGO</span>
+            }}>PEERMONT</span>
           </Link>
           <div className="flex items-center gap-1.5">
             <button

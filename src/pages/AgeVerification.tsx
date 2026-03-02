@@ -68,7 +68,7 @@ const AgeVerification = () => {
           background: "linear-gradient(135deg, #B8960C, #D4AF37, #F2D06B, #D4AF37, #B8960C)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
-        }}>TSOGO</span>
+        }}>PEERMONT</span>
       </motion.div>
 
       <motion.div
