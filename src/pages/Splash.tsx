@@ -331,7 +331,7 @@ const Splash = () => {
           animate={phase >= 3 ? { letterSpacing: "0.3em", opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          PEERMONT
+          WAZOBET
         </motion.h1>
 
         {/* Gold horizontal line extends from center */}
