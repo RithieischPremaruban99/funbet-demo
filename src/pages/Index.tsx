@@ -587,7 +587,7 @@ const Index = () => {
           border: "1px solid rgba(212,175,55,0.25)",
         }}>
           <p className="text-xs font-medium leading-relaxed" style={{ color: "rgba(212,175,55,0.7)" }}>
-            ⚠ This is a demo environment. The final product may vary depending on integrations and variable factors.
+            ⚠ This is a demo environment. The final product may vary depending on integration, content, and modules.
           </p>
         </div>
       </section>
