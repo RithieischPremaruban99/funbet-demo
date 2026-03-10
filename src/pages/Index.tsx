@@ -309,6 +309,18 @@ const Index = () => {
 
   return (
     <MobileLayout>
+      {/* Demo Disclaimer */}
+      <section className="px-4 mt-2 mb-1">
+        <div className="rounded-xl p-3 text-center" style={{
+          background: "rgba(212,175,55,0.08)",
+          border: "1px solid rgba(212,175,55,0.25)",
+        }}>
+          <p className="text-xs font-medium leading-relaxed" style={{ color: "rgba(212,175,55,0.7)" }}>
+            ⚠ This is a demo environment. The final product may vary depending on integration, content, and modules.
+          </p>
+        </div>
+      </section>
+
       {/* Top actions */}
       <section className="px-4 mt-3 flex items-center justify-between">
         <Link to="/login" className="px-5 py-2 rounded-full border border-highlight/60 text-highlight text-sm font-bold hover:bg-highlight/10 transition-colors">Log In</Link>
@@ -580,17 +592,6 @@ const Index = () => {
         )}
       </AnimatePresence>
 
-      {/* Demo Disclaimer */}
-      <section className="px-4 mt-8 mb-6">
-        <div className="rounded-xl p-4 text-center" style={{
-          background: "rgba(212,175,55,0.08)",
-          border: "1px solid rgba(212,175,55,0.25)",
-        }}>
-          <p className="text-xs font-medium leading-relaxed" style={{ color: "rgba(212,175,55,0.7)" }}>
-            ⚠ This is a demo environment. The final product may vary depending on integration, content, and modules.
-          </p>
-        </div>
-      </section>
     </MobileLayout>
   );
 };
