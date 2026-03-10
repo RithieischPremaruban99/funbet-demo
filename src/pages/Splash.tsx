@@ -54,152 +54,40 @@ const DustMote = ({ delay, x }: { delay: number; x: number }) => (
 );
 
 // SVG Crown with stroke-dasharray animation
-const AnimatedCrown = ({ phase }: { phase: number }) => {
+const AnimatedBolt = ({ phase }: { phase: number }) => {
   const visible = phase >= 2;
   return (
-    <svg
-      viewBox="0 0 220 160"
-      className="w-36 h-[100px]"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg viewBox="0 0 64 64" className="w-28 h-28" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="crownGold" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#B8960C" />
-          <stop offset="30%" stopColor="#D4AF37" />
-          <stop offset="50%" stopColor="#F2D06B" />
-          <stop offset="70%" stopColor="#D4AF37" />
+        <linearGradient id="boltGold" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#F2D06B" />
+          <stop offset="50%" stopColor="#D4AF37" />
           <stop offset="100%" stopColor="#B8960C" />
         </linearGradient>
-        <linearGradient id="crownFill" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#B8960C" />
-          <stop offset="25%" stopColor="#D4AF37" />
-          <stop offset="50%" stopColor="#F2D06B" />
-          <stop offset="75%" stopColor="#D4AF37" />
-          <stop offset="100%" stopColor="#B8960C" />
-        </linearGradient>
-        {/* Shimmer sweep */}
-        <linearGradient id="crownSweep" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="transparent" />
-          <stop offset="45%" stopColor="rgba(242,208,107,0.4)" />
-          <stop offset="55%" stopColor="rgba(242,208,107,0.4)" />
-          <stop offset="100%" stopColor="transparent" />
-          <animateTransform attributeName="gradientTransform" type="translate" from="-1 0" to="1 0" dur="2.5s" repeatCount="indefinite" begin="2s" />
-        </linearGradient>
-        <filter id="glow">
-          <feGaussianBlur stdDeviation="4" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
+        <filter id="boltGlow">
+          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
         </filter>
-        <mask id="fillMask">
-          <motion.rect
-            x="0"
-            width="220"
-            height="160"
-            fill="white"
-            initial={{ y: 160 }}
-            animate={visible ? { y: 0 } : {}}
-            transition={{ duration: 1.2, delay: 0.5, ease: "easeInOut" }}
-          />
-        </mask>
       </defs>
-
-      {/* Sweeping chevron base — stroke draws first */}
       <motion.path
-        d="M 25 125 Q 55 145 110 145 Q 165 145 195 125 L 175 105 Q 150 128 110 128 Q 70 128 45 105 Z"
-        stroke="url(#crownGold)"
+        d="M36 4L12 36h16l-4 24 24-32H32l4-24z"
+        stroke="url(#boltGold)"
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
         fill="none"
-        filter="url(#glow)"
+        filter="url(#boltGlow)"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={visible ? { pathLength: 1, opacity: 1 } : {}}
         transition={{ duration: 0.8, ease: "easeInOut" }}
       />
-      {/* Chevron fill */}
       <motion.path
-        d="M 25 125 Q 55 145 110 145 Q 165 145 195 125 L 175 105 Q 150 128 110 128 Q 70 128 45 105 Z"
-        fill="url(#crownFill)"
-        mask="url(#fillMask)"
+        d="M36 4L12 36h16l-4 24 24-32H32l4-24z"
+        fill="url(#boltGold)"
         initial={{ opacity: 0 }}
         animate={visible ? { opacity: 1 } : {}}
-        transition={{ delay: 0.4, duration: 0.5 }}
+        transition={{ delay: 0.6, duration: 0.5 }}
       />
-
-      {/* Left petal — blooms first */}
-      <motion.path
-        d="M 50 100 Q 30 65 55 30 Q 63 20 70 30 Q 85 58 65 95 Z"
-        stroke="url(#crownGold)"
-        strokeWidth="2"
-        fill="none"
-        filter="url(#glow)"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={visible ? { pathLength: 1, opacity: 1 } : {}}
-        transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
-      />
-      <motion.path
-        d="M 50 100 Q 30 65 55 30 Q 63 20 70 30 Q 85 58 65 95 Z"
-        fill="url(#crownFill)"
-        mask="url(#fillMask)"
-        initial={{ opacity: 0 }}
-        animate={visible ? { opacity: 1 } : {}}
-        transition={{ delay: 0.9, duration: 0.4 }}
-      />
-
-      {/* Center petal — tallest, blooms second */}
-      <motion.path
-        d="M 90 92 Q 85 40 110 5 Q 135 40 130 92 Z"
-        stroke="url(#crownGold)"
-        strokeWidth="2"
-        fill="none"
-        filter="url(#glow)"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={visible ? { pathLength: 1, opacity: 1 } : {}}
-        transition={{ duration: 0.5, delay: 1.0, ease: "easeOut" }}
-      />
-      <motion.path
-        d="M 90 92 Q 85 40 110 5 Q 135 40 130 92 Z"
-        fill="url(#crownFill)"
-        mask="url(#fillMask)"
-        initial={{ opacity: 0 }}
-        animate={visible ? { opacity: 1 } : {}}
-        transition={{ delay: 1.2, duration: 0.4 }}
-      />
-
-      {/* Right petal — blooms third */}
-      <motion.path
-        d="M 155 95 Q 135 58 150 30 Q 157 20 165 30 Q 190 65 170 100 Z"
-        stroke="url(#crownGold)"
-        strokeWidth="2"
-        fill="none"
-        filter="url(#glow)"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={visible ? { pathLength: 1, opacity: 1 } : {}}
-        transition={{ duration: 0.5, delay: 1.3, ease: "easeOut" }}
-      />
-      <motion.path
-        d="M 155 95 Q 135 58 150 30 Q 157 20 165 30 Q 190 65 170 100 Z"
-        fill="url(#crownFill)"
-        mask="url(#fillMask)"
-        initial={{ opacity: 0 }}
-        animate={visible ? { opacity: 1 } : {}}
-        transition={{ delay: 1.5, duration: 0.4 }}
-      />
-
-      {/* Shimmer sweep overlay */}
-      {visible && (
-        <motion.rect
-          x="0" y="0" width="220" height="160"
-          fill="url(#crownSweep)"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.0, duration: 0.5 }}
-          style={{ mixBlendMode: "overlay" }}
-        />
-      )}
     </svg>
   );
 };
@@ -306,7 +194,7 @@ const Splash = () => {
         animate={{ opacity: phase >= 2 ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       >
-        <AnimatedCrown phase={phase} />
+        <AnimatedBolt phase={phase} />
       </motion.div>
 
       {/* Phase 3: Brand name reveal */}
@@ -318,9 +206,9 @@ const Splash = () => {
       >
         {/* PEERMONT with letter-spacing animation */}
         <motion.h1
-          className="text-[28px] font-bold uppercase select-none"
+          className="text-[32px] font-black uppercase select-none"
           style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'Inter', 'Arial Black', sans-serif",
             background: "linear-gradient(135deg, #B8960C 0%, #D4AF37 30%, #F2D06B 50%, #D4AF37 70%, #B8960C 100%)",
             backgroundSize: "200% 100%",
             WebkitBackgroundClip: "text",
@@ -331,7 +219,7 @@ const Splash = () => {
           animate={phase >= 3 ? { letterSpacing: "0.3em", opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          PEERMONT
+          WAZOBET
         </motion.h1>
 
         {/* Gold horizontal line extends from center */}
@@ -358,7 +246,7 @@ const Splash = () => {
           animate={phase >= 3 ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
-          Premium Gaming
+          Bold Betting
         </motion.p>
       </motion.div>
 

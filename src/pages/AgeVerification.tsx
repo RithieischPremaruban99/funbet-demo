@@ -63,12 +63,12 @@ const AgeVerification = () => {
           <path d="M 155 95 Q 135 58 150 30 Q 157 20 165 30 Q 190 65 170 100 Z" fill="url(#ageGold)" filter="url(#ageGlow)" />
         </svg>
 
-        <span className="text-2xl font-bold tracking-[0.3em] uppercase" style={{
-          fontFamily: "'Playfair Display', serif",
-          background: "linear-gradient(135deg, #B8960C, #D4AF37, #F2D06B, #D4AF37, #B8960C)",
+        <span className="text-2xl font-black tracking-[0.1em] uppercase" style={{
+          fontFamily: "'Inter', 'Arial Black', sans-serif",
+          background: "linear-gradient(135deg, #F2D06B, #D4AF37, #B8960C)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
-        }}>PEERMONT</span>
+        }}>WAZOBET</span>
       </motion.div>
 
       <motion.div
