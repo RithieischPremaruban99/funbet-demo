@@ -25,7 +25,7 @@ const Login = () => {
               background: "linear-gradient(135deg, hsl(40,60%,62%), hsl(40,40%,45%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-            }}>PEERMONT</h1>
+            }}>WAZOBET</h1>
           </div>
           <p className="text-xs text-muted-foreground mt-6">Access your account</p>
         </div>
