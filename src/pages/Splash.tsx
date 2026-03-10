@@ -194,7 +194,7 @@ const Splash = () => {
         animate={{ opacity: phase >= 2 ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       >
-        <AnimatedCrown phase={phase} />
+        <AnimatedBolt phase={phase} />
       </motion.div>
 
       {/* Phase 3: Brand name reveal */}
