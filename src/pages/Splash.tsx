@@ -318,9 +318,9 @@ const Splash = () => {
       >
         {/* PEERMONT with letter-spacing animation */}
         <motion.h1
-          className="text-[28px] font-bold uppercase select-none"
+          className="text-[32px] font-black uppercase select-none"
           style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'Inter', 'Arial Black', sans-serif",
             background: "linear-gradient(135deg, #B8960C 0%, #D4AF37 30%, #F2D06B 50%, #D4AF37 70%, #B8960C 100%)",
             backgroundSize: "200% 100%",
             WebkitBackgroundClip: "text",

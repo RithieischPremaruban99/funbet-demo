@@ -14,26 +14,23 @@ const TopBar = () => {
       }}>
         <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
           <Link to="/" className="flex items-center gap-2.5">
-            {/* Crown mini icon */}
-            <svg viewBox="0 0 220 160" className="w-7 h-5" fill="none">
+            {/* Wazobet lightning bolt icon */}
+            <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none">
               <defs>
-                <linearGradient id="topGold" x1="0%" y1="100%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#B8960C" />
-                  <stop offset="50%" stopColor="#F2D06B" />
+                <linearGradient id="topBolt" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#F2D06B" />
+                  <stop offset="50%" stopColor="#D4AF37" />
                   <stop offset="100%" stopColor="#B8960C" />
                 </linearGradient>
               </defs>
-              <path d="M 25 125 Q 55 145 110 145 Q 165 145 195 125 L 175 105 Q 150 128 110 128 Q 70 128 45 105 Z" fill="url(#topGold)" />
-              <path d="M 50 100 Q 30 65 55 30 Q 63 20 70 30 Q 85 58 65 95 Z" fill="url(#topGold)" />
-              <path d="M 90 92 Q 85 40 110 5 Q 135 40 130 92 Z" fill="url(#topGold)" />
-              <path d="M 155 95 Q 135 58 150 30 Q 157 20 165 30 Q 190 65 170 100 Z" fill="url(#topGold)" />
+              <path d="M18 2L6 18h8l-2 12 12-16h-8l2-12z" fill="url(#topBolt)" />
             </svg>
-            <span className="text-lg font-bold tracking-[0.2em] uppercase leading-none" style={{
-              fontFamily: "'Playfair Display', serif",
-              background: "linear-gradient(135deg, #B8960C, #D4AF37, #F2D06B, #D4AF37, #B8960C)",
+            <span className="text-lg font-black tracking-[0.05em] uppercase leading-none" style={{
+              fontFamily: "'Inter', 'Arial Black', sans-serif",
+              background: "linear-gradient(135deg, #F2D06B, #D4AF37, #B8960C)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
-            }}>PEERMONT</span>
+            }}>WAZOBET</span>
           </Link>
           <div className="flex items-center gap-1.5">
             <button

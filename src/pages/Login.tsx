@@ -21,7 +21,7 @@ const Login = () => {
         <div className="flex flex-col items-center mb-8">
           <div className="relative flex flex-col items-center justify-center" style={{ width: "200px", height: "200px" }}>
             <div className="absolute inset-0 rounded-full border-[2.5px]" style={{ borderColor: "hsl(40, 55%, 50%)" }} />
-            <h1 className="text-4xl font-black tracking-[0.18em] uppercase relative z-10" style={{
+            <h1 className="text-4xl font-black tracking-[0.08em] uppercase relative z-10" style={{
               background: "linear-gradient(135deg, hsl(40,60%,62%), hsl(40,40%,45%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
