@@ -4,9 +4,6 @@ import { useState } from "react";
 import GlobalSearch from "@/components/GlobalSearch";
 import { useBrandTheme } from "@/contexts/BrandThemeContext";
 import lottomaniaLogo from "@/assets/lottomania-logo.jpg";
-import { useState } from "react";
-import GlobalSearch from "@/components/GlobalSearch";
-import { useBrandTheme } from "@/contexts/BrandThemeContext";
 
 const TopBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
