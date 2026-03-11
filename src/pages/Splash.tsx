@@ -1,9 +1,18 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import lottomaniaLogo from "@/assets/lottomania-logo.jpg";
 
-// Gold particle component
-const GoldParticle = ({ delay, x, y, size, duration }: { delay: number; x: number; y: number; size: number; duration: number }) => (
+const PETAL_COLORS = [
+  "hsla(348, 80%, 55%, 0.9)", // red/pink
+  "hsla(35, 95%, 55%, 0.9)",  // orange
+  "hsla(45, 90%, 55%, 0.9)",  // yellow
+  "hsla(140, 55%, 40%, 0.9)", // green
+  "hsla(195, 85%, 50%, 0.9)", // cyan
+  "hsla(260, 60%, 55%, 0.9)", // blue/purple
+];
+
+const ColorParticle = ({ delay, x, y, size, duration, color }: { delay: number; x: number; y: number; size: number; duration: number; color: string }) => (
   <motion.div
     className="absolute rounded-full"
     style={{
@@ -11,93 +20,33 @@ const GoldParticle = ({ delay, x, y, size, duration }: { delay: number; x: numbe
       height: size,
       left: "50%",
       top: "50%",
-      background: `radial-gradient(circle, hsla(43, 90%, ${55 + Math.random() * 15}%, 0.9), hsla(43, 80%, 50%, 0))`,
+      background: `radial-gradient(circle, ${color}, transparent)`,
     }}
     initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
-    animate={{
-      x: x,
-      y: y,
-      opacity: [0, 1, 0.8, 0],
-      scale: [0, 1.5, 0.6, 0],
-    }}
-    transition={{
-      duration: duration,
-      delay: delay,
-      ease: "easeOut",
-    }}
+    animate={{ x, y, opacity: [0, 1, 0.8, 0], scale: [0, 1.5, 0.6, 0] }}
+    transition={{ duration, delay, ease: "easeOut" }}
   />
 );
 
-// Floating ambient dust mote
-const DustMote = ({ delay, x }: { delay: number; x: number }) => (
+const DustMote = ({ delay, x, color }: { delay: number; x: number; color: string }) => (
   <motion.div
     className="absolute rounded-full"
     style={{
       width: 1.5 + Math.random() * 2,
       height: 1.5 + Math.random() * 2,
-      background: `hsla(43, 70%, 52%, ${0.15 + Math.random() * 0.2})`,
+      background: color,
       left: `${x}%`,
       bottom: -10,
     }}
-    animate={{
-      y: [0, -window.innerHeight - 50],
-      opacity: [0, 0.4, 0.3, 0],
-      x: [0, Math.sin(x) * 30],
-    }}
-    transition={{
-      duration: 6 + Math.random() * 4,
-      delay: delay,
-      repeat: Infinity,
-      ease: "linear",
-    }}
+    animate={{ y: [0, -window.innerHeight - 50], opacity: [0, 0.4, 0.3, 0], x: [0, Math.sin(x) * 30] }}
+    transition={{ duration: 6 + Math.random() * 4, delay, repeat: Infinity, ease: "linear" }}
   />
 );
-
-// SVG Crown with stroke-dasharray animation
-const AnimatedBolt = ({ phase }: { phase: number }) => {
-  const visible = phase >= 2;
-  return (
-    <svg viewBox="0 0 64 64" className="w-28 h-28" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="boltGold" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#F2D06B" />
-          <stop offset="50%" stopColor="#D4AF37" />
-          <stop offset="100%" stopColor="#B8960C" />
-        </linearGradient>
-        <filter id="boltGlow">
-          <feGaussianBlur stdDeviation="3" result="blur" />
-          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
-        </filter>
-      </defs>
-      <motion.path
-        d="M36 4L12 36h16l-4 24 24-32H32l4-24z"
-        stroke="url(#boltGold)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-        filter="url(#boltGlow)"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={visible ? { pathLength: 1, opacity: 1 } : {}}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-      />
-      <motion.path
-        d="M36 4L12 36h16l-4 24 24-32H32l4-24z"
-        fill="url(#boltGold)"
-        initial={{ opacity: 0 }}
-        animate={visible ? { opacity: 1 } : {}}
-        transition={{ delay: 0.6, duration: 0.5 }}
-      />
-    </svg>
-  );
-};
 
 const Splash = () => {
   const navigate = useNavigate();
   const [phase, setPhase] = useState(0);
-  // 0: black void, 1: particles, 2: crown draws, 3: brand reveal, 4: exit
 
-  // Particle burst
   const particles = useMemo(() =>
     Array.from({ length: 45 }, (_, i) => {
       const angle = (i / 45) * Math.PI * 2 + (Math.random() - 0.5) * 0.4;
@@ -109,16 +58,17 @@ const Splash = () => {
         size: 2 + Math.random() * 6,
         delay: 0.5 + Math.random() * 0.5,
         duration: 0.6 + Math.random() * 0.7,
+        color: PETAL_COLORS[i % PETAL_COLORS.length],
       };
     }), []
   );
 
-  // Ambient dust
   const dustMotes = useMemo(() =>
     Array.from({ length: 12 }, (_, i) => ({
       id: i,
       x: 10 + Math.random() * 80,
       delay: Math.random() * 3,
+      color: PETAL_COLORS[i % PETAL_COLORS.length].replace("0.9", `${0.15 + Math.random() * 0.2}`),
     })), []
   );
 
@@ -136,26 +86,21 @@ const Splash = () => {
   return (
     <motion.div
       className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
-      animate={{
-        opacity: phase === 4 ? 0 : 1,
-        scale: phase === 4 ? 1.05 : 1,
-      }}
+      animate={{ opacity: phase === 4 ? 0 : 1, scale: phase === 4 ? 1.05 : 1 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
-      style={{ background: "#000000" }}
+      style={{ background: "hsl(150, 20%, 4%)" }}
     >
-      {/* Ambient floating dust motes */}
       {dustMotes.map((m) => (
-        <DustMote key={m.id} delay={m.delay} x={m.x} />
+        <DustMote key={m.id} delay={m.delay} x={m.x} color={m.color} />
       ))}
 
-      {/* Phase 0: Single seed particle */}
+      {/* Seed particle */}
       <motion.div
         className="absolute rounded-full"
         style={{
-          width: 4,
-          height: 4,
-          background: "#D4AF37",
-          boxShadow: "0 0 20px #D4AF37, 0 0 40px rgba(212,175,55,0.5)",
+          width: 4, height: 4,
+          background: "hsl(140, 55%, 35%)",
+          boxShadow: "0 0 20px hsl(140, 55%, 35%), 0 0 40px hsla(140, 55%, 35%, 0.5)",
         }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{
@@ -165,88 +110,74 @@ const Splash = () => {
         transition={{ duration: phase === 0 ? 0.4 : 0.3, ease: "easeOut" }}
       />
 
-      {/* Phase 1: Gold particle explosion */}
+      {/* Particle burst */}
       {phase >= 1 && phase < 3 && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           {particles.map((p) => (
-            <GoldParticle key={p.id} delay={p.delay} x={p.x} y={p.y} size={p.size} duration={p.duration} />
+            <ColorParticle key={p.id} delay={p.delay} x={p.x} y={p.y} size={p.size} duration={p.duration} color={p.color} />
           ))}
         </div>
       )}
 
-      {/* Radial ambient glow */}
+      {/* Ambient glow */}
       <motion.div
         className="absolute"
-        style={{
-          width: 600,
-          height: 600,
-          background: "radial-gradient(circle, rgba(212,175,55,0.03) 0%, transparent 60%)",
-        }}
+        style={{ width: 600, height: 600, background: "radial-gradient(circle, hsla(140, 55%, 35%, 0.04) 0%, transparent 60%)" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: phase >= 1 ? 1 : 0, scale: [1, 1.1, 1] }}
         transition={{ opacity: { duration: 0.5 }, scale: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
       />
 
-      {/* Phase 2: Crown materializes */}
+      {/* Logo */}
       <motion.div
         className="relative z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: phase >= 2 ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: phase >= 2 ? 1 : 0, scale: phase >= 2 ? 1 : 0.5 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <AnimatedBolt phase={phase} />
+        <img src={lottomaniaLogo} alt="Lottomania" className="w-28 h-28 object-contain rounded-2xl" />
       </motion.div>
 
-      {/* Phase 3: Brand name reveal */}
+      {/* Brand name */}
       <motion.div
         className="relative z-10 mt-6 flex flex-col items-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: phase >= 3 ? 1 : 0 }}
         transition={{ duration: 0.1 }}
       >
-        {/* PEERMONT with letter-spacing animation */}
         <motion.h1
-          className="text-[32px] font-black uppercase select-none"
+          className="text-[32px] font-extrabold uppercase select-none"
           style={{
-            fontFamily: "'Inter', 'Arial Black', sans-serif",
-            background: "linear-gradient(135deg, #B8960C 0%, #D4AF37 30%, #F2D06B 50%, #D4AF37 70%, #B8960C 100%)",
+            fontFamily: "var(--font-display)",
+            background: "linear-gradient(135deg, hsl(140,60%,25%) 0%, hsl(140,55%,35%) 30%, hsl(140,50%,48%) 50%, hsl(140,55%,35%) 70%, hsl(140,60%,25%) 100%)",
             backgroundSize: "200% 100%",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             animation: "textShimmer 4s ease-in-out infinite",
           }}
           initial={{ letterSpacing: "1em", opacity: 0, y: 15 }}
-          animate={phase >= 3 ? { letterSpacing: "0.3em", opacity: 1, y: 0 } : {}}
+          animate={phase >= 3 ? { letterSpacing: "0.15em", opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          WAZOBET
+          Lottomania
         </motion.h1>
 
-        {/* Gold horizontal line extends from center */}
         <motion.div
           className="mt-3"
           initial={{ width: 0, opacity: 0 }}
           animate={phase >= 3 ? { width: 200, opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          style={{
-            height: 1,
-            background: "linear-gradient(90deg, transparent, #D4AF37, transparent)",
-          }}
+          style={{ height: 1, background: "linear-gradient(90deg, transparent, hsl(140, 55%, 35%), transparent)" }}
         />
 
-        {/* Tagline */}
         <motion.p
           className="mt-4 text-[12px] font-light uppercase select-none"
-          style={{
-            fontFamily: "'Inter', sans-serif",
-            color: "rgba(255,255,255,0.5)",
-            letterSpacing: "0.4em",
-          }}
+          style={{ fontFamily: "var(--font-body)", color: "rgba(255,255,255,0.5)", letterSpacing: "0.4em" }}
           initial={{ opacity: 0, y: 8 }}
           animate={phase >= 3 ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
-          Bold Betting
+          Play & Win
         </motion.p>
       </motion.div>
 
@@ -260,9 +191,7 @@ const Splash = () => {
         <div className="h-[1px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
           <motion.div
             className="h-full rounded-full"
-            style={{
-              background: "linear-gradient(90deg, #B8960C, #D4AF37, #F2D06B)",
-            }}
+            style={{ background: "linear-gradient(90deg, hsl(348,80%,55%), hsl(35,95%,55%), hsl(140,55%,35%), hsl(195,85%,50%))" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 3.5, ease: "easeInOut", delay: 0.5 }}
@@ -270,7 +199,6 @@ const Splash = () => {
         </div>
       </motion.div>
 
-      {/* Skip button */}
       <motion.button
         className="absolute bottom-8 right-6 text-[11px] font-light z-20"
         style={{ color: "rgba(255,255,255,0.2)" }}
@@ -283,7 +211,6 @@ const Splash = () => {
         Skip
       </motion.button>
 
-      {/* Footer */}
       <motion.p
         className="absolute bottom-8 text-[9px] font-light tracking-wider z-10"
         style={{ color: "rgba(255,255,255,0.15)" }}
