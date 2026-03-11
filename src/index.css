@@ -261,18 +261,18 @@
   .gold-shimmer {
     background: linear-gradient(
       110deg,
-      hsl(43, 88%, 38%) 0%,
-      hsl(43, 75%, 52%) 25%,
-      hsl(43, 84%, 68%) 50%,
-      hsl(43, 75%, 52%) 75%,
-      hsl(43, 88%, 38%) 100%
+      hsl(140, 60%, 25%) 0%,
+      hsl(140, 55%, 35%) 25%,
+      hsl(140, 50%, 45%) 50%,
+      hsl(140, 55%, 35%) 75%,
+      hsl(140, 60%, 25%) 100%
     );
     background-size: 200% 100%;
     animation: shimmer 3s ease-in-out infinite;
   }
 
   .gold-text {
-    background: linear-gradient(135deg, hsl(43,88%,38%) 0%, hsl(43,75%,52%) 30%, hsl(43,84%,68%) 50%, hsl(43,75%,52%) 70%, hsl(43,88%,38%) 100%);
+    background: linear-gradient(135deg, hsl(140,60%,25%) 0%, hsl(140,55%,35%) 30%, hsl(140,50%,45%) 50%, hsl(140,55%,35%) 70%, hsl(140,60%,25%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
