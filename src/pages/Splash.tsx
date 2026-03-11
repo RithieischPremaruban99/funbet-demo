@@ -99,8 +99,8 @@ const Splash = () => {
         className="absolute rounded-full"
         style={{
           width: 4, height: 4,
-          background: "hsl(140, 55%, 35%)",
-          boxShadow: "0 0 20px hsl(140, 55%, 35%), 0 0 40px hsla(140, 55%, 35%, 0.5)",
+          background: "#2E7D32",
+          boxShadow: "0 0 20px #2E7D32, 0 0 40px rgba(46,125,50,0.5)",
         }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{
