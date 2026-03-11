@@ -39,13 +39,19 @@ const TopBar = () => {
           </Link>
           <div className="flex items-center gap-1.5">
             <button
+              onClick={() => setShowPanel(!showPanel)}
+              className={`p-2 rounded-xl hover:bg-secondary transition-colors ${showPanel ? 'bg-secondary' : ''}`}
+            >
+              <Paintbrush size={18} className="text-primary" />
+            </button>
+            <button
               onClick={() => setSearchOpen(true)}
               className="p-2 rounded-xl hover:bg-secondary transition-colors"
             >
-              <Search size={18} style={{ color: "#D4AF37" }} />
+              <Search size={18} className="text-primary" />
             </button>
             <button className="p-2 rounded-xl hover:bg-secondary transition-colors relative">
-              <Bell size={18} style={{ color: "#D4AF37" }} />
+              <Bell size={18} className="text-primary" />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary animate-pulse-live" />
             </button>
             <Link to="/deposit" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold btn-gold-shimmer" style={{
