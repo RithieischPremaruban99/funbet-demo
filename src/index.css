@@ -231,11 +231,11 @@
   }
 
   .glow-red {
-    box-shadow: 0 0 20px hsla(43, 75%, 52%, 0.12), 0 0 40px hsla(43, 75%, 52%, 0.04);
+    box-shadow: 0 0 20px hsla(140, 55%, 35%, 0.12), 0 0 40px hsla(140, 55%, 35%, 0.04);
   }
 
   .glow-orange {
-    box-shadow: 0 0 15px hsla(43, 75%, 52%, 0.2), 0 0 30px hsla(43, 75%, 52%, 0.06);
+    box-shadow: 0 0 15px hsla(140, 55%, 35%, 0.2), 0 0 30px hsla(140, 55%, 35%, 0.06);
   }
 
   .border-glow {
