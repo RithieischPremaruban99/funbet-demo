@@ -149,7 +149,7 @@ const Splash = () => {
           className="text-[32px] font-extrabold uppercase select-none"
           style={{
             fontFamily: "var(--font-display)",
-            background: "linear-gradient(135deg, hsl(140,60%,25%) 0%, hsl(140,55%,35%) 30%, hsl(140,50%,48%) 50%, hsl(140,55%,35%) 70%, hsl(140,60%,25%) 100%)",
+            background: "linear-gradient(135deg, #1B5E20 0%, #2E7D32 30%, #43A047 50%, #2E7D32 70%, #1B5E20 100%)",
             backgroundSize: "200% 100%",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
