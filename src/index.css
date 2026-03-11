@@ -239,7 +239,7 @@
   }
 
   .border-glow {
-    border-color: hsla(140, 55%, 35%, 0.35);
+    border-color: hsla(25, 100%, 50%, 0.35);
   }
 
   .hide-scrollbar::-webkit-scrollbar {
