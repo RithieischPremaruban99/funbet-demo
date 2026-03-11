@@ -101,7 +101,7 @@
 
   /* Selection color */
   ::selection {
-    background: hsla(43, 75%, 52%, 0.3);
+    background: hsla(140, 55%, 35%, 0.3);
     color: hsl(0, 0%, 100%);
   }
 
