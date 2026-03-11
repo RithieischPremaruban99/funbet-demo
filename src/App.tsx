@@ -6,7 +6,9 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { BetSlipProvider } from "@/contexts/BetSlipContext";
 import { FollowProvider } from "@/contexts/FollowContext";
 import { GamificationProvider } from "@/contexts/GamificationContext";
+import { BrandThemeProvider } from "@/contexts/BrandThemeContext";
 import LevelUpModal from "@/components/LevelUpModal";
+import BrandThemingPanel from "@/components/BrandThemingPanel";
 import { AnimatePresence } from "framer-motion";
 import Splash from "./pages/Splash";
 import AgeVerification from "./pages/AgeVerification";
@@ -75,12 +77,15 @@ const App = () => (
       <BetSlipProvider>
       <FollowProvider>
       <GamificationProvider>
+      <BrandThemeProvider>
       <Toaster />
       <Sonner />
       <LevelUpModal />
+      <BrandThemingPanel />
       <BrowserRouter>
         <AnimatedRoutes />
       </BrowserRouter>
+      </BrandThemeProvider>
       </GamificationProvider>
       </FollowProvider>
       </BetSlipProvider>
