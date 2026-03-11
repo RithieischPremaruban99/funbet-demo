@@ -177,7 +177,7 @@
     inset: 0;
     border-radius: inherit;
     opacity: 0;
-    background: radial-gradient(circle at center, hsla(43, 75%, 52%, 0.08), transparent 70%);
+    background: radial-gradient(circle at center, hsla(140, 55%, 35%, 0.08), transparent 70%);
     transition: opacity 0.3s ease;
     pointer-events: none;
   }
