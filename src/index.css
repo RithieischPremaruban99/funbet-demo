@@ -285,14 +285,14 @@
 
   /* Gold card border glow */
   .gold-card {
-    background: hsl(150, 15%, 9%);
-    border: 1px solid hsla(140, 55%, 35%, 0.12);
-    box-shadow: 0 0 15px hsla(140, 55%, 35%, 0.06);
+    background: hsl(130, 24%, 13%);
+    border: 1px solid hsla(122, 46%, 34%, 0.12);
+    box-shadow: 0 0 15px hsla(122, 46%, 34%, 0.06);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
   }
   .gold-card:hover {
-    border-color: hsla(140, 55%, 35%, 0.25);
-    box-shadow: 0 0 20px hsla(140, 55%, 35%, 0.1);
+    border-color: hsla(25, 100%, 50%, 0.25);
+    box-shadow: 0 0 20px hsla(25, 100%, 50%, 0.1);
   }
 
   /* Button shimmer hover effect */
