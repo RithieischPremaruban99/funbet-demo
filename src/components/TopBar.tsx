@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import GlobalSearch from "@/components/GlobalSearch";
 import { useBrandTheme } from "@/contexts/BrandThemeContext";
+import lottomaniaLogo from "@/assets/lottomania-logo.jpg";
 
 const TopBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -19,23 +20,11 @@ const TopBar = () => {
             {theme.logoUrl && theme.isApplied ? (
               <img src={theme.logoUrl} alt="Brand logo" className="w-7 h-7 object-contain rounded" />
             ) : (
-              <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none">
-                <defs>
-                  <linearGradient id="topBolt" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#F2D06B" />
-                    <stop offset="50%" stopColor="#D4AF37" />
-                    <stop offset="100%" stopColor="#B8960C" />
-                  </linearGradient>
-                </defs>
-                <path d="M18 2L6 18h8l-2 12 12-16h-8l2-12z" fill="url(#topBolt)" />
-              </svg>
+              <img src={lottomaniaLogo} alt="Lottomania" className="w-8 h-8 object-contain rounded-lg" />
             )}
-            <span className="text-lg font-black tracking-[0.05em] uppercase leading-none" style={{
-              fontFamily: "'Inter', 'Arial Black', sans-serif",
-              background: "var(--gold-gradient)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}>WAZOBET</span>
+            <span className="text-base font-extrabold tracking-wide uppercase leading-none gold-text" style={{
+              fontFamily: "var(--font-display)",
+            }}>Lottomania</span>
           </Link>
           <div className="flex items-center gap-1.5">
             <button
