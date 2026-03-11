@@ -95,8 +95,8 @@
 
   h1, h2, h3 {
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: 0.15em;
+    font-weight: 800;
+    letter-spacing: 0.02em;
   }
 
   /* Selection color */
