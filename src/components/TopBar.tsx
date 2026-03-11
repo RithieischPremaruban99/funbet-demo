@@ -54,10 +54,8 @@ const TopBar = () => {
               <Bell size={18} className="text-primary" />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary animate-pulse-live" />
             </button>
-            <Link to="/deposit" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold btn-gold-shimmer" style={{
-              background: "linear-gradient(135deg, #B8960C, #D4AF37, #F2D06B, #D4AF37, #B8960C)",
-              color: "#000000",
-              boxShadow: "0 0 12px rgba(212,175,55,0.15)",
+            <Link to="/deposit" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold btn-gold-shimmer red-gradient text-primary-foreground" style={{
+              boxShadow: "0 0 12px hsl(var(--primary) / 0.15)",
             }}>
               <Wallet size={14} />
               <span>$1,250</span>
