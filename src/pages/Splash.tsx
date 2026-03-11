@@ -167,7 +167,7 @@ const Splash = () => {
           initial={{ width: 0, opacity: 0 }}
           animate={phase >= 3 ? { width: 200, opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          style={{ height: 1, background: "linear-gradient(90deg, transparent, hsl(140, 55%, 35%), transparent)" }}
+          style={{ height: 1, background: "linear-gradient(90deg, transparent, #2E7D32, transparent)" }}
         />
 
         <motion.p
