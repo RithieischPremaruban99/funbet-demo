@@ -14,8 +14,8 @@ const BottomNav = () => {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50" style={{
-      background: "#000000",
-      borderTop: "1px solid rgba(212,175,55,0.15)",
+      background: "#0F1A10",
+      borderTop: "1px solid #2E4A2F",
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
     }}>
@@ -28,20 +28,20 @@ const BottomNav = () => {
               to={to}
               className="flex flex-col items-center justify-center gap-0.5 flex-1 py-1"
             >
-              <div className={`p-1.5 rounded-xl transition-all duration-200 ${isActive ? "" : ""}`}
+              <div className={`p-1.5 rounded-xl transition-all duration-200`}
                 style={isActive ? {
-                  background: "linear-gradient(135deg, #B8960C, #D4AF37, #F2D06B, #D4AF37, #B8960C)",
-                  boxShadow: "0 0 12px rgba(212,175,55,0.2)",
+                  background: "#FF6B00",
+                  boxShadow: "0 0 12px rgba(255,107,0,0.3)",
                 } : {}}
               >
                 <Icon
                   size={20}
-                  style={{ color: isActive ? "#000000" : "rgba(255,255,255,0.4)" }}
+                  style={{ color: isActive ? "#FFFFFF" : "#A5C8A7" }}
                   strokeWidth={isActive ? 2.5 : 1.5}
                 />
               </div>
               <span className="text-[10px] font-semibold transition-colors"
-                style={{ color: isActive ? "#D4AF37" : "rgba(255,255,255,0.4)" }}
+                style={{ color: isActive ? "#FF6B00" : "#A5C8A7" }}
               >
                 {label}
               </span>

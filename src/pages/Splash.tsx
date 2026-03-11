@@ -88,7 +88,7 @@ const Splash = () => {
       className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
       animate={{ opacity: phase === 4 ? 0 : 1, scale: phase === 4 ? 1.05 : 1 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
-      style={{ background: "hsl(150, 20%, 4%)" }}
+      style={{ background: "#0F1A10" }}
     >
       {dustMotes.map((m) => (
         <DustMote key={m.id} delay={m.delay} x={m.x} color={m.color} />
@@ -99,8 +99,8 @@ const Splash = () => {
         className="absolute rounded-full"
         style={{
           width: 4, height: 4,
-          background: "hsl(140, 55%, 35%)",
-          boxShadow: "0 0 20px hsl(140, 55%, 35%), 0 0 40px hsla(140, 55%, 35%, 0.5)",
+          background: "#2E7D32",
+          boxShadow: "0 0 20px #2E7D32, 0 0 40px rgba(46,125,50,0.5)",
         }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{
@@ -122,7 +122,7 @@ const Splash = () => {
       {/* Ambient glow */}
       <motion.div
         className="absolute"
-        style={{ width: 600, height: 600, background: "radial-gradient(circle, hsla(140, 55%, 35%, 0.04) 0%, transparent 60%)" }}
+        style={{ width: 600, height: 600, background: "radial-gradient(circle, rgba(46,125,50,0.04) 0%, transparent 60%)" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: phase >= 1 ? 1 : 0, scale: [1, 1.1, 1] }}
         transition={{ opacity: { duration: 0.5 }, scale: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
@@ -149,7 +149,7 @@ const Splash = () => {
           className="text-[32px] font-extrabold uppercase select-none"
           style={{
             fontFamily: "var(--font-display)",
-            background: "linear-gradient(135deg, hsl(140,60%,25%) 0%, hsl(140,55%,35%) 30%, hsl(140,50%,48%) 50%, hsl(140,55%,35%) 70%, hsl(140,60%,25%) 100%)",
+            background: "linear-gradient(135deg, #1B5E20 0%, #2E7D32 30%, #43A047 50%, #2E7D32 70%, #1B5E20 100%)",
             backgroundSize: "200% 100%",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
@@ -167,7 +167,7 @@ const Splash = () => {
           initial={{ width: 0, opacity: 0 }}
           animate={phase >= 3 ? { width: 200, opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          style={{ height: 1, background: "linear-gradient(90deg, transparent, hsl(140, 55%, 35%), transparent)" }}
+          style={{ height: 1, background: "linear-gradient(90deg, transparent, #2E7D32, transparent)" }}
         />
 
         <motion.p
@@ -191,7 +191,7 @@ const Splash = () => {
         <div className="h-[1px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
           <motion.div
             className="h-full rounded-full"
-            style={{ background: "linear-gradient(90deg, hsl(348,80%,55%), hsl(35,95%,55%), hsl(140,55%,35%), hsl(195,85%,50%))" }}
+            style={{ background: "linear-gradient(90deg, #E91E63, #FF6B00, #2E7D32, #29B6F6)" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 3.5, ease: "easeInOut", delay: 0.5 }}
