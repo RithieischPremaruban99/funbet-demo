@@ -77,12 +77,15 @@ const App = () => (
       <BetSlipProvider>
       <FollowProvider>
       <GamificationProvider>
+      <BrandThemeProvider>
       <Toaster />
       <Sonner />
       <LevelUpModal />
+      <BrandThemingPanel />
       <BrowserRouter>
         <AnimatedRoutes />
       </BrowserRouter>
+      </BrandThemeProvider>
       </GamificationProvider>
       </FollowProvider>
       </BetSlipProvider>

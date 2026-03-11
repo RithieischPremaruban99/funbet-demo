@@ -6,29 +6,33 @@ import { useBrandTheme } from "@/contexts/BrandThemeContext";
 
 const TopBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
+  const { theme, showPanel, setShowPanel } = useBrandTheme();
 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50" style={{
-        background: "#000000",
-        borderBottom: "1px solid rgba(212,175,55,0.1)",
+        background: "hsl(var(--background))",
+        borderBottom: "1px solid hsl(var(--border))",
       }}>
         <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
           <Link to="/" className="flex items-center gap-2.5">
-            {/* Wazobet lightning bolt icon */}
-            <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none">
-              <defs>
-                <linearGradient id="topBolt" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#F2D06B" />
-                  <stop offset="50%" stopColor="#D4AF37" />
-                  <stop offset="100%" stopColor="#B8960C" />
-                </linearGradient>
-              </defs>
-              <path d="M18 2L6 18h8l-2 12 12-16h-8l2-12z" fill="url(#topBolt)" />
-            </svg>
+            {theme.logoUrl && theme.isApplied ? (
+              <img src={theme.logoUrl} alt="Brand logo" className="w-7 h-7 object-contain rounded" />
+            ) : (
+              <svg viewBox="0 0 32 32" className="w-6 h-6" fill="none">
+                <defs>
+                  <linearGradient id="topBolt" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#F2D06B" />
+                    <stop offset="50%" stopColor="#D4AF37" />
+                    <stop offset="100%" stopColor="#B8960C" />
+                  </linearGradient>
+                </defs>
+                <path d="M18 2L6 18h8l-2 12 12-16h-8l2-12z" fill="url(#topBolt)" />
+              </svg>
+            )}
             <span className="text-lg font-black tracking-[0.05em] uppercase leading-none" style={{
               fontFamily: "'Inter', 'Arial Black', sans-serif",
-              background: "linear-gradient(135deg, #F2D06B, #D4AF37, #B8960C)",
+              background: "var(--gold-gradient)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
             }}>WAZOBET</span>
