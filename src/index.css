@@ -120,11 +120,11 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: hsla(140, 55%, 35%, 0.25);
+    background: hsla(122, 46%, 34%, 0.25);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: hsla(140, 55%, 35%, 0.4);
+    background: hsla(122, 46%, 34%, 0.4);
   }
 
   /* Global interactive effects */
