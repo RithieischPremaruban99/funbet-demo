@@ -1,7 +1,8 @@
-import { Bell, Search, Wallet } from "lucide-react";
+import { Bell, Search, Wallet, Paintbrush } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import GlobalSearch from "@/components/GlobalSearch";
+import { useBrandTheme } from "@/contexts/BrandThemeContext";
 
 const TopBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
