@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import powerbetLogo from "@/assets/powerbet-logo.png";
+import powerbetLogo from "@/assets/powerbet-logo-clean.png";
 
 const PETAL_COLORS = [
   "hsla(122, 46%, 34%, 0.9)",
