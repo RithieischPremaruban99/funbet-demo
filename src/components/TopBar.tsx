@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import GlobalSearch from "@/components/GlobalSearch";
 import { useBrandTheme } from "@/contexts/BrandThemeContext";
-import goldenChanceLogo from "@/assets/golden-chance-logo.jpeg";
+import powerbetLogo from "@/assets/powerbet-logo.png";
 
 const TopBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -20,28 +20,28 @@ const TopBar = () => {
             {theme.logoUrl && theme.isApplied ? (
               <img src={theme.logoUrl} alt="Brand logo" className="w-7 h-7 object-contain rounded" />
             ) : (
-              <img src={goldenChanceLogo} alt="Golden Chance Lotto" className="w-8 h-8 object-contain rounded-full" />
+              <img src={powerbetLogo} alt="Powerbet" className="h-8 object-contain" />
             )}
             <span className="text-sm font-extrabold tracking-wide uppercase leading-none gold-text" style={{
               fontFamily: "var(--font-display)",
-            }}>Golden Chance</span>
+            }}>Powerbet</span>
           </Link>
           <div className="flex items-center gap-1.5">
             <button
               onClick={() => setShowPanel(!showPanel)}
-              className={`p-2 rounded-xl hover:bg-secondary transition-colors ${showPanel ? 'bg-secondary' : ''}`}
+              className={`p-2 rounded-xl hover:bg-secondary/20 transition-colors ${showPanel ? 'bg-secondary/20' : ''}`}
             >
               <Paintbrush size={18} className="text-primary" />
             </button>
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-2 rounded-xl hover:bg-secondary transition-colors"
+              className="p-2 rounded-xl hover:bg-secondary/20 transition-colors"
             >
               <Search size={18} className="text-primary" />
             </button>
-            <button className="p-2 rounded-xl hover:bg-secondary transition-colors relative">
+            <button className="p-2 rounded-xl hover:bg-secondary/20 transition-colors relative">
               <Bell size={18} className="text-primary" />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary animate-pulse-live" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-accent animate-pulse-live" />
             </button>
             <Link to="/deposit" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold btn-gold-shimmer red-gradient text-primary-foreground" style={{
               boxShadow: "0 0 12px hsl(var(--primary) / 0.15)",

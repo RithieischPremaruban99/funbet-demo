@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, Phone, Lock, Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import goldenChanceLogo from "@/assets/golden-chance-logo.jpeg";
+import powerbetLogo from "@/assets/powerbet-logo.png";
 
 const Login = () => {
   const [phone, setPhone] = useState("");
@@ -21,8 +21,8 @@ const Login = () => {
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
           <div className="relative flex flex-col items-center justify-center" style={{ width: "200px", height: "200px" }}>
-            <img src={goldenChanceLogo} alt="Golden Chance Lotto" className="w-36 h-36 object-contain rounded-full" style={{
-              boxShadow: "0 0 25px rgba(46,125,50,0.15)",
+            <img src={powerbetLogo} alt="Powerbet" className="w-48 h-auto object-contain" style={{
+              filter: "drop-shadow(0 0 25px rgba(46,125,50,0.15))",
             }} />
           </div>
           <p className="text-xs text-muted-foreground mt-6">Access your account</p>
