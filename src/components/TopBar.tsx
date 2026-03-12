@@ -16,15 +16,14 @@ const TopBar = () => {
         borderBottom: "1px solid hsl(var(--border))",
       }}>
         <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
-          <Link to="/" className="flex items-center gap-2.5">
+          <Link to="/" className="flex items-center gap-2">
             {theme.logoUrl && theme.isApplied ? (
               <img src={theme.logoUrl} alt="Brand logo" className="w-7 h-7 object-contain rounded" />
             ) : (
-              <img src={powerbetLogo} alt="Powerbet" className="h-8 object-contain" />
+              <img src={powerbetLogo} alt="Powerbet" className="h-7 object-contain rounded" style={{
+                filter: "drop-shadow(0 0 8px rgba(46,125,50,0.2))",
+              }} />
             )}
-            <span className="text-sm font-extrabold tracking-wide uppercase leading-none gold-text" style={{
-              fontFamily: "var(--font-display)",
-            }}>Powerbet</span>
           </Link>
           <div className="flex items-center gap-1.5">
             <button
