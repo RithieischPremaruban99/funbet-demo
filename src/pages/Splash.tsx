@@ -140,29 +140,13 @@ const Splash = () => {
         }} />
       </motion.div>
 
-      {/* Brand name */}
+      {/* Brand tagline */}
       <motion.div
         className="relative z-10 mt-6 flex flex-col items-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: phase >= 3 ? 1 : 0 }}
         transition={{ duration: 0.1 }}
       >
-        <motion.h1
-          className="text-[28px] font-extrabold uppercase select-none"
-          style={{
-            fontFamily: "var(--font-display)",
-            background: "linear-gradient(135deg, #1B5E20 0%, #2E7D32 30%, #F9A825 60%, #FFD600 100%)",
-            backgroundSize: "200% 100%",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            animation: "textShimmer 4s ease-in-out infinite",
-          }}
-          initial={{ letterSpacing: "1em", opacity: 0, y: 15 }}
-          animate={phase >= 3 ? { letterSpacing: "0.1em", opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Powerbet
-        </motion.h1>
 
         <motion.div
           className="mt-3"
