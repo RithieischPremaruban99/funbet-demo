@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import lottomaniaLogo from "@/assets/lottomania-logo.jpg";
+import goldenChanceLogo from "@/assets/golden-chance-logo.jpeg";
 
 const AgeVerification = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const AgeVerification = () => {
       animate={{ opacity: exiting ? 0 : 1, y: exiting ? -20 : 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       style={{
-        background: "radial-gradient(ellipse at 50% 40%, rgba(46,125,50,0.04) 0%, #0F1A10 50%, #0F1A10 100%)",
+        background: "radial-gradient(ellipse at 50% 40%, rgba(46,125,50,0.04) 0%, hsl(140,25%,5%) 50%, hsl(140,25%,5%) 100%)",
       }}
     >
       {/* Geometric pattern */}
@@ -35,7 +35,7 @@ const AgeVerification = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-primary" />
       </div>
 
-      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(140,55%,35%,0.04) 0%, transparent 70%)" }} />
+      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(122,46%,34%,0.04) 0%, transparent 70%)" }} />
 
       {/* Logo */}
       <motion.div
@@ -44,10 +44,12 @@ const AgeVerification = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <img src={lottomaniaLogo} alt="Lottomania" className="w-20 h-20 object-contain rounded-xl" />
-        <span className="text-2xl font-extrabold tracking-wide uppercase gold-text" style={{
+        <img src={goldenChanceLogo} alt="Golden Chance Lotto" className="w-24 h-24 object-contain rounded-full" style={{
+          boxShadow: "0 0 20px rgba(46,125,50,0.15)",
+        }} />
+        <span className="text-xl font-extrabold tracking-wide uppercase gold-text" style={{
           fontFamily: "var(--font-display)",
-        }}>Lottomania</span>
+        }}>Golden Chance</span>
       </motion.div>
 
       <motion.div

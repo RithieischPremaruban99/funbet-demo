@@ -1,15 +1,15 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import lottomaniaLogo from "@/assets/lottomania-logo.jpg";
+import goldenChanceLogo from "@/assets/golden-chance-logo.jpeg";
 
 const PETAL_COLORS = [
-  "hsla(348, 80%, 55%, 0.9)", // red/pink
-  "hsla(35, 95%, 55%, 0.9)",  // orange
-  "hsla(45, 90%, 55%, 0.9)",  // yellow
-  "hsla(140, 55%, 40%, 0.9)", // green
-  "hsla(195, 85%, 50%, 0.9)", // cyan
-  "hsla(260, 60%, 55%, 0.9)", // blue/purple
+  "hsla(122, 46%, 34%, 0.9)",  // primary green
+  "hsla(140, 50%, 42%, 0.9)",  // lighter green
+  "hsla(140, 60%, 55%, 0.8)",  // highlight green
+  "hsla(122, 46%, 22%, 0.9)",  // dark green
+  "hsla(140, 30%, 65%, 0.7)",  // muted sage
+  "hsla(160, 40%, 50%, 0.8)",  // teal-green
 ];
 
 const ColorParticle = ({ delay, x, y, size, duration, color }: { delay: number; x: number; y: number; size: number; duration: number; color: string }) => (
@@ -88,7 +88,7 @@ const Splash = () => {
       className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
       animate={{ opacity: phase === 4 ? 0 : 1, scale: phase === 4 ? 1.05 : 1 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
-      style={{ background: "#0F1A10" }}
+      style={{ background: "hsl(140, 25%, 5%)" }}
     >
       {dustMotes.map((m) => (
         <DustMote key={m.id} delay={m.delay} x={m.x} color={m.color} />
@@ -135,7 +135,9 @@ const Splash = () => {
         animate={{ opacity: phase >= 2 ? 1 : 0, scale: phase >= 2 ? 1 : 0.5 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <img src={lottomaniaLogo} alt="Lottomania" className="w-28 h-28 object-contain rounded-2xl" />
+        <img src={goldenChanceLogo} alt="Golden Chance Lotto" className="w-32 h-32 object-contain rounded-full" style={{
+          boxShadow: "0 0 30px rgba(46,125,50,0.2), 0 0 60px rgba(46,125,50,0.1)",
+        }} />
       </motion.div>
 
       {/* Brand name */}
@@ -146,7 +148,7 @@ const Splash = () => {
         transition={{ duration: 0.1 }}
       >
         <motion.h1
-          className="text-[32px] font-extrabold uppercase select-none"
+          className="text-[28px] font-extrabold uppercase select-none"
           style={{
             fontFamily: "var(--font-display)",
             background: "linear-gradient(135deg, #1B5E20 0%, #2E7D32 30%, #43A047 50%, #2E7D32 70%, #1B5E20 100%)",
@@ -156,10 +158,10 @@ const Splash = () => {
             animation: "textShimmer 4s ease-in-out infinite",
           }}
           initial={{ letterSpacing: "1em", opacity: 0, y: 15 }}
-          animate={phase >= 3 ? { letterSpacing: "0.15em", opacity: 1, y: 0 } : {}}
+          animate={phase >= 3 ? { letterSpacing: "0.1em", opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          Lottomania
+          Golden Chance
         </motion.h1>
 
         <motion.div
@@ -191,7 +193,7 @@ const Splash = () => {
         <div className="h-[1px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
           <motion.div
             className="h-full rounded-full"
-            style={{ background: "linear-gradient(90deg, #E91E63, #FF6B00, #2E7D32, #29B6F6)" }}
+            style={{ background: "linear-gradient(90deg, #1B5E20, #2E7D32, #43A047, #66BB6A)" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 3.5, ease: "easeInOut", delay: 0.5 }}
