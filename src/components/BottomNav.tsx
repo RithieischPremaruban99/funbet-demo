@@ -14,8 +14,8 @@ const BottomNav = () => {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50" style={{
-      background: "hsl(140, 25%, 5%)",
-      borderTop: "1px solid hsl(140, 22%, 20%)",
+      background: "hsl(224, 25%, 8%)",
+      borderTop: "1px solid hsl(224, 20%, 22%)",
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
     }}>
@@ -36,12 +36,12 @@ const BottomNav = () => {
               >
                 <Icon
                   size={20}
-                  style={{ color: isActive ? "#FFFFFF" : "hsl(140, 25%, 65%)" }}
+                  style={{ color: isActive ? "#FFFFFF" : "hsl(224, 15%, 55%)" }}
                   strokeWidth={isActive ? 2.5 : 1.5}
                 />
               </div>
               <span className="text-[10px] font-semibold transition-colors"
-                style={{ color: isActive ? "#2E7D32" : "hsl(140, 25%, 65%)" }}
+                style={{ color: isActive ? "#F9A825" : "hsl(224, 15%, 55%)" }}
               >
                 {label}
               </span>

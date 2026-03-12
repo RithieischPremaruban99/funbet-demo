@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import goldenChanceLogo from "@/assets/golden-chance-logo.jpeg";
+import powerbetLogo from "@/assets/powerbet-logo.png";
 
 const AgeVerification = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const AgeVerification = () => {
       animate={{ opacity: exiting ? 0 : 1, y: exiting ? -20 : 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       style={{
-        background: "radial-gradient(ellipse at 50% 40%, rgba(46,125,50,0.04) 0%, hsl(140,25%,5%) 50%, hsl(140,25%,5%) 100%)",
+        background: "radial-gradient(ellipse at 50% 40%, rgba(46,125,50,0.04) 0%, hsl(224,25%,8%) 50%, hsl(224,25%,8%) 100%)",
       }}
     >
       {/* Geometric pattern */}
@@ -44,12 +44,12 @@ const AgeVerification = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <img src={goldenChanceLogo} alt="Golden Chance Lotto" className="w-24 h-24 object-contain rounded-full" style={{
-          boxShadow: "0 0 20px rgba(46,125,50,0.15)",
+        <img src={powerbetLogo} alt="Powerbet" className="w-40 h-auto object-contain" style={{
+          filter: "drop-shadow(0 0 20px rgba(46,125,50,0.15))",
         }} />
         <span className="text-xl font-extrabold tracking-wide uppercase gold-text" style={{
           fontFamily: "var(--font-display)",
-        }}>Golden Chance</span>
+        }}>Powerbet</span>
       </motion.div>
 
       <motion.div
