@@ -47,9 +47,6 @@ const AgeVerification = () => {
         <img src={powerbetLogo} alt="Powerbet" className="w-40 h-auto object-contain" style={{
           filter: "drop-shadow(0 0 20px rgba(46,125,50,0.15))",
         }} />
-        <span className="text-xl font-extrabold tracking-wide uppercase gold-text" style={{
-          fontFamily: "var(--font-display)",
-        }}>Powerbet</span>
       </motion.div>
 
       <motion.div
