@@ -26,7 +26,7 @@ const AgeVerification = () => {
       animate={{ opacity: exiting ? 0 : 1, y: exiting ? -20 : 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       style={{
-        background: "radial-gradient(ellipse at 50% 40%, rgba(46,125,50,0.04) 0%, hsl(224,25%,8%) 50%, hsl(224,25%,8%) 100%)",
+        background: "radial-gradient(ellipse at 50% 40%, hsla(122,46%,34%,0.03) 0%, hsl(var(--background)) 50%, hsl(var(--background)) 100%)",
       }}
     >
       {/* Geometric pattern */}

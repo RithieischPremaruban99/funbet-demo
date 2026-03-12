@@ -88,7 +88,7 @@ const Splash = () => {
       className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
       animate={{ opacity: phase === 4 ? 0 : 1, scale: phase === 4 ? 1.05 : 1 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
-      style={{ background: "hsl(224, 25%, 8%)" }}
+      style={{ background: "hsl(var(--background))" }}
     >
       {dustMotes.map((m) => (
         <DustMote key={m.id} delay={m.delay} x={m.x} color={m.color} />
