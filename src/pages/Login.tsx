@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, Phone, Lock, Shield } from "lucide-react";
 import { motion } from "framer-motion";
+import goldenChanceLogo from "@/assets/golden-chance-logo.jpeg";
 
 const Login = () => {
   const [phone, setPhone] = useState("");
@@ -20,12 +21,9 @@ const Login = () => {
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
           <div className="relative flex flex-col items-center justify-center" style={{ width: "200px", height: "200px" }}>
-            <div className="absolute inset-0 rounded-full border-[2.5px]" style={{ borderColor: "hsl(40, 55%, 50%)" }} />
-            <h1 className="text-4xl font-black tracking-[0.08em] uppercase relative z-10" style={{
-              background: "linear-gradient(135deg, hsl(40,60%,62%), hsl(40,40%,45%))",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}>WAZOBET</h1>
+            <img src={goldenChanceLogo} alt="Golden Chance Lotto" className="w-36 h-36 object-contain rounded-full" style={{
+              boxShadow: "0 0 25px rgba(46,125,50,0.15)",
+            }} />
           </div>
           <p className="text-xs text-muted-foreground mt-6">Access your account</p>
         </div>
@@ -67,9 +65,9 @@ const Login = () => {
           </p>
         </div>
 
-        <div className="mt-8 flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "hsla(40,55%,55%,0.06)", borderColor: "hsla(40,55%,55%,0.15)" }}>
-          <Shield size={14} style={{ color: "hsl(40, 55%, 55%)" }} className="flex-shrink-0" />
-          <span className="text-[10px]" style={{ color: "hsl(40, 55%, 55%)" }}>18+ | Gambling is prohibited for minors</span>
+        <div className="mt-8 flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "hsla(122,46%,34%,0.06)", borderColor: "hsla(122,46%,34%,0.15)" }}>
+          <Shield size={14} className="text-primary flex-shrink-0" />
+          <span className="text-[10px] text-primary/70">18+ | Gambling is prohibited for minors</span>
         </div>
       </motion.section>
     </MobileLayout>

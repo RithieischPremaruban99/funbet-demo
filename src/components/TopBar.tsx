@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import GlobalSearch from "@/components/GlobalSearch";
 import { useBrandTheme } from "@/contexts/BrandThemeContext";
-import lottomaniaLogo from "@/assets/lottomania-logo.jpg";
+import goldenChanceLogo from "@/assets/golden-chance-logo.jpeg";
 
 const TopBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -20,11 +20,11 @@ const TopBar = () => {
             {theme.logoUrl && theme.isApplied ? (
               <img src={theme.logoUrl} alt="Brand logo" className="w-7 h-7 object-contain rounded" />
             ) : (
-              <img src={lottomaniaLogo} alt="Lottomania" className="w-8 h-8 object-contain rounded-lg" />
+              <img src={goldenChanceLogo} alt="Golden Chance Lotto" className="w-8 h-8 object-contain rounded-full" />
             )}
-            <span className="text-base font-extrabold tracking-wide uppercase leading-none gold-text" style={{
+            <span className="text-sm font-extrabold tracking-wide uppercase leading-none gold-text" style={{
               fontFamily: "var(--font-display)",
-            }}>Lottomania</span>
+            }}>Golden Chance</span>
           </Link>
           <div className="flex items-center gap-1.5">
             <button
