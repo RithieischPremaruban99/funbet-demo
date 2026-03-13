@@ -135,9 +135,7 @@ const Splash = () => {
         animate={{ opacity: phase >= 2 ? 1 : 0, scale: phase >= 2 ? 1 : 0.5 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <img src={yangaLogo} alt="YangaGames" className="w-56 h-auto object-contain" style={{
-          filter: "drop-shadow(0 0 30px hsla(0,65%,47%,0.25)) drop-shadow(0 0 60px hsla(39,91%,55%,0.15))",
-        }} />
+        <img src={yangaLogo} alt="YangaGames" className="w-56 h-auto object-contain mix-blend-lighten" />
       </motion.div>
 
       {/* Brand tagline */}

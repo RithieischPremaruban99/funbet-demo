@@ -44,9 +44,7 @@ const AgeVerification = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <img src={yangaLogo} alt="YangaGames" className="w-48 h-auto object-contain" style={{
-          filter: "drop-shadow(0 0 20px hsla(0,65%,47%,0.15))",
-        }} />
+        <img src={yangaLogo} alt="YangaGames" className="w-48 h-auto object-contain mix-blend-lighten" />
       </motion.div>
 
       <motion.div
