@@ -232,15 +232,15 @@
   }
 
   .glow-red {
-    box-shadow: 0 0 20px hsla(122, 46%, 34%, 0.12), 0 0 40px hsla(122, 46%, 34%, 0.04);
+    box-shadow: 0 0 20px hsla(0, 65%, 47%, 0.12), 0 0 40px hsla(0, 65%, 47%, 0.04);
   }
 
   .glow-orange {
-    box-shadow: 0 0 15px hsla(45, 95%, 56%, 0.25), 0 0 30px hsla(122, 46%, 34%, 0.08);
+    box-shadow: 0 0 15px hsla(39, 91%, 55%, 0.25), 0 0 30px hsla(0, 65%, 47%, 0.08);
   }
 
   .border-glow {
-    border-color: hsla(51, 100%, 50%, 0.35);
+    border-color: hsla(39, 91%, 55%, 0.35);
   }
 
   .hide-scrollbar::-webkit-scrollbar {
