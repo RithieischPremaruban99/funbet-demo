@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import GlobalSearch from "@/components/GlobalSearch";
 import { useBrandTheme } from "@/contexts/BrandThemeContext";
-import powerbetLogo from "@/assets/powerbet-logo-clean.png";
+import yangaLogo from "@/assets/yanga-games-logo.png";
 
 const TopBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -20,8 +20,8 @@ const TopBar = () => {
             {theme.logoUrl && theme.isApplied ? (
               <img src={theme.logoUrl} alt="Brand logo" className="w-7 h-7 object-contain rounded" />
             ) : (
-              <img src={powerbetLogo} alt="Powerbet" className="h-7 object-contain rounded" style={{
-                filter: "drop-shadow(0 0 8px rgba(46,125,50,0.2))",
+              <img src={yangaLogo} alt="YangaGames" className="h-7 object-contain rounded" style={{
+                filter: "drop-shadow(0 0 8px hsla(0,65%,47%,0.2))",
               }} />
             )}
           </Link>
