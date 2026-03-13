@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import powerbetLogo from "@/assets/powerbet-logo-clean.png";
+import yangaLogo from "@/assets/yanga-games-logo.png";
 
 const AgeVerification = () => {
   const navigate = useNavigate();
