@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import GlobalSearch from "@/components/GlobalSearch";
 import { useBrandTheme } from "@/contexts/BrandThemeContext";
-import powerbetLogo from "@/assets/powerbet-logo-clean.png";
+import yangaLogo from "@/assets/yanga-games-logo.png";
 
 const TopBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
