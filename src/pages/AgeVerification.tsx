@@ -35,7 +35,7 @@ const AgeVerification = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-primary" />
       </div>
 
-      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(122,46%,34%,0.04) 0%, transparent 70%)" }} />
+      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(0,65%,47%,0.04) 0%, transparent 70%)" }} />
 
       {/* Logo */}
       <motion.div
