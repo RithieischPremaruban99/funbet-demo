@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, Phone, Lock, Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import powerbetLogo from "@/assets/powerbet-logo-clean.png";
+import yangaLogo from "@/assets/yanga-games-logo.png";
 
 const Login = () => {
   const [phone, setPhone] = useState("");
