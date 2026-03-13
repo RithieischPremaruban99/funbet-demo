@@ -169,7 +169,7 @@
   .odds-cell:active {
     transform: scale(0.92);
     border-color: hsl(var(--accent));
-    box-shadow: 0 0 12px hsla(51, 100%, 50%, 0.3);
+    box-shadow: 0 0 12px hsla(39, 91%, 55%, 0.3);
   }
 
   button::after, [role="button"]::after {
