@@ -21,8 +21,8 @@ const Login = () => {
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
           <div className="relative flex flex-col items-center justify-center" style={{ width: "200px", height: "200px" }}>
-            <img src={powerbetLogo} alt="Powerbet" className="w-48 h-auto object-contain" style={{
-              filter: "drop-shadow(0 0 25px rgba(46,125,50,0.15))",
+            <img src={yangaLogo} alt="YangaGames" className="w-48 h-auto object-contain" style={{
+              filter: "drop-shadow(0 0 25px hsla(0,65%,47%,0.15))",
             }} />
           </div>
           <p className="text-xs text-muted-foreground mt-6">Access your account</p>
