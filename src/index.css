@@ -6,71 +6,71 @@
 
 @layer base {
   :root {
-    /* YangaGames — bold red/gold energy brand on dark charcoal */
-    --background: 0 20% 8%;
-    --foreground: 0 0% 100%;
+    /* BETBUREAU — navy/charcoal + gold luxury brand */
+    --background: 220 30% 10%;
+    --foreground: 210 20% 95%;
 
-    --card: 0 15% 13%;
-    --card-foreground: 0 0% 100%;
-    --card-elevated: 0 12% 16%;
+    --card: 220 25% 15%;
+    --card-foreground: 210 20% 95%;
+    --card-elevated: 220 22% 18%;
 
-    --popover: 0 15% 13%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 220 25% 15%;
+    --popover-foreground: 210 20% 95%;
 
-    /* Primary: deep red #C62828 → hsl(0, 65%, 47%) */
-    --primary: 0 65% 47%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary: deep navy #1E2A3A → hsl(215, 33%, 17%) */
+    --primary: 215 33% 17%;
+    --primary-foreground: 210 20% 95%;
 
-    /* Secondary: golden yellow #F5A623 → hsl(39, 91%, 55%) */
-    --secondary: 39 91% 55%;
-    --secondary-foreground: 0 0% 10%;
+    /* Secondary: rich gold #D4A842 → hsl(40, 62%, 55%) */
+    --secondary: 40 62% 55%;
+    --secondary-foreground: 220 30% 10%;
 
-    --muted: 0 10% 16%;
-    --muted-foreground: 0 8% 65%;
+    --muted: 220 20% 18%;
+    --muted-foreground: 215 15% 55%;
 
-    /* Accent: bright gold #FFD600 → hsl(51, 100%, 50%) */
-    --accent: 51 100% 50%;
-    --accent-foreground: 0 0% 10%;
+    /* Accent: bright amber #E8B84A → hsl(42, 78%, 60%) */
+    --accent: 42 78% 60%;
+    --accent-foreground: 220 30% 10%;
 
     --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive-foreground: 210 20% 95%;
 
     --success: 142 46% 34%;
-    --success-foreground: 0 0% 100%;
+    --success-foreground: 210 20% 95%;
 
     /* Live / active states: accent gold */
-    --live: 51 100% 50%;
-    --live-foreground: 0 0% 10%;
+    --live: 42 78% 60%;
+    --live-foreground: 220 30% 10%;
 
-    /* Highlight: golden yellow for scores/odds */
-    --highlight: 39 91% 55%;
-    --highlight-foreground: 0 0% 10%;
+    /* Highlight: golden amber for scores/odds */
+    --highlight: 40 62% 55%;
+    --highlight-foreground: 220 30% 10%;
 
-    --border: 0 12% 20%;
-    --input: 0 12% 20%;
-    --ring: 0 65% 47%;
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 40 62% 55%;
 
     --radius: 0.75rem;
 
-    --gold-gradient: linear-gradient(135deg, hsl(0,65%,38%) 0%, hsl(0,65%,47%) 30%, hsl(39,91%,55%) 70%, hsl(51,100%,50%) 100%);
-    --gold-gradient-hover: linear-gradient(135deg, hsl(0,65%,52%) 0%, hsl(39,91%,60%) 50%, hsl(51,100%,55%) 100%);
-    --gold-gradient-subtle: linear-gradient(135deg, hsl(0,65%,47%), hsl(39,91%,50%));
-    --card-gradient: linear-gradient(180deg, hsl(0,15%,13%) 0%, hsl(0,20%,6%) 100%);
-    --card-gradient-warm: linear-gradient(180deg, hsla(0,12%,14%,0.5), hsla(0,20%,6%,0.95));
-    --hero-gradient: linear-gradient(135deg, hsl(0,15%,10%), hsl(0,20%,5%));
-    --glass: hsla(0, 20%, 6%, 0.92);
+    --gold-gradient: linear-gradient(135deg, hsl(215,33%,17%) 0%, hsl(220,25%,25%) 30%, hsl(40,62%,55%) 70%, hsl(42,78%,60%) 100%);
+    --gold-gradient-hover: linear-gradient(135deg, hsl(220,25%,30%) 0%, hsl(40,62%,60%) 50%, hsl(42,78%,65%) 100%);
+    --gold-gradient-subtle: linear-gradient(135deg, hsl(40,62%,50%), hsl(42,78%,55%));
+    --card-gradient: linear-gradient(180deg, hsl(220,25%,15%) 0%, hsl(220,30%,8%) 100%);
+    --card-gradient-warm: linear-gradient(180deg, hsla(220,22%,16%,0.5), hsla(220,30%,8%,0.95));
+    --hero-gradient: linear-gradient(135deg, hsl(220,25%,12%), hsl(220,30%,7%));
+    --glass: hsla(220, 30%, 8%, 0.92);
 
     --font-display: 'Nunito', sans-serif;
     --font-body: 'Inter', sans-serif;
 
-    --sidebar-background: 0 20% 8%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 0 65% 47%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 10% 16%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 0 12% 20%;
-    --sidebar-ring: 0 65% 47%;
+    --sidebar-background: 220 30% 10%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 40 62% 55%;
+    --sidebar-primary-foreground: 220 30% 10%;
+    --sidebar-accent: 220 20% 18%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 220 20% 20%;
+    --sidebar-ring: 40 62% 55%;
   }
 }
 
