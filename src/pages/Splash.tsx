@@ -122,7 +122,7 @@ const Splash = () => {
       {/* Ambient glow */}
       <motion.div
         className="absolute"
-        style={{ width: 600, height: 600, background: "radial-gradient(circle, hsla(0,65%,47%,0.04) 0%, transparent 60%)" }}
+        style={{ width: 600, height: 600, background: "radial-gradient(circle, hsla(40,62%,55%,0.04) 0%, transparent 60%)" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: phase >= 1 ? 1 : 0, scale: [1, 1.1, 1] }}
         transition={{ opacity: { duration: 0.5 }, scale: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
