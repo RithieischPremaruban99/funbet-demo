@@ -20,7 +20,7 @@ const TopBar = () => {
             {theme.logoUrl && theme.isApplied ? (
               <img src={theme.logoUrl} alt="Brand logo" className="h-8 object-contain" />
             ) : (
-              <img src={yangaLogo} alt="YangaGames" className="h-8 object-contain" />
+              <img src={brandLogo} alt="BetBureau" className="h-7 object-contain" />
             )}
           </Link>
           <div className="flex items-center gap-1.5">

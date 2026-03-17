@@ -63,7 +63,7 @@ const Login = () => {
           </p>
         </div>
 
-        <div className="mt-8 flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "hsla(0,65%,47%,0.06)", borderColor: "hsla(0,65%,47%,0.15)" }}>
+        <div className="mt-8 flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "hsla(40,62%,55%,0.06)", borderColor: "hsla(40,62%,55%,0.15)" }}>
           <Shield size={14} className="text-primary flex-shrink-0" />
           <span className="text-[10px] text-primary/70">18+ | Gambling is prohibited for minors</span>
         </div>

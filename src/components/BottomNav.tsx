@@ -41,7 +41,7 @@ const BottomNav = () => {
                 />
               </div>
               <span className="text-[10px] font-semibold transition-colors"
-                style={{ color: isActive ? "hsl(39, 91%, 55%)" : "hsl(0, 8%, 55%)" }}
+                style={{ color: isActive ? "hsl(40, 62%, 55%)" : "hsl(215, 15%, 55%)" }}
               >
                 {label}
               </span>

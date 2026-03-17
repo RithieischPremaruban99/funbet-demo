@@ -175,7 +175,7 @@ const Splash = () => {
         <div className="h-[1px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
           <motion.div
             className="h-full rounded-full"
-            style={{ background: "linear-gradient(90deg, hsl(0,65%,35%), hsl(0,65%,47%), hsl(39,91%,55%), hsl(51,100%,50%))" }}
+            style={{ background: "linear-gradient(90deg, hsl(215,33%,17%), hsl(220,25%,25%), hsl(40,62%,55%), hsl(42,78%,60%))" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 3.5, ease: "easeInOut", delay: 0.5 }}
