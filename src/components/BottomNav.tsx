@@ -14,8 +14,8 @@ const BottomNav = () => {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50" style={{
-      background: "hsl(0, 20%, 6%)",
-      borderTop: "1px solid hsl(0, 12%, 20%)",
+      background: "hsl(220, 30%, 8%)",
+      borderTop: "1px solid hsl(220, 20%, 20%)",
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
     }}>
