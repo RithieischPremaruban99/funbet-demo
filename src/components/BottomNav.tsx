@@ -36,7 +36,7 @@ const BottomNav = () => {
               >
                 <Icon
                   size={20}
-                  style={{ color: isActive ? "#FFFFFF" : "hsl(0, 8%, 55%)" }}
+                  style={{ color: isActive ? "#FFFFFF" : "hsl(215, 15%, 55%)" }}
                   strokeWidth={isActive ? 2.5 : 1.5}
                 />
               </div>
