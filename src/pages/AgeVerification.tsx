@@ -83,7 +83,7 @@ const AgeVerification = () => {
         >
           <motion.button
             onClick={handleDeny}
-            className="flex-1 py-3 rounded-xl text-sm font-semibold border border-primary/40 text-primary bg-transparent btn-gold-shimmer"
+            className="flex-1 py-3 rounded-xl text-sm font-semibold border border-secondary/40 text-secondary bg-transparent btn-gold-shimmer"
             whileTap={{ scale: 0.96 }}
           >
             No
