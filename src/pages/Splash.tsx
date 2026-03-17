@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import brandLogo from "@/assets/betbureau-logo.png";
 
 const PETAL_COLORS = [
-  "hsla(0, 65%, 47%, 0.9)",
-  "hsla(39, 91%, 55%, 0.9)",
-  "hsla(51, 100%, 50%, 0.8)",
-  "hsla(0, 65%, 35%, 0.9)",
-  "hsla(39, 80%, 45%, 0.7)",
-  "hsla(0, 70%, 55%, 0.8)",
+  "hsla(215, 33%, 17%, 0.9)",
+  "hsla(40, 62%, 55%, 0.9)",
+  "hsla(42, 78%, 60%, 0.8)",
+  "hsla(220, 25%, 25%, 0.9)",
+  "hsla(40, 50%, 45%, 0.7)",
+  "hsla(215, 30%, 30%, 0.8)",
 ];
 
 const ColorParticle = ({ delay, x, y, size, duration, color }: { delay: number; x: number; y: number; size: number; duration: number; color: string }) => (
