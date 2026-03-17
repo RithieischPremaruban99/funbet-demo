@@ -1,15 +1,15 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import yangaLogo from "@/assets/yanga-games-logo.png";
+import brandLogo from "@/assets/betbureau-logo.png";
 
 const PETAL_COLORS = [
-  "hsla(0, 65%, 47%, 0.9)",
-  "hsla(39, 91%, 55%, 0.9)",
-  "hsla(51, 100%, 50%, 0.8)",
-  "hsla(0, 65%, 35%, 0.9)",
-  "hsla(39, 80%, 45%, 0.7)",
-  "hsla(0, 70%, 55%, 0.8)",
+  "hsla(215, 33%, 17%, 0.9)",
+  "hsla(40, 62%, 55%, 0.9)",
+  "hsla(42, 78%, 60%, 0.8)",
+  "hsla(220, 25%, 25%, 0.9)",
+  "hsla(40, 50%, 45%, 0.7)",
+  "hsla(215, 30%, 30%, 0.8)",
 ];
 
 const ColorParticle = ({ delay, x, y, size, duration, color }: { delay: number; x: number; y: number; size: number; duration: number; color: string }) => (
@@ -99,8 +99,8 @@ const Splash = () => {
         className="absolute rounded-full"
         style={{
           width: 4, height: 4,
-          background: "hsl(0, 65%, 47%)",
-          boxShadow: "0 0 20px hsl(0,65%,47%), 0 0 40px hsla(0,65%,47%,0.5)",
+          background: "hsl(40, 62%, 55%)",
+          boxShadow: "0 0 20px hsl(40,62%,55%), 0 0 40px hsla(40,62%,55%,0.5)",
         }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{
@@ -122,7 +122,7 @@ const Splash = () => {
       {/* Ambient glow */}
       <motion.div
         className="absolute"
-        style={{ width: 600, height: 600, background: "radial-gradient(circle, hsla(0,65%,47%,0.04) 0%, transparent 60%)" }}
+        style={{ width: 600, height: 600, background: "radial-gradient(circle, hsla(40,62%,55%,0.04) 0%, transparent 60%)" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: phase >= 1 ? 1 : 0, scale: [1, 1.1, 1] }}
         transition={{ opacity: { duration: 0.5 }, scale: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
@@ -135,7 +135,7 @@ const Splash = () => {
         animate={{ opacity: phase >= 2 ? 1 : 0, scale: phase >= 2 ? 1 : 0.5 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <img src={yangaLogo} alt="YangaGames" className="w-56 h-auto object-contain mix-blend-lighten" />
+        <img src={brandLogo} alt="BetBureau" className="w-56 h-auto object-contain" />
       </motion.div>
 
       {/* Brand tagline */}
@@ -151,7 +151,7 @@ const Splash = () => {
           initial={{ width: 0, opacity: 0 }}
           animate={phase >= 3 ? { width: 200, opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          style={{ height: 1, background: "linear-gradient(90deg, transparent, hsl(39,91%,55%), transparent)" }}
+          style={{ height: 1, background: "linear-gradient(90deg, transparent, hsl(40,62%,55%), transparent)" }}
         />
 
         <motion.p
@@ -175,7 +175,7 @@ const Splash = () => {
         <div className="h-[1px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
           <motion.div
             className="h-full rounded-full"
-            style={{ background: "linear-gradient(90deg, hsl(0,65%,35%), hsl(0,65%,47%), hsl(39,91%,55%), hsl(51,100%,50%))" }}
+            style={{ background: "linear-gradient(90deg, hsl(215,33%,17%), hsl(220,25%,25%), hsl(40,62%,55%), hsl(42,78%,60%))" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 3.5, ease: "easeInOut", delay: 0.5 }}

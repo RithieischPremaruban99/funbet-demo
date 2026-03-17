@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import GlobalSearch from "@/components/GlobalSearch";
 import { useBrandTheme } from "@/contexts/BrandThemeContext";
-import yangaLogo from "@/assets/yanga-games-logo.png";
+import brandLogo from "@/assets/betbureau-logo.png";
 
 const TopBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -20,7 +20,7 @@ const TopBar = () => {
             {theme.logoUrl && theme.isApplied ? (
               <img src={theme.logoUrl} alt="Brand logo" className="h-8 object-contain" />
             ) : (
-              <img src={yangaLogo} alt="YangaGames" className="h-8 object-contain" />
+              <img src={brandLogo} alt="BetBureau" className="h-7 object-contain" />
             )}
           </Link>
           <div className="flex items-center gap-1.5">

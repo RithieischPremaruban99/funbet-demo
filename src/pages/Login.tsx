@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, Phone, Lock, Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import yangaLogo from "@/assets/yanga-games-logo.png";
+import brandLogo from "@/assets/betbureau-logo.png";
 
 const Login = () => {
   const [phone, setPhone] = useState("");
@@ -21,7 +21,7 @@ const Login = () => {
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
           <div className="relative flex flex-col items-center justify-center" style={{ width: "200px", height: "200px" }}>
-            <img src={yangaLogo} alt="YangaGames" className="w-48 h-auto object-contain mix-blend-lighten" />
+            <img src={brandLogo} alt="BetBureau" className="w-48 h-auto object-contain" />
           </div>
           <p className="text-xs text-muted-foreground mt-6">Access your account</p>
         </div>
@@ -63,7 +63,7 @@ const Login = () => {
           </p>
         </div>
 
-        <div className="mt-8 flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "hsla(0,65%,47%,0.06)", borderColor: "hsla(0,65%,47%,0.15)" }}>
+        <div className="mt-8 flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "hsla(40,62%,55%,0.06)", borderColor: "hsla(40,62%,55%,0.15)" }}>
           <Shield size={14} className="text-primary flex-shrink-0" />
           <span className="text-[10px] text-primary/70">18+ | Gambling is prohibited for minors</span>
         </div>
