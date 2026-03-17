@@ -30,8 +30,8 @@ const BottomNav = () => {
             >
               <div className={`p-1.5 rounded-xl transition-all duration-200`}
                 style={isActive ? {
-                  background: "hsl(0, 65%, 47%)",
-                  boxShadow: "0 0 12px hsla(0,65%,47%,0.3)",
+                  background: "hsl(40, 62%, 55%)",
+                  boxShadow: "0 0 12px hsla(40,62%,55%,0.3)",
                 } : {}}
               >
                 <Icon
