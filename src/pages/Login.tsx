@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, Phone, Lock, Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import brandLogo from "@/assets/betbureau-logo.png";
+import brandLogo from "@/assets/kcs-logo.jpg";
 
 const Login = () => {
   const [phone, setPhone] = useState("");
@@ -21,7 +21,7 @@ const Login = () => {
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
           <div className="relative flex flex-col items-center justify-center" style={{ width: "200px", height: "200px" }}>
-            <img src={brandLogo} alt="BetBureau" className="w-48 h-auto object-contain" />
+            <img src={brandLogo} alt="KCS" className="w-40 h-40 object-contain rounded-2xl" style={{ boxShadow: "0 0 30px hsla(270,55%,35%,0.2)" }} />
           </div>
           <p className="text-xs text-muted-foreground mt-6">Access your account</p>
         </div>
@@ -50,7 +50,7 @@ const Login = () => {
           </motion.div>
 
           <motion.div className="text-right" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
-            <button className="text-xs text-primary font-medium">Forgot password?</button>
+            <button className="text-xs text-secondary font-medium">Forgot password?</button>
           </motion.div>
 
           <motion.button className="w-full py-3 rounded-xl text-sm font-bold orange-gradient text-highlight-foreground glow-orange" whileTap={{ scale: 0.97 }} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}>
@@ -59,13 +59,13 @@ const Login = () => {
 
           <p className="text-center text-xs text-muted-foreground">
             Don't have an account?{" "}
-            <Link to="/register" className="text-highlight font-semibold">Create Account</Link>
+            <Link to="/register" className="text-secondary font-semibold">Create Account</Link>
           </p>
         </div>
 
-        <div className="mt-8 flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "hsla(40,62%,55%,0.06)", borderColor: "hsla(40,62%,55%,0.15)" }}>
-          <Shield size={14} className="text-primary flex-shrink-0" />
-          <span className="text-[10px] text-primary/70">18+ | Gambling is prohibited for minors</span>
+        <div className="mt-8 flex items-center gap-2 px-3 py-2 rounded-lg border" style={{ background: "hsla(270,55%,35%,0.06)", borderColor: "hsla(270,55%,35%,0.15)" }}>
+          <Shield size={14} className="text-secondary flex-shrink-0" />
+          <span className="text-[10px] text-secondary/70">18+ | Gambling is prohibited for minors</span>
         </div>
       </motion.section>
     </MobileLayout>
