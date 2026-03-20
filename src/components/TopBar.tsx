@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import GlobalSearch from "@/components/GlobalSearch";
 import { useBrandTheme } from "@/contexts/BrandThemeContext";
-import brandLogo from "@/assets/betbureau-logo.png";
+import brandLogo from "@/assets/kcs-logo.jpg";
 
 const TopBar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -20,7 +20,7 @@ const TopBar = () => {
             {theme.logoUrl && theme.isApplied ? (
               <img src={theme.logoUrl} alt="Brand logo" className="h-8 object-contain" />
             ) : (
-              <img src={brandLogo} alt="BetBureau" className="h-7 object-contain" />
+              <img src={brandLogo} alt="KCS" className="h-8 w-8 object-contain rounded-lg" />
             )}
           </Link>
           <div className="flex items-center gap-1.5">
