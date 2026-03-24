@@ -25,20 +25,20 @@ type TabId = (typeof socialTabs)[number]["id"];
 const feedPosts = [
   {
     id: 1, user: "Patrice M.", avatar: "PM", slug: "patrice-m", time: "5 min ago", verified: true,
-    text: "🔥 TP Mazembe is winning tonight, I'm sure! Odds 1.85 are a steal!",
-    bet: { matchId: 101, match: "TP Mazembe vs AS Vita", pick: "TP Mazembe (1)", odds: 1.85, amount: "+R50", status: "in play", league: "Linafoot" },
+    text: "🔥 Kaizer Chiefs is winning tonight, I'm sure! Odds 1.85 are a steal!",
+    bet: { matchId: 101, match: "Kaizer Chiefs vs Orlando Pirates", pick: "Kaizer Chiefs (1)", odds: 1.85, amount: "+R50", status: "in play", league: "DStv Premiership" },
     multiBet: null,
     likes: 42, comments: 12, shares: 5,
   },
   {
     id: 2, user: "Aimée K.", avatar: "AK", slug: "aimee-k", time: "18 min ago", verified: false,
-    text: "3-match combo hit last night! 💰 The Leopards never disappoint 🇨🇩",
+    text: "3-match combo hit last night! 💰 Bafana Bafana all the way 🇿🇦",
     bet: null,
     multiBet: {
       legs: [
-        { matchId: 201, match: "DR Congo vs Zambia", pick: "DR Congo (1)", odds: 1.95, league: "AFCON Qualifiers" },
-        { matchId: 202, match: "TP Mazembe vs Al Ahly", pick: "TP Mazembe (1)", odds: 2.60, league: "CAF Champions" },
-        { matchId: 203, match: "AS Vita vs DCMP", pick: "Draw (X)", odds: 3.10, league: "Linafoot" },
+        { matchId: 201, match: "Bafana vs Nigeria", pick: "South Africa (1)", odds: 1.95, league: "AFCON Qualifiers" },
+        { matchId: 202, match: "Kaizer Chiefs vs Al Ahly", pick: "Kaizer Chiefs (1)", odds: 2.60, league: "CAF Champions" },
+        { matchId: 203, match: "Orlando Pirates vs Mamelodi Sundowns", pick: "Draw (X)", odds: 3.10, league: "DStv Premiership" },
       ],
       totalOdds: 15.71,
       stake: "+R20",
@@ -48,8 +48,8 @@ const feedPosts = [
   },
   {
     id: 3, user: "David N.", avatar: "DN", slug: "david-n", time: "32 min ago", verified: true,
-    text: "Who's watching DCMP vs Lupopo? The draw at 3.20 looks tempting...",
-    bet: { matchId: 301, match: "DCMP vs FC Lupopo", pick: "Draw (X)", odds: 3.20, amount: "+R20", status: "in play", league: "Linafoot" },
+    text: "Who's watching Mamelodi Sundowns vs Lupopo? The draw at 3.20 looks tempting...",
+    bet: { matchId: 301, match: "Mamelodi Sundowns vs SuperSport Utd", pick: "Draw (X)", odds: 3.20, amount: "+R20", status: "in play", league: "DStv Premiership" },
     multiBet: null,
     likes: 21, comments: 8, shares: 2,
   },
@@ -59,10 +59,10 @@ const feedPosts = [
     bet: null,
     multiBet: {
       legs: [
-        { matchId: 401, match: "FC Lupopo vs CS Don Bosco", pick: "CS Don Bosco (2)", odds: 2.30, league: "Linafoot" },
-        { matchId: 402, match: "JS Bazano vs FC Blessing", pick: "JS Bazano (1)", odds: 1.80, league: "Linafoot" },
-        { matchId: 403, match: "AS Maniema vs Rangers", pick: "AS Maniema (1)", odds: 2.10, league: "Congo Cup" },
-        { matchId: 404, match: "Mazembe vs Renaissance", pick: "TP Mazembe (1)", odds: 1.15, league: "Linafoot" },
+        { matchId: 401, match: "SuperSport Utd vs AmaZulu FC", pick: "AmaZulu FC (2)", odds: 2.30, league: "DStv Premiership" },
+        { matchId: 402, match: "Cape Town City vs Royal AM", pick: "Cape Town City (1)", odds: 1.80, league: "DStv Premiership" },
+        { matchId: 403, match: "Stellenbosch FC vs TS Galaxy", pick: "Stellenbosch FC (1)", odds: 2.10, league: "Nedbank Cup" },
+        { matchId: 404, match: "Mazembe vs Renaissance", pick: "Kaizer Chiefs (1)", odds: 1.15, league: "DStv Premiership" },
       ],
       totalOdds: 10.05,
       stake: "+R100",
@@ -81,13 +81,13 @@ const leaderboardUsers = [
 ];
 
 const challenges = [
-  { id: 1, title: "Kinshasa Derby", description: "TP Mazembe vs AS Vita – Who wins?", participants: 234, prize: "+R500", deadline: "Tonight 8PM", hot: true },
+  { id: 1, title: "Kinshasa Derby", description: "Kaizer Chiefs vs Orlando Pirates – Who wins?", participants: 234, prize: "+R500", deadline: "Tonight 8PM", hot: true },
   { id: 2, title: "Weekend King", description: "Best 3-match combo this weekend", participants: 89, prize: "+R1,000", deadline: "Sun 11:59PM", hot: false },
   { id: 3, title: "Odds Hunter", description: "Find the biggest winning odds", participants: 156, prize: "+R750", deadline: "7 days", hot: true },
 ];
 
 const chatGroups = [
-  { id: 1, name: "🇨🇩 Linafoot Fans", members: 1240, lastMessage: "Match starts in 30 min!", unread: 5, active: true },
+  { id: 1, name: "🇨🇩 DStv Premiership Fans", members: 1240, lastMessage: "Match starts in 30 min!", unread: 5, active: true },
   { id: 2, name: "⚽ Pro Tipsters", members: 456, lastMessage: "My prediction for tomorrow...", unread: 12, active: true },
   { id: 3, name: "🏆 Champions League", members: 890, lastMessage: "Mazembe can do it!", unread: 0, active: false },
   { id: 4, name: "🎰 Casino & Slots", members: 320, lastMessage: "Jackpot hit on Mega Fortune!", unread: 3, active: true },

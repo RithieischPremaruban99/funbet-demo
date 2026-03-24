@@ -20,34 +20,34 @@ const usersData: Record<string, {
 }> = {
   "patrice-m": {
     name: "Patrice M.", avatar: "PM", verified: true, isPrivate: false,
-    bio: "TP Mazembe fan forever 🐊 | Pro bettor",
+    bio: "Kaizer Chiefs fan forever ⚽ | Pro bettor",
     winRate: "64%", profit: "+$1,850", streak: 5, rank: 8,
     totalBets: 342, memberSince: "Mar 2024", followers: 128, following: 45,
     recentBets: [
-      { match: "TP Mazembe vs AS Vita", pick: "TP Mazembe (1)", odds: 1.85, status: "pending", league: "Linafoot", matchId: 101 },
-      { match: "DR Congo vs Zambia", pick: "DR Congo (1)", odds: 1.95, status: "won", league: "AFCON Qualifiers", matchId: 201 },
-      { match: "DCMP vs FC Lupopo", pick: "DCMP (1)", odds: 2.10, status: "lost", league: "Linafoot", matchId: 301 },
+      { match: "Kaizer Chiefs vs Orlando Pirates", pick: "Kaizer Chiefs (1)", odds: 1.85, status: "pending", league: "DStv Premiership", matchId: 101 },
+      { match: "Bafana vs Nigeria", pick: "South Africa (1)", odds: 1.95, status: "won", league: "AFCON Qualifiers", matchId: 201 },
+      { match: "Mamelodi Sundowns vs SuperSport Utd", pick: "Mamelodi Sundowns (1)", odds: 2.10, status: "lost", league: "DStv Premiership", matchId: 301 },
     ],
   },
   "aimee-k": {
     name: "Aimée K.", avatar: "AK", verified: false, isPrivate: false,
-    bio: "The Leopards never disappoint 🇨🇩",
+    bio: "Bafana Bafana all the way 🇿🇦",
     winRate: "71%", profit: "+$2,900", streak: 8, rank: 4,
     totalBets: 215, memberSince: "Jan 2024", followers: 256, following: 89,
     recentBets: [
-      { match: "DR Congo vs Zambia", pick: "DR Congo (1)", odds: 1.95, status: "won", league: "AFCON Qualifiers", matchId: 201 },
-      { match: "TP Mazembe vs Al Ahly", pick: "TP Mazembe (1)", odds: 2.60, status: "won", league: "CAF Champions", matchId: 202 },
-      { match: "AS Vita vs DCMP", pick: "Draw (X)", odds: 3.10, status: "won", league: "Linafoot", matchId: 203 },
+      { match: "Bafana vs Nigeria", pick: "South Africa (1)", odds: 1.95, status: "won", league: "AFCON Qualifiers", matchId: 201 },
+      { match: "Kaizer Chiefs vs Al Ahly", pick: "Kaizer Chiefs (1)", odds: 2.60, status: "won", league: "CAF Champions", matchId: 202 },
+      { match: "Orlando Pirates vs Mamelodi Sundowns", pick: "Draw (X)", odds: 3.10, status: "won", league: "DStv Premiership", matchId: 203 },
     ],
   },
   "david-n": {
     name: "David N.", avatar: "DN", verified: true, isPrivate: true,
-    bio: "Football analyst | Linafoot specialist",
+    bio: "Football analyst | PSL specialist",
     winRate: "58%", profit: "+$950", streak: 2, rank: 15,
     totalBets: 178, memberSince: "Jun 2024", followers: 67, following: 34,
     recentBets: [
-      { match: "DCMP vs FC Lupopo", pick: "Draw (X)", odds: 3.20, status: "pending", league: "Linafoot", matchId: 301 },
-      { match: "AS Vita vs Rangers", pick: "AS Vita (1)", odds: 1.45, status: "won", league: "Linafoot", matchId: 302 },
+      { match: "Mamelodi Sundowns vs SuperSport Utd", pick: "Draw (X)", odds: 3.20, status: "pending", league: "DStv Premiership", matchId: 301 },
+      { match: "Orlando Pirates vs TS Galaxy", pick: "Orlando Pirates (1)", odds: 1.45, status: "won", league: "DStv Premiership", matchId: 302 },
     ],
   },
   "serge-t": {
@@ -56,19 +56,19 @@ const usersData: Record<string, {
     winRate: "78%", profit: "+$4,200", streak: 12, rank: 1,
     totalBets: 456, memberSince: "Dec 2023", followers: 1240, following: 23,
     recentBets: [
-      { match: "FC Lupopo vs CS Don Bosco", pick: "CS Don Bosco (2)", odds: 2.30, status: "won", league: "Linafoot", matchId: 401 },
-      { match: "JS Bazano vs FC Blessing", pick: "JS Bazano (1)", odds: 1.80, status: "won", league: "Linafoot", matchId: 402 },
-      { match: "Mazembe vs Renaissance", pick: "TP Mazembe (1)", odds: 1.15, status: "won", league: "Linafoot", matchId: 404 },
+      { match: "SuperSport Utd vs AmaZulu FC", pick: "AmaZulu FC (2)", odds: 2.30, status: "won", league: "DStv Premiership", matchId: 401 },
+      { match: "Cape Town City vs Royal AM", pick: "Cape Town City (1)", odds: 1.80, status: "won", league: "DStv Premiership", matchId: 402 },
+      { match: "Mazembe vs Renaissance", pick: "Kaizer Chiefs (1)", odds: 1.15, status: "won", league: "DStv Premiership", matchId: 404 },
     ],
   },
   "gloire-m": {
     name: "Gloire M.", avatar: "GM", verified: false, isPrivate: false,
-    bio: "Passionate bettor | Kinshasa 🏙️",
+    bio: "Passionate bettor | Johannesburg 🏙️",
     winRate: "72%", profit: "+$3,150", streak: 8, rank: 2,
     totalBets: 389, memberSince: "Feb 2024", followers: 890, following: 56,
     recentBets: [
-      { match: "TP Mazembe vs AS Vita", pick: "Draw (X)", odds: 3.40, status: "lost", league: "Linafoot", matchId: 101 },
-      { match: "DR Congo vs Zambia", pick: "Over 2.5 Goals", odds: 2.10, status: "won", league: "AFCON Qualifiers", matchId: 201 },
+      { match: "Kaizer Chiefs vs Orlando Pirates", pick: "Draw (X)", odds: 3.40, status: "lost", league: "DStv Premiership", matchId: 101 },
+      { match: "Bafana vs Nigeria", pick: "Over 2.5 Goals", odds: 2.10, status: "won", league: "AFCON Qualifiers", matchId: 201 },
     ],
   },
   "rachel-b": {
@@ -77,12 +77,12 @@ const usersData: Record<string, {
     winRate: "69%", profit: "+$2,800", streak: 6, rank: 3,
     totalBets: 267, memberSince: "Apr 2024", followers: 456, following: 78,
     recentBets: [
-      { match: "AS Vita vs DCMP", pick: "AS Vita (1)", odds: 1.90, status: "won", league: "Linafoot", matchId: 203 },
+      { match: "Orlando Pirates vs Mamelodi Sundowns", pick: "Orlando Pirates (1)", odds: 1.90, status: "won", league: "DStv Premiership", matchId: 203 },
     ],
   },
   "patrick-k": {
     name: "Patrick K.", avatar: "PK", verified: false, isPrivate: false,
-    bio: "DCMP supporter 💙",
+    bio: "Orlando Pirates supporter 🏴‍☠️",
     winRate: "65%", profit: "+$1,950", streak: 5, rank: 4,
     totalBets: 198, memberSince: "May 2024", followers: 234, following: 67,
     recentBets: [],
@@ -96,14 +96,14 @@ const usersData: Record<string, {
   },
   "christian-w": {
     name: "Christian W.", avatar: "CW", verified: false, isPrivate: false,
-    bio: "Congolese football lover ⚽",
+    bio: "South African football lover ⚽",
     winRate: "61%", profit: "+$1,450", streak: 3, rank: 6,
     totalBets: 134, memberSince: "Aug 2024", followers: 89, following: 34,
     recentBets: [],
   },
   "kinshasabet": {
     name: "KinshasaBet", avatar: "KB", verified: false, isPrivate: false,
-    bio: "Bettor from Kinshasa 🏙️",
+    bio: "Bettor from Johannesburg 🏙️",
     winRate: "55%", profit: "+$450", streak: 1, rank: 22,
     totalBets: 89, memberSince: "Sep 2024", followers: 34, following: 12,
     recentBets: [],

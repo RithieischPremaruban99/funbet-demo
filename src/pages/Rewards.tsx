@@ -38,12 +38,12 @@ const achievements = [
 
 // --- Leaderboard ---
 const leaderboard = [
-  { rank: 1, name: "KinshasaBet", xp: 12_450, streak: 8, avatar: "KB" },
-  { rank: 2, name: "LubumParieur", xp: 11_200, streak: 5, avatar: "LP" },
-  { rank: 3, name: "MbujiKing", xp: 9_800, streak: 12, avatar: "MK" },
-  { rank: 4, name: "GomaStrike", xp: 8_600, streak: 3, avatar: "GS" },
-  { rank: 5, name: "MatadiBoss", xp: 7_900, streak: 6, avatar: "MB" },
-  { rank: 6, name: "KanangaFlash", xp: 6_300, streak: 4, avatar: "KF" },
+  { rank: 1, name: "JoziPunter", xp: 12_450, streak: 8, avatar: "KB" },
+  { rank: 2, name: "CapeTownBet", xp: 11_200, streak: 5, avatar: "LP" },
+  { rank: 3, name: "DurbanKing", xp: 9_800, streak: 12, avatar: "MK" },
+  { rank: 4, name: "PretoriaBoss", xp: 8_600, streak: 3, avatar: "GS" },
+  { rank: 5, name: "SowetoBoss", xp: 7_900, streak: 6, avatar: "MB" },
+  { rank: 6, name: "BloubergFlash", xp: 6_300, streak: 4, avatar: "KF" },
 ];
 
 type Tab = "missions" | "badges" | "leaderboard";
