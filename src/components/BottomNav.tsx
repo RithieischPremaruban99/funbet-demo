@@ -14,8 +14,8 @@ const BottomNav = () => {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50" style={{
-      background: "hsl(270, 30%, 6%)",
-      borderTop: "1px solid hsl(270, 20%, 18%)",
+      background: "hsl(14, 35%, 5%)",
+      borderTop: "1px solid hsl(14, 18%, 17%)",
       backdropFilter: "blur(10px)",
       WebkitBackdropFilter: "blur(10px)",
     }}>
@@ -30,18 +30,18 @@ const BottomNav = () => {
             >
               <div className={`p-1.5 rounded-xl transition-all duration-200`}
                 style={isActive ? {
-                  background: "hsl(45, 95%, 55%)",
-                  boxShadow: "0 0 12px hsla(45,95%,55%,0.3)",
+                  background: "hsl(14, 90%, 52%)",
+                  boxShadow: "0 0 12px hsla(14,90%,52%,0.3)",
                 } : {}}
               >
                 <Icon
                   size={20}
-                  style={{ color: isActive ? "hsl(270, 30%, 8%)" : "hsl(270, 15%, 55%)" }}
+                  style={{ color: isActive ? "hsl(0, 0%, 100%)" : "hsl(14, 12%, 50%)" }}
                   strokeWidth={isActive ? 2.5 : 1.5}
                 />
               </div>
               <span className="text-[10px] font-semibold transition-colors"
-                style={{ color: isActive ? "hsl(45, 95%, 55%)" : "hsl(270, 15%, 55%)" }}
+                style={{ color: isActive ? "hsl(14, 90%, 52%)" : "hsl(14, 12%, 50%)" }}
               >
                 {label}
               </span>
