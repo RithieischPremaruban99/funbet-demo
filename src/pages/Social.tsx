@@ -494,7 +494,7 @@ const LeaderboardTab = () => {
             transition={{ delay: 0.1 + i * 0.1, type: "spring", stiffness: 200 }}
           >
             <div className={`${sizes[i]} rounded-full border-2 ${
-              user.rank === 1 ? "border-yellow-400 glow-orange" : user.rank === 2 ? "border-gray-300" : "border-amber-600"
+              user.rank === 1 ? "border-primary glow-orange" : user.rank === 2 ? "border-gray-300" : "border-accent"
             } bg-card-elevated flex items-center justify-center font-bold ${textSizes[i]} mb-1`}>
               {user.avatar}
             </div>

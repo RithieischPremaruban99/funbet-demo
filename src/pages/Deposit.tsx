@@ -8,13 +8,13 @@ import orangeLogo from "@/assets/orange.svg";
 import africellLogo from "@/assets/africell.png";
 
 const providers = [
-  { id: "mpesa", name: "M-Pesa", logo: mpesaLogo, prefix: "081/082" },
-  { id: "airtel", name: "Airtel Money", logo: airtelLogo, prefix: "099/097" },
-  { id: "orange", name: "Orange Money", logo: orangeLogo, prefix: "084/085" },
-  { id: "africell", name: "Africell Money", logo: africellLogo, prefix: "090/091" },
+  { id: "capitec", name: "Capitec Pay", logo: mpesaLogo, prefix: "Bank Transfer" },
+  { id: "fnb", name: "FNB eWallet", logo: airtelLogo, prefix: "eWallet" },
+  { id: "vodapay", name: "VodaPay", logo: orangeLogo, prefix: "Mobile Wallet" },
+  { id: "ozow", name: "Ozow (EFT)", logo: africellLogo, prefix: "Instant EFT" },
 ];
 
-const quickAmounts = [50, 100, 200, 500, 1000];
+const quickAmounts = [50, 100, 500, 1000, 5000];
 
 const Deposit = () => {
   const [selectedProvider, setSelectedProvider] = useState<string | null>(null);
@@ -65,26 +65,26 @@ const Deposit = () => {
             {selectedProvider && (
               <>
                 <div className="rounded-2xl border border-border card-gradient p-4">
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Mobile Money Number</label>
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Phone / Account Number</label>
                   <div className="relative">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground font-medium">+243</span>
+                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground font-medium">+27</span>
                     <input
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder="812 345 678"
+                      placeholder="82 345 6789"
                       className="w-full pl-14 pr-4 py-3 rounded-xl bg-card-elevated border border-border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary"
                     />
                   </div>
                 </div>
 
                 <div className="rounded-2xl border border-border card-gradient p-4">
-                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Amount (USD)</label>
+                  <label className="text-xs font-medium text-muted-foreground mb-2 block">Amount (ZAR)</label>
                   <input
                     type="number"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    placeholder="10,000"
+                    placeholder="1,000"
                     className="w-full px-4 py-3 rounded-xl bg-card-elevated border border-border text-lg font-bold text-foreground placeholder:text-muted-foreground outline-none focus:ring-1 focus:ring-primary text-center"
                   />
                   <div className="flex gap-2 mt-3 overflow-x-auto hide-scrollbar">
@@ -94,11 +94,11 @@ const Deposit = () => {
                         onClick={() => setAmount(String(a))}
                         className="flex-shrink-0 px-3 py-1.5 rounded-lg bg-card-elevated border border-border text-[10px] font-bold hover:border-highlight/40 transition-all"
                       >
-                        ${a.toLocaleString()}
+                        R{a.toLocaleString()}
                       </button>
                     ))}
                   </div>
-                  <p className="text-[9px] text-muted-foreground mt-2">Minimum deposit: $10 • Maximum: $5,000</p>
+                  <p className="text-[9px] text-muted-foreground mt-2">Minimum deposit: R50 • Maximum: R50,000</p>
                 </div>
 
                 <button onClick={() => setStep("confirm")} className="w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange">
@@ -116,8 +116,8 @@ const Deposit = () => {
               <div className="space-y-2">
                 {[
                   { label: "Provider", value: providers.find((p) => p.id === selectedProvider)?.name },
-                  { label: "Number", value: `+243 ${phone}` },
-                  { label: "Amount", value: `$${Number(amount).toLocaleString()}` },
+                  { label: "Number", value: `+27 ${phone}` },
+                  { label: "Amount", value: `R${Number(amount).toLocaleString()}` },
                 ].map((item) => (
                   <div key={item.label} className="flex items-center justify-between py-2 border-b border-border last:border-0">
                     <span className="text-xs text-muted-foreground">{item.label}</span>
@@ -128,7 +128,7 @@ const Deposit = () => {
             </div>
 
             <div className="rounded-xl bg-primary/10 border border-primary/20 p-3">
-              <p className="text-[10px] text-primary">You will receive a notification from your operator to confirm the payment.</p>
+              <p className="text-[10px] text-primary">You will receive a notification to confirm the payment.</p>
             </div>
 
             <div className="flex gap-2">
@@ -148,8 +148,8 @@ const Deposit = () => {
               <CheckCircle size={32} className="text-success" />
             </div>
             <h3 className="text-lg font-bold">Deposit Initiated!</h3>
-            <p className="text-xs text-muted-foreground">Confirm the payment on your phone via {providers.find((p) => p.id === selectedProvider)?.name}</p>
-            <p className="text-lg font-bold text-highlight">${Number(amount).toLocaleString()}</p>
+            <p className="text-xs text-muted-foreground">Confirm the payment via {providers.find((p) => p.id === selectedProvider)?.name}</p>
+            <p className="text-lg font-bold text-highlight">R{Number(amount).toLocaleString()}</p>
             <Link to="/account" className="block w-full py-3 rounded-xl border border-border bg-card-elevated text-sm font-medium text-center">
               Back to Account
             </Link>

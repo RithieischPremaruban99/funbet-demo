@@ -317,8 +317,8 @@ const BetSlip = () => {
               </div>
               <p className="text-[9px] text-muted-foreground mt-2">
                 {betType === "system"
-                  ? `Total stake: $${totalStake.toLocaleString()} (${combinations(selections.length, systemSize)} combos × $${numStake})`
-                  : "Minimum stake: $5 • Maximum: $2,000"}
+                  ? `Total stake: R${totalStake.toLocaleString()} (${combinations(selections.length, systemSize)} combos × R${numStake})`
+                  : "Minimum stake: R50 • Maximum: R20,000"}
               </p>
             </div>
 

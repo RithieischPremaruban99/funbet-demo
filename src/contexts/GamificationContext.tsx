@@ -70,7 +70,7 @@ const initialWeekly: Mission[] = [
   { id: 12, title: "7-day login streak", icon: "CalendarCheck", xp: 200, progress: 5, total: 7, done: false, claimed: false },
   { id: 13, title: "Bet on 3 different sports", icon: "Award", xp: 150, progress: 1, total: 3, done: false, claimed: false },
   { id: 14, title: "Invite a friend", icon: "Gift", xp: 250, progress: 0, total: 1, done: false, claimed: false },
-  { id: 15, title: "Win $100+ total", icon: "TrendingUp", xp: 400, progress: 65, total: 100, done: false, claimed: false },
+  { id: 15, title: "Win R1,000+ total", icon: "TrendingUp", xp: 400, progress: 65, total: 100, done: false, claimed: false },
 ];
 
 const GamificationContext = createContext<GamificationState | null>(null);
