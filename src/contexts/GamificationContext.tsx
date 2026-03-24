@@ -51,7 +51,7 @@ function getXPForNextLevel(level: number): number {
 const LEVEL_PERKS: Record<number, string> = {
   5: "Unlock FlexBet",
   10: "Bonus multiplier ×1.1",
-  15: "Free bet $10",
+  15: "Free bet R100",
   20: "VIP access",
 };
 
@@ -59,7 +59,7 @@ const initialDaily: Mission[] = [
   { id: 1, title: "Daily Login", icon: "CalendarCheck", xp: 20, progress: 1, total: 1, done: true, claimed: false },
   { id: 2, title: "Place 3 bets", icon: "Target", xp: 50, progress: 2, total: 3, done: false, claimed: false },
   { id: 3, title: "Win a combo bet", icon: "Zap", xp: 100, progress: 0, total: 1, done: false, claimed: false },
-  { id: 4, title: "Deposit $20+", icon: "TrendingUp", xp: 30, progress: 1, total: 1, done: true, claimed: false },
+  { id: 4, title: "Deposit R200+", icon: "TrendingUp", xp: 30, progress: 1, total: 1, done: true, claimed: false },
   { id: 5, title: "Share a bet slip", icon: "Gift", xp: 25, progress: 0, total: 1, done: false, claimed: false },
   { id: 6, title: "Try a live bet", icon: "Flame", xp: 40, progress: 0, total: 1, done: false, claimed: false },
 ];
@@ -70,7 +70,7 @@ const initialWeekly: Mission[] = [
   { id: 12, title: "7-day login streak", icon: "CalendarCheck", xp: 200, progress: 5, total: 7, done: false, claimed: false },
   { id: 13, title: "Bet on 3 different sports", icon: "Award", xp: 150, progress: 1, total: 3, done: false, claimed: false },
   { id: 14, title: "Invite a friend", icon: "Gift", xp: 250, progress: 0, total: 1, done: false, claimed: false },
-  { id: 15, title: "Win $100+ total", icon: "TrendingUp", xp: 400, progress: 65, total: 100, done: false, claimed: false },
+  { id: 15, title: "Win R1,000+ total", icon: "TrendingUp", xp: 400, progress: 65, total: 100, done: false, claimed: false },
 ];
 
 const GamificationContext = createContext<GamificationState | null>(null);

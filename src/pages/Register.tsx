@@ -88,7 +88,7 @@ const Register = () => {
                 <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Phone Number</label>
                 <div className="relative">
                   <Phone size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-                  <span className="absolute left-9 top-1/2 -translate-y-1/2 text-sm text-muted-foreground font-medium">+243</span>
+                  <span className="absolute left-9 top-1/2 -translate-y-1/2 text-sm text-muted-foreground font-medium">+27</span>
                   <input
                     type="tel"
                     value={form.phone}
@@ -165,7 +165,7 @@ const Register = () => {
                 </motion.div>
                 <h3 className="text-sm font-bold">SMS Verification</h3>
                 <p className="text-xs text-muted-foreground mt-1">
-                  A 6-digit code has been sent to <span className="text-foreground font-medium">+243 {form.phone || "XXX XXX XXX"}</span>
+                  A 6-digit code has been sent to <span className="text-foreground font-medium">+27 {form.phone || "XXX XXX XXX"}</span>
                 </p>
 
                 <div className="flex gap-2 justify-center mt-4">
@@ -206,7 +206,7 @@ const Register = () => {
 
         <div className="mt-6 mb-6 flex items-center gap-2 px-3 py-2 rounded-lg bg-primary/10 border border-primary/20">
           <Shield size={14} className="text-primary flex-shrink-0" />
-          <span className="text-[10px] text-primary">18+ | Registration required - DRC Gambling Law</span>
+          <span className="text-[10px] text-primary">18+ | Registration required - SA National Gambling Act</span>
         </div>
       </motion.section>
     </MobileLayout>

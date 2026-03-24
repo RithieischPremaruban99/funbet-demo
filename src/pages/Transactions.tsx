@@ -4,13 +4,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const mockTransactions = [
-  { id: 1, type: "deposit", provider: "M-Pesa", amount: 500, date: "Feb 18, 14:32", status: "success" },
-  { id: 2, type: "bet", provider: "Bet - TP Mazembe vs Vita", amount: -100, date: "Feb 18, 14:45", status: "pending" },
-  { id: 3, type: "withdrawal", provider: "Airtel Money", amount: -300, tax: 30, netAmount: -270, date: "Feb 17, 10:15", status: "success" },
-  { id: 4, type: "win", provider: "Win - Linafoot Combo", amount: 450, date: "Feb 16, 21:00", status: "success" },
-  { id: 5, type: "deposit", provider: "Orange Money", amount: 250, date: "Feb 15, 09:30", status: "success" },
-  { id: 6, type: "withdrawal", provider: "M-Pesa", amount: -200, tax: 20, netAmount: -180, date: "Feb 14, 16:45", status: "success" },
-  { id: 7, type: "bet", provider: "Bet - DRC vs Zambia", amount: -50, date: "Feb 14, 12:00", status: "lost" },
+  { id: 1, type: "deposit", provider: "Capitec Pay", amount: 500, date: "Feb 18, 14:32", status: "success" },
+  { id: 2, type: "bet", provider: "Bet - Chiefs vs Pirates", amount: -100, date: "Feb 18, 14:45", status: "pending" },
+  { id: 3, type: "withdrawal", provider: "FNB eWallet", amount: -300, tax: 30, netAmount: -270, date: "Feb 17, 10:15", status: "success" },
+  { id: 4, type: "win", provider: "Win - PSL Combo", amount: 450, date: "Feb 16, 21:00", status: "success" },
+  { id: 5, type: "deposit", provider: "VodaPay", amount: 250, date: "Feb 15, 09:30", status: "success" },
+  { id: 6, type: "withdrawal", provider: "Capitec Pay", amount: -200, tax: 20, netAmount: -180, date: "Feb 14, 16:45", status: "success" },
+  { id: 7, type: "bet", provider: "Bet - Bafana vs Nigeria", amount: -50, date: "Feb 14, 12:00", status: "lost" },
 ];
 
 const typeLabels: Record<string, string> = { deposit: "Deposit", withdrawal: "Withdrawal", bet: "Bet", win: "Win" };

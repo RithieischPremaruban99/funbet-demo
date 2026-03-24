@@ -1,108 +1,80 @@
 import psgLogo from "@/assets/clubs/psg.svg";
 import omLogo from "@/assets/clubs/om.svg";
-import olLogo from "@/assets/clubs/ol.png";
 import bayLogo from "@/assets/clubs/bay.svg";
 import barLogo from "@/assets/clubs/bar.svg";
 import livLogo from "@/assets/clubs/liv.svg";
 import mciLogo from "@/assets/clubs/mci.svg";
-import asmLogo from "@/assets/clubs/asm.png";
-import lensLogo from "@/assets/clubs/lens.png";
-import loscLogo from "@/assets/clubs/losc.svg";
-import niceLogo from "@/assets/clubs/nice.png";
 import intLogo from "@/assets/clubs/int.svg";
-import tpmLogo from "@/assets/clubs/tpm.png";
-import asvLogo from "@/assets/clubs/asv.png";
-import dcmpLogo from "@/assets/clubs/dcmp.png";
-import lupopoLogo from "@/assets/clubs/lupopo.png";
-import donboscoLogo from "@/assets/clubs/donbosco.png";
-import renaissanceLogo from "@/assets/clubs/renaissance.png";
-import alahlyLogo from "@/assets/clubs/alahly.png";
-import maniemaLogo from "@/assets/clubs/maniema.png";
-import bazanoLogo from "@/assets/clubs/bazano.png";
-import rdcFlag from "@/assets/clubs/rdc.svg";
-import zamFlag from "@/assets/clubs/zam.svg";
-// Basketball logos
-import lalLogo from "@/assets/clubs/lal.png";
-import bosLogo from "@/assets/clubs/bos.png";
-import gswLogo from "@/assets/clubs/gsw.png";
-import milLogo from "@/assets/clubs/mil.png";
-import phxLogo from "@/assets/clubs/phx.png";
-import denLogo from "@/assets/clubs/den.png";
-import miaLogo from "@/assets/clubs/mia.png";
-import nykLogo from "@/assets/clubs/nyk.png";
-import rmaLogo from "@/assets/clubs/rma.png";
-import fcbLogo from "@/assets/clubs/fcb.png";
-import fenLogo from "@/assets/clubs/fen.png";
 
 const clubLogos: Record<string, string> = {
   PSG: psgLogo,
   OM: omLogo,
-  OL: olLogo,
   BAY: bayLogo,
   BAR: barLogo,
   LIV: livLogo,
   MCI: mciLogo,
-  ASM: asmLogo,
-  LENS: lensLogo,
-  LOSC: loscLogo,
-  NICE: niceLogo,
   INT: intLogo,
-  TPM: tpmLogo,
-  ASV: asvLogo,
-  DCMP: dcmpLogo,
-  LUP: lupopoLogo,
-  DON: donboscoLogo,
-  REN: renaissanceLogo,
-  AHL: alahlyLogo,
-  MAN: maniemaLogo,
-  BAZ: bazanoLogo,
-  RDC: rdcFlag,
-  ZAM: zamFlag,
-  // Basketball
-  LAL: lalLogo,
-  BOS: bosLogo,
-  GSW: gswLogo,
-  MIL: milLogo,
-  PHX: phxLogo,
-  DEN: denLogo,
-  MIA: miaLogo,
-  NYK: nykLogo,
-  RMA: rmaLogo,
-  FCB: fcbLogo,
-  FEN: fenLogo,
 };
 
 const fallbackColors: Record<string, { bg: string; text: string }> = {
+  // SA Football
+  KC: { bg: "#000000", text: "#FFD700" },
+  OP: { bg: "#000000", text: "#FFFFFF" },
+  SUN: { bg: "#FFD700", text: "#003399" },
+  SSU: { bg: "#003399", text: "#FFFFFF" },
+  AMA: { bg: "#006633", text: "#FFFFFF" },
+  RAM: { bg: "#8B0000", text: "#FFD700" },
+  CTC: { bg: "#87CEEB", text: "#003399" },
+  SFC: { bg: "#8B0000", text: "#FFFFFF" },
+  CHI: { bg: "#006633", text: "#FFFFFF" },
+  TSG: { bg: "#FF6600", text: "#000000" },
+  // Cricket
+  JSK: { bg: "#FFD700", text: "#003399" },
+  PR: { bg: "#8B008B", text: "#FFD700" },
+  MICT: { bg: "#004B87", text: "#FFFFFF" },
+  DSG: { bg: "#FF4500", text: "#FFFFFF" },
+  SA: { bg: "#007749", text: "#FFD700" },
+  IND: { bg: "#0066CC", text: "#FF9933" },
+  TIT: { bg: "#87CEEB", text: "#003399" },
+  DOL: { bg: "#333333", text: "#FFFFFF" },
+  MI: { bg: "#004B87", text: "#FFD700" },
+  CSK: { bg: "#FFD700", text: "#0066CC" },
+  // Horse Racing
+  R5: { bg: "#8B4513", text: "#FFD700" },
+  R6: { bg: "#8B4513", text: "#FFD700" },
+  TF: { bg: "#2E8B57", text: "#FFFFFF" },
+  MET: { bg: "#800020", text: "#FFD700" },
+  KW: { bg: "#2E8B57", text: "#FFFFFF" },
+  GC: { bg: "#006633", text: "#FFD700" },
+  GV: { bg: "#2E8B57", text: "#FFFFFF" },
+  R3: { bg: "#8B4513", text: "#FFD700" },
+  SC: { bg: "#2E8B57", text: "#FFFFFF" },
+  // Rugby
+  STO: { bg: "#003DA5", text: "#FFFFFF" },
+  BUL: { bg: "#003DA5", text: "#FFFFFF" },
+  SHA: { bg: "#000000", text: "#FFFFFF" },
+  LIO: { bg: "#E2001A", text: "#FFFFFF" },
+  WP: { bg: "#003DA5", text: "#FFFFFF" },
+  BB: { bg: "#003DA5", text: "#FFFFFF" },
+  // International football
   PSG: { bg: "#004170", text: "#fff" },
   OM: { bg: "#2FAEE0", text: "#fff" },
-  OL: { bg: "#1D4A8D", text: "#fff" },
-  ASM: { bg: "#E2001A", text: "#fff" },
-  LOSC: { bg: "#E2001A", text: "#fff" },
-  LENS: { bg: "#FFD700", text: "#E2001A" },
-  NICE: { bg: "#000", text: "#E2001A" },
   BAR: { bg: "#A91B2E", text: "#004D98" },
   MCI: { bg: "#6CABDD", text: "#fff" },
   LIV: { bg: "#C8102E", text: "#fff" },
   BAY: { bg: "#DC052D", text: "#fff" },
   INT: { bg: "#010E80", text: "#fff" },
-  TPM: { bg: "#000", text: "#fff" },
-  ASV: { bg: "#000", text: "#FFD700" },
-  DCMP: { bg: "#fff", text: "#E2001A" },
-  RDC: { bg: "#007FFF", text: "#FFD700" },
-  ZAM: { bg: "#198754", text: "#fff" },
-  // Basketball fallbacks
-  LAL: { bg: "#552583", text: "#FDB927" },
-  BOS: { bg: "#007A33", text: "#fff" },
-  GSW: { bg: "#1D428A", text: "#FFC72C" },
-  MIL: { bg: "#00471B", text: "#EEE1C6" },
-  PHX: { bg: "#1D1160", text: "#E56020" },
-  DEN: { bg: "#0E2240", text: "#FEC524" },
-  MIA: { bg: "#98002E", text: "#fff" },
-  NYK: { bg: "#006BB6", text: "#F58426" },
-  RMA: { bg: "#FEBE10", text: "#00529F" },
-  FCB: { bg: "#A50044", text: "#004D98" },
-  OLY: { bg: "#CC0000", text: "#fff" },
-  FEN: { bg: "#FFED00", text: "#00205B" },
+  // Tennis
+  ALC: { bg: "#E2001A", text: "#FFD700" },
+  DJO: { bg: "#003DA5", text: "#FFFFFF" },
+  SIN: { bg: "#006633", text: "#FFFFFF" },
+  MED: { bg: "#E2001A", text: "#FFFFFF" },
+  SWI: { bg: "#DC143C", text: "#FFFFFF" },
+  SAB: { bg: "#006633", text: "#FFFFFF" },
+  TSI: { bg: "#003DA5", text: "#FFFFFF" },
+  RUB: { bg: "#E2001A", text: "#FFFFFF" },
+  RUN: { bg: "#E2001A", text: "#FFFFFF" },
+  FRI: { bg: "#003DA5", text: "#FFFFFF" },
 };
 
 const TeamBadge = ({ abbr, size = 28 }: { abbr: string; size?: number }) => {

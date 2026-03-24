@@ -54,7 +54,7 @@ const TopBar = () => {
               boxShadow: "0 0 12px hsl(var(--primary) / 0.15)",
             }}>
               <Wallet size={14} />
-              <span>$1,250</span>
+              <span>R12,500</span>
             </Link>
           </div>
         </div>

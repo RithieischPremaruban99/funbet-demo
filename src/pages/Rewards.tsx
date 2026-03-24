@@ -29,7 +29,7 @@ const achievements = [
   { id: "first_win", name: "First Victory", desc: "Win your first bet", icon: "🏆", unlocked: true, date: "Jan 12" },
   { id: "combo_3", name: "Combo Master", desc: "Win a 3-leg combo", icon: "⚡", unlocked: true, date: "Jan 28" },
   { id: "streak_5", name: "Hot Streak", desc: "Win 5 bets in a row", icon: "🔥", unlocked: true, date: "Feb 3" },
-  { id: "high_roller", name: "High Roller", desc: "Stake $500+ in one bet", icon: "💎", unlocked: false, date: null },
+  { id: "high_roller", name: "High Roller", desc: "Stake R5,000+ in one bet", icon: "💎", unlocked: false, date: null },
   { id: "social_star", name: "Social Star", desc: "Get 10 bet copies", icon: "⭐", unlocked: false, date: null },
   { id: "parlay_king", name: "Parlay King", desc: "Win a 6+ leg combo", icon: "👑", unlocked: false, date: null },
   { id: "flexbet_pro", name: "FlexBet Pro", desc: "Win 3 FlexBets", icon: "🎯", unlocked: false, date: null },
@@ -38,12 +38,12 @@ const achievements = [
 
 // --- Leaderboard ---
 const leaderboard = [
-  { rank: 1, name: "KinshasaBet", xp: 12_450, streak: 8, avatar: "KB" },
-  { rank: 2, name: "LubumParieur", xp: 11_200, streak: 5, avatar: "LP" },
-  { rank: 3, name: "MbujiKing", xp: 9_800, streak: 12, avatar: "MK" },
-  { rank: 4, name: "GomaStrike", xp: 8_600, streak: 3, avatar: "GS" },
-  { rank: 5, name: "MatadiBoss", xp: 7_900, streak: 6, avatar: "MB" },
-  { rank: 6, name: "KanangaFlash", xp: 6_300, streak: 4, avatar: "KF" },
+  { rank: 1, name: "JoziPunter", xp: 12_450, streak: 8, avatar: "KB" },
+  { rank: 2, name: "CapeTownBet", xp: 11_200, streak: 5, avatar: "LP" },
+  { rank: 3, name: "DurbanKing", xp: 9_800, streak: 12, avatar: "MK" },
+  { rank: 4, name: "PretoriaBoss", xp: 8_600, streak: 3, avatar: "GS" },
+  { rank: 5, name: "SowetoBoss", xp: 7_900, streak: 6, avatar: "MB" },
+  { rank: 6, name: "BloubergFlash", xp: 6_300, streak: 4, avatar: "KF" },
 ];
 
 type Tab = "missions" | "badges" | "leaderboard";
