@@ -311,7 +311,7 @@ const BetSlip = () => {
               <div className="flex gap-2 mt-2">
                 {[10, 50, 100, 250].map((a) => (
                   <button key={a} onClick={() => setStake(String(a))} className="flex-1 py-1.5 rounded-lg bg-card-elevated border border-border text-[10px] font-bold hover:border-highlight/40 transition-all">
-                    ${a.toLocaleString()}
+                    R{a.toLocaleString()}
                   </button>
                 ))}
               </div>
