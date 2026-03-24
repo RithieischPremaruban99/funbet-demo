@@ -57,12 +57,6 @@ const TopBar = () => {
               <span>$1,250</span>
             </Link>
           </div>
-              boxShadow: "0 0 12px hsl(var(--primary) / 0.15)",
-            }}>
-              <Wallet size={14} />
-              <span>$1,250</span>
-            </Link>
-          </div>
         </div>
       </header>
       <GlobalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
