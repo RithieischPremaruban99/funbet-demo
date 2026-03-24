@@ -5,6 +5,25 @@ import barLogo from "@/assets/clubs/bar.svg";
 import livLogo from "@/assets/clubs/liv.svg";
 import mciLogo from "@/assets/clubs/mci.svg";
 import intLogo from "@/assets/clubs/int.svg";
+// SA Football
+import kcLogo from "@/assets/clubs/kc.png";
+import opLogo from "@/assets/clubs/op.png";
+import sunLogo from "@/assets/clubs/sun.png";
+import ssuLogo from "@/assets/clubs/ssu.png";
+import amaLogo from "@/assets/clubs/ama.png";
+import ramLogo from "@/assets/clubs/ram.png";
+import ctcLogo from "@/assets/clubs/ctc.png";
+import sfcLogo from "@/assets/clubs/sfc.png";
+// SA Cricket
+import jskLogo from "@/assets/clubs/jsk.png";
+import prLogo from "@/assets/clubs/pr.png";
+import mictLogo from "@/assets/clubs/mict.png";
+import dsgLogo from "@/assets/clubs/dsg.png";
+// SA Rugby
+import stoLogo from "@/assets/clubs/sto.png";
+import bulLogo from "@/assets/clubs/bul.png";
+import lioLogo from "@/assets/clubs/lio.png";
+import shaLogo from "@/assets/clubs/sha.png";
 
 const clubLogos: Record<string, string> = {
   PSG: psgLogo,
@@ -14,25 +33,32 @@ const clubLogos: Record<string, string> = {
   LIV: livLogo,
   MCI: mciLogo,
   INT: intLogo,
+  // SA Football
+  KC: kcLogo,
+  OP: opLogo,
+  SUN: sunLogo,
+  SSU: ssuLogo,
+  AMA: amaLogo,
+  RAM: ramLogo,
+  CTC: ctcLogo,
+  SFC: sfcLogo,
+  // SA Cricket
+  JSK: jskLogo,
+  PR: prLogo,
+  MICT: mictLogo,
+  DSG: dsgLogo,
+  // SA Rugby
+  STO: stoLogo,
+  BUL: bulLogo,
+  LIO: lioLogo,
+  SHA: shaLogo,
 };
 
 const fallbackColors: Record<string, { bg: string; text: string }> = {
   // SA Football
-  KC: { bg: "#000000", text: "#FFD700" },
-  OP: { bg: "#000000", text: "#FFFFFF" },
-  SUN: { bg: "#FFD700", text: "#003399" },
-  SSU: { bg: "#003399", text: "#FFFFFF" },
-  AMA: { bg: "#006633", text: "#FFFFFF" },
-  RAM: { bg: "#8B0000", text: "#FFD700" },
-  CTC: { bg: "#87CEEB", text: "#003399" },
-  SFC: { bg: "#8B0000", text: "#FFFFFF" },
   CHI: { bg: "#006633", text: "#FFFFFF" },
   TSG: { bg: "#FF6600", text: "#000000" },
   // Cricket
-  JSK: { bg: "#FFD700", text: "#003399" },
-  PR: { bg: "#8B008B", text: "#FFD700" },
-  MICT: { bg: "#004B87", text: "#FFFFFF" },
-  DSG: { bg: "#FF4500", text: "#FFFFFF" },
   SA: { bg: "#007749", text: "#FFD700" },
   IND: { bg: "#0066CC", text: "#FF9933" },
   TIT: { bg: "#87CEEB", text: "#003399" },
@@ -50,20 +76,8 @@ const fallbackColors: Record<string, { bg: string; text: string }> = {
   R3: { bg: "#8B4513", text: "#FFD700" },
   SC: { bg: "#2E8B57", text: "#FFFFFF" },
   // Rugby
-  STO: { bg: "#003DA5", text: "#FFFFFF" },
-  BUL: { bg: "#003DA5", text: "#FFFFFF" },
-  SHA: { bg: "#000000", text: "#FFFFFF" },
-  LIO: { bg: "#E2001A", text: "#FFFFFF" },
   WP: { bg: "#003DA5", text: "#FFFFFF" },
   BB: { bg: "#003DA5", text: "#FFFFFF" },
-  // International football
-  PSG: { bg: "#004170", text: "#fff" },
-  OM: { bg: "#2FAEE0", text: "#fff" },
-  BAR: { bg: "#A91B2E", text: "#004D98" },
-  MCI: { bg: "#6CABDD", text: "#fff" },
-  LIV: { bg: "#C8102E", text: "#fff" },
-  BAY: { bg: "#DC052D", text: "#fff" },
-  INT: { bg: "#010E80", text: "#fff" },
   // Tennis
   ALC: { bg: "#E2001A", text: "#FFD700" },
   DJO: { bg: "#003DA5", text: "#FFFFFF" },
