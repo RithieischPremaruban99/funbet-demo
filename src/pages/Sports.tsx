@@ -130,11 +130,11 @@ const Sports = () => {
   const totalOdds = selections.reduce((acc, s) => acc * s.odds, 1);
 
   const getOddsLabels = () => {
-    if (currentSport === "Tennis" || currentSport === "Basketball" || currentSport === "Athletics") return { home: "1", draw: "", away: "2" };
+    if (currentSport === "Tennis" || currentSport === "Cricket" || currentSport === "Horse Racing") return { home: "1", draw: "", away: "2" };
     return { home: "1", draw: "X", away: "2" };
   };
   const oddsLabels = getOddsLabels();
-  const hasDraw = currentSport === "Football" || currentSport === "Boxing";
+  const hasDraw = currentSport === "Football" || currentSport === "Rugby";
 
   return (
     <MobileLayout>
