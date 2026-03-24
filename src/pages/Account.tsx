@@ -10,7 +10,7 @@ import orangeLogo from "@/assets/orange.svg";
 import africellLogo from "@/assets/africell.png";
 
 const activeBets = [
-  { match: "TP Mazembe vs AS Vita Club", pick: "TP Mazembe (1)", odds: 1.85, stake: 100, status: "live", time: "67'" },
+  { match: "Kaizer Chiefs vs Orlando Pirates Club", pick: "Kaizer Chiefs (1)", odds: 1.85, stake: 100, status: "live", time: "67'" },
   { match: "DR Congo vs Zambia", pick: "DR Congo (1)", odds: 1.95, stake: 50, status: "upcoming", time: "SAT 5:00 PM" },
 ];
 
@@ -25,7 +25,7 @@ const betSlips = [
     wins: "3 of 3",
     odds: "4.50x",
     picks: [
-      { name: "V. Osimhen", team: "TP Mazembe", match: "vs. AS Vita - TODAY", stat: "Goals", value: "0.5", badge: "TPM", badgeColor: "bg-primary", status: "won", matchId: 501, fullMatch: "TP Mazembe vs AS Vita", pick: "V. Osimhen +0.5 Goals", pickOdds: 1.75, league: "Linafoot" },
+      { name: "V. Osimhen", team: "Kaizer Chiefs", match: "vs. Orlando Pirates - TODAY", stat: "Goals", value: "0.5", badge: "TPM", badgeColor: "bg-primary", status: "won", matchId: 501, fullMatch: "Kaizer Chiefs vs Orlando Pirates", pick: "V. Osimhen +0.5 Goals", pickOdds: 1.75, league: "DStv Premiership" },
       { name: "C. Bakambu", team: "DR Congo", match: "vs. Zambia - TOMORROW", stat: "Shots", value: "2.5", badge: "RDC", badgeColor: "bg-highlight", status: "won", matchId: 502, fullMatch: "DR Congo vs Zambia", pick: "C. Bakambu +2.5 Shots", pickOdds: 1.90, league: "AFCON Qualifiers" },
     ],
     amount: "R50",
@@ -41,8 +41,8 @@ const betSlips = [
     wins: "1 of 2",
     odds: "2.00x",
     picks: [
-      { name: "M. Chancel", team: "TP Mazembe", match: "vs DCMP - TODAY", stat: "Tackles", value: "1.5", badge: "TPM", badgeColor: "bg-primary", status: "lost", matchId: 503, fullMatch: "TP Mazembe vs DCMP", pick: "M. Chancel +1.5 Tackles", pickOdds: 2.10, league: "Linafoot" },
-      { name: "Y. Mulumba", team: "AS Vita", match: "vs. Lupopo - YESTERDAY", stat: "Passes", value: "3.5", badge: "ASV", badgeColor: "bg-accent", status: "won", matchId: 504, fullMatch: "AS Vita vs Lupopo", pick: "Y. Mulumba +3.5 Passes", pickOdds: 1.65, league: "Linafoot" },
+      { name: "M. Chancel", team: "Kaizer Chiefs", match: "vs Mamelodi Sundowns - TODAY", stat: "Tackles", value: "1.5", badge: "TPM", badgeColor: "bg-primary", status: "lost", matchId: 503, fullMatch: "Kaizer Chiefs vs Mamelodi Sundowns", pick: "M. Chancel +1.5 Tackles", pickOdds: 2.10, league: "DStv Premiership" },
+      { name: "Y. Mulumba", team: "Orlando Pirates", match: "vs. Lupopo - YESTERDAY", stat: "Passes", value: "3.5", badge: "ASV", badgeColor: "bg-accent", status: "won", matchId: 504, fullMatch: "Orlando Pirates vs Lupopo", pick: "Y. Mulumba +3.5 Passes", pickOdds: 1.65, league: "DStv Premiership" },
     ],
     amount: "R100",
     payout: "R0",

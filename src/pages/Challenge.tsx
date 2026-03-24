@@ -10,7 +10,7 @@ const activeChallenges = [
   {
     id: 1,
     opponent: "Mike K.",
-    match: "PSG vs Bayern",
+    match: "Chiefs vs Pirates",
     myPick: "PSG (1)",
     opponentPick: "Bayern (2)",
     stake: 50,
@@ -20,7 +20,7 @@ const activeChallenges = [
   {
     id: 2,
     opponent: "Sarah M.",
-    match: "OM vs PSG",
+    match: "Sundowns vs Pirates",
     myPick: "Over 2.5 goals",
     opponentPick: "Under 2.5 goals",
     stake: 20,
@@ -38,10 +38,10 @@ const leaderboard = [
 ];
 
 const challengeMatches = [
-  { id: 101, home: "Paris SG", homeAbbr: "PSG", away: "FC Bayern", awayAbbr: "BAY", league: "Champions League", date: "TOMORROW 9:00 PM" },
-  { id: 102, home: "FC Barcelona", homeAbbr: "BAR", away: "Inter Milan", awayAbbr: "INT", league: "Champions League", date: "TOMORROW 9:00 PM" },
-  { id: 103, home: "Olympique Marseille", homeAbbr: "OM", away: "Paris SG", awayAbbr: "PSG", league: "Ligue 1", date: "SAT 5:00 PM" },
-  { id: 104, home: "Liverpool FC", homeAbbr: "LIV", away: "Manchester City", awayAbbr: "MCI", league: "Premier League", date: "SUN 4:00 PM" },
+  { id: 101, home: "Kaizer Chiefs", homeAbbr: "PSG", away: "Orlando Pirates", awayAbbr: "BAY", league: "Nedbank Cup", date: "TOMORROW 9:00 PM" },
+  { id: 102, home: "Mamelodi Sundowns", homeAbbr: "BAR", away: "Cape Town City", awayAbbr: "INT", league: "Nedbank Cup", date: "TOMORROW 9:00 PM" },
+  { id: 103, home: "Stellenbosch FC", homeAbbr: "OM", away: "Kaizer Chiefs", awayAbbr: "PSG", league: "DStv Premiership", date: "SAT 5:00 PM" },
+  { id: 104, home: "AmaZulu FC", homeAbbr: "LIV", away: "SuperSport Utd", awayAbbr: "MCI", league: "PSL", date: "SUN 4:00 PM" },
 ];
 
 const stakeOptions = [10, 20, 50, 100, 250];
