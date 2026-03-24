@@ -26,7 +26,7 @@ const feedPosts = [
   {
     id: 1, user: "Patrice M.", avatar: "PM", slug: "patrice-m", time: "5 min ago", verified: true,
     text: "🔥 TP Mazembe is winning tonight, I'm sure! Odds 1.85 are a steal!",
-    bet: { matchId: 101, match: "TP Mazembe vs AS Vita", pick: "TP Mazembe (1)", odds: 1.85, amount: "$50", status: "in play", league: "Linafoot" },
+    bet: { matchId: 101, match: "TP Mazembe vs AS Vita", pick: "TP Mazembe (1)", odds: 1.85, amount: "+R50", status: "in play", league: "Linafoot" },
     multiBet: null,
     likes: 42, comments: 12, shares: 5,
   },
@@ -41,7 +41,7 @@ const feedPosts = [
         { matchId: 203, match: "AS Vita vs DCMP", pick: "Draw (X)", odds: 3.10, league: "Linafoot" },
       ],
       totalOdds: 15.71,
-      stake: "$20",
+      stake: "+R20",
     },
     result: { amount: "+$250", type: "win" },
     likes: 128, comments: 34, shares: 18,
@@ -49,7 +49,7 @@ const feedPosts = [
   {
     id: 3, user: "David N.", avatar: "DN", slug: "david-n", time: "32 min ago", verified: true,
     text: "Who's watching DCMP vs Lupopo? The draw at 3.20 looks tempting...",
-    bet: { matchId: 301, match: "DCMP vs FC Lupopo", pick: "Draw (X)", odds: 3.20, amount: "$20", status: "in play", league: "Linafoot" },
+    bet: { matchId: 301, match: "DCMP vs FC Lupopo", pick: "Draw (X)", odds: 3.20, amount: "+R20", status: "in play", league: "Linafoot" },
     multiBet: null,
     likes: 21, comments: 8, shares: 2,
   },
@@ -65,7 +65,7 @@ const feedPosts = [
         { matchId: 404, match: "Mazembe vs Renaissance", pick: "TP Mazembe (1)", odds: 1.15, league: "Linafoot" },
       ],
       totalOdds: 10.05,
-      stake: "$100",
+      stake: "+R100",
     },
     likes: 87, comments: 22, shares: 14,
   },
@@ -81,9 +81,9 @@ const leaderboardUsers = [
 ];
 
 const challenges = [
-  { id: 1, title: "Kinshasa Derby", description: "TP Mazembe vs AS Vita – Who wins?", participants: 234, prize: "$500", deadline: "Tonight 8PM", hot: true },
-  { id: 2, title: "Weekend King", description: "Best 3-match combo this weekend", participants: 89, prize: "$1,000", deadline: "Sun 11:59PM", hot: false },
-  { id: 3, title: "Odds Hunter", description: "Find the biggest winning odds", participants: 156, prize: "$750", deadline: "7 days", hot: true },
+  { id: 1, title: "Kinshasa Derby", description: "TP Mazembe vs AS Vita – Who wins?", participants: 234, prize: "+R500", deadline: "Tonight 8PM", hot: true },
+  { id: 2, title: "Weekend King", description: "Best 3-match combo this weekend", participants: 89, prize: "+R1,000", deadline: "Sun 11:59PM", hot: false },
+  { id: 3, title: "Odds Hunter", description: "Find the biggest winning odds", participants: 156, prize: "+R750", deadline: "7 days", hot: true },
 ];
 
 const chatGroups = [
