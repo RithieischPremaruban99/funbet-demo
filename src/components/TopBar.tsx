@@ -1,4 +1,4 @@
-import { Bell, Search, Wallet, Paintbrush } from "lucide-react";
+import { Bell, Search, Wallet, Paintbrush, Crown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import GlobalSearch from "@/components/GlobalSearch";
