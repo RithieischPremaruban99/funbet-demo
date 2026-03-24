@@ -24,6 +24,16 @@ const TopBar = () => {
             )}
           </Link>
           <div className="flex items-center gap-1.5">
+            <Link to="/rewards" className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all"
+              style={{
+                background: "linear-gradient(135deg, hsla(14,90%,52%,0.15), hsla(200,65%,55%,0.1))",
+                border: "1px solid hsla(14,90%,52%,0.3)",
+                boxShadow: "0 0 10px hsla(14,90%,52%,0.1)",
+              }}
+            >
+              <Crown size={14} className="text-primary" />
+              <span className="text-primary">Rewards</span>
+            </Link>
             <button
               onClick={() => setShowPanel(!showPanel)}
               className={`p-2 rounded-xl hover:bg-secondary/20 transition-colors ${showPanel ? 'bg-secondary/20' : ''}`}
@@ -41,6 +51,12 @@ const TopBar = () => {
               <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-accent animate-pulse-live" />
             </button>
             <Link to="/deposit" className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold btn-gold-shimmer red-gradient text-primary-foreground" style={{
+              boxShadow: "0 0 12px hsl(var(--primary) / 0.15)",
+            }}>
+              <Wallet size={14} />
+              <span>$1,250</span>
+            </Link>
+          </div>
               boxShadow: "0 0 12px hsl(var(--primary) / 0.15)",
             }}>
               <Wallet size={14} />
