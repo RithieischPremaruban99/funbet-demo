@@ -59,7 +59,7 @@ const initialDaily: Mission[] = [
   { id: 1, title: "Daily Login", icon: "CalendarCheck", xp: 20, progress: 1, total: 1, done: true, claimed: false },
   { id: 2, title: "Place 3 bets", icon: "Target", xp: 50, progress: 2, total: 3, done: false, claimed: false },
   { id: 3, title: "Win a combo bet", icon: "Zap", xp: 100, progress: 0, total: 1, done: false, claimed: false },
-  { id: 4, title: "Deposit $20+", icon: "TrendingUp", xp: 30, progress: 1, total: 1, done: true, claimed: false },
+  { id: 4, title: "Deposit R200+", icon: "TrendingUp", xp: 30, progress: 1, total: 1, done: true, claimed: false },
   { id: 5, title: "Share a bet slip", icon: "Gift", xp: 25, progress: 0, total: 1, done: false, claimed: false },
   { id: 6, title: "Try a live bet", icon: "Flame", xp: 40, progress: 0, total: 1, done: false, claimed: false },
 ];
