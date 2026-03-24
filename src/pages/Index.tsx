@@ -365,9 +365,9 @@ const Index = () => {
 
       {/* Gamification Banner */}
       <section className="px-4 mt-4">
-        <Link to="/rewards" className="rounded-2xl border-2 border-yellow-500/50 bg-gradient-to-r from-yellow-500/10 via-amber-500/5 to-yellow-600/10 p-3 flex items-center gap-3 hover:border-yellow-400/70 hover:from-yellow-500/15 hover:to-yellow-600/15 transition-all shadow-[0_0_20px_hsla(45,90%,50%,0.12)]">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-yellow-500/30 to-amber-600/20 border border-yellow-500/30 flex items-center justify-center flex-shrink-0">
-            <Crown size={22} className="text-yellow-400" />
+        <Link to="/rewards" className="rounded-2xl border-2 border-primary/50 bg-gradient-to-r from-primary/10 via-primary/5 to-accent/10 p-3 flex items-center gap-3 hover:border-primary/70 hover:from-primary/15 hover:to-accent/15 transition-all shadow-[0_0_20px_hsl(var(--primary)/0.12)]">
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-primary/30 to-accent/20 border border-primary/30 flex items-center justify-center flex-shrink-0">
+            <Crown size={22} className="text-primary" />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
@@ -380,7 +380,7 @@ const Index = () => {
             </div>
             <div className="flex items-center gap-2 mt-1">
               <div className="flex-1 h-1.5 rounded-full bg-border overflow-hidden">
-                <div className="h-full rounded-full bg-gradient-to-r from-primary to-highlight" style={{ width: "78%" }} />
+                <div className="h-full rounded-full bg-gradient-to-r from-primary to-accent" style={{ width: "78%" }} />
               </div>
               <span className="text-[9px] text-muted-foreground">2,340 / 3,000 XP</span>
             </div>
@@ -390,12 +390,12 @@ const Index = () => {
                 <span className="text-[9px] text-muted-foreground">2/4 missions</span>
               </div>
               <div className="flex items-center gap-1">
-                <Trophy size={10} className="text-highlight" />
+                <Trophy size={10} className="text-accent" />
                 <span className="text-[9px] text-muted-foreground">3/8 badges</span>
               </div>
             </div>
           </div>
-          <ChevronRight size={16} className="text-yellow-400 flex-shrink-0" />
+          <ChevronRight size={16} className="text-primary flex-shrink-0" />
         </Link>
       </section>
 
