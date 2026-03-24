@@ -2,9 +2,9 @@ import MobileLayout from "@/components/MobileLayout";
 import { Clock, Gift, Percent, Star, Trophy, Smartphone } from "lucide-react";
 
 const promos = [
-  { id: 1, title: "Welcome Bonus", description: "100% up to 50,000 CDF on your first deposit", icon: Gift, tag: "New", expiry: "Permanent offer", featured: true },
-  { id: 2, title: "Free Bets Linafoot", description: "5,000 CDF in free bets every weekend", icon: Trophy, tag: "Sports", expiry: "Every week", featured: false },
-  { id: 3, title: "Mobile Money Bonus", description: "5% bonus on every deposit via M-Pesa or Airtel Money", icon: Smartphone, tag: "Deposit", expiry: "Until March 31", featured: false },
+  { id: 1, title: "Welcome Bonus", description: "100% up to R5,000 on your first deposit", icon: Gift, tag: "New", expiry: "Permanent offer", featured: true },
+  { id: 2, title: "Free Bets PSL", description: "R500 in free bets every weekend", icon: Trophy, tag: "Sports", expiry: "Every week", featured: false },
+  { id: 3, title: "Mobile Money Bonus", description: "5% bonus on every deposit via Capitec or FNB eWallet", icon: Smartphone, tag: "Deposit", expiry: "Until March 31", featured: false },
   { id: 4, title: "Casino Cashback", description: "10% cashback on your casino losses", icon: Percent, tag: "Casino", expiry: "Expires in 3 days", featured: false },
   { id: 5, title: "VIP Program", description: "Double loyalty points this month", icon: Star, tag: "VIP", expiry: "Until Feb 28", featured: false },
 ];

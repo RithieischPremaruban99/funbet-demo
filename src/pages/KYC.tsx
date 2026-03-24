@@ -53,7 +53,7 @@ const KYC = () => {
                   {[
                     { label: "Full name (as on ID document)", type: "text", placeholder: "John Doe" },
                     { label: "Date of birth", type: "date", placeholder: "" },
-                    { label: "Address", type: "text", placeholder: "45 Lumumba Avenue, Kinshasa" },
+                    { label: "Address", type: "text", placeholder: "123 Nelson Mandela Drive, Johannesburg" },
                   ].map((field, i) => (
                     <motion.div
                       key={field.label}
@@ -181,7 +181,7 @@ const KYC = () => {
                   <Shield size={14} className="text-primary mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="text-[10px] text-primary font-medium">Your documents are secure</p>
-                    <p className="text-[9px] text-muted-foreground mt-0.5">In compliance with DRC Law 20/017 and Digital Code 23/010</p>
+                    <p className="text-[9px] text-muted-foreground mt-0.5">In compliance with South African National Gambling Act</p>
                   </div>
                 </div>
               </div>
