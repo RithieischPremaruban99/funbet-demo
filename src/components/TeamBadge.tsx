@@ -14,11 +14,19 @@ import amaLogo from "@/assets/clubs/ama.png";
 import ramLogo from "@/assets/clubs/ram.png";
 import ctcLogo from "@/assets/clubs/ctc.png";
 import sfcLogo from "@/assets/clubs/sfc.png";
+import chiLogo from "@/assets/clubs/chi.png";
+import tsgLogo from "@/assets/clubs/tsg.png";
 // SA Cricket
 import jskLogo from "@/assets/clubs/jsk.png";
 import prLogo from "@/assets/clubs/pr.png";
 import mictLogo from "@/assets/clubs/mict.png";
 import dsgLogo from "@/assets/clubs/dsg.png";
+import saLogo from "@/assets/clubs/sa.png";
+import indLogo from "@/assets/clubs/ind.png";
+import titLogo from "@/assets/clubs/tit.png";
+import dolLogo from "@/assets/clubs/dol.png";
+import miLogo from "@/assets/clubs/mi.png";
+import cskLogo from "@/assets/clubs/csk.png";
 // SA Rugby
 import stoLogo from "@/assets/clubs/sto.png";
 import bulLogo from "@/assets/clubs/bul.png";
@@ -47,16 +55,26 @@ const clubLogos: Record<string, string> = {
   RAM: ramLogo,
   CTC: ctcLogo,
   SFC: sfcLogo,
+  CHI: chiLogo,
+  TSG: tsgLogo,
   // SA Cricket
   JSK: jskLogo,
   PR: prLogo,
   MICT: mictLogo,
   DSG: dsgLogo,
+  SA: saLogo,
+  IND: indLogo,
+  TIT: titLogo,
+  DOL: dolLogo,
+  MI: miLogo,
+  CSK: cskLogo,
   // SA Rugby
   STO: stoLogo,
   BUL: bulLogo,
   LIO: lioLogo,
   SHA: shaLogo,
+  WP: stoLogo,  // Western Province = Stormers
+  BB: bulLogo,  // Blue Bulls = Bulls
   // Horse Racing Tracks
   TF: tfLogo,
   KW: kwLogo,
@@ -71,29 +89,6 @@ const clubLogos: Record<string, string> = {
 };
 
 const fallbackColors: Record<string, { bg: string; text: string }> = {
-  // SA Football
-  CHI: { bg: "#006633", text: "#FFFFFF" },
-  TSG: { bg: "#FF6600", text: "#000000" },
-  // Cricket
-  SA: { bg: "#007749", text: "#FFD700" },
-  IND: { bg: "#0066CC", text: "#FF9933" },
-  TIT: { bg: "#87CEEB", text: "#003399" },
-  DOL: { bg: "#333333", text: "#FFFFFF" },
-  MI: { bg: "#004B87", text: "#FFD700" },
-  CSK: { bg: "#FFD700", text: "#0066CC" },
-  // Horse Racing
-  R5: { bg: "#8B4513", text: "#FFD700" },
-  R6: { bg: "#8B4513", text: "#FFD700" },
-  TF: { bg: "#2E8B57", text: "#FFFFFF" },
-  MET: { bg: "#800020", text: "#FFD700" },
-  KW: { bg: "#2E8B57", text: "#FFFFFF" },
-  GC: { bg: "#006633", text: "#FFD700" },
-  GV: { bg: "#2E8B57", text: "#FFFFFF" },
-  R3: { bg: "#8B4513", text: "#FFD700" },
-  SC: { bg: "#2E8B57", text: "#FFFFFF" },
-  // Rugby
-  WP: { bg: "#003DA5", text: "#FFFFFF" },
-  BB: { bg: "#003DA5", text: "#FFFFFF" },
   // Tennis
   ALC: { bg: "#E2001A", text: "#FFD700" },
   DJO: { bg: "#003DA5", text: "#FFFFFF" },
