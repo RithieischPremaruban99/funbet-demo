@@ -51,7 +51,7 @@ function getXPForNextLevel(level: number): number {
 const LEVEL_PERKS: Record<number, string> = {
   5: "Unlock FlexBet",
   10: "Bonus multiplier ×1.1",
-  15: "Free bet $10",
+  15: "Free bet R100",
   20: "VIP access",
 };
 
