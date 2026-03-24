@@ -1,15 +1,15 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import brandLogo from "@/assets/kcs-logo.jpg";
+import brandLogo from "@/assets/wsb-logo.png";
 
 const PETAL_COLORS = [
-  "hsla(270, 55%, 35%, 0.9)",
-  "hsla(45, 95%, 55%, 0.9)",
-  "hsla(42, 90%, 58%, 0.8)",
-  "hsla(270, 40%, 45%, 0.9)",
-  "hsla(45, 80%, 50%, 0.7)",
-  "hsla(270, 30%, 30%, 0.8)",
+  "hsla(14, 90%, 52%, 0.9)",
+  "hsla(200, 65%, 55%, 0.9)",
+  "hsla(14, 85%, 58%, 0.8)",
+  "hsla(0, 0%, 100%, 0.7)",
+  "hsla(200, 60%, 50%, 0.7)",
+  "hsla(14, 80%, 45%, 0.8)",
 ];
 
 const ColorParticle = ({ delay, x, y, size, duration, color }: { delay: number; x: number; y: number; size: number; duration: number; color: string }) => (
@@ -99,8 +99,8 @@ const Splash = () => {
         className="absolute rounded-full"
         style={{
           width: 4, height: 4,
-          background: "hsl(45, 95%, 55%)",
-          boxShadow: "0 0 20px hsl(45,95%,55%), 0 0 40px hsla(45,95%,55%,0.5)",
+          background: "hsl(14, 90%, 52%)",
+          boxShadow: "0 0 20px hsl(14,90%,52%), 0 0 40px hsla(14,90%,52%,0.5)",
         }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{
@@ -122,7 +122,7 @@ const Splash = () => {
       {/* Ambient glow */}
       <motion.div
         className="absolute"
-        style={{ width: 600, height: 600, background: "radial-gradient(circle, hsla(45,95%,55%,0.04) 0%, transparent 60%)" }}
+        style={{ width: 600, height: 600, background: "radial-gradient(circle, hsla(14,90%,52%,0.04) 0%, transparent 60%)" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: phase >= 1 ? 1 : 0, scale: [1, 1.1, 1] }}
         transition={{ opacity: { duration: 0.5 }, scale: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
@@ -135,7 +135,7 @@ const Splash = () => {
         animate={{ opacity: phase >= 2 ? 1 : 0, scale: phase >= 2 ? 1 : 0.5 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <img src={brandLogo} alt="KCS" className="w-40 h-40 object-contain rounded-3xl" style={{ boxShadow: "0 0 40px hsla(270,55%,35%,0.3)" }} />
+        <img src={brandLogo} alt="World Sports Betting" className="w-40 h-40 object-contain rounded-3xl" style={{ boxShadow: "0 0 40px hsla(14,90%,52%,0.3)" }} />
       </motion.div>
 
       {/* Brand tagline */}
@@ -151,7 +151,7 @@ const Splash = () => {
           initial={{ width: 0, opacity: 0 }}
           animate={phase >= 3 ? { width: 200, opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          style={{ height: 1, background: "linear-gradient(90deg, transparent, hsl(45,95%,55%), transparent)" }}
+          style={{ height: 1, background: "linear-gradient(90deg, transparent, hsl(14,90%,52%), transparent)" }}
         />
 
         <motion.p
@@ -175,7 +175,7 @@ const Splash = () => {
         <div className="h-[1px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
           <motion.div
             className="h-full rounded-full"
-            style={{ background: "linear-gradient(90deg, hsl(270,55%,35%), hsl(270,40%,45%), hsl(45,95%,55%), hsl(42,90%,58%))" }}
+            style={{ background: "linear-gradient(90deg, hsl(14,90%,52%), hsl(14,85%,58%), hsl(200,65%,55%))" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 3.5, ease: "easeInOut", delay: 0.5 }}

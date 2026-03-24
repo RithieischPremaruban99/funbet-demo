@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import brandLogo from "@/assets/kcs-logo.jpg";
+import brandLogo from "@/assets/wsb-logo.png";
 
 const AgeVerification = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const AgeVerification = () => {
       animate={{ opacity: exiting ? 0 : 1, y: exiting ? -20 : 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       style={{
-        background: "radial-gradient(ellipse at 50% 40%, hsla(270,55%,35%,0.06) 0%, hsl(var(--background)) 50%, hsl(var(--background)) 100%)",
+        background: "radial-gradient(ellipse at 50% 40%, hsla(14,90%,52%,0.06) 0%, hsl(var(--background)) 50%, hsl(var(--background)) 100%)",
       }}
     >
       {/* Geometric pattern */}
@@ -35,7 +35,7 @@ const AgeVerification = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-primary" />
       </div>
 
-      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(270,55%,35%,0.04) 0%, transparent 70%)" }} />
+      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(14,90%,52%,0.04) 0%, transparent 70%)" }} />
 
       {/* Logo */}
       <motion.div
@@ -44,7 +44,7 @@ const AgeVerification = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <img src={brandLogo} alt="KCS" className="w-32 h-32 object-contain rounded-2xl" style={{ boxShadow: "0 0 30px hsla(270,55%,35%,0.2)" }} />
+        <img src={brandLogo} alt="World Sports Betting" className="w-32 h-32 object-contain rounded-2xl" style={{ boxShadow: "0 0 30px hsla(14,90%,52%,0.2)" }} />
       </motion.div>
 
       <motion.div
@@ -64,13 +64,13 @@ const AgeVerification = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 0.4, delay: 0.5, type: "spring", stiffness: 200 }}
         >
-          <Shield size={32} className="text-secondary" />
+          <Shield size={32} className="text-accent" />
         </motion.div>
 
         <h1 className="text-xl font-bold mb-2" style={{ fontFamily: "var(--font-display)", letterSpacing: "0.05em" }}>Age Verification</h1>
         <p className="text-sm mb-6 leading-relaxed text-muted-foreground">
           Gambling is strictly reserved for persons aged{" "}
-          <span className="font-bold text-secondary">18 and over</span>.
+          <span className="font-bold text-primary">18 and over</span>.
         </p>
 
         <p className="text-sm font-semibold mb-6 text-foreground">Are you 18 or older?</p>
@@ -83,7 +83,7 @@ const AgeVerification = () => {
         >
           <motion.button
             onClick={handleDeny}
-            className="flex-1 py-3 rounded-xl text-sm font-semibold border border-secondary/40 text-secondary bg-transparent btn-gold-shimmer"
+            className="flex-1 py-3 rounded-xl text-sm font-semibold border border-primary/40 text-primary bg-transparent btn-gold-shimmer"
             whileTap={{ scale: 0.96 }}
           >
             No
@@ -106,8 +106,8 @@ const AgeVerification = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.6 }}
       >
-        <p className="text-[10px] font-medium text-secondary/50">Licensed & Regulated</p>
-        <p className="text-[10px] mt-1 text-secondary/50">🔞 Gamble Responsibly</p>
+        <p className="text-[10px] font-medium text-muted-foreground">Licensed & Regulated</p>
+        <p className="text-[10px] mt-1 text-muted-foreground">🔞 Gamble Responsibly</p>
       </motion.div>
     </motion.div>
   );
