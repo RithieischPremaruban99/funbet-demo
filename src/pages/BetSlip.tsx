@@ -338,22 +338,22 @@ const BetSlip = () => {
                 )}
                 {boosters.oneCut && <div className="flex justify-between text-xs"><span className="text-muted-foreground">✂️ 1Cut multiplier</span><span className="font-bold text-primary">×{getOneCutMultiplier(totalOdds, selections.length).toFixed(2)}</span></div>}
                 {boosters.anyWin && <div className="flex justify-between text-xs"><span className="text-muted-foreground">⭐ AnyWin multiplier</span><span className="font-bold text-highlight">×{getAnyWinMultiplier(selections.length).toFixed(2)}</span></div>}
-                <div className="flex justify-between text-xs"><span className="text-muted-foreground">{betType === "system" ? "Total stake" : "Stake"}</span><span className="font-medium">${totalStake.toLocaleString()}</span></div>
-                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Base win</span><span className="font-medium">${rawWin.toLocaleString()}</span></div>
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">{betType === "system" ? "Total stake" : "Stake"}</span><span className="font-medium">R{totalStake.toLocaleString()}</span></div>
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Base win</span><span className="font-medium">R{rawWin.toLocaleString()}</span></div>
                 {boosterFee > 0 && (
-                  <div className="flex justify-between text-xs"><span className="text-muted-foreground">Booster fees ({boosterFeePercent}%)</span><span className="font-medium text-destructive">-${boosterFee.toLocaleString()}</span></div>
+                  <div className="flex justify-between text-xs"><span className="text-muted-foreground">Booster fees ({boosterFeePercent}%)</span><span className="font-medium text-destructive">-R{boosterFee.toLocaleString()}</span></div>
                 )}
                 {accaBonusPercent > 0 && (
-                  <div className="flex justify-between text-xs"><span className="text-muted-foreground">Acca Bonus (+{accaBonusPercent}%)</span><span className="font-medium text-success">+${accaBonusAmount.toLocaleString()}</span></div>
+                  <div className="flex justify-between text-xs"><span className="text-muted-foreground">Acca Bonus (+{accaBonusPercent}%)</span><span className="font-medium text-success">+R{accaBonusAmount.toLocaleString()}</span></div>
                 )}
-                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Potential win</span><span className="font-medium">${potentialWin.toLocaleString()}</span></div>
-                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Winnings tax (10%)</span><span className="font-medium text-destructive">-${tax.toLocaleString()}</span></div>
-                <div className="border-t border-border pt-1.5 flex justify-between text-sm"><span className="font-bold">Net payout</span><span className="font-bold text-highlight">${netPayout.toLocaleString()}</span></div>
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Potential win</span><span className="font-medium">R{potentialWin.toLocaleString()}</span></div>
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Winnings tax (15%)</span><span className="font-medium text-destructive">-R{tax.toLocaleString()}</span></div>
+                <div className="border-t border-border pt-1.5 flex justify-between text-sm"><span className="font-bold">Net payout</span><span className="font-bold text-highlight">R{netPayout.toLocaleString()}</span></div>
               </div>
             </div>
 
             <button onClick={() => setConfirmed(true)} className="w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange mb-4">
-              Place Bet — ${totalStake.toLocaleString()}
+              Place Bet — R{totalStake.toLocaleString()}
             </button>
 
             <button onClick={() => clearSelections()} className="w-full py-2 flex items-center justify-center gap-1.5 text-xs text-destructive">
