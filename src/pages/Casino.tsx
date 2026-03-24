@@ -575,7 +575,7 @@ const GameModal = ({ game, onClose }: { game: typeof games[0]; onClose: () => vo
         <div className="rounded-xl border border-border p-3 card-gradient">
           <p className="text-[10px] text-muted-foreground uppercase font-bold mb-2">Recent Wins</p>
           <div className="space-y-2">
-            {[{ user: "Joh***", amount: "$125" }, { user: "Pat***", amount: "$82" }, { user: "Kin***", amount: "$450" }].map((w, i) => (
+            {[{ user: "Joh***", amount: "R125" }, { user: "Pat***", amount: "R82" }, { user: "Kin***", amount: "R450" }].map((w, i) => (
               <div key={i} className="flex items-center justify-between">
                 <span className="text-xs text-foreground">{w.user}</span>
                 <span className="text-xs font-bold text-success">+{w.amount}</span>

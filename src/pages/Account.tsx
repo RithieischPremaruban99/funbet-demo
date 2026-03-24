@@ -28,8 +28,8 @@ const betSlips = [
       { name: "V. Osimhen", team: "TP Mazembe", match: "vs. AS Vita - TODAY", stat: "Goals", value: "0.5", badge: "TPM", badgeColor: "bg-primary", status: "won", matchId: 501, fullMatch: "TP Mazembe vs AS Vita", pick: "V. Osimhen +0.5 Goals", pickOdds: 1.75, league: "Linafoot" },
       { name: "C. Bakambu", team: "DR Congo", match: "vs. Zambia - TOMORROW", stat: "Shots", value: "2.5", badge: "RDC", badgeColor: "bg-highlight", status: "won", matchId: 502, fullMatch: "DR Congo vs Zambia", pick: "C. Bakambu +2.5 Shots", pickOdds: 1.90, league: "AFCON Qualifiers" },
     ],
-    amount: "$50",
-    payout: "$225",
+    amount: "R50",
+    payout: "R225",
   },
   {
     user: "LubumParieur",
@@ -44,8 +44,8 @@ const betSlips = [
       { name: "M. Chancel", team: "TP Mazembe", match: "vs DCMP - TODAY", stat: "Tackles", value: "1.5", badge: "TPM", badgeColor: "bg-primary", status: "lost", matchId: 503, fullMatch: "TP Mazembe vs DCMP", pick: "M. Chancel +1.5 Tackles", pickOdds: 2.10, league: "Linafoot" },
       { name: "Y. Mulumba", team: "AS Vita", match: "vs. Lupopo - YESTERDAY", stat: "Passes", value: "3.5", badge: "ASV", badgeColor: "bg-accent", status: "won", matchId: 504, fullMatch: "AS Vita vs Lupopo", pick: "Y. Mulumba +3.5 Passes", pickOdds: 1.65, league: "Linafoot" },
     ],
-    amount: "$100",
-    payout: "$0",
+    amount: "R100",
+    payout: "R0",
   },
 ];
 
@@ -109,8 +109,8 @@ const Account = () => {
         <div className="mt-3 rounded-2xl p-3 border border-border card-gradient">
           <div className="grid grid-cols-3 gap-2">
             {[
-              { label: "Balance", value: "$1,250" },
-              { label: "Bonus", value: "$375" },
+              { label: "Balance", value: "R1,250" },
+              { label: "Bonus", value: "R375" },
               { label: "Points", value: "1,240" },
             ].map((stat) => (
               <div key={stat.label} className="text-center p-2 rounded-xl bg-card-elevated border border-border">
