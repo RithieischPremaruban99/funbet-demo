@@ -33,9 +33,9 @@ const ResponsibleGaming = () => {
           </h3>
           <div className="space-y-3">
             {[
-              { label: "Daily Limit (CDF)", value: dailyLimit, set: setDailyLimit },
-              { label: "Weekly Limit (CDF)", value: weeklyLimit, set: setWeeklyLimit },
-              { label: "Monthly Limit (CDF)", value: monthlyLimit, set: setMonthlyLimit },
+              { label: "Daily Limit (ZAR)", value: dailyLimit, set: setDailyLimit },
+              { label: "Weekly Limit (ZAR)", value: weeklyLimit, set: setWeeklyLimit },
+              { label: "Monthly Limit (ZAR)", value: monthlyLimit, set: setMonthlyLimit },
             ].map((item) => (
               <div key={item.label}>
                 <label className="text-[10px] font-medium text-muted-foreground mb-1 block">{item.label}</label>

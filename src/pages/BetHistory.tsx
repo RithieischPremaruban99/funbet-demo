@@ -170,16 +170,16 @@ const BetHistory = () => {
         <div className="grid grid-cols-3 gap-2">
           <div className="rounded-xl bg-card-elevated border border-border p-2.5 text-center">
             <p className="text-[10px] text-muted-foreground">Total Staked</p>
-            <p className="text-xs font-bold">{stats.totalStake.toLocaleString()} CDF</p>
+            <p className="text-xs font-bold">{stats.totalStake.toLocaleString()} ZAR</p>
           </div>
           <div className="rounded-xl bg-card-elevated border border-border p-2.5 text-center">
             <p className="text-[10px] text-muted-foreground">Total Won</p>
-            <p className="text-xs font-bold text-success">{stats.totalPayout.toLocaleString()} CDF</p>
+            <p className="text-xs font-bold text-success">{stats.totalPayout.toLocaleString()} ZAR</p>
           </div>
           <div className="rounded-xl bg-card-elevated border border-border p-2.5 text-center">
             <p className="text-[10px] text-muted-foreground">Profit</p>
             <p className={`text-xs font-bold ${profit >= 0 ? "text-success" : "text-destructive"}`}>
-              {profit >= 0 ? "+" : ""}{profit.toLocaleString()} CDF
+              {profit >= 0 ? "+" : ""}{profit.toLocaleString()} ZAR
             </p>
           </div>
         </div>
@@ -304,16 +304,16 @@ const BetHistory = () => {
                         <div className="pt-2 border-t border-border space-y-1">
                           <div className="flex items-center justify-between">
                             <span className="text-[10px] text-muted-foreground">Potential win</span>
-                            <span className="text-xs font-bold">{bet.potentialWin.toLocaleString()} CDF</span>
+                            <span className="text-xs font-bold">{bet.potentialWin.toLocaleString()} ZAR</span>
                           </div>
                           {bet.status === "won" && (
                             <div className="flex items-center justify-between">
                               <span className="text-[10px] text-success font-semibold">Paid out</span>
-                              <span className="text-xs font-bold text-success">{bet.payout.toLocaleString()} CDF</span>
+                              <span className="text-xs font-bold text-success">{bet.payout.toLocaleString()} ZAR</span>
                             </div>
                           )}
                           {bet.status === "lost" && (
-                            <p className="text-[10px] text-destructive font-semibold text-right">0 CDF</p>
+                            <p className="text-[10px] text-destructive font-semibold text-right">0 ZAR</p>
                           )}
                           {bet.status === "pending" && !cashedOut.has(bet.id) && (
                             <p className="text-[10px] text-highlight font-semibold text-right">In progress...</p>
@@ -321,7 +321,7 @@ const BetHistory = () => {
                           {bet.status === "pending" && cashedOut.has(bet.id) && (
                             <div className="flex items-center justify-between">
                               <span className="text-[10px] text-success font-semibold">Cashout collected</span>
-                              <span className="text-xs font-bold text-success">{(bet.cashoutValue || 0).toLocaleString()} CDF</span>
+                              <span className="text-xs font-bold text-success">{(bet.cashoutValue || 0).toLocaleString()} ZAR</span>
                             </div>
                           )}
                         </div>
@@ -338,8 +338,8 @@ const BetHistory = () => {
                           >
                             <Banknote size={14} />
                             {confirmingCashout === bet.id
-                              ? `Confirm cashout — ${bet.cashoutValue.toLocaleString()} CDF`
-                              : `Cashout — ${bet.cashoutValue.toLocaleString()} CDF`
+                              ? `Confirm cashout — ${bet.cashoutValue.toLocaleString()} ZAR`
+                              : `Cashout — ${bet.cashoutValue.toLocaleString()} ZAR`
                             }
                           </button>
                         )}
