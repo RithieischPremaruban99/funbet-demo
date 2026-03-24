@@ -24,6 +24,11 @@ import stoLogo from "@/assets/clubs/sto.png";
 import bulLogo from "@/assets/clubs/bul.png";
 import lioLogo from "@/assets/clubs/lio.png";
 import shaLogo from "@/assets/clubs/sha.png";
+// Horse Racing Tracks
+import tfLogo from "@/assets/clubs/tf.png";
+import kwLogo from "@/assets/clubs/kw.png";
+import gvLogo from "@/assets/clubs/gv.png";
+import scLogo from "@/assets/clubs/sc.png";
 
 const clubLogos: Record<string, string> = {
   PSG: psgLogo,
@@ -52,6 +57,17 @@ const clubLogos: Record<string, string> = {
   BUL: bulLogo,
   LIO: lioLogo,
   SHA: shaLogo,
+  // Horse Racing Tracks
+  TF: tfLogo,
+  KW: kwLogo,
+  GV: gvLogo,
+  SC: scLogo,
+  R5: tfLogo,
+  R6: tfLogo,
+  R3: scLogo,
+  R1: kwLogo,
+  GC: gvLogo,
+  MET: kwLogo,
 };
 
 const fallbackColors: Record<string, { bg: string; text: string }> = {
