@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import brandLogo from "@/assets/wsb-logo.png";
+import brandLogo from "@/assets/tictacbets-logo.png";
 
 const AgeVerification = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const AgeVerification = () => {
       animate={{ opacity: exiting ? 0 : 1, y: exiting ? -20 : 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
       style={{
-        background: "radial-gradient(ellipse at 50% 40%, hsla(14,90%,52%,0.06) 0%, hsl(var(--background)) 50%, hsl(var(--background)) 100%)",
+        background: "radial-gradient(ellipse at 50% 40%, hsla(0,85%,42%,0.06) 0%, hsl(var(--background)) 50%, hsl(var(--background)) 100%)",
       }}
     >
       {/* Geometric pattern */}
@@ -35,7 +35,7 @@ const AgeVerification = () => {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-primary" />
       </div>
 
-      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(14,90%,52%,0.04) 0%, transparent 70%)" }} />
+      <div className="absolute w-48 h-48 rounded-full" style={{ background: "radial-gradient(circle, hsla(0,85%,42%,0.04) 0%, transparent 70%)" }} />
 
       {/* Logo */}
       <motion.div
@@ -44,7 +44,7 @@ const AgeVerification = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <img src={brandLogo} alt="World Sports Betting" className="w-32 h-32 object-contain rounded-2xl" style={{ boxShadow: "0 0 30px hsla(14,90%,52%,0.2)" }} />
+        <img src={brandLogo} alt="TicTacBets" className="w-40 h-auto object-contain rounded-2xl" style={{ boxShadow: "0 0 30px hsla(0,85%,42%,0.2)" }} />
       </motion.div>
 
       <motion.div
