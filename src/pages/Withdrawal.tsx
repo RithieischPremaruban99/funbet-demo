@@ -1,17 +1,21 @@
 import MobileLayout from "@/components/MobileLayout";
 import { useState } from "react";
-import { ArrowLeft, CheckCircle, Info, Phone, Shield, Smartphone } from "lucide-react";
+import { ArrowLeft, CheckCircle, Info, Shield, Smartphone } from "lucide-react";
 import { Link } from "react-router-dom";
-import mpesaLogo from "@/assets/mpesa.svg";
-import airtelLogo from "@/assets/airtel.svg";
-import orangeLogo from "@/assets/orange.svg";
-import africellLogo from "@/assets/africell.png";
+import capitecLogo from "@/assets/payments/capitec.png";
+import fnbLogo from "@/assets/payments/fnb.png";
+import vodapayLogo from "@/assets/payments/vodapay.png";
+import ozowLogo from "@/assets/payments/ozow.png";
+import snapscanLogo from "@/assets/payments/snapscan.png";
+import standardbankLogo from "@/assets/payments/standardbank.png";
 
 const providers = [
-  { id: "capitec", name: "Capitec Pay", logo: mpesaLogo, prefix: "Bank Transfer" },
-  { id: "fnb", name: "FNB eWallet", logo: airtelLogo, prefix: "eWallet" },
-  { id: "vodapay", name: "VodaPay", logo: orangeLogo, prefix: "Mobile Wallet" },
-  { id: "ozow", name: "Ozow (EFT)", logo: africellLogo, prefix: "Instant EFT" },
+  { id: "capitec", name: "Capitec Pay", logo: capitecLogo, prefix: "Bank Transfer" },
+  { id: "fnb", name: "FNB eWallet", logo: fnbLogo, prefix: "eWallet" },
+  { id: "vodapay", name: "VodaPay", logo: vodapayLogo, prefix: "Mobile Wallet" },
+  { id: "ozow", name: "Ozow (EFT)", logo: ozowLogo, prefix: "Instant EFT" },
+  { id: "snapscan", name: "SnapScan", logo: snapscanLogo, prefix: "QR Payment" },
+  { id: "standardbank", name: "Standard Bank", logo: standardbankLogo, prefix: "Bank Transfer" },
 ];
 
 const Withdrawal = () => {
@@ -50,20 +54,20 @@ const Withdrawal = () => {
                 <Smartphone size={16} className="text-highlight" />
                 Withdrawal Provider
               </h3>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-3 gap-2">
                 {providers.map((p) => (
                   <button
                     key={p.id}
                     onClick={() => setSelectedProvider(p.id)}
-                    className={`p-3 rounded-xl border text-left transition-all ${
+                    className={`p-2.5 rounded-xl border text-center transition-all ${
                       selectedProvider === p.id ? "border-primary card-gradient-warm" : "border-border bg-card-elevated hover:border-highlight/30"
                     }`}
                   >
-                    <div className="w-10 h-10 rounded-lg bg-card border border-border flex items-center justify-center mb-2 p-1.5">
-                      <img src={p.logo} alt={p.name} className="w-full h-full object-contain" />
+                    <div className="w-10 h-10 rounded-lg bg-white border border-border flex items-center justify-center mx-auto mb-1.5 p-1">
+                      <img src={p.logo} alt={p.name} className="w-full h-full object-contain" loading="lazy" />
                     </div>
-                    <p className="text-xs font-bold">{p.name}</p>
-                    <p className="text-[9px] text-muted-foreground">{p.prefix}</p>
+                    <p className="text-[10px] font-bold leading-tight">{p.name}</p>
+                    <p className="text-[8px] text-muted-foreground">{p.prefix}</p>
                   </button>
                 ))}
               </div>
@@ -110,7 +114,7 @@ const Withdrawal = () => {
                   </div>
                 )}
 
-                <button onClick={() => setStep("confirm")} className="w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange">
+                <button onClick={() => setStep("confirm")} className="w-full py-3 rounded-xl red-gradient text-primary-foreground font-bold text-sm glow-orange">
                   Continue
                 </button>
               </>
@@ -142,7 +146,7 @@ const Withdrawal = () => {
 
             <div className="flex gap-2">
               <button onClick={() => setStep("select")} className="flex-1 py-3 rounded-xl border border-border bg-card-elevated text-sm font-medium">Edit</button>
-              <button onClick={() => setStep("success")} className="flex-1 py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange">Confirm</button>
+              <button onClick={() => setStep("success")} className="flex-1 py-3 rounded-xl red-gradient text-primary-foreground font-bold text-sm glow-orange">Confirm</button>
             </div>
           </div>
         )}

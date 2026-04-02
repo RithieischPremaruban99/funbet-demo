@@ -4,10 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowUp, Check, ChevronDown, ChevronRight, Copy, CreditCard, Eye, EyeOff, FileText, Globe, HelpCircle, History, Lock, LogOut, Settings, Shield, ShoppingCart, Smartphone, Swords, Trophy, User, Users, Wallet, AlertTriangle } from "lucide-react";
 import { useFollow } from "@/contexts/FollowContext";
 import { useBetSlip } from "@/contexts/BetSlipContext";
-import mpesaLogo from "@/assets/mpesa.svg";
-import airtelLogo from "@/assets/airtel.svg";
-import orangeLogo from "@/assets/orange.svg";
-import africellLogo from "@/assets/africell.png";
+import capitecLogo from "@/assets/payments/capitec.png";
+import fnbLogo from "@/assets/payments/fnb.png";
+import vodapayLogo from "@/assets/payments/vodapay.png";
+import ozowLogo from "@/assets/payments/ozow.png";
 
 const activeBets = [
   { match: "Kaizer Chiefs vs Orlando Pirates Club", pick: "Kaizer Chiefs (1)", odds: 1.85, stake: 100, status: "live", time: "67'" },
