@@ -288,7 +288,7 @@ const BetSlip = () => {
                                 {correct}/{selections.length} correct {wrong === 0 && "✨"}
                               </span>
                               <span className={`font-bold ${wrong === 0 ? "text-success" : wrong === flexCount ? "text-highlight" : "text-foreground"}`}>
-                                ${payoutAfterTax.toLocaleString()}
+                                R{payoutAfterTax.toLocaleString()}
                               </span>
                             </div>
                           );
