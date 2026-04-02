@@ -70,7 +70,7 @@ const Transactions = () => {
                   <div className="flex items-center justify-between">
                     <p className="text-xs font-semibold truncate">{tx.provider}</p>
                     <span className={`text-xs font-bold ${isPositive ? "text-success" : "text-foreground"}`}>
-                      {isPositive ? "+" : ""}${Math.abs(tx.amount).toLocaleString()}
+                      {isPositive ? "+" : ""}R{Math.abs(tx.amount).toLocaleString()}
                     </span>
                   </div>
                   <div className="flex items-center justify-between mt-0.5">
