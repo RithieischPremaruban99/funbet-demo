@@ -169,7 +169,7 @@ const BetBoosters = ({ boosters, onToggle, selectionCount, stake, potentialWin }
                         {isActive && booster.key === "insure" && (
                           <div className="flex justify-between text-[10px]">
                             <span className="text-muted-foreground">Refund if you lose</span>
-                            <span className="font-bold text-success">${stake.toLocaleString()}</span>
+                            <span className="font-bold text-success">R{stake.toLocaleString()}</span>
                           </div>
                         )}
 
