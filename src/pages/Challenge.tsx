@@ -154,7 +154,7 @@ const Challenge = () => {
                         </div>
                         <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-background/50 border border-border">
                           <span className="text-[10px] text-muted-foreground">Stake</span>
-                          <span className="text-xs font-bold text-highlight">${c.stake.toLocaleString()}</span>
+                          <span className="text-xs font-bold text-highlight">R{c.stake.toLocaleString()}</span>
                         </div>
                       </div>
                     </motion.div>
