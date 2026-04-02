@@ -149,6 +149,7 @@ const Rewards = () => {
         <div className="flex gap-2 mb-4">
           {([
             { key: "missions" as Tab, label: "Missions", icon: Target },
+            { key: "spin" as Tab, label: "Spin", icon: Gift },
             { key: "badges" as Tab, label: "Badges", icon: Award },
             { key: "leaderboard" as Tab, label: "Ranking", icon: Trophy },
           ] as const).map((t) => {
