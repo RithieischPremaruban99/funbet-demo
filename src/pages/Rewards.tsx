@@ -1,6 +1,7 @@
 import MobileLayout from "@/components/MobileLayout";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SpinWheel from "@/components/SpinWheel";
 import {
   ArrowLeft,
   Award,
