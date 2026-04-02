@@ -146,8 +146,8 @@ const Account = () => {
               { name: "Ozow", logo: ozowLogo },
             ].map((provider) => (
               <Link key={provider.name} to="/deposit" className="flex-1 flex flex-col items-center gap-1.5 py-2.5 rounded-xl bg-card-elevated border border-border hover:border-highlight/40 transition-all">
-                <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center p-1.5">
-                  <img src={provider.logo} alt={provider.name} className="w-full h-full object-contain" loading="lazy" />
+                <div className="w-12 h-12 rounded-xl bg-card-elevated border border-border flex items-center justify-center p-1.5">
+                  <img src={provider.logo} alt={provider.name} className="w-full h-full object-contain rounded" loading="lazy" />
                 </div>
                 <span className="text-[9px] font-bold text-muted-foreground">{provider.name}</span>
               </Link>

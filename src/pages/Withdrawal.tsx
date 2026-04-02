@@ -63,8 +63,8 @@ const Withdrawal = () => {
                       selectedProvider === p.id ? "border-primary card-gradient-warm" : "border-border bg-card-elevated hover:border-highlight/30"
                     }`}
                   >
-                    <div className="w-10 h-10 rounded-lg bg-white border border-border flex items-center justify-center mx-auto mb-1.5 p-1">
-                      <img src={p.logo} alt={p.name} className="w-full h-full object-contain" loading="lazy" />
+                    <div className="w-14 h-14 rounded-xl bg-card-elevated border border-border flex items-center justify-center mx-auto mb-1.5 p-2">
+                      <img src={p.logo} alt={p.name} className="w-full h-full object-contain rounded" loading="lazy" />
                     </div>
                     <p className="text-[10px] font-bold leading-tight">{p.name}</p>
                     <p className="text-[8px] text-muted-foreground">{p.prefix}</p>
