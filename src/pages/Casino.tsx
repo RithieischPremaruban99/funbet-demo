@@ -350,7 +350,7 @@ const CrashGame = () => {
               transition={{ type: "spring", damping: 15 }}
               className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-success px-5 py-2 rounded-2xl shadow-lg shadow-success/30"
             >
-              <p className="text-sm font-bold text-success-foreground">+${profit.toLocaleString()} at {cashOutAt.toFixed(2)}x 🎉</p>
+              <p className="text-sm font-bold text-success-foreground">+R{profit.toLocaleString()} at {cashOutAt.toFixed(2)}x 🎉</p>
             </motion.div>
           )}
         </AnimatePresence>
