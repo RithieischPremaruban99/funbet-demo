@@ -43,7 +43,7 @@ const feedPosts = [
       totalOdds: 15.71,
       stake: "+R20",
     },
-    result: { amount: "+$250", type: "win" },
+    result: { amount: "+R250", type: "win" },
     likes: 128, comments: 34, shares: 18,
   },
   {
