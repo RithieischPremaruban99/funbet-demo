@@ -140,10 +140,10 @@ const Account = () => {
           </div>
           <div className="flex items-center gap-2">
             {[
-              { name: "M-Pesa", logo: mpesaLogo },
-              { name: "Airtel Money", logo: airtelLogo },
-              { name: "Orange Money", logo: orangeLogo },
-              { name: "Africell", logo: africellLogo },
+              { name: "Capitec", logo: capitecLogo },
+              { name: "FNB", logo: fnbLogo },
+              { name: "VodaPay", logo: vodapayLogo },
+              { name: "Ozow", logo: ozowLogo },
             ].map((provider) => (
               <Link key={provider.name} to="/deposit" className="flex-1 flex flex-col items-center gap-1 py-2 rounded-lg bg-card-elevated border border-border hover:border-highlight/40 transition-all">
                 <img src={provider.logo} alt={provider.name} className="h-5 w-auto object-contain" />
