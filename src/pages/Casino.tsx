@@ -475,7 +475,7 @@ const CrashGame = () => {
               onClick={startGame}
               className="flex-1 py-3 rounded-xl orange-gradient text-highlight-foreground text-sm font-bold glow-orange flex items-center justify-center gap-2"
             >
-              <Rocket size={16} /> Launch — ${numBet.toLocaleString()}
+              <Rocket size={16} /> Launch — R{numBet.toLocaleString()}
             </motion.button>
           )}
           {phase === "countdown" && (
