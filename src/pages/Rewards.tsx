@@ -228,10 +228,54 @@ const Rewards = () => {
                 </motion.p>
               </div>
             </div>
+            <div className="text-right">
+              <p className="text-[10px] text-muted-foreground">Level</p>
+              <p className="text-3xl font-black text-primary">{level}</p>
+              <p className="text-[9px] text-muted-foreground">{streak}🔥 streak</p>
+            </div>
+          </div>
+        </motion.div>
 
-            {/* Mini Spin Wheel - always visible */}
-            <div className="relative w-28 h-28 flex-shrink-0">
-              <SpinWheel spinsLeft={spinsLeft} onSpin={() => setSpinsLeft((p) => Math.max(0, p - 1))} compact />
+        {/* Daily Spin — Prominent Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.05 }}
+          className="rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/10 via-primary/5 to-transparent p-4 mb-4 overflow-hidden relative"
+        >
+          {/* Glow effect */}
+          <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
+          
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
+                  🎰 Daily Reward Spin
+                </h3>
+                <p className="text-[10px] text-muted-foreground mt-0.5">
+                  Win XP, Free Bets & Bonuses — {streak > 1 ? `${streak}x Streak Multiplier active!` : "Build your streak for multipliers!"}
+                </p>
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="text-[9px] text-muted-foreground">Spins</span>
+                <span className={`text-lg font-black ${spinsLeft > 0 ? "text-accent" : "text-muted-foreground"}`}>{spinsLeft}</span>
+              </div>
+            </div>
+
+            <SpinWheel spinsLeft={spinsLeft} onSpin={() => setSpinsLeft((p) => Math.max(0, p - 1))} />
+
+            {/* XP bonus context */}
+            <div className="mt-3 flex items-center justify-center gap-4">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+                <Zap size={10} className="text-primary" />
+                <span className="text-[9px] font-bold text-primary">XP wins go straight to your balance</span>
+              </div>
+              {streak > 1 && (
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20">
+                  <Flame size={10} className="text-accent" />
+                  <span className="text-[9px] font-bold text-accent">{streak}x multiplier</span>
+                </div>
+              )}
             </div>
           </div>
         </motion.div>
