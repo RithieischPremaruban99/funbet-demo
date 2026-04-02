@@ -402,7 +402,7 @@ const CrashGame = () => {
                     className="flex items-center justify-between text-[10px]"
                   >
                     <span className="text-foreground font-medium">{bet.name}</span>
-                    <span className="text-muted-foreground">${bet.amount.toLocaleString()}</span>
+                    <span className="text-muted-foreground">R{bet.amount.toLocaleString()}</span>
                     {bet.cashedAt ? (
                       <span className="text-success font-bold">✓ {bet.cashedAt.toFixed(2)}x</span>
                     ) : bet.active ? (
