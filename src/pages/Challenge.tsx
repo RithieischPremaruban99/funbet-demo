@@ -253,7 +253,7 @@ const Challenge = () => {
                             : "border-border bg-card text-foreground hover:bg-card-elevated"
                         }`}
                       >
-                        ${s.toLocaleString()}
+                        R{s.toLocaleString()}
                       </button>
                     ))}
                   </div>
