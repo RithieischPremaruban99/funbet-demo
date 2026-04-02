@@ -183,7 +183,6 @@ const ChallengeCard = ({
 const Rewards = () => {
   const [mainTab, setMainTab] = useState<MainTab>("gamepass");
   const [spinsLeft, setSpinsLeft] = useState(1);
-  const [showSpin, setShowSpin] = useState(false);
   const { xp, level, streak } = useGamification();
 
   const daysLeft = 28;
