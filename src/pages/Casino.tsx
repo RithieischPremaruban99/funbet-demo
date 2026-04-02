@@ -462,7 +462,7 @@ const CrashGame = () => {
                   : "border-border bg-card-elevated text-muted-foreground hover:border-highlight/40"
               }`}
             >
-              ${a}
+              R{a}
             </button>
           ))}
         </div>
