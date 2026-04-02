@@ -52,6 +52,7 @@ type Tab = "missions" | "badges" | "leaderboard" | "spin";
 const Rewards = () => {
   const [tab, setTab] = useState<Tab>("missions");
   const [missionType, setMissionType] = useState<"daily" | "weekly">("daily");
+  const [spinsLeft, setSpinsLeft] = useState(1);
   const { xp, level, streak, bestStreak, dailyMissions, weeklyMissions, claimMission } = useGamification();
 
   const xpNext = getXPForNextLevel(level);
