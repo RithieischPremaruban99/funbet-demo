@@ -360,6 +360,18 @@ const Rewards = () => {
           </motion.div>
         )}
 
+        {/* ====== SPIN TAB ====== */}
+        {tab === "spin" && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <SpinWheel
+              spinsLeft={spinsLeft}
+              onSpin={(prize) => {
+                setSpinsLeft((prev) => Math.max(0, prev - 1));
+              }}
+            />
+          </motion.div>
+        )}
+
         <div className="h-6" />
       </section>
     </MobileLayout>
