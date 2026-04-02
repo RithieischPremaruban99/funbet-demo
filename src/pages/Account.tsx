@@ -145,9 +145,11 @@ const Account = () => {
               { name: "VodaPay", logo: vodapayLogo },
               { name: "Ozow", logo: ozowLogo },
             ].map((provider) => (
-              <Link key={provider.name} to="/deposit" className="flex-1 flex flex-col items-center gap-1 py-2 rounded-lg bg-card-elevated border border-border hover:border-highlight/40 transition-all">
-                <img src={provider.logo} alt={provider.name} className="h-5 w-auto object-contain" />
-                <span className="text-[9px] font-medium text-muted-foreground">{provider.name}</span>
+              <Link key={provider.name} to="/deposit" className="flex-1 flex flex-col items-center gap-1.5 py-2.5 rounded-xl bg-card-elevated border border-border hover:border-highlight/40 transition-all">
+                <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center p-1.5">
+                  <img src={provider.logo} alt={provider.name} className="w-full h-full object-contain" loading="lazy" />
+                </div>
+                <span className="text-[9px] font-bold text-muted-foreground">{provider.name}</span>
               </Link>
             ))}
           </div>
@@ -253,7 +255,7 @@ const Account = () => {
                   <span className="text-xs text-primary font-medium">{bet.pick}</span>
                   <span className="text-xs text-highlight font-bold ml-2">@ {bet.odds.toFixed(2)}</span>
                 </div>
-                <span className="text-xs font-bold">${bet.stake.toLocaleString()}</span>
+                <span className="text-xs font-bold">R{bet.stake.toLocaleString()}</span>
               </div>
             </div>
           ))}
