@@ -177,7 +177,7 @@ const BetBoosters = ({ boosters, onToggle, selectionCount, stake, potentialWin }
                           <div className="flex justify-between text-[10px]">
                             <span className="text-muted-foreground">Fee amount</span>
                             <span className="font-bold text-destructive">
-                              -${Math.round(potentialWin * booster.feePercent / 100).toLocaleString()}
+                              -R{Math.round(potentialWin * booster.feePercent / 100).toLocaleString()}
                             </span>
                           </div>
                         )}

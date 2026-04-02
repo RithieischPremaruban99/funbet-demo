@@ -493,7 +493,7 @@ const CrashGame = () => {
               <motion.div animate={{ scale: [1, 1.15, 1] }} transition={{ repeat: Infinity, duration: 0.8 }}>
                 💰
               </motion.div>
-              Cash Out — ${potentialWin.toLocaleString()}
+              Cash Out — R{potentialWin.toLocaleString()}
             </motion.button>
           )}
           {(phase === "crashed" || (phase === "running" && cashedOut)) && (

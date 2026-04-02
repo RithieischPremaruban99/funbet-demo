@@ -306,7 +306,7 @@ const Challenge = () => {
                   <p className="text-[10px] text-muted-foreground">Your pick: <span className="text-highlight font-bold">{
                     selectedPick === "home" ? `${matchData.home} (1)` : selectedPick === "draw" ? "Draw (X)" : `${matchData.away} (2)`
                   }</span></p>
-                  <p className="text-[10px] text-muted-foreground">Stake: <span className="text-highlight font-bold">${selectedStake.toLocaleString()}</span></p>
+                  <p className="text-[10px] text-muted-foreground">Stake: <span className="text-highlight font-bold">R{selectedStake.toLocaleString()}</span></p>
                 </div>
               )}
 

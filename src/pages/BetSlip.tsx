@@ -304,7 +304,7 @@ const BetSlip = () => {
             {/* Stake */}
             <div className="rounded-2xl border border-border card-gradient p-4 mb-4">
               <label className="text-xs font-medium text-muted-foreground mb-2 block">
-                {betType === "system" ? "Stake per combo (USD)" : "Stake (USD)"}
+                {betType === "system" ? "Stake per combo (ZAR)" : "Stake (ZAR)"}
               </label>
               <input type="number" value={stake} onChange={(e) => setStake(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-card-elevated border border-border text-lg font-bold text-foreground outline-none focus:ring-1 focus:ring-primary text-center" />

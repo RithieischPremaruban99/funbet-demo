@@ -70,7 +70,7 @@ const Rewards = () => {
           <Link to="/account" className="p-2 rounded-xl hover:bg-secondary transition-colors">
             <ArrowLeft size={18} className="text-muted-foreground" />
           </Link>
-          <h1 className="text-lg font-bold">Rewards</h1>
+          <h1 className="text-lg font-bold">Gamification</h1>
         </div>
 
         {/* XP & Level Card */}
