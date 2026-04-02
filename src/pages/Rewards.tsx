@@ -47,7 +47,7 @@ const leaderboard = [
   { rank: 6, name: "BloubergFlash", xp: 6_300, streak: 4, avatar: "KF" },
 ];
 
-type Tab = "missions" | "badges" | "leaderboard";
+type Tab = "missions" | "badges" | "leaderboard" | "spin";
 
 const Rewards = () => {
   const [tab, setTab] = useState<Tab>("missions");
