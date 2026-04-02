@@ -10,10 +10,9 @@ import {
   Flame,
   Info,
   Lock,
-  Star,
   Zap,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useGamification } from "@/contexts/GamificationContext";
 import SpinWheel from "@/components/SpinWheel";
 
