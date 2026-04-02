@@ -326,7 +326,7 @@ const CrashGame = () => {
                 </motion.p>
                 {!cashedOut && potentialWin > 0 && (
                   <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[10px] text-muted-foreground mt-1">
-                    Win: <span className="text-highlight font-bold">${potentialWin.toLocaleString()}</span>
+                    Win: <span className="text-highlight font-bold">R{potentialWin.toLocaleString()}</span>
                   </motion.p>
                 )}
               </motion.div>
