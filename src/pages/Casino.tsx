@@ -431,7 +431,7 @@ const CrashGame = () => {
               className="w-full px-3 py-2.5 rounded-xl bg-card border border-border text-sm font-bold text-foreground outline-none focus:ring-1 focus:ring-primary"
               disabled={phase === "running" || phase === "countdown"}
             />
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground">USD</span>
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground">ZAR</span>
           </div>
           <div className="w-28 relative">
             <label className="text-[9px] text-muted-foreground font-bold uppercase absolute -top-1.5 left-2 bg-card px-1 z-10">Auto ×</label>
