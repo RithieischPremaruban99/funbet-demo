@@ -268,7 +268,7 @@ const Challenge = () => {
                     className="w-full py-3.5 rounded-2xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange flex items-center justify-center gap-2"
                   >
                     <Zap size={16} />
-                    Create Challenge — ${selectedStake.toLocaleString()}
+                    Create Challenge — R{selectedStake.toLocaleString()}
                   </button>
                 </motion.div>
               )}
