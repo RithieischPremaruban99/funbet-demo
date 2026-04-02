@@ -230,16 +230,9 @@ const Rewards = () => {
               </div>
             </div>
 
-            {/* Unlock Circle */}
-            <div className="relative">
-              <div
-                className="w-24 h-24 rounded-full border-2 border-primary/50 flex flex-col items-center justify-center bg-primary/5"
-                style={{ boxShadow: "0 0 30px hsl(var(--primary) / 0.15)" }}
-              >
-                <Lock size={16} className="text-primary/60 mb-1" />
-                <p className="text-[9px] text-muted-foreground leading-tight text-center">Unlocks in</p>
-                <p className="text-xs font-bold text-primary">7h 49m</p>
-              </div>
+            {/* Mini Spin Wheel - always visible */}
+            <div className="relative w-28 h-28 flex-shrink-0">
+              <SpinWheel spinsLeft={spinsLeft} onSpin={() => setSpinsLeft((p) => Math.max(0, p - 1))} compact />
             </div>
           </div>
         </motion.div>
