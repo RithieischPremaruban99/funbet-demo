@@ -8,13 +8,19 @@ import {
   Clock,
   Crown,
   Flame,
+  Gift,
   Info,
   Lock,
+  Shield,
+  Star,
+  Target,
+  Trophy,
   Zap,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useGamification } from "@/contexts/GamificationContext";
 import SpinWheel from "@/components/SpinWheel";
+import brandLogo from "@/assets/tictacbets-logo.png";
 
 // Badge images
 import rookieBadge from "@/assets/badges/rookie.png";
@@ -82,7 +88,7 @@ const leagues = [
   },
 ];
 
-// --- Monthly challenges with SA context ---
+// --- Monthly challenges ---
 const monthlyChallenges = [
   { id: 1, name: "Win a Pick on an Underdog", xp: 20, progress: 0, total: 1, timeLeft: "7h 49m", type: "Daily Challenge", bg: footballBg },
   { id: 2, name: "Place 5 Live Bets on URC", xp: 50, progress: 2, total: 5, timeLeft: "23h 12m", type: "Daily Challenge", bg: rugbyBg },
@@ -93,7 +99,7 @@ const monthlyChallenges = [
 
 type MainTab = "gamepass" | "challenges";
 
-// --- Circular progress component ---
+// --- Circular progress ---
 const CircularProgress = ({ progress, total, size = 44 }: { progress: number; total: number; size?: number }) => {
   const pct = total > 0 ? (progress / total) * 100 : 0;
   const radius = (size - 6) / 2;
@@ -125,7 +131,21 @@ const CircularProgress = ({ progress, total, size = 44 }: { progress: number; to
   );
 };
 
-// --- Challenge Card with background image ---
+// --- XP Badge (brand gradient) ---
+const XPBadge = ({ xp }: { xp: number }) => (
+  <span
+    className="inline-block px-2.5 py-0.5 rounded-full text-[9px] font-bold"
+    style={{
+      background: "var(--gold-gradient)",
+      color: "hsl(var(--primary-foreground))",
+      border: "1px solid hsl(var(--primary) / 0.5)",
+    }}
+  >
+    {xp} XP
+  </span>
+);
+
+// --- Challenge Card ---
 const ChallengeCard = ({
   challenge,
   idx,
@@ -134,43 +154,23 @@ const ChallengeCard = ({
   idx: number;
 }) => (
   <div className="flex gap-4 mb-3">
-    {/* Milestone marker */}
     <div className="flex-shrink-0 w-[44px] flex flex-col items-center relative z-10">
       <span className="text-[10px] font-bold text-muted-foreground bg-background px-1">{challenge.milestone}</span>
-      <div className="w-2 h-2 rounded-full bg-border mt-1" />
+      <div className="w-2 h-2 rounded-full bg-primary/50 mt-1" />
     </div>
 
-    {/* Card */}
     <motion.div
       initial={{ opacity: 0, x: 10 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: idx * 0.06 }}
       className="flex-1 rounded-2xl border border-primary/30 overflow-hidden relative min-h-[100px]"
     >
-      {/* Background image */}
-      <img
-        src={challenge.bg}
-        alt=""
-        loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
-      {/* Dark overlay gradient - stronger on left for text readability */}
+      <img src={challenge.bg} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30" />
-
-      {/* Content */}
       <div className="relative z-10 p-3.5 flex items-center gap-3">
         <div className="flex-1 min-w-0">
-          <span
-            className="inline-block px-2.5 py-0.5 rounded-full text-[9px] font-bold mb-1.5"
-            style={{
-              background: "linear-gradient(135deg, hsl(25 95% 53% / 0.9), hsl(35 95% 55% / 0.8))",
-              color: "#fff",
-              border: "1px solid hsl(25 95% 53% / 0.5)",
-            }}
-          >
-            {challenge.xp} XP
-          </span>
-          <p className="text-sm font-bold text-white">{challenge.name}</p>
+          <XPBadge xp={challenge.xp} />
+          <p className="text-sm font-bold text-white mt-1.5">{challenge.name}</p>
           <p className="text-[9px] text-white/50 mt-1">{challenge.sport}</p>
         </div>
         <CircularProgress progress={challenge.progress} total={challenge.total} size={48} />
@@ -188,92 +188,134 @@ const Rewards = () => {
   const myRank = 754;
   const nextPositionXP = 0;
   const prevPositionXP = 30;
-
   const currentLeagueIndex = level >= 15 ? 2 : level >= 10 ? 1 : 0;
   const nextLeagueUnlockTime = "5d 11h 18m";
+  const leagueNames = ["Rookie", "Varsity", "Pro"];
+  const currentLeagueName = leagueNames[currentLeagueIndex];
 
   return (
     <MobileLayout>
       <section className="px-4 mt-2 mb-24">
-        {/* Header */}
+        {/* Branded Header */}
         <div className="flex items-center justify-between mb-4">
           <Link to="/account" className="p-2 -ml-2 rounded-xl hover:bg-secondary/20 transition-colors">
             <ArrowLeft size={20} className="text-muted-foreground" />
           </Link>
-          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/40 bg-primary/10">
-            <Clock size={14} className="text-primary" />
-            <span className="text-xs font-bold text-primary">{daysLeft} days left</span>
+          <div className="flex items-center gap-2">
+            <img src={brandLogo} alt="TicTacBets" className="h-5 object-contain rounded" />
+            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-primary/40 bg-primary/10">
+              <Clock size={12} className="text-primary" />
+              <span className="text-[10px] font-bold text-primary">Season ends in {daysLeft}d</span>
+            </div>
           </div>
           <button className="p-2 -mr-2 rounded-xl hover:bg-secondary/20 transition-colors">
             <Info size={20} className="text-muted-foreground" />
           </button>
         </div>
 
-        {/* XP Balance Card */}
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-muted-foreground font-medium">This month's balance</p>
-              <div className="flex items-center gap-2 mt-1">
-                <div className="px-2.5 py-1 rounded-lg bg-primary/20 border border-primary/30">
-                  <span className="text-[10px] font-black text-primary">XP</span>
-                </div>
-                <motion.p
-                  key={xp}
-                  initial={{ scale: 1.1 }}
-                  animate={{ scale: 1 }}
-                  className="text-4xl font-black text-foreground tracking-tight"
-                >
-                  {xp.toLocaleString()}
-                </motion.p>
+        {/* Personalized Welcome + XP Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="rounded-2xl overflow-hidden relative mb-4"
+          style={{ background: "var(--gold-gradient-subtle)" }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/60" />
+          <div className="relative z-10 p-4">
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 rounded-full bg-primary/30 border border-primary/50 flex items-center justify-center">
+                <Shield size={14} className="text-primary-foreground" />
+              </div>
+              <div>
+                <p className="text-xs font-bold text-primary-foreground">Welcome back, Champ! 👋</p>
+                <p className="text-[9px] text-primary-foreground/60">{currentLeagueName} League · Level {level}</p>
               </div>
             </div>
-            <div className="text-right">
-              <p className="text-[10px] text-muted-foreground">Level</p>
-              <p className="text-3xl font-black text-primary">{level}</p>
-              <p className="text-[9px] text-muted-foreground">{streak}🔥 streak</p>
+
+            <div className="flex items-end justify-between">
+              <div>
+                <p className="text-[10px] text-primary-foreground/60 font-medium">Monthly XP Balance</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <div className="px-2 py-0.5 rounded-md bg-accent/30 border border-accent/40">
+                    <span className="text-[9px] font-black text-accent">XP</span>
+                  </div>
+                  <motion.p
+                    key={xp}
+                    initial={{ scale: 1.1 }}
+                    animate={{ scale: 1 }}
+                    className="text-3xl font-black text-primary-foreground tracking-tight"
+                  >
+                    {xp.toLocaleString()}
+                  </motion.p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                {/* Level badge */}
+                <div className="text-center">
+                  <div className="w-12 h-12 rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center mb-0.5"
+                    style={{ boxShadow: "0 0 15px hsl(var(--accent) / 0.2)" }}
+                  >
+                    <span className="text-lg font-black text-accent">{level}</span>
+                  </div>
+                  <p className="text-[8px] text-primary-foreground/50 font-bold">LEVEL</p>
+                </div>
+                {/* Streak */}
+                <div className="text-center">
+                  <div className="w-12 h-12 rounded-xl bg-primary/30 border border-primary/40 flex items-center justify-center mb-0.5">
+                    <div className="text-center leading-none">
+                      <Flame size={14} className="text-accent mx-auto" />
+                      <span className="text-xs font-black text-primary-foreground">{streak}</span>
+                    </div>
+                  </div>
+                  <p className="text-[8px] text-primary-foreground/50 font-bold">STREAK</p>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Daily Spin — Prominent Section */}
+        {/* TicTacBets Daily Spin */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.05 }}
-          className="rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/10 via-primary/5 to-transparent p-4 mb-4 overflow-hidden relative"
+          className="rounded-2xl border border-accent/30 overflow-hidden relative mb-4"
         >
-          {/* Glow effect */}
-          <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
-          
-          <div className="relative z-10">
-            <div className="flex items-center justify-between mb-3">
+          {/* Brand gradient header */}
+          <div className="px-4 py-3 flex items-center justify-between" style={{ background: "var(--gold-gradient-subtle)" }}>
+            <div className="flex items-center gap-2">
+              <Gift size={16} className="text-primary-foreground" />
               <div>
-                <h3 className="text-sm font-bold text-foreground flex items-center gap-2">
-                  🎰 Daily Reward Spin
-                </h3>
-                <p className="text-[10px] text-muted-foreground mt-0.5">
-                  Win XP, Free Bets & Bonuses — {streak > 1 ? `${streak}x Streak Multiplier active!` : "Build your streak for multipliers!"}
+                <h3 className="text-sm font-bold text-primary-foreground">TicTacBets Daily Spin</h3>
+                <p className="text-[9px] text-primary-foreground/60">
+                  {streak > 1 ? `🔥 ${streak}x Streak Multiplier on XP wins!` : "Spin to win XP, Free Bets & more"}
                 </p>
               </div>
-              <div className="flex flex-col items-center">
-                <span className="text-[9px] text-muted-foreground">Spins</span>
-                <span className={`text-lg font-black ${spinsLeft > 0 ? "text-accent" : "text-muted-foreground"}`}>{spinsLeft}</span>
-              </div>
             </div>
+            <div className="flex flex-col items-center px-3 py-1 rounded-lg bg-black/30">
+              <span className="text-[8px] text-primary-foreground/50 font-bold">SPINS</span>
+              <span className={`text-lg font-black leading-none ${spinsLeft > 0 ? "text-accent" : "text-primary-foreground/30"}`}>{spinsLeft}</span>
+            </div>
+          </div>
 
+          <div className="p-4 bg-card">
             <SpinWheel spinsLeft={spinsLeft} onSpin={() => setSpinsLeft((p) => Math.max(0, p - 1))} />
-
-            {/* XP bonus context */}
-            <div className="mt-3 flex items-center justify-center gap-4">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
-                <Zap size={10} className="text-primary" />
-                <span className="text-[9px] font-bold text-primary">XP wins go straight to your balance</span>
+            
+            {/* Context tags */}
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+              <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20">
+                <Zap size={9} className="text-primary" />
+                <span className="text-[8px] font-bold text-primary">XP → Balance</span>
+              </div>
+              <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-accent/10 border border-accent/20">
+                <Target size={9} className="text-accent" />
+                <span className="text-[8px] font-bold text-accent">Free Bets → Betslip</span>
               </div>
               {streak > 1 && (
-                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20">
-                  <Flame size={10} className="text-accent" />
-                  <span className="text-[9px] font-bold text-accent">{streak}x multiplier</span>
+                <div className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/10 border border-primary/20">
+                  <Flame size={9} className="text-primary" />
+                  <span className="text-[8px] font-bold text-primary">{streak}x multiplier</span>
                 </div>
               )}
             </div>
@@ -284,10 +326,15 @@ const Rewards = () => {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.05 }}
-          className="rounded-2xl border border-primary/30 bg-gradient-to-r from-primary/10 to-transparent p-4 mb-4"
+          transition={{ delay: 0.1 }}
+          className="rounded-2xl border border-primary/30 p-4 mb-4 relative overflow-hidden"
+          style={{ background: "linear-gradient(135deg, hsl(var(--card)), hsl(var(--card-elevated)))" }}
         >
-          <div className="flex items-center justify-between">
+          <div className="absolute top-2 left-3 flex items-center gap-1.5">
+            <Trophy size={12} className="text-accent" />
+            <span className="text-[9px] font-bold text-accent">LEADERBOARD</span>
+          </div>
+          <div className="flex items-center justify-between mt-4">
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
                 <span className="text-xs text-muted-foreground">Next position</span>
@@ -302,6 +349,7 @@ const Rewards = () => {
             </div>
             <div className="text-right">
               <p className="text-4xl font-black text-foreground/80">#{myRank}</p>
+              <p className="text-[9px] text-muted-foreground mt-0.5">of 12,340 players</p>
             </div>
           </div>
         </motion.div>
@@ -310,23 +358,19 @@ const Rewards = () => {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.15 }}
           className="rounded-2xl border border-primary/40 overflow-hidden relative mb-4"
         >
           <img src={footballBg} alt="" className="absolute inset-0 w-full h-full object-cover" loading="lazy" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30" />
           <div className="relative z-10 p-4">
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <span
-                  className="inline-block px-2.5 py-1 rounded-full text-[10px] font-bold mb-2"
-                  style={{
-                    background: "linear-gradient(135deg, hsl(25 95% 53% / 0.9), hsl(35 95% 55% / 0.8))",
-                    color: "#fff",
-                  }}
-                >
-                  20 XP
-                </span>
+                <div className="flex items-center gap-2 mb-2">
+                  <XPBadge xp={20} />
+                  <Star size={12} className="text-accent" />
+                  <span className="text-[9px] font-bold text-accent">Featured Challenge</span>
+                </div>
                 <h3 className="text-sm font-bold text-white">Win a Pick on an Underdog</h3>
                 <div className="flex items-center gap-2 mt-1.5">
                   <span className="text-[10px] text-white/50">Daily Challenge</span>
@@ -344,21 +388,23 @@ const Rewards = () => {
         {/* Main Tabs */}
         <div className="flex border-b border-border mb-4">
           {([
-            { key: "gamepass" as MainTab, label: "Game Pass" },
-            { key: "challenges" as MainTab, label: "Monthly Challenges" },
+            { key: "gamepass" as MainTab, label: "Game Pass", icon: Crown },
+            { key: "challenges" as MainTab, label: "Monthly Challenges", icon: Target },
           ]).map((t) => (
             <button
               key={t.key}
               onClick={() => setMainTab(t.key)}
-              className={`flex-1 py-3 text-sm font-bold transition-colors relative ${
+              className={`flex-1 py-3 text-sm font-bold transition-colors relative flex items-center justify-center gap-1.5 ${
                 mainTab === t.key ? "text-foreground" : "text-muted-foreground"
               }`}
             >
+              <t.icon size={14} />
               {t.label}
               {mainTab === t.key && (
                 <motion.div
                   layoutId="gamification-tab"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 rounded-full"
+                  style={{ background: "var(--gold-gradient)" }}
                 />
               )}
             </button>
@@ -375,7 +421,6 @@ const Rewards = () => {
 
               return (
                 <div key={league.id} className="relative">
-                  {/* Unlock banner for next league */}
                   {isNext && (
                     <div className="flex items-center justify-between mb-3 px-2">
                       <div className="flex items-center gap-2">
@@ -384,14 +429,16 @@ const Rewards = () => {
                       </div>
                       <div className="flex items-center gap-2">
                         <p className="text-sm font-black text-foreground">{nextLeagueUnlockTime}</p>
-                        <button className="flex items-center gap-1 px-3 py-1.5 rounded-lg border border-primary/30 bg-primary/10 text-[10px] font-bold text-primary">
+                        <button
+                          className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-[10px] font-bold text-primary-foreground"
+                          style={{ background: "var(--gold-gradient)" }}
+                        >
                           <Lock size={10} /> Unlock Now
                         </button>
                       </div>
                     </div>
                   )}
 
-                  {/* League Badge & Title */}
                   <div className={`text-center py-6 ${!isUnlocked ? "opacity-40" : ""}`}>
                     <div className="relative mx-auto w-20 h-20 mb-2">
                       <img
@@ -404,22 +451,27 @@ const Rewards = () => {
                         <div className="absolute inset-0 rounded-full" style={{ boxShadow: "0 0 40px hsl(var(--primary) / 0.3)" }} />
                       )}
                     </div>
-                    <div className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-primary/20 border border-primary/30 text-[10px] font-bold text-primary -mt-4 relative z-10">
-                      {league.id}
+                    <div className="inline-flex items-center justify-center w-6 h-6 rounded-full -mt-4 relative z-10"
+                      style={{ background: "var(--gold-gradient)" }}
+                    >
+                      <span className="text-[10px] font-bold text-primary-foreground">{league.id}</span>
                     </div>
                     <h2 className="text-lg font-black tracking-wide text-foreground/90 mt-1">{league.name}</h2>
                     <p className="text-[11px] text-muted-foreground mt-1 max-w-[250px] mx-auto leading-relaxed">{league.desc}</p>
+                    {isCurrent && (
+                      <div className="inline-flex items-center gap-1 mt-2 px-3 py-1 rounded-full bg-primary/15 border border-primary/30">
+                        <span className="text-[9px] font-bold text-primary">⚡ {league.xpMultiplier}x XP Multiplier Active</span>
+                      </div>
+                    )}
                   </div>
 
-                  {/* Challenge Timeline */}
                   <div className={`relative ${!isUnlocked ? "opacity-30 pointer-events-none" : ""}`}>
-                    <div className="absolute left-[22px] top-0 bottom-0 w-px bg-border" />
+                    <div className="absolute left-[22px] top-0 bottom-0 w-px" style={{ background: "linear-gradient(to bottom, hsl(var(--primary) / 0.3), hsl(var(--border)))" }} />
                     {league.challenges.map((challenge, idx) => (
                       <ChallengeCard key={idx} challenge={challenge} idx={idx} />
                     ))}
                   </div>
 
-                  {/* Free Pass Rewards */}
                   {isCurrent && (
                     <div className="mt-4 rounded-2xl border border-border overflow-hidden">
                       <div className="grid grid-cols-2">
@@ -430,20 +482,20 @@ const Rewards = () => {
                           </div>
                           <p className="text-sm font-black text-primary">R20k</p>
                         </div>
-                        <div className="p-4 text-center relative bg-gradient-to-br from-accent/10 to-transparent">
+                        <div className="p-4 text-center relative overflow-hidden">
+                          <div className="absolute inset-0 opacity-10" style={{ background: "var(--gold-gradient)" }} />
                           <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent/20 border border-accent/30">
                             <Crown size={10} className="text-accent" />
                             <span className="text-[8px] font-bold text-accent">Premium</span>
                           </div>
-                          <p className="text-xs text-muted-foreground mb-2">Premium Rewards</p>
-                          <div className="w-12 h-12 rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center mx-auto mb-1">
+                          <p className="text-xs text-muted-foreground mb-2 relative z-10">Premium Rewards</p>
+                          <div className="w-12 h-12 rounded-xl bg-accent/20 border border-accent/30 flex items-center justify-center mx-auto mb-1 relative z-10">
                             <Lock size={14} className="text-accent" />
-                            <span className="text-[8px] font-bold text-accent ml-0.5">UNLOCK</span>
                           </div>
-                          <p className="text-sm font-black text-accent">R35k</p>
+                          <p className="text-sm font-black text-accent relative z-10">R35k</p>
                         </div>
                       </div>
-                      <div className="py-2 text-center border-t border-border">
+                      <div className="py-2 text-center border-t border-border" style={{ background: "linear-gradient(90deg, hsl(var(--primary) / 0.05), hsl(var(--accent) / 0.05))" }}>
                         <p className="text-[10px]">
                           <span className="text-primary font-bold">0/5 challenges</span>
                           <span className="text-foreground font-bold"> LEFT TO CLAIM REWARDS</span>
@@ -477,15 +529,7 @@ const Rewards = () => {
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1.5">
-                          <span
-                            className="inline-block px-2 py-0.5 rounded-full text-[9px] font-bold"
-                            style={{
-                              background: "linear-gradient(135deg, hsl(25 95% 53% / 0.9), hsl(35 95% 55% / 0.8))",
-                              color: "#fff",
-                            }}
-                          >
-                            {c.xp} XP
-                          </span>
+                          <XPBadge xp={c.xp} />
                           <span className="text-[9px] text-white/40 font-medium px-2 py-0.5 rounded-full bg-white/10 border border-white/10">
                             {c.type}
                           </span>
@@ -495,19 +539,13 @@ const Rewards = () => {
                           <Flame size={10} className="text-primary" />
                           <span className="text-[10px] font-bold text-primary">{c.timeLeft} left</span>
                         </div>
-
-                        {/* Progress bar */}
                         <div className="mt-2 flex items-center gap-2">
                           <div className="flex-1 h-1.5 rounded-full bg-white/10 overflow-hidden">
-                            <div
-                              className="h-full rounded-full bg-primary transition-all"
-                              style={{ width: `${pct}%` }}
-                            />
+                            <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, background: "var(--gold-gradient)" }} />
                           </div>
                           <span className="text-[10px] text-white/50 font-bold">{c.progress}/{c.total}</span>
                         </div>
                       </div>
-
                       <CircularProgress progress={c.progress} total={c.total} size={48} />
                     </div>
                   </div>
@@ -516,12 +554,30 @@ const Rewards = () => {
             })}
 
             {/* Streak bonus */}
-            <div className="rounded-2xl border border-accent/30 bg-accent/5 p-4 text-center">
-              <div className="flex items-center justify-center gap-2 mb-1">
-                <Flame size={16} className="text-accent" />
-                <span className="text-sm font-bold text-accent">{streak}-Day Streak Bonus</span>
+            <div className="rounded-2xl border border-accent/30 p-4 text-center relative overflow-hidden">
+              <div className="absolute inset-0 opacity-5" style={{ background: "var(--gold-gradient)" }} />
+              <div className="relative z-10">
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <Flame size={16} className="text-accent" />
+                  <span className="text-sm font-bold text-accent">{streak}-Day Streak Bonus</span>
+                </div>
+                <p className="text-[10px] text-muted-foreground">Complete daily challenges to keep your streak alive!</p>
+                <div className="mt-2 flex items-center justify-center gap-1">
+                  {[1, 2, 3, 4, 5, 6, 7].map((d) => (
+                    <div
+                      key={d}
+                      className={`w-6 h-6 rounded-full text-[8px] font-bold flex items-center justify-center ${
+                        d <= streak
+                          ? "text-primary-foreground"
+                          : "bg-muted text-muted-foreground"
+                      }`}
+                      style={d <= streak ? { background: "var(--gold-gradient)" } : {}}
+                    >
+                      {d}
+                    </div>
+                  ))}
+                </div>
               </div>
-              <p className="text-[10px] text-muted-foreground">Complete daily challenges to keep your streak alive!</p>
             </div>
           </motion.div>
         )}
