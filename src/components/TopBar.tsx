@@ -32,7 +32,7 @@ const TopBar = () => {
               }}
             >
               <Crown size={14} className="text-primary" />
-              <span className="text-primary">Rewards</span>
+              <span className="text-primary">Gamification</span>
             </Link>
             <button
               onClick={() => setShowPanel(!showPanel)}

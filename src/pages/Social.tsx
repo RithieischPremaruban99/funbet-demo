@@ -43,7 +43,7 @@ const feedPosts = [
       totalOdds: 15.71,
       stake: "+R20",
     },
-    result: { amount: "+$250", type: "win" },
+    result: { amount: "+R250", type: "win" },
     likes: 128, comments: 34, shares: 18,
   },
   {
@@ -72,12 +72,12 @@ const feedPosts = [
 ];
 
 const leaderboardUsers = [
-  { rank: 1, name: "Serge T.", avatar: "ST", slug: "serge-t", winRate: "78%", profit: "+$4,200", streak: 12, badge: "diamond" },
-  { rank: 2, name: "Gloire M.", avatar: "GM", slug: "gloire-m", winRate: "72%", profit: "+$3,150", streak: 8, badge: "gold" },
-  { rank: 3, name: "Rachel B.", avatar: "RB", slug: "rachel-b", winRate: "69%", profit: "+$2,800", streak: 6, badge: "gold" },
-  { rank: 4, name: "Patrick K.", avatar: "PK", slug: "patrick-k", winRate: "65%", profit: "+$1,950", streak: 5, badge: "silver" },
-  { rank: 5, name: "Esther L.", avatar: "EL", slug: "esther-l", winRate: "63%", profit: "+$1,700", streak: 4, badge: "silver" },
-  { rank: 6, name: "Christian W.", avatar: "CW", slug: "christian-w", winRate: "61%", profit: "+$1,450", streak: 3, badge: "bronze" },
+  { rank: 1, name: "Serge T.", avatar: "ST", slug: "serge-t", winRate: "78%", profit: "+R4,200", streak: 12, badge: "diamond" },
+  { rank: 2, name: "Gloire M.", avatar: "GM", slug: "gloire-m", winRate: "72%", profit: "+R3,150", streak: 8, badge: "gold" },
+  { rank: 3, name: "Rachel B.", avatar: "RB", slug: "rachel-b", winRate: "69%", profit: "+R2,800", streak: 6, badge: "gold" },
+  { rank: 4, name: "Patrick K.", avatar: "PK", slug: "patrick-k", winRate: "65%", profit: "+R1,950", streak: 5, badge: "silver" },
+  { rank: 5, name: "Esther L.", avatar: "EL", slug: "esther-l", winRate: "63%", profit: "+R1,700", streak: 4, badge: "silver" },
+  { rank: 6, name: "Christian W.", avatar: "CW", slug: "christian-w", winRate: "61%", profit: "+R1,450", streak: 3, badge: "bronze" },
 ];
 
 const challenges = [

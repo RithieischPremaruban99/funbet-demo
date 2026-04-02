@@ -70,7 +70,7 @@ const Transactions = () => {
                   <div className="flex items-center justify-between">
                     <p className="text-xs font-semibold truncate">{tx.provider}</p>
                     <span className={`text-xs font-bold ${isPositive ? "text-success" : "text-foreground"}`}>
-                      {isPositive ? "+" : ""}${Math.abs(tx.amount).toLocaleString()}
+                      {isPositive ? "+" : ""}R{Math.abs(tx.amount).toLocaleString()}
                     </span>
                   </div>
                   <div className="flex items-center justify-between mt-0.5">
@@ -79,7 +79,7 @@ const Transactions = () => {
                   </div>
                   {tx.type === "withdrawal" && tx.tax && (
                     <p className="text-[9px] text-muted-foreground mt-0.5">
-                      Tax 10%: -${tx.tax?.toLocaleString()} | Net: ${Math.abs(tx.netAmount || 0).toLocaleString()}
+                      Tax 10%: -R{tx.tax?.toLocaleString()} | Net: R{Math.abs(tx.netAmount || 0).toLocaleString()}
                     </p>
                   )}
                 </div>

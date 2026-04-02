@@ -326,7 +326,7 @@ const CrashGame = () => {
                 </motion.p>
                 {!cashedOut && potentialWin > 0 && (
                   <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[10px] text-muted-foreground mt-1">
-                    Win: <span className="text-highlight font-bold">${potentialWin.toLocaleString()}</span>
+                    Win: <span className="text-highlight font-bold">R{potentialWin.toLocaleString()}</span>
                   </motion.p>
                 )}
               </motion.div>
@@ -350,7 +350,7 @@ const CrashGame = () => {
               transition={{ type: "spring", damping: 15 }}
               className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-success px-5 py-2 rounded-2xl shadow-lg shadow-success/30"
             >
-              <p className="text-sm font-bold text-success-foreground">+${profit.toLocaleString()} at {cashOutAt.toFixed(2)}x 🎉</p>
+              <p className="text-sm font-bold text-success-foreground">+R{profit.toLocaleString()} at {cashOutAt.toFixed(2)}x 🎉</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -402,7 +402,7 @@ const CrashGame = () => {
                     className="flex items-center justify-between text-[10px]"
                   >
                     <span className="text-foreground font-medium">{bet.name}</span>
-                    <span className="text-muted-foreground">${bet.amount.toLocaleString()}</span>
+                    <span className="text-muted-foreground">R{bet.amount.toLocaleString()}</span>
                     {bet.cashedAt ? (
                       <span className="text-success font-bold">✓ {bet.cashedAt.toFixed(2)}x</span>
                     ) : bet.active ? (
@@ -431,7 +431,7 @@ const CrashGame = () => {
               className="w-full px-3 py-2.5 rounded-xl bg-card border border-border text-sm font-bold text-foreground outline-none focus:ring-1 focus:ring-primary"
               disabled={phase === "running" || phase === "countdown"}
             />
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground">USD</span>
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[10px] text-muted-foreground">ZAR</span>
           </div>
           <div className="w-28 relative">
             <label className="text-[9px] text-muted-foreground font-bold uppercase absolute -top-1.5 left-2 bg-card px-1 z-10">Auto ×</label>
@@ -462,7 +462,7 @@ const CrashGame = () => {
                   : "border-border bg-card-elevated text-muted-foreground hover:border-highlight/40"
               }`}
             >
-              ${a}
+              R{a}
             </button>
           ))}
         </div>
@@ -475,7 +475,7 @@ const CrashGame = () => {
               onClick={startGame}
               className="flex-1 py-3 rounded-xl orange-gradient text-highlight-foreground text-sm font-bold glow-orange flex items-center justify-center gap-2"
             >
-              <Rocket size={16} /> Launch — ${numBet.toLocaleString()}
+              <Rocket size={16} /> Launch — R{numBet.toLocaleString()}
             </motion.button>
           )}
           {phase === "countdown" && (
@@ -493,7 +493,7 @@ const CrashGame = () => {
               <motion.div animate={{ scale: [1, 1.15, 1] }} transition={{ repeat: Infinity, duration: 0.8 }}>
                 💰
               </motion.div>
-              Cash Out — ${potentialWin.toLocaleString()}
+              Cash Out — R{potentialWin.toLocaleString()}
             </motion.button>
           )}
           {(phase === "crashed" || (phase === "running" && cashedOut)) && (

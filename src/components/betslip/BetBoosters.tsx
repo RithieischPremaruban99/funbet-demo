@@ -169,7 +169,7 @@ const BetBoosters = ({ boosters, onToggle, selectionCount, stake, potentialWin }
                         {isActive && booster.key === "insure" && (
                           <div className="flex justify-between text-[10px]">
                             <span className="text-muted-foreground">Refund if you lose</span>
-                            <span className="font-bold text-success">${stake.toLocaleString()}</span>
+                            <span className="font-bold text-success">R{stake.toLocaleString()}</span>
                           </div>
                         )}
 
@@ -177,7 +177,7 @@ const BetBoosters = ({ boosters, onToggle, selectionCount, stake, potentialWin }
                           <div className="flex justify-between text-[10px]">
                             <span className="text-muted-foreground">Fee amount</span>
                             <span className="font-bold text-destructive">
-                              -${Math.round(potentialWin * booster.feePercent / 100).toLocaleString()}
+                              -R{Math.round(potentialWin * booster.feePercent / 100).toLocaleString()}
                             </span>
                           </div>
                         )}

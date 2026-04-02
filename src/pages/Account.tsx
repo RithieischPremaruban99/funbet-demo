@@ -195,7 +195,7 @@ const Account = () => {
           <div className="flex items-center gap-2">
             <Trophy size={18} className="text-highlight" />
             <div>
-              <span className="text-sm font-bold text-highlight">Rewards & Missions</span>
+              <span className="text-sm font-bold text-highlight">Gamification & Missions</span>
               <p className="text-[10px] text-muted-foreground">Level 12 • 2,340 XP • 4-day streak 🔥</p>
             </div>
           </div>

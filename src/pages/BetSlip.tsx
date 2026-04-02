@@ -91,12 +91,12 @@ const BetSlip = () => {
               {boosters.earlyGoals && <div className="flex justify-between text-xs"><span className="text-muted-foreground">⏱ EarlyGoals</span><span className="font-bold text-accent">Active</span></div>}
               {boosters.anyWin && <div className="flex justify-between text-xs"><span className="text-muted-foreground">⭐ AnyWin</span><span className="font-bold text-highlight">Active</span></div>}
               {accaBonusPercent > 0 && (
-                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Acca Bonus</span><span className="font-bold text-highlight">+{accaBonusPercent}% (+${accaBonusAmount.toLocaleString()})</span></div>
+                <div className="flex justify-between text-xs"><span className="text-muted-foreground">Acca Bonus</span><span className="font-bold text-highlight">+{accaBonusPercent}% (+R{accaBonusAmount.toLocaleString()})</span></div>
               )}
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Stake</span><span className="font-bold">${totalStake.toLocaleString()}</span></div>
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Potential win</span><span className="font-bold">${potentialWin.toLocaleString()}</span></div>
-              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Tax (10%)</span><span className="font-medium text-destructive">-${tax.toLocaleString()}</span></div>
-              <div className="border-t border-border pt-2 flex justify-between text-sm"><span className="font-bold">Net payout</span><span className="font-bold text-highlight">${netPayout.toLocaleString()}</span></div>
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Stake</span><span className="font-bold">R{totalStake.toLocaleString()}</span></div>
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Potential win</span><span className="font-bold">R{potentialWin.toLocaleString()}</span></div>
+              <div className="flex justify-between text-xs"><span className="text-muted-foreground">Tax (10%)</span><span className="font-medium text-destructive">-R{tax.toLocaleString()}</span></div>
+              <div className="border-t border-border pt-2 flex justify-between text-sm"><span className="font-bold">Net payout</span><span className="font-bold text-highlight">R{netPayout.toLocaleString()}</span></div>
             </div>
           </div>
           <Link to="/sports" className="block w-full py-3 rounded-xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange">
@@ -288,7 +288,7 @@ const BetSlip = () => {
                                 {correct}/{selections.length} correct {wrong === 0 && "✨"}
                               </span>
                               <span className={`font-bold ${wrong === 0 ? "text-success" : wrong === flexCount ? "text-highlight" : "text-foreground"}`}>
-                                ${payoutAfterTax.toLocaleString()}
+                                R{payoutAfterTax.toLocaleString()}
                               </span>
                             </div>
                           );
@@ -304,7 +304,7 @@ const BetSlip = () => {
             {/* Stake */}
             <div className="rounded-2xl border border-border card-gradient p-4 mb-4">
               <label className="text-xs font-medium text-muted-foreground mb-2 block">
-                {betType === "system" ? "Stake per combo (USD)" : "Stake (USD)"}
+                {betType === "system" ? "Stake per combo (ZAR)" : "Stake (ZAR)"}
               </label>
               <input type="number" value={stake} onChange={(e) => setStake(e.target.value)}
                 className="w-full px-4 py-3 rounded-xl bg-card-elevated border border-border text-lg font-bold text-foreground outline-none focus:ring-1 focus:ring-primary text-center" />

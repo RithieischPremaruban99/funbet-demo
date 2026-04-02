@@ -154,7 +154,7 @@ const Challenge = () => {
                         </div>
                         <div className="flex items-center justify-between px-3 py-2 rounded-xl bg-background/50 border border-border">
                           <span className="text-[10px] text-muted-foreground">Stake</span>
-                          <span className="text-xs font-bold text-highlight">${c.stake.toLocaleString()}</span>
+                          <span className="text-xs font-bold text-highlight">R{c.stake.toLocaleString()}</span>
                         </div>
                       </div>
                     </motion.div>
@@ -253,7 +253,7 @@ const Challenge = () => {
                             : "border-border bg-card text-foreground hover:bg-card-elevated"
                         }`}
                       >
-                        ${s.toLocaleString()}
+                        R{s.toLocaleString()}
                       </button>
                     ))}
                   </div>
@@ -268,7 +268,7 @@ const Challenge = () => {
                     className="w-full py-3.5 rounded-2xl orange-gradient text-highlight-foreground font-bold text-sm glow-orange flex items-center justify-center gap-2"
                   >
                     <Zap size={16} />
-                    Create Challenge — ${selectedStake.toLocaleString()}
+                    Create Challenge — R{selectedStake.toLocaleString()}
                   </button>
                 </motion.div>
               )}
@@ -306,7 +306,7 @@ const Challenge = () => {
                   <p className="text-[10px] text-muted-foreground">Your pick: <span className="text-highlight font-bold">{
                     selectedPick === "home" ? `${matchData.home} (1)` : selectedPick === "draw" ? "Draw (X)" : `${matchData.away} (2)`
                   }</span></p>
-                  <p className="text-[10px] text-muted-foreground">Stake: <span className="text-highlight font-bold">${selectedStake.toLocaleString()}</span></p>
+                  <p className="text-[10px] text-muted-foreground">Stake: <span className="text-highlight font-bold">R{selectedStake.toLocaleString()}</span></p>
                 </div>
               )}
 

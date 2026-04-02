@@ -1,6 +1,7 @@
 import MobileLayout from "@/components/MobileLayout";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SpinWheel from "@/components/SpinWheel";
 import {
   ArrowLeft,
   Award,
@@ -46,11 +47,12 @@ const leaderboard = [
   { rank: 6, name: "BloubergFlash", xp: 6_300, streak: 4, avatar: "KF" },
 ];
 
-type Tab = "missions" | "badges" | "leaderboard";
+type Tab = "missions" | "badges" | "leaderboard" | "spin";
 
 const Rewards = () => {
   const [tab, setTab] = useState<Tab>("missions");
   const [missionType, setMissionType] = useState<"daily" | "weekly">("daily");
+  const [spinsLeft, setSpinsLeft] = useState(1);
   const { xp, level, streak, bestStreak, dailyMissions, weeklyMissions, claimMission } = useGamification();
 
   const xpNext = getXPForNextLevel(level);
@@ -70,7 +72,7 @@ const Rewards = () => {
           <Link to="/account" className="p-2 rounded-xl hover:bg-secondary transition-colors">
             <ArrowLeft size={18} className="text-muted-foreground" />
           </Link>
-          <h1 className="text-lg font-bold">Rewards</h1>
+          <h1 className="text-lg font-bold">Gamification</h1>
         </div>
 
         {/* XP & Level Card */}
@@ -147,6 +149,7 @@ const Rewards = () => {
         <div className="flex gap-2 mb-4">
           {([
             { key: "missions" as Tab, label: "Missions", icon: Target },
+            { key: "spin" as Tab, label: "Spin", icon: Gift },
             { key: "badges" as Tab, label: "Badges", icon: Award },
             { key: "leaderboard" as Tab, label: "Ranking", icon: Trophy },
           ] as const).map((t) => {
@@ -354,6 +357,18 @@ const Rewards = () => {
                 <span className="text-[10px] font-bold">{myRank.streak}</span>
               </div>
             </div>
+          </motion.div>
+        )}
+
+        {/* ====== SPIN TAB ====== */}
+        {tab === "spin" && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <SpinWheel
+              spinsLeft={spinsLeft}
+              onSpin={(prize) => {
+                setSpinsLeft((prev) => Math.max(0, prev - 1));
+              }}
+            />
           </motion.div>
         )}
 
