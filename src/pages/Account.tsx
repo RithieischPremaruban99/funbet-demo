@@ -255,7 +255,7 @@ const Account = () => {
                   <span className="text-xs text-primary font-medium">{bet.pick}</span>
                   <span className="text-xs text-highlight font-bold ml-2">@ {bet.odds.toFixed(2)}</span>
                 </div>
-                <span className="text-xs font-bold">${bet.stake.toLocaleString()}</span>
+                <span className="text-xs font-bold">R{bet.stake.toLocaleString()}</span>
               </div>
             </div>
           ))}
