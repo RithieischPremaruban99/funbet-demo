@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff, Phone, Lock, Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import brandLogo from "@/assets/tictacbets-logo.png";
+import brandLogo from "@/assets/megagame-logo.jpeg";
 
 const Login = () => {
   const [phone, setPhone] = useState("");
