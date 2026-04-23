@@ -1,15 +1,15 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import brandLogo from "@/assets/tictacbets-logo.png";
+import brandLogo from "@/assets/megagame-logo.jpeg";
 
 const PETAL_COLORS = [
-  "hsla(0, 85%, 42%, 0.9)",
-  "hsla(45, 100%, 50%, 0.9)",
-  "hsla(0, 80%, 48%, 0.8)",
+  "hsla(220, 90%, 45%, 0.9)",
+  "hsla(210, 100%, 60%, 0.9)",
+  "hsla(215, 95%, 52%, 0.8)",
   "hsla(0, 0%, 100%, 0.7)",
-  "hsla(45, 95%, 45%, 0.7)",
-  "hsla(0, 75%, 35%, 0.8)",
+  "hsla(210, 95%, 65%, 0.7)",
+  "hsla(225, 80%, 38%, 0.8)",
 ];
 
 const ColorParticle = ({ delay, x, y, size, duration, color }: { delay: number; x: number; y: number; size: number; duration: number; color: string }) => (
