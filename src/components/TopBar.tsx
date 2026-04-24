@@ -18,9 +18,9 @@ const TopBar = () => {
         <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
           <Link to="/" className="flex items-center gap-2">
             {theme.logoUrl && theme.isApplied ? (
-              <img src={theme.logoUrl} alt="Brand logo" className="h-8 object-contain" />
+              <img src={theme.logoUrl} alt="Brand logo" className="h-12 object-contain" />
             ) : (
-              <img src={brandLogo} alt="MegaGame" className="h-8 object-contain rounded-lg" />
+              <img src={brandLogo} alt="FirePlay" className="h-12 object-contain" />
             )}
           </Link>
           <div className="flex items-center gap-1.5">
