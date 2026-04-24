@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import brandLogo from "@/assets/fireplay-logo.png";
 
 const PETAL_COLORS = [
-  "hsla(220, 90%, 45%, 0.9)",
-  "hsla(210, 100%, 60%, 0.9)",
-  "hsla(215, 95%, 52%, 0.8)",
-  "hsla(0, 0%, 100%, 0.7)",
-  "hsla(210, 95%, 65%, 0.7)",
-  "hsla(225, 80%, 38%, 0.8)",
+  "hsla(18, 95%, 55%, 0.9)",
+  "hsla(30, 100%, 60%, 0.9)",
+  "hsla(12, 90%, 50%, 0.85)",
+  "hsla(40, 100%, 65%, 0.8)",
+  "hsla(0, 0%, 100%, 0.6)",
+  "hsla(20, 85%, 45%, 0.8)",
 ];
 
 const ColorParticle = ({ delay, x, y, size, duration, color }: { delay: number; x: number; y: number; size: number; duration: number; color: string }) => (
