@@ -12,7 +12,7 @@ const MobileLayout = ({ children }: MobileLayoutProps) => {
     <div className="min-h-screen bg-background max-w-lg mx-auto relative">
       <TopBar />
       <PageTransition>
-        <main className="pb-20 pt-16">
+        <main className="pb-20 pt-20">
           {children}
         </main>
       </PageTransition>
