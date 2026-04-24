@@ -15,7 +15,7 @@ const TopBar = () => {
         background: "hsl(var(--background))",
         borderBottom: "1px solid hsl(var(--border))",
       }}>
-        <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
+        <div className="flex items-center justify-between h-16 px-4 max-w-lg mx-auto">
           <Link to="/" className="flex items-center gap-2">
             {theme.logoUrl && theme.isApplied ? (
               <img src={theme.logoUrl} alt="Brand logo" className="h-14 object-contain" />
