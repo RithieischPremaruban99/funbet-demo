@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Shield } from "lucide-react";
 import { motion } from "framer-motion";
-import brandLogo from "@/assets/megagame-logo.jpeg";
+import brandLogo from "@/assets/fireplay-logo.png";
 
 const AgeVerification = () => {
   const navigate = useNavigate();
