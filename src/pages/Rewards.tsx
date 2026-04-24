@@ -20,7 +20,7 @@ import {
 import { motion } from "framer-motion";
 import { useGamification } from "@/contexts/GamificationContext";
 import SpinWheel from "@/components/SpinWheel";
-import brandLogo from "@/assets/megagame-logo.jpeg";
+import brandLogo from "@/assets/fireplay-logo.png";
 
 // Badge images
 import rookieBadge from "@/assets/badges/rookie.png";

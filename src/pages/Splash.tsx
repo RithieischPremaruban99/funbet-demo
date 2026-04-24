@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import brandLogo from "@/assets/megagame-logo.jpeg";
+import brandLogo from "@/assets/fireplay-logo.png";
 
 const PETAL_COLORS = [
   "hsla(220, 90%, 45%, 0.9)",
