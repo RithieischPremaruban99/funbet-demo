@@ -16,17 +16,11 @@ const TopBar = () => {
         borderBottom: "1px solid hsl(var(--border))",
       }}>
         <div className="flex items-center justify-between h-16 px-4 max-w-lg mx-auto">
-          <Link to="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center shrink-0">
             {theme.logoUrl && theme.isApplied ? (
               <img src={theme.logoUrl} alt="Brand logo" className="h-14 object-contain" />
             ) : (
-              <>
-                <img src={brandLogo} alt="FirePlay" className="h-14 w-14 object-contain" />
-                <span className="font-display font-extrabold text-xl tracking-wide leading-none">
-                  <span className="red-text">FIRE</span>
-                  <span className="text-foreground">PLAY</span>
-                </span>
-              </>
+              <img src={brandLogo} alt="FirePlay" className="h-14 w-14 object-contain" />
             )}
           </Link>
           <div className="flex items-center gap-1.5">
