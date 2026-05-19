@@ -52,6 +52,19 @@ const mockBetHistory = [
     date: "7 May, 2:04 PM",
     id_short: "Team Nemesis",
   },
+  {
+    id: 4,
+    team: "Arsenal vs Chelsea",
+    abbr: "ARS",
+    type: "1x2",
+    odds: 1.85,
+    stake: 150,
+    payout: 0,
+    status: "pending" as const,
+    score: null,
+    date: "12 May, 8:00 PM",
+    id_short: "a1b2c3d4-5e6f...",
+  },
 ];
 
 const STATUS_STYLES = {
