@@ -5,55 +5,27 @@ import DesktopSidebar from "./DesktopSidebar";
 import DesktopSportsContent from "./DesktopSportsContent";
 import DesktopBetsPanel from "./DesktopBetsPanel";
 
-interface DesktopLayoutProps {
-  children?: ReactNode;
-}
+interface DesktopLayoutProps { children?: ReactNode; }
 
 const DesktopLayout = ({ children }: DesktopLayoutProps) => {
   const location = useLocation();
   const [activeSport, setActiveSport] = useState("Football");
 
   return (
-    <div style={{ height: "100vh", background: "hsl(var(--background))" }}>
-      {/* Fixed Top Nav */}
+    <div style={{ height: "100vh", display: "flex", flexDirection: "column", background: "hsl(var(--background))" }}>
       <DesktopTopBar activePath={location.pathname} />
-
-      {/* 3-column layout below header */}
-      <div
-        style={{ marginTop: 80, height: "calc(100vh - 80px)", display: "flex", overflow: "hidden" }}
-      >
-        {/* LEFT SIDEBAR */}
-        <div
-          className="flex-shrink-0 overflow-hidden border-r"
-          style={{
-            width: 210,
-            borderColor: "hsl(var(--border))",
-          }}
-        >
-          <DesktopSidebar
-            activeSport={activeSport}
-            onSportChange={setActiveSport}
-          />
+      <div style={{ display: "flex", flex: 1, height: "calc(100vh - 56px)", overflow: "hidden" }}>
+        <div style={{ width: 210, flexShrink: 0, borderRight: "1px solid hsl(var(--border))", display: "flex", flexDirection: "column", overflow: "hidden" }}>
+          <DesktopSidebar activeSport={activeSport} onSportChange={setActiveSport} />
         </div>
-
-        {/* MAIN CONTENT */}
-        <div className="flex-1 overflow-y-auto">
-          {/* Show sports content only on /sports route, otherwise show the page */}
-          {location.pathname === "/sports" ? (
-            <DesktopSportsContent activeSport={activeSport} />
+        <div style={{ flex: 1, overflowY: "auto", minWidth: 0 }}>
+          {(location.pathname === "/sports" || location.pathname === "/home") ? (
+            <DesktopSportsContent activeSport={activeSport} onSportChange={setActiveSport} />
           ) : (
-            <div className="pt-4">{children}</div>
+            <div style={{ paddingTop: 16 }}>{children}</div>
           )}
         </div>
-
-        {/* RIGHT PANEL */}
-        <div
-          className="flex-shrink-0 overflow-hidden border-l"
-          style={{
-            width: 290,
-            borderColor: "hsl(var(--border))",
-          }}
-        >
+        <div style={{ width: 290, flexShrink: 0, borderLeft: "1px solid hsl(var(--border))", display: "flex", flexDirection: "column", overflow: "hidden" }}>
           <DesktopBetsPanel />
         </div>
       </div>

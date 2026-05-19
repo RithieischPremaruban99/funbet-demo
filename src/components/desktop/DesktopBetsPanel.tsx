@@ -94,37 +94,31 @@ const DesktopBetsPanel = () => {
       : [];
 
   return (
-    <aside
-      className="flex flex-col h-full overflow-hidden border-l"
-      style={{
-        background: "hsl(var(--card))",
-        borderColor: "hsl(var(--border))",
-      }}
-    >
+    <aside style={{ display: "flex", flexDirection: "column", height: "100%", overflow: "hidden", background: "hsl(var(--card))" }}>
       {/* Header */}
-      <div
-        className="px-4 pt-3 pb-0 border-b flex-shrink-0"
-        style={{ borderColor: "hsl(var(--border))" }}
-      >
-        <h3
-          className="text-sm font-bold mb-3"
-          style={{ color: "hsl(var(--foreground))", fontFamily: "var(--font-display)" }}
-        >
+      <div style={{ flexShrink: 0, padding: "12px 16px 0", borderBottom: "1px solid hsl(var(--border))" }}>
+        <h3 style={{ fontSize: 14, fontWeight: 700, marginBottom: 12, color: "hsl(var(--foreground))", fontFamily: "var(--font-display)" }}>
           My Bets Panel
         </h3>
-        <div className="flex">
+        <div style={{ display: "flex" }}>
           {TABS.map((tab) => (
             <button
               key={tab.key}
               onClick={() => setActiveTab(tab.key)}
-              className="pb-2 px-2 text-xs font-bold border-b-2 transition-all mr-1"
               style={{
-                borderBottomColor:
-                  activeTab === tab.key ? "hsl(var(--primary))" : "transparent",
-                color:
-                  activeTab === tab.key
-                    ? "hsl(var(--primary))"
-                    : "hsl(var(--muted-foreground))",
+                paddingBottom: 8,
+                paddingLeft: 8,
+                paddingRight: 8,
+                paddingTop: 0,
+                fontSize: 12,
+                fontWeight: 700,
+                borderBottom: `2px solid ${activeTab === tab.key ? "hsl(var(--primary))" : "transparent"}`,
+                color: activeTab === tab.key ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))",
+                background: "none",
+                border: "none",
+                borderBottom: `2px solid ${activeTab === tab.key ? "hsl(var(--primary))" : "transparent"}`,
+                cursor: "pointer",
+                marginRight: 4,
               }}
             >
               {tab.label}
@@ -135,53 +129,39 @@ const DesktopBetsPanel = () => {
 
       {/* Active bet slip selections */}
       {selections.length > 0 && (
-        <div
-          className="px-3 py-2 border-b flex-shrink-0"
-          style={{ borderColor: "hsl(var(--border))", background: "hsl(var(--primary) / 0.05)" }}
-        >
-          <div className="flex items-center justify-between mb-2">
-            <span
-              className="text-xs font-bold"
-              style={{ color: "hsl(var(--primary))" }}
-            >
+        <div style={{ flexShrink: 0, padding: "8px 12px", borderBottom: "1px solid hsl(var(--border))", background: "hsl(var(--primary) / 0.05)" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+            <span style={{ fontSize: 12, fontWeight: 700, color: "hsl(var(--primary))" }}>
               {selections.length} Selection{selections.length > 1 ? "s" : ""}
             </span>
-            <button onClick={clearSelections}>
+            <button onClick={clearSelections} style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}>
               <Trash2 size={13} style={{ color: "hsl(var(--muted-foreground))" }} />
             </button>
           </div>
           {selections.map((sel) => (
             <div
               key={sel.id}
-              className="flex items-center justify-between py-1.5 px-2 mb-1 rounded-lg"
-              style={{ background: "hsl(var(--muted))" }}
+              style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 8px", marginBottom: 4, borderRadius: 8, background: "hsl(var(--muted))" }}
             >
-              <div className="flex-1 min-w-0 mr-2">
-                <p className="text-[10px] font-semibold truncate" style={{ color: "hsl(var(--foreground))" }}>
+              <div style={{ flex: 1, minWidth: 0, marginRight: 8 }}>
+                <p style={{ fontSize: 10, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", color: "hsl(var(--foreground))", margin: 0 }}>
                   {sel.match}
                 </p>
-                <p className="text-[9px]" style={{ color: "hsl(var(--muted-foreground))" }}>
+                <p style={{ fontSize: 9, color: "hsl(var(--muted-foreground))", margin: 0 }}>
                   {sel.pick}
                 </p>
               </div>
-              <span
-                className="text-xs font-bold mr-2"
-                style={{ color: "hsl(var(--highlight))" }}
-              >
+              <span style={{ fontSize: 12, fontWeight: 700, marginRight: 8, color: "hsl(var(--highlight))" }}>
                 {sel.odds.toFixed(2)}
               </span>
-              <button onClick={() => removeSelection(sel.id)}>
+              <button onClick={() => removeSelection(sel.id)} style={{ background: "none", border: "none", cursor: "pointer", padding: 0 }}>
                 <X size={12} style={{ color: "hsl(var(--muted-foreground))" }} />
               </button>
             </div>
           ))}
           <Link
             to="/betslip"
-            className="block w-full text-center text-xs font-bold py-2 rounded-lg mt-2 transition-colors"
-            style={{
-              background: "hsl(var(--primary))",
-              color: "hsl(var(--primary-foreground))",
-            }}
+            style={{ display: "block", width: "100%", textAlign: "center", fontSize: 12, fontWeight: 700, padding: "8px 0", borderRadius: 8, marginTop: 8, background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))", textDecoration: "none" }}
           >
             Place Bet →
           </Link>
@@ -189,12 +169,9 @@ const DesktopBetsPanel = () => {
       )}
 
       {/* Bet history list */}
-      <div className="flex-1 overflow-y-auto p-3 space-y-3">
+      <div style={{ flex: 1, overflowY: "auto", padding: 12 }}>
         {filteredHistory.length === 0 && (
-          <div
-            className="text-center py-8 text-xs"
-            style={{ color: "hsl(var(--muted-foreground))" }}
-          >
+          <div style={{ textAlign: "center", paddingTop: 32, paddingBottom: 32, fontSize: 12, color: "hsl(var(--muted-foreground))" }}>
             No bets in this category
           </div>
         )}
@@ -203,77 +180,36 @@ const DesktopBetsPanel = () => {
           return (
             <div
               key={bet.id}
-              className="rounded-xl overflow-hidden border"
-              style={{
-                background: "hsl(var(--card-elevated))",
-                borderColor: "hsl(var(--border))",
-              }}
+              style={{ borderRadius: 12, overflow: "hidden", border: "1px solid hsl(var(--border))", background: "hsl(var(--card-elevated))", marginBottom: 12 }}
             >
               {/* Card header */}
-              <div className="flex items-center justify-between px-3 pt-3 pb-1">
-                <div className="flex items-center gap-2">
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 12px 4px" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <TeamBadge abbr={bet.abbr} />
-                  <span
-                    className="text-xs font-bold"
-                    style={{ color: "hsl(var(--foreground))" }}
-                  >
-                    {bet.team}
-                  </span>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: "hsl(var(--foreground))" }}>{bet.team}</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span
-                    className="text-sm font-bold"
-                    style={{ color: "hsl(var(--highlight))" }}
-                  >
-                    {bet.odds.toFixed(2)}
-                  </span>
-                  <span
-                    className="text-[10px] font-bold px-2 py-0.5 rounded-md"
-                    style={{ background: statusStyle.bg, color: statusStyle.color }}
-                  >
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: "hsl(var(--highlight))" }}>{bet.odds.toFixed(2)}</span>
+                  <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 6, background: statusStyle.bg, color: statusStyle.color }}>
                     {statusStyle.label}
                   </span>
                 </div>
               </div>
-              <p
-                className="text-[10px] px-3 pb-1.5"
-                style={{ color: "hsl(var(--muted-foreground))" }}
-              >
-                {bet.type}
-              </p>
+              <p style={{ fontSize: 10, padding: "0 12px 6px", color: "hsl(var(--muted-foreground))", margin: 0 }}>{bet.type}</p>
 
               {/* Score breakdown */}
               {bet.score && (
-                <div
-                  className="mx-3 mb-2 rounded-lg overflow-hidden border"
-                  style={{ borderColor: "hsl(var(--border))", background: "hsl(var(--muted))" }}
-                >
+                <div style={{ margin: "0 12px 8px", borderRadius: 8, overflow: "hidden", border: "1px solid hsl(var(--border))", background: "hsl(var(--muted))" }}>
                   {bet.score.map((row, i) => (
                     <div
                       key={i}
-                      className={`flex items-center px-2 py-1.5 ${i > 0 ? "border-t" : ""}`}
-                      style={{ borderColor: "hsl(var(--border))" }}
+                      style={{ display: "flex", alignItems: "center", padding: "6px 8px", borderTop: i > 0 ? "1px solid hsl(var(--border))" : "none" }}
                     >
                       <TeamBadge abbr={row.abbr} size={18} />
-                      <span
-                        className="flex-1 text-[10px] font-semibold ml-2"
-                        style={{ color: "hsl(var(--foreground))" }}
-                      >
-                        {row.name}
-                      </span>
-                      <div className="flex gap-2">
-                        <span
-                          className="w-5 text-center text-[10px] font-bold"
-                          style={{ color: "hsl(var(--highlight))" }}
-                        >
-                          {row.h1}
-                        </span>
-                        <span
-                          className="w-5 text-center text-[10px] font-bold"
-                          style={{ color: "hsl(var(--highlight))" }}
-                        >
-                          {row.h2}
-                        </span>
+                      <span style={{ flex: 1, fontSize: 10, fontWeight: 600, marginLeft: 8, color: "hsl(var(--foreground))" }}>{row.name}</span>
+                      <div style={{ display: "flex", gap: 8 }}>
+                        <span style={{ width: 20, textAlign: "center", fontSize: 10, fontWeight: 700, color: "hsl(var(--highlight))" }}>{row.h1}</span>
+                        <span style={{ width: 20, textAlign: "center", fontSize: 10, fontWeight: 700, color: "hsl(var(--highlight))" }}>{row.h2}</span>
                       </div>
                     </div>
                   ))}
@@ -281,38 +217,22 @@ const DesktopBetsPanel = () => {
               )}
 
               {/* Stakes */}
-              <div
-                className="flex justify-between px-3 py-2 border-t"
-                style={{ borderColor: "hsl(var(--border))" }}
-              >
+              <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 12px", borderTop: "1px solid hsl(var(--border))" }}>
                 <div>
-                  <p className="text-[9px] font-bold" style={{ color: "hsl(var(--muted-foreground))" }}>
-                    STAKE
-                  </p>
-                  <p className="text-xs font-bold" style={{ color: "hsl(var(--foreground))" }}>
-                    ₦ {bet.stake.toFixed(2)}
-                  </p>
+                  <p style={{ fontSize: 9, fontWeight: 700, color: "hsl(var(--muted-foreground))", margin: 0 }}>STAKE</p>
+                  <p style={{ fontSize: 12, fontWeight: 700, color: "hsl(var(--foreground))", margin: 0 }}>₦ {bet.stake.toFixed(2)}</p>
                 </div>
-                <div className="text-right">
-                  <p className="text-[9px] font-bold" style={{ color: "hsl(var(--muted-foreground))" }}>
-                    PAYOUT
-                  </p>
-                  <p
-                    className="text-xs font-bold"
-                    style={{
-                      color: bet.payout > 0 ? "hsl(var(--success))" : "hsl(var(--destructive))",
-                    }}
-                  >
+                <div style={{ textAlign: "right" }}>
+                  <p style={{ fontSize: 9, fontWeight: 700, color: "hsl(var(--muted-foreground))", margin: 0 }}>PAYOUT</p>
+                  <p style={{ fontSize: 12, fontWeight: 700, color: bet.payout > 0 ? "hsl(var(--success))" : "hsl(var(--destructive))", margin: 0 }}>
                     ₦ {bet.payout.toFixed(2)}
                   </p>
                 </div>
               </div>
 
               {/* Date/ID */}
-              <div className="px-3 pb-2">
-                <p className="text-[9px]" style={{ color: "hsl(var(--muted-foreground))" }}>
-                  {bet.id_short} · {bet.date}
-                </p>
+              <div style={{ padding: "0 12px 8px" }}>
+                <p style={{ fontSize: 9, color: "hsl(var(--muted-foreground))", margin: 0 }}>{bet.id_short} · {bet.date}</p>
               </div>
             </div>
           );
