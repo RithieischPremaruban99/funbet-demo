@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Flame, ChevronRight } from "lucide-react";
 import { useBetSlip } from "@/contexts/BetSlipContext";
 import TeamBadge from "@/components/TeamBadge";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Icon pills row
 const ICON_PILLS = [
@@ -136,6 +136,7 @@ const DesktopSportsContent = ({ activeSport }: DesktopSportsContentProps) => {
   const [activeLiveSport, setActiveLiveSport] = useState("Football");
   const [activeIconPill, setActiveIconPill] = useState("Football");
   const { toggleSelection, isSelected } = useBetSlip();
+  const navigate = useNavigate();
 
   const handleOdds = (
     matchId: number,
@@ -237,6 +238,7 @@ const DesktopSportsContent = ({ activeSport }: DesktopSportsContentProps) => {
         style={{ background: "hsl(var(--background))", borderColor: "hsl(var(--border))" }}
       >
         <button
+          onClick={() => navigate("/betslip")}
           className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-colors"
           style={{
             background: "hsl(var(--primary))",
@@ -252,6 +254,7 @@ const DesktopSportsContent = ({ activeSport }: DesktopSportsContentProps) => {
           BetBuilder
         </button>
         <button
+          onClick={() => navigate("/social")}
           className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold border transition-colors"
           style={{
             background: "hsl(var(--card))",
