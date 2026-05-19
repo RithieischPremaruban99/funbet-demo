@@ -1,11 +1,9 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { useLocation } from "react-router-dom";
 import DesktopTopBar from "./DesktopTopBar";
 import DesktopSidebar from "./DesktopSidebar";
 import DesktopSportsContent from "./DesktopSportsContent";
 import DesktopBetsPanel from "./DesktopBetsPanel";
-import BrandThemingPanel from "@/components/BrandThemingPanel";
-import { useState } from "react";
 
 interface DesktopLayoutProps {
   children?: ReactNode;
@@ -16,21 +14,13 @@ const DesktopLayout = ({ children }: DesktopLayoutProps) => {
   const [activeSport, setActiveSport] = useState("Football");
 
   return (
-    <div
-      className="flex flex-col"
-      style={{
-        height: "100vh",
-        overflow: "hidden",
-        background: "hsl(var(--background))",
-      }}
-    >
+    <div style={{ height: "100vh", background: "hsl(var(--background))" }}>
       {/* Fixed Top Nav */}
       <DesktopTopBar activePath={location.pathname} />
 
       {/* 3-column layout below header */}
       <div
-        className="flex flex-1 overflow-hidden"
-        style={{ marginTop: 56 }} /* height of topbar */
+        style={{ marginTop: 56, height: "calc(100vh - 56px)", display: "flex", overflow: "hidden" }}
       >
         {/* LEFT SIDEBAR */}
         <div
@@ -67,9 +57,6 @@ const DesktopLayout = ({ children }: DesktopLayoutProps) => {
           <DesktopBetsPanel />
         </div>
       </div>
-
-      {/* Brand theming panel overlay */}
-      <BrandThemingPanel />
     </div>
   );
 };
