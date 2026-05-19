@@ -38,8 +38,8 @@ const DesktopLayout = ({ children }: DesktopLayoutProps) => {
 
         {/* MAIN CONTENT */}
         <div className="flex-1 overflow-y-auto">
-          {/* Show sports content on /sports route, otherwise show children */}
-          {location.pathname === "/sports" || location.pathname === "/home" ? (
+          {/* Show sports content only on /sports route, otherwise show the page */}
+          {location.pathname === "/sports" ? (
             <DesktopSportsContent activeSport={activeSport} />
           ) : (
             <div className="pt-4">{children}</div>
