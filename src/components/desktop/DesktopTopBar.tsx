@@ -1,5 +1,5 @@
 import { Bell, MessageCircle, Plus, Search, Wallet, PaintBucket } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import funbetLogo from "@/assets/funbet-logo.svg";
 import { useBrandTheme } from "@/contexts/BrandThemeContext";
 
@@ -19,6 +19,7 @@ interface DesktopTopBarProps {
 
 const DesktopTopBar = ({ activePath }: DesktopTopBarProps) => {
   const { theme, showPanel, setShowPanel } = useBrandTheme();
+  const navigate = useNavigate();
 
   return (
     <header
@@ -62,6 +63,7 @@ const DesktopTopBar = ({ activePath }: DesktopTopBarProps) => {
       {/* Right actions */}
       <div className="flex items-center gap-2 shrink-0">
         <button
+          onClick={() => navigate("/casino")}
           className="p-2 rounded-lg hover:bg-secondary/30 transition-colors"
           style={{ color: "hsl(var(--muted-foreground))" }}
         >
@@ -71,6 +73,7 @@ const DesktopTopBar = ({ activePath }: DesktopTopBarProps) => {
           </svg>
         </button>
         <button
+          onClick={() => navigate("/bet-history")}
           className="p-2 rounded-lg hover:bg-secondary/30 transition-colors"
           style={{ color: "hsl(var(--muted-foreground))" }}
         >
@@ -86,12 +89,14 @@ const DesktopTopBar = ({ activePath }: DesktopTopBarProps) => {
           <PaintBucket size={16} />
         </button>
         <button
+          onClick={() => navigate("/betslip")}
           className="flex items-center justify-center w-8 h-8 rounded-lg"
           style={{ background: "hsl(var(--primary))" }}
         >
           <Plus size={18} style={{ color: "hsl(var(--primary-foreground))" }} />
         </button>
         <button
+          onClick={() => navigate("/account")}
           className="relative p-2 rounded-lg hover:bg-secondary/30 transition-colors"
           style={{ color: "hsl(var(--muted-foreground))" }}
         >
@@ -102,6 +107,7 @@ const DesktopTopBar = ({ activePath }: DesktopTopBarProps) => {
           />
         </button>
         <button
+          onClick={() => navigate("/social")}
           className="p-2 rounded-lg hover:bg-secondary/30 transition-colors"
           style={{ color: "hsl(var(--muted-foreground))" }}
         >
@@ -119,6 +125,7 @@ const DesktopTopBar = ({ activePath }: DesktopTopBarProps) => {
           <span>R12,500</span>
         </Link>
         <div
+          onClick={() => navigate("/account")}
           className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold cursor-pointer"
           style={{
             background: "hsl(var(--primary))",

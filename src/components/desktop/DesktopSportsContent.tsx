@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Flame, ChevronRight } from "lucide-react";
 import { useBetSlip } from "@/contexts/BetSlipContext";
 import TeamBadge from "@/components/TeamBadge";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Icon pills row
 const ICON_PILLS = [
@@ -136,6 +136,7 @@ const DesktopSportsContent = ({ activeSport }: DesktopSportsContentProps) => {
   const [activeLiveSport, setActiveLiveSport] = useState("Football");
   const [activeIconPill, setActiveIconPill] = useState("Football");
   const { toggleSelection, isSelected } = useBetSlip();
+  const navigate = useNavigate();
 
   const handleOdds = (
     matchId: number,
@@ -237,6 +238,7 @@ const DesktopSportsContent = ({ activeSport }: DesktopSportsContentProps) => {
         style={{ background: "hsl(var(--background))", borderColor: "hsl(var(--border))" }}
       >
         <button
+          onClick={() => navigate("/betslip")}
           className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-colors"
           style={{
             background: "hsl(var(--primary))",
@@ -252,6 +254,7 @@ const DesktopSportsContent = ({ activeSport }: DesktopSportsContentProps) => {
           BetBuilder
         </button>
         <button
+          onClick={() => navigate("/social")}
           className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold border transition-colors"
           style={{
             background: "hsl(var(--card))",
@@ -269,8 +272,9 @@ const DesktopSportsContent = ({ activeSport }: DesktopSportsContentProps) => {
       </div>
 
       {/* Welcome bonus banner */}
-      <div
-        className="mx-4 my-3 rounded-xl p-4 flex items-center justify-between flex-shrink-0 border"
+      <Link
+        to="/promotions"
+        className="mx-4 my-3 rounded-xl p-4 flex items-center justify-between flex-shrink-0 border cursor-pointer hover:opacity-90 transition-opacity"
         style={{
           background: "linear-gradient(135deg, hsl(40,28%,8%) 0%, hsl(42,35%,14%) 50%, hsl(45,50%,18%) 100%)",
           borderColor: "hsl(var(--primary) / 0.3)",
@@ -296,7 +300,7 @@ const DesktopSportsContent = ({ activeSport }: DesktopSportsContentProps) => {
           </p>
         </div>
         <span style={{ fontSize: 36 }}>🎁</span>
-      </div>
+      </Link>
 
       {/* Live & Upcoming section */}
       <section className="px-4 mb-4 flex-shrink-0">
@@ -408,12 +412,13 @@ const DesktopSportsContent = ({ activeSport }: DesktopSportsContentProps) => {
               Football
             </h2>
           </div>
-          <button
+          <Link
+            to="/sports"
             className="flex items-center gap-1 text-xs font-bold"
             style={{ color: "hsl(var(--primary))" }}
           >
             SEE MORE <ChevronRight size={12} />
-          </button>
+          </Link>
         </div>
 
         {/* League tabs */}
@@ -529,6 +534,7 @@ const DesktopSportsContent = ({ activeSport }: DesktopSportsContentProps) => {
                 {/* More bets */}
                 <div className="px-3 py-2 flex-shrink-0">
                   <button
+                    onClick={() => navigate("/betslip")}
                     className="flex items-center gap-1 text-[10px] font-bold px-2 py-1.5 rounded-lg"
                     style={{
                       background: "hsl(var(--primary) / 0.12)",
