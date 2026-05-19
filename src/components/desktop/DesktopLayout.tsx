@@ -20,7 +20,7 @@ const DesktopLayout = ({ children }: DesktopLayoutProps) => {
 
       {/* 3-column layout below header */}
       <div
-        style={{ marginTop: 56, height: "calc(100vh - 56px)", display: "flex", overflow: "hidden" }}
+        style={{ marginTop: 80, height: "calc(100vh - 80px)", display: "flex", overflow: "hidden" }}
       >
         {/* LEFT SIDEBAR */}
         <div
