@@ -21,7 +21,7 @@ const Login = () => {
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
           <div className="relative flex flex-col items-center justify-center" style={{ width: "200px", height: "200px" }}>
-            <img src={brandLogo} alt="TicTacBets" className="w-48 h-auto object-contain rounded-2xl" style={{ boxShadow: "0 0 30px hsla(0,85%,42%,0.2)" }} />
+            <img src={brandLogo} alt="TicTacBets" className="w-48 h-auto object-contain rounded-2xl" style={{ boxShadow: "0 0 30px hsla(45,90%,52%,0.2)" }} />
           </div>
           <p className="text-xs text-muted-foreground mt-6">Access your account</p>
         </div>

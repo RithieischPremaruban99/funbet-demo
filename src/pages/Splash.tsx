@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import brandLogo from "@/assets/fireplay-logo.png";
 
 const PETAL_COLORS = [
-  "hsla(18, 95%, 55%, 0.9)",
-  "hsla(30, 100%, 60%, 0.9)",
+  "hsla(45,90%,52%, 0.9)",
+  "hsla(48,100%,68%, 0.9)",
   "hsla(12, 90%, 50%, 0.85)",
   "hsla(40, 100%, 65%, 0.8)",
   "hsla(0, 0%, 100%, 0.6)",
@@ -99,8 +99,8 @@ const Splash = () => {
         className="absolute rounded-full"
         style={{
           width: 4, height: 4,
-          background: "hsl(0, 85%, 42%)",
-          boxShadow: "0 0 20px hsl(0,85%,42%), 0 0 40px hsla(0,85%,42%,0.5)",
+          background: "hsl(45,90%,52%)",
+          boxShadow: "0 0 20px hsl(45,90%,52%), 0 0 40px hsla(45,90%,52%,0.5)",
         }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{
@@ -122,7 +122,7 @@ const Splash = () => {
       {/* Ambient glow */}
       <motion.div
         className="absolute"
-        style={{ width: 600, height: 600, background: "radial-gradient(circle, hsla(0,85%,42%,0.04) 0%, transparent 60%)" }}
+        style={{ width: 600, height: 600, background: "radial-gradient(circle, hsla(45,90%,52%,0.04) 0%, transparent 60%)" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: phase >= 1 ? 1 : 0, scale: [1, 1.1, 1] }}
         transition={{ opacity: { duration: 0.5 }, scale: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
@@ -135,7 +135,7 @@ const Splash = () => {
         animate={{ opacity: phase >= 2 ? 1 : 0, scale: phase >= 2 ? 1 : 0.5 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <img src={brandLogo} alt="FirePlay" className="w-40 h-auto object-contain" style={{ filter: "drop-shadow(0 0 40px hsla(18,95%,55%,0.45))" }} />
+        <img src={brandLogo} alt="FirePlay" className="w-40 h-auto object-contain" style={{ filter: "drop-shadow(0 0 40px hsla(45,90%,52%,0.45))" }} />
         <span className="font-display font-extrabold text-3xl tracking-wider leading-none">
           <span className="red-text">FIRE</span>
           <span className="text-foreground">PLAY</span>
@@ -155,7 +155,7 @@ const Splash = () => {
           initial={{ width: 0, opacity: 0 }}
           animate={phase >= 3 ? { width: 200, opacity: 1 } : {}}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          style={{ height: 1, background: "linear-gradient(90deg, transparent, hsl(0,85%,42%), transparent)" }}
+          style={{ height: 1, background: "linear-gradient(90deg, transparent, hsl(45,90%,52%), transparent)" }}
         />
 
         <motion.p
@@ -179,7 +179,7 @@ const Splash = () => {
         <div className="h-[1px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.05)" }}>
           <motion.div
             className="h-full rounded-full"
-            style={{ background: "linear-gradient(90deg, hsl(0,85%,42%), hsl(0,80%,48%), hsl(45,100%,50%))" }}
+            style={{ background: "linear-gradient(90deg, hsl(45,90%,52%), hsl(45,90%,52%), hsl(48,100%,68%))" }}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: 3.5, ease: "easeInOut", delay: 0.5 }}
