@@ -14,7 +14,7 @@ const DesktopLayout = ({ children }: DesktopLayoutProps) => {
   return (
     <div style={{ height: "100vh", display: "flex", flexDirection: "column", background: "hsl(var(--background))" }}>
       <DesktopTopBar activePath={location.pathname} />
-      <div style={{ display: "flex", flex: 1, height: "calc(100vh - 56px)", overflow: "hidden" }}>
+      <div style={{ display: "flex", marginTop: 80, height: "calc(100vh - 80px)", overflow: "hidden" }}>
         <div style={{ width: 210, flexShrink: 0, borderRight: "1px solid hsl(var(--border))", display: "flex", flexDirection: "column", overflow: "hidden" }}>
           <DesktopSidebar activeSport={activeSport} onSportChange={setActiveSport} />
         </div>

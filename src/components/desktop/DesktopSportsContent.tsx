@@ -5,12 +5,12 @@ import { useBetSlip } from "@/contexts/BetSlipContext";
 import TeamBadge from "@/components/TeamBadge";
 import { matchesBySport } from "@/data/sportsData";
 
-const ICON_PILLS = [
+const ICON_PILLS: { label: string; emoji: string; live?: boolean; special?: boolean; social?: boolean; text?: boolean }[] = [
   { label: "Live", emoji: "📡", live: true },
   { label: "Football", emoji: "⚽" },
   { label: "Load Code", emoji: "🎟" },
   { label: "Virtuals", emoji: "🎮" },
-  { label: "Peer to Peer", emoji: "P2P", text: true },
+  { label: "Peer to Peer", emoji: "P2P", text: true, social: true },
   { label: "Gamers Paradise", emoji: "🎰", special: true },
 ];
 
@@ -96,6 +96,7 @@ const DesktopSportsContent = ({ activeSport, onSportChange }: DesktopSportsConte
   const handlePillClick = (pill: typeof ICON_PILLS[number]) => {
     if (pill.live) { navigate("/sports"); return; }
     if (pill.special) { navigate("/casino"); return; }
+    if (pill.social) { navigate("/social"); return; }
     setActiveIconPill(pill.label);
   };
 
@@ -304,7 +305,6 @@ const DesktopSportsContent = ({ activeSport, onSportChange }: DesktopSportsConte
                 paddingTop: 0,
                 fontSize: 12,
                 fontWeight: 700,
-                borderBottom: `2px solid ${activeSport === s ? "hsl(var(--primary))" : "transparent"}`,
                 color: activeSport === s ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))",
                 background: "none",
                 border: "none",
@@ -503,6 +503,7 @@ const DesktopSportsContent = ({ activeSport, onSportChange }: DesktopSportsConte
                   {/* More bets */}
                   <div style={{ padding: "8px 12px", flexShrink: 0 }}>
                     <button
+                      onClick={() => navigate("/betslip")}
                       style={{
                         display: "flex",
                         alignItems: "center",

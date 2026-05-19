@@ -112,7 +112,6 @@ const DesktopBetsPanel = () => {
                 paddingTop: 0,
                 fontSize: 12,
                 fontWeight: 700,
-                borderBottom: `2px solid ${activeTab === tab.key ? "hsl(var(--primary))" : "transparent"}`,
                 color: activeTab === tab.key ? "hsl(var(--primary))" : "hsl(var(--muted-foreground))",
                 background: "none",
                 border: "none",
@@ -180,7 +179,7 @@ const DesktopBetsPanel = () => {
           return (
             <div
               key={bet.id}
-              style={{ borderRadius: 12, overflow: "hidden", border: "1px solid hsl(var(--border))", background: "hsl(var(--card-elevated))", marginBottom: 12 }}
+              style={{ borderRadius: 12, overflow: "hidden", border: "1px solid hsl(var(--border))", background: "hsl(var(--card-elevated))", marginBottom: 12, cursor: "pointer" }}
             >
               {/* Card header */}
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 12px 4px" }}>

@@ -84,11 +84,8 @@ const DesktopSidebar = ({ activeSport, onSportChange }: DesktopSidebarProps) => 
                 gap: 10,
                 padding: "10px 12px",
                 background: isActive ? "hsl(var(--primary) / 0.12)" : "transparent",
-                borderRight: isActive ? "2px solid hsl(var(--primary))" : "2px solid transparent",
                 border: "none",
-                borderTop: "none",
-                borderBottom: "none",
-                borderLeft: "none",
+                borderRight: isActive ? "2px solid hsl(var(--primary))" : "2px solid transparent",
                 cursor: "pointer",
                 textAlign: "left",
               }}
