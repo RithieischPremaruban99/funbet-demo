@@ -32,9 +32,9 @@ const DesktopTopBar = ({ activePath }: DesktopTopBarProps) => {
       {/* Logo */}
       <Link to="/home" className="flex items-center shrink-0 mr-4">
         {theme.logoUrl && theme.isApplied ? (
-          <img src={theme.logoUrl} alt="Brand" className="h-10 object-contain" />
+          <img src={theme.logoUrl} alt="Brand" className="h-16 object-contain" />
         ) : (
-          <img src={funbetLogo} alt="FunBet" className="h-11 w-32 object-contain" />
+          <img src={funbetLogo} alt="FunBet" className="h-16 w-44 object-contain" />
         )}
       </Link>
 
