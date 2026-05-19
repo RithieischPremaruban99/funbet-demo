@@ -135,10 +135,10 @@ const Splash = () => {
         animate={{ opacity: phase >= 2 ? 1 : 0, scale: phase >= 2 ? 1 : 0.5 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
-        <img src={brandLogo} alt="FirePlay" className="w-40 h-auto object-contain" style={{ filter: "drop-shadow(0 0 40px hsla(45,90%,52%,0.45))" }} />
+        <img src={brandLogo} alt="FunBet" className="w-40 h-auto object-contain" style={{ filter: "drop-shadow(0 0 40px hsla(45,90%,52%,0.45))" }} />
         <span className="font-display font-extrabold text-3xl tracking-wider leading-none">
-          <span className="red-text">FIRE</span>
-          <span className="text-foreground">PLAY</span>
+          <span className="red-text">FUN</span>
+          <span className="text-foreground">BET</span>
         </span>
       </motion.div>
 
