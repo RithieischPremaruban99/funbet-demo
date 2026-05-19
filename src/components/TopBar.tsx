@@ -26,9 +26,9 @@ const TopBar = () => {
           <div className="flex items-center gap-1.5">
             <Link to="/rewards" className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all"
               style={{
-                background: "linear-gradient(135deg, hsla(0,85%,42%,0.15), hsla(45,100%,50%,0.1))",
-                border: "1px solid hsla(0,85%,42%,0.3)",
-                boxShadow: "0 0 10px hsla(0,85%,42%,0.1)",
+                background: "linear-gradient(135deg, hsla(45,90%,52%,0.15), hsla(48,100%,68%,0.1))",
+                border: "1px solid hsla(45,90%,52%,0.3)",
+                boxShadow: "0 0 10px hsla(45,90%,52%,0.1)",
               }}
             >
               <Crown size={14} className="text-primary" />
