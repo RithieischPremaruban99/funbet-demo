@@ -22,7 +22,7 @@ const DesktopTopBar = ({ activePath }: DesktopTopBarProps) => {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 flex items-center h-14 px-4 gap-3 border-b"
+      className="fixed top-0 left-0 right-0 z-50 flex items-center h-20 px-4 gap-3 border-b"
       style={{
         background: "hsl(var(--background))",
         borderColor: "hsl(var(--border))",
@@ -32,9 +32,9 @@ const DesktopTopBar = ({ activePath }: DesktopTopBarProps) => {
       {/* Logo */}
       <Link to="/home" className="flex items-center shrink-0 mr-4">
         {theme.logoUrl && theme.isApplied ? (
-          <img src={theme.logoUrl} alt="Brand" className="h-10 object-contain" />
+          <img src={theme.logoUrl} alt="Brand" className="h-16 object-contain" />
         ) : (
-          <img src={funbetLogo} alt="FunBet" className="h-11 w-32 object-contain" />
+          <img src={funbetLogo} alt="FunBet" className="h-16 w-44 object-contain" />
         )}
       </Link>
 
