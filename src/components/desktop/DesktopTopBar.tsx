@@ -4,11 +4,13 @@ import funbetLogo from "@/assets/funbet-logo.svg";
 import { useBrandTheme } from "@/contexts/BrandThemeContext";
 
 const NAV_ITEMS = [
-  { label: "Feed", to: "/home", icon: "🏠" },
-  { label: "Sports", to: "/sports", icon: "⚽" },
-  { label: "Discovery", to: "/sports", icon: "🔍" },
-  { label: "Casino", to: "/casino", icon: "🎰" },
-  { label: "Peer-to-peer", to: "/social", icon: "👥" },
+  { label: "Home", to: "/home" },
+  { label: "Sports", to: "/sports" },
+  { label: "Casino", to: "/casino" },
+  { label: "Social", to: "/social" },
+  { label: "Promotions", to: "/promotions" },
+  { label: "Rewards", to: "/rewards" },
+  { label: "Account", to: "/account" },
 ];
 
 interface DesktopTopBarProps {
@@ -39,7 +41,7 @@ const DesktopTopBar = ({ activePath }: DesktopTopBarProps) => {
       {/* Nav Items */}
       <nav className="flex items-center gap-1 flex-1">
         {NAV_ITEMS.map((item) => {
-          const isActive = activePath === item.to || (item.to === "/sports" && activePath === "/sports");
+          const isActive = activePath === item.to;
           return (
             <Link
               key={item.label}
